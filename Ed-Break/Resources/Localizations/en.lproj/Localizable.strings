@@ -1,0 +1,11 @@
+/* 
+  Localizable.strings
+  Ed-Break
+
+  Created by Astghik Hakopian on 26.09.22.
+  
+*/
+
+// Onboarding
+
+"onboarding.role" = "Whose device is this?";
