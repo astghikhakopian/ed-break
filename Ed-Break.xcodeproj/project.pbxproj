@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		EF43B69828E1982E00DBE6B6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EF43B69728E1982E00DBE6B6 /* LaunchScreen.storyboard */; };
+		EF43B69A28E1986F00DBE6B6 /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EF43B69928E1986F00DBE6B6 /* Colors.xcassets */; };
 		EF51A11628E190FA0020F135 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EF51A11528E190FA0020F135 /* Preview Assets.xcassets */; };
 		EFE9288728E18C3A00675F28 /* Ed_BreakApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFE9288628E18C3A00675F28 /* Ed_BreakApp.swift */; };
 		EFE9288928E18C3A00675F28 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFE9288828E18C3A00675F28 /* ContentView.swift */; };
@@ -14,6 +16,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		EF43B69728E1982E00DBE6B6 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
+		EF43B69928E1986F00DBE6B6 /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
 		EF51A11528E190FA0020F135 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		EFE9288328E18C3A00675F28 /* Ed-Break.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Ed-Break.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		EFE9288628E18C3A00675F28 /* Ed_BreakApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ed_BreakApp.swift; sourceTree = "<group>"; };
@@ -32,6 +36,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		EF43B69628E1981700DBE6B6 /* Launching */ = {
+			isa = PBXGroup;
+			children = (
+				EF43B69728E1982E00DBE6B6 /* LaunchScreen.storyboard */,
+			);
+			path = Launching;
+			sourceTree = "<group>";
+		};
 		EF51A11428E190FA0020F135 /* Preview Content */ = {
 			isa = PBXGroup;
 			children = (
@@ -76,6 +88,7 @@
 		EFE9289428E18F6D00675F28 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				EF43B69628E1981700DBE6B6 /* Launching */,
 				EF51A11728E1916C0020F135 /* Onboarding */,
 				EFE9288828E18C3A00675F28 /* ContentView.swift */,
 			);
@@ -86,6 +99,7 @@
 			isa = PBXGroup;
 			children = (
 				EFE9288A28E18C3E00675F28 /* Assets.xcassets */,
+				EF43B69928E1986F00DBE6B6 /* Colors.xcassets */,
 				EF51A11428E190FA0020F135 /* Preview Content */,
 			);
 			path = Resources;
@@ -157,6 +171,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EF43B69828E1982E00DBE6B6 /* LaunchScreen.storyboard in Resources */,
+				EF43B69A28E1986F00DBE6B6 /* Colors.xcassets in Resources */,
 				EF51A11628E190FA0020F135 /* Preview Assets.xcassets in Resources */,
 				EFE9288B28E18C3E00675F28 /* Assets.xcassets in Resources */,
 			);
@@ -298,13 +314,14 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"Ed-Break/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "\"Ed-Break/Resources/Preview Content\"";
 				DEVELOPMENT_TEAM = 3A3ZL8ATWR;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen.storyboard;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
@@ -328,13 +345,14 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"Ed-Break/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "\"Ed-Break/Resources/Preview Content\"";
 				DEVELOPMENT_TEAM = 3A3ZL8ATWR;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen.storyboard;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
