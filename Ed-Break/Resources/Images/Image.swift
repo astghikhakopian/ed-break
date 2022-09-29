@@ -20,5 +20,8 @@ extension Image {
         public static var backgroundEcliipse3: Image {
             return Image("background_ecliipse_3")
         }
+        public static var back: Image {
+            return Image("back")
+        }
     }
 }

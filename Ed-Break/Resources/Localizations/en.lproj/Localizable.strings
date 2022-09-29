@@ -9,3 +9,8 @@
 // Onboarding
 
 "onboarding.role" = "Whose device is this?";
+
+"onboarding.parent.title" = "Parent’s Device";
+"onboarding.child.title" = "Child’s Device";
+
+"onboarding.familySharing.title" = "Set up Family Sharing \n and invite your child";
