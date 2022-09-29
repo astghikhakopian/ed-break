@@ -57,7 +57,7 @@ extension Font {
 extension Font {
     
     static let appLargeTitle = font(type: .poppins, weight: .bold, size: 21)
-    static let appTitle = font(type: .poppins, weight: .bold, style: .title1)
+    static let appTitle = font(type: .poppins, weight: .bold, size: 19)
     static let appSecondaryTitle = font(type: .poppins, weight: .bold, style: .title2)
     static let appTertiaryTitle = font(type: .poppins, weight: .bold, style: .title3)
     static let appHeadline = font(type: .poppins, weight: .bold, style: .headline)

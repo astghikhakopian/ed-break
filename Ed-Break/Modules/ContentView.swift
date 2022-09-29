@@ -9,14 +9,7 @@ import SwiftUI
 
 struct ContentView: View {
     var body: some View {
-        MainBackground()
-//        VStack {
-//            Image(systemName: "globe")
-//                .imageScale(.large)
-//                .foregroundColor(.accentColor)
-//            Text("Hello, world!")
-//        }
-//        .padding()
+        OnboardingRole()
     }
 }
 

@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1B3581A728E621E600612976 /* OnboardingRoleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B3581A628E621E600612976 /* OnboardingRoleCell.swift */; };
+		1B3581AC28E6387000612976 /* FamilySharing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B3581AB28E6387000612976 /* FamilySharing.swift */; };
 		EF43B69828E1982E00DBE6B6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EF43B69728E1982E00DBE6B6 /* LaunchScreen.storyboard */; };
 		EF43B69A28E1986F00DBE6B6 /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EF43B69928E1986F00DBE6B6 /* Colors.xcassets */; };
 		EF43B69E28E19D5E00DBE6B6 /* OnboardingRole.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF43B69D28E19D5E00DBE6B6 /* OnboardingRole.swift */; };
@@ -33,13 +35,14 @@
 		EFE6E45828E1F2BA00B3F83D /* Poppins-BlackItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EFE6E45A28E1F2BA00B3F83D /* Poppins-BlackItalic.ttf */; };
 		EFE6E45F28E1F5E300B3F83D /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = EFE6E46128E1F5E300B3F83D /* Localizable.strings */; };
 		EFE6E46328E2206A00B3F83D /* Font.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFE6E46228E2206A00B3F83D /* Font.swift */; };
-		EFE6E46528E2240100B3F83D /* info.plist in Resources */ = {isa = PBXBuildFile; fileRef = EFE6E45228E1DB9500B3F83D /* info.plist */; };
 		EFE9288728E18C3A00675F28 /* Ed_BreakApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFE9288628E18C3A00675F28 /* Ed_BreakApp.swift */; };
 		EFE9288928E18C3A00675F28 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFE9288828E18C3A00675F28 /* ContentView.swift */; };
 		EFE9288B28E18C3E00675F28 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EFE9288A28E18C3E00675F28 /* Assets.xcassets */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1B3581A628E621E600612976 /* OnboardingRoleCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingRoleCell.swift; sourceTree = "<group>"; };
+		1B3581AB28E6387000612976 /* FamilySharing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FamilySharing.swift; sourceTree = "<group>"; };
 		EF43B69728E1982E00DBE6B6 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		EF43B69928E1986F00DBE6B6 /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
 		EF43B69D28E19D5E00DBE6B6 /* OnboardingRole.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingRole.swift; sourceTree = "<group>"; };
@@ -63,7 +66,6 @@
 		EFE6E43A28E1DAE900B3F83D /* Poppins-ExtraLightItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-ExtraLightItalic.ttf"; sourceTree = "<group>"; };
 		EFE6E44D28E1DB3A00B3F83D /* Poppins-ThinItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-ThinItalic.ttf"; sourceTree = "<group>"; };
 		EFE6E44F28E1DB5000B3F83D /* Poppins-BoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-BoldItalic.ttf"; sourceTree = "<group>"; };
-		EFE6E45228E1DB9500B3F83D /* info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = info.plist; sourceTree = "<group>"; };
 		EFE6E45528E1F2A500B3F83D /* en */ = {isa = PBXFileReference; lastKnownFileType = file; name = en; path = "en.lproj/Poppins-Black.ttf"; sourceTree = "<group>"; };
 		EFE6E45728E1F2AE00B3F83D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file; name = Base; path = "Base.lproj/Poppins-Black.ttf"; sourceTree = "<group>"; };
 		EFE6E45928E1F2BA00B3F83D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file; name = Base; path = "Base.lproj/Poppins-BlackItalic.ttf"; sourceTree = "<group>"; };
@@ -87,6 +89,37 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1B3581A828E6383B00612976 /* Parent */ = {
+			isa = PBXGroup;
+			children = (
+				1B3581A928E6384800612976 /* FamilySharing */,
+			);
+			path = Parent;
+			sourceTree = "<group>";
+		};
+		1B3581A928E6384800612976 /* FamilySharing */ = {
+			isa = PBXGroup;
+			children = (
+				1B3581AA28E6385700612976 /* View */,
+			);
+			path = FamilySharing;
+			sourceTree = "<group>";
+		};
+		1B3581AA28E6385700612976 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				1B3581AB28E6387000612976 /* FamilySharing.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		1BF313AE28E2F53000232CB3 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
 		EF43B69628E1981700DBE6B6 /* Launching */ = {
 			isa = PBXGroup;
 			children = (
@@ -107,6 +140,7 @@
 			isa = PBXGroup;
 			children = (
 				EF43B69D28E19D5E00DBE6B6 /* OnboardingRole.swift */,
+				1B3581A628E621E600612976 /* OnboardingRoleCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -165,6 +199,7 @@
 			isa = PBXGroup;
 			children = (
 				EF43B69B28E19BCE00DBE6B6 /* OnboardingRole */,
+				1B3581A828E6383B00612976 /* Parent */,
 			);
 			path = Onboarding;
 			sourceTree = "<group>";
@@ -231,6 +266,7 @@
 			isa = PBXGroup;
 			children = (
 				EFE9289428E18F6D00675F28 /* Modules */,
+				1BF313AE28E2F53000232CB3 /* Utils */,
 				EFE9289528E18FC000675F28 /* Resources */,
 				EFE9289628E1900200675F28 /* App */,
 			);
@@ -240,10 +276,10 @@
 		EFE9289428E18F6D00675F28 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
-				EF43B69F28E19E5500DBE6B6 /* Common */,
 				EF43B69628E1981700DBE6B6 /* Launching */,
 				EF51A11728E1916C0020F135 /* Onboarding */,
 				EFE9288828E18C3A00675F28 /* ContentView.swift */,
+				EF43B69F28E19E5500DBE6B6 /* Common */,
 			);
 			path = Modules;
 			sourceTree = "<group>";
@@ -264,7 +300,6 @@
 			isa = PBXGroup;
 			children = (
 				EFE9288628E18C3A00675F28 /* Ed_BreakApp.swift */,
-				EFE6E45228E1DB9500B3F83D /* info.plist */,
 			);
 			path = App;
 			sourceTree = "<group>";
@@ -335,7 +370,6 @@
 				EFE6E44B28E1DAEA00B3F83D /* Poppins-ExtraBoldItalic.ttf in Resources */,
 				EFE6E44128E1DAEA00B3F83D /* Poppins-SemiBoldItalic.ttf in Resources */,
 				EFE6E44C28E1DAEA00B3F83D /* Poppins-ExtraLightItalic.ttf in Resources */,
-				EFE6E46528E2240100B3F83D /* info.plist in Resources */,
 				EFE6E44028E1DAEA00B3F83D /* Poppins-LightItalic.ttf in Resources */,
 				EFE6E44928E1DAEA00B3F83D /* Poppins-Bold.ttf in Resources */,
 				EFE6E44328E1DAEA00B3F83D /* Poppins-SemiBold.ttf in Resources */,
@@ -360,6 +394,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1B3581A728E621E600612976 /* OnboardingRoleCell.swift in Sources */,
 				EF43B6A228E19EF000DBE6B6 /* MainBackground.swift in Sources */,
 				EFE6E42828E1A67A00B3F83D /* Image.swift in Sources */,
 				EFE6E46328E2206A00B3F83D /* Font.swift in Sources */,
@@ -367,6 +402,7 @@
 				EFE9288928E18C3A00675F28 /* ContentView.swift in Sources */,
 				EF43B6A628E19F8400DBE6B6 /* Color.swift in Sources */,
 				EFE9288728E18C3A00675F28 /* Ed_BreakApp.swift in Sources */,
+				1B3581AC28E6387000612976 /* FamilySharing.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -452,6 +488,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				INFOPLIST_FILE = "Ed-Break/App/info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
@@ -506,6 +543,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				INFOPLIST_FILE = "Ed-Break/App/info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
@@ -521,13 +559,15 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Ed-Break/Resources/Preview Content\"";
 				DEVELOPMENT_TEAM = 3A3ZL8ATWR;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = NO;
-				INFOPLIST_FILE = "/Users/astghik/Desktop/Ed-Break/Ed-Break/App/info.plist";
+				INFOPLIST_FILE = "Ed-Break/App/info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "Ed Break";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -540,7 +580,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "astghik.Ed-Break";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.astghik.Ed-Break";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -553,13 +593,15 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Ed-Break/Resources/Preview Content\"";
 				DEVELOPMENT_TEAM = 3A3ZL8ATWR;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = NO;
-				INFOPLIST_FILE = "/Users/astghik/Desktop/Ed-Break/Ed-Break/App/info.plist";
+				INFOPLIST_FILE = "Ed-Break/App/info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "Ed Break";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -572,7 +614,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "astghik.Ed-Break";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.astghik.Ed-Break";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;

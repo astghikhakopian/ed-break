@@ -17,7 +17,17 @@ extension Color {
         return Color("PrimaryBackground")
     }
     
+    public static var shadow: Color {
+        return Color("Shadow")
+    }
+    
     public static var appWhite: Color {
         return Color.white
+    }
+    public static var appBlack: Color {
+        return Color.black
+    }
+    public static var appClear: Color {
+        return Color.clear
     }
 }
