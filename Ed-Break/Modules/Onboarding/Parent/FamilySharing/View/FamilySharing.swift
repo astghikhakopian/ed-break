@@ -8,24 +8,56 @@
 import SwiftUI
 
 struct FamilySharing: View {
+    
+    @Environment(\.openURL) private var openURL
+    
+    private let cornerRadius = 12.0
+    private let spacing = 25.0
+    private let gap = 15.0
+    private let settingsUrl = URL(string: UIApplication.openSettingsURLString)!
+    
     var body: some View {
+        
         MainBackground(title: "onboarding.familySharing.title", withNavbar: true) {
-            VStack(spacing: 15) {
-                Color.appWhite
-                    .cornerRadius(12)
-                    .shadow(color: .shadow, radius: 40, x: 0, y: 20)
-                    .frame(height: 345)
-                Color.appWhite
-                    .cornerRadius(12)
-                    .shadow(color: .shadow, radius: 40, x: 0, y: 20)
-                    .frame(height: 108)
-                Color.primary
-                    .cornerRadius(12)
-                    .frame(height: 54)
-                Color.appWhite
-                    .cornerRadius(12)
-                    .frame(height: 54)
+            VStack(spacing: gap) {
+                steps
+                info
+                NavigationButton(title: "familySharing.done") {
+                    FamilySharing()
+                }
+                CancelButton(action: {
+                    openURL(settingsUrl)
+                }, title: "familySharing.cancel")
             }
+        }
+    }
+}
+
+private extension FamilySharing {
+    
+    var steps: some View {
+        ZStack(alignment: .leading) {
+            Color.appWhite
+                .cornerRadius(cornerRadius)
+                .shadow(color: .shadow, radius: 40, x: 0, y: 20)
+            VStack(alignment: .leading, spacing: spacing) {
+                ForEach(FamilySharingCellType.allCases, id: \.self) {
+                    FamilySharingCell(type: $0)
+                }
+            }.padding(spacing)
+        }
+    }
+    
+    var info: some View {
+        ZStack(alignment: .leading) {
+            Color.appWhite
+                .cornerRadius(cornerRadius)
+                .shadow(color: .shadow, radius: 40, x: 0, y: 20)
+            VStack(alignment: .leading, spacing: spacing) {
+                ForEach(FamilySharingInfoCellType.allCases, id: \.self) {
+                    FamilySharingInfoCell(type: $0)
+                }
+            }.padding(spacing)
         }
     }
 }

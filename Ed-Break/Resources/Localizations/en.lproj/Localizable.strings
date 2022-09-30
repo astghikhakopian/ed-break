@@ -14,3 +14,21 @@
 "onboarding.child.title" = "Child’s Device";
 
 "onboarding.familySharing.title" = "Set up Family Sharing \n and invite your child";
+
+"familySharing.settings.title" = "Go to Settings";
+"familySharing.settings.description" = "";
+"familySharing.appleId.title" = "Tap on your Apple ID name";
+"familySharing.appleId.description" = "Sign into your account";
+"familySharing.familySharing.title" = "Tap on Family Sharing";
+"familySharing.familySharing.description" = "You should have an Organizer, Parent, or Guardian role to invite a child";
+"familySharing.addChild.title" = "Tap on “Add Child” and follow the instructions";
+"familySharing.addChild.description" = "";
+"familySharing.returnBack.title" = "Return to Ed-Break";
+"familySharing.returnBack.description" = "";
+
+
+"familySharing.settings.title" = "How to set up Family Sharing";
+"familySharing.appleId.title" = "How to create a child’s Apple ID";
+
+"familySharing.done" = "Done, I’ve set it up";
+"familySharing.cancel" = "Open Settings";

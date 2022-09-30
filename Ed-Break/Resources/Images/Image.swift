@@ -24,4 +24,25 @@ extension Image {
             return Image("back")
         }
     }
+    
+    public struct FamilySharing {
+        public static var settings: Image {
+            return Image("familySharing.settings")
+        }
+        public static var returnBack: Image {
+            return Image("familySharing.returnBack")
+        }
+        public static var familySharing: Image {
+            return Image("familySharing.familySharing")
+        }
+        public static var appleId: Image {
+            return Image("familySharing.appleId")
+        }
+        public static var addChild: Image {
+            return Image("familySharing.addChild")
+        }
+        public static var info: Image {
+            return Image("familySharing.info")
+        }
+    }
 }

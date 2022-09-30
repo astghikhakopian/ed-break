@@ -1,0 +1,12 @@
+{
+  "images" : [
+    {
+      "filename" : "familySharing.info.svg",
+      "idiom" : "universal"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}

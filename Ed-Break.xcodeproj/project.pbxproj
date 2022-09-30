@@ -9,6 +9,11 @@
 /* Begin PBXBuildFile section */
 		1B3581A728E621E600612976 /* OnboardingRoleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B3581A628E621E600612976 /* OnboardingRoleCell.swift */; };
 		1B3581AC28E6387000612976 /* FamilySharing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B3581AB28E6387000612976 /* FamilySharing.swift */; };
+		1BA9DFAA28E7131D006980D1 /* FamilySharingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BA9DFA928E7131D006980D1 /* FamilySharingCell.swift */; };
+		1BA9DFAC28E7206F006980D1 /* FamilySharingInfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BA9DFAB28E7206F006980D1 /* FamilySharingInfoCell.swift */; };
+		1BA9DFB028E7290A006980D1 /* ConfirmButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BA9DFAF28E7290A006980D1 /* ConfirmButton.swift */; };
+		1BA9DFB228E72C73006980D1 /* CancelButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BA9DFB128E72C73006980D1 /* CancelButton.swift */; };
+		1BA9DFB428E73001006980D1 /* NavigationButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BA9DFB328E73001006980D1 /* NavigationButton.swift */; };
 		EF43B69828E1982E00DBE6B6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EF43B69728E1982E00DBE6B6 /* LaunchScreen.storyboard */; };
 		EF43B69A28E1986F00DBE6B6 /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EF43B69928E1986F00DBE6B6 /* Colors.xcassets */; };
 		EF43B69E28E19D5E00DBE6B6 /* OnboardingRole.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF43B69D28E19D5E00DBE6B6 /* OnboardingRole.swift */; };
@@ -43,6 +48,11 @@
 /* Begin PBXFileReference section */
 		1B3581A628E621E600612976 /* OnboardingRoleCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingRoleCell.swift; sourceTree = "<group>"; };
 		1B3581AB28E6387000612976 /* FamilySharing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FamilySharing.swift; sourceTree = "<group>"; };
+		1BA9DFA928E7131D006980D1 /* FamilySharingCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FamilySharingCell.swift; sourceTree = "<group>"; };
+		1BA9DFAB28E7206F006980D1 /* FamilySharingInfoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FamilySharingInfoCell.swift; sourceTree = "<group>"; };
+		1BA9DFAF28E7290A006980D1 /* ConfirmButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmButton.swift; sourceTree = "<group>"; };
+		1BA9DFB128E72C73006980D1 /* CancelButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CancelButton.swift; sourceTree = "<group>"; };
+		1BA9DFB328E73001006980D1 /* NavigationButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationButton.swift; sourceTree = "<group>"; };
 		EF43B69728E1982E00DBE6B6 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		EF43B69928E1986F00DBE6B6 /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
 		EF43B69D28E19D5E00DBE6B6 /* OnboardingRole.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingRole.swift; sourceTree = "<group>"; };
@@ -93,6 +103,7 @@
 			isa = PBXGroup;
 			children = (
 				1B3581A928E6384800612976 /* FamilySharing */,
+				1BA9DFB528E73332006980D1 /* ChildDetails */,
 			);
 			path = Parent;
 			sourceTree = "<group>";
@@ -109,8 +120,27 @@
 			isa = PBXGroup;
 			children = (
 				1B3581AB28E6387000612976 /* FamilySharing.swift */,
+				1BA9DFA928E7131D006980D1 /* FamilySharingCell.swift */,
+				1BA9DFAB28E7206F006980D1 /* FamilySharingInfoCell.swift */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		1BA9DFAD28E728E8006980D1 /* Button */ = {
+			isa = PBXGroup;
+			children = (
+				1BA9DFAF28E7290A006980D1 /* ConfirmButton.swift */,
+				1BA9DFB328E73001006980D1 /* NavigationButton.swift */,
+				1BA9DFB128E72C73006980D1 /* CancelButton.swift */,
+			);
+			path = Button;
+			sourceTree = "<group>";
+		};
+		1BA9DFB528E73332006980D1 /* ChildDetails */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ChildDetails;
 			sourceTree = "<group>";
 		};
 		1BF313AE28E2F53000232CB3 /* Utils */ = {
@@ -148,6 +178,7 @@
 		EF43B69F28E19E5500DBE6B6 /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				1BA9DFAD28E728E8006980D1 /* Button */,
 				EF43B6A028E19E5D00DBE6B6 /* MainBackground */,
 			);
 			path = Common;
@@ -395,13 +426,18 @@
 			buildActionMask = 2147483647;
 			files = (
 				1B3581A728E621E600612976 /* OnboardingRoleCell.swift in Sources */,
+				1BA9DFAC28E7206F006980D1 /* FamilySharingInfoCell.swift in Sources */,
 				EF43B6A228E19EF000DBE6B6 /* MainBackground.swift in Sources */,
 				EFE6E42828E1A67A00B3F83D /* Image.swift in Sources */,
+				1BA9DFB228E72C73006980D1 /* CancelButton.swift in Sources */,
 				EFE6E46328E2206A00B3F83D /* Font.swift in Sources */,
 				EF43B69E28E19D5E00DBE6B6 /* OnboardingRole.swift in Sources */,
+				1BA9DFB428E73001006980D1 /* NavigationButton.swift in Sources */,
 				EFE9288928E18C3A00675F28 /* ContentView.swift in Sources */,
 				EF43B6A628E19F8400DBE6B6 /* Color.swift in Sources */,
+				1BA9DFB028E7290A006980D1 /* ConfirmButton.swift in Sources */,
 				EFE9288728E18C3A00675F28 /* Ed_BreakApp.swift in Sources */,
+				1BA9DFAA28E7131D006980D1 /* FamilySharingCell.swift in Sources */,
 				1B3581AC28E6387000612976 /* FamilySharing.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
