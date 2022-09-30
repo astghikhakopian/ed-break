@@ -7,7 +7,9 @@
 
 import SwiftUI
 
-struct FamilySharing: View {
+struct FamilySharing<M: FamilySharingViewModeling>: View {
+    
+    @ObservedObject var viewModel: M
     
     @Environment(\.openURL) private var openURL
     
@@ -22,9 +24,10 @@ struct FamilySharing: View {
             VStack(spacing: gap) {
                 steps
                 info
-                NavigationButton(title: "familySharing.done") {
-                    FamilySharing()
-                }
+                NavigationButton(
+                    title: "familySharing.done",
+                    didTap: { viewModel.addParent() },
+                    content: { Text("uhj") })
                 CancelButton(action: {
                     openURL(settingsUrl)
                 }, title: "familySharing.cancel")
@@ -64,6 +67,6 @@ private extension FamilySharing {
 
 struct FamilySharing_Previews: PreviewProvider {
     static var previews: some View {
-        FamilySharing()
+        FamilySharing(viewModel: MockFamilySharingViewModel())
     }
 }

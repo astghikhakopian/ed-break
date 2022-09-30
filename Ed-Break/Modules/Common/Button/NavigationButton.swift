@@ -9,6 +9,7 @@ import SwiftUI
 
 struct NavigationButton<Content> : View where Content : View {
     let title: String
+    var didTap: (() -> Void)? = nil
     @ViewBuilder let content: (() -> Content)
     
     @State private var selection: Int? = nil
@@ -22,6 +23,7 @@ struct NavigationButton<Content> : View where Content : View {
                 Color.primary
                 Button {
                     selection = 1
+                    didTap?()
                 } label: {
                     Text(LocalizedStringKey(title))
                         .font(.appButton)

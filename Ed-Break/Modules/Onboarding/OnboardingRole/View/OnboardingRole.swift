@@ -17,11 +17,11 @@ struct OnboardingRole: View {
             MainBackground(title: "onboarding.role", withNavbar: false) {
                 VStack(spacing: spacing) {
                     OnboardingRoleCell(role: .parent) {
-                        FamilySharing()
+                        FamilySharing(viewModel: FamilySharingViewModel(addParentUseCase: AddParentUseCase(familySharingRepository: DefaultFamilySharingRepository())))
                     }.frame(height: cellHeight)
                     
                     OnboardingRoleCell(role: .child) {
-                        FamilySharing()
+                        // FamilySharing()
                     }.frame(height: cellHeight)
                 }
             }
