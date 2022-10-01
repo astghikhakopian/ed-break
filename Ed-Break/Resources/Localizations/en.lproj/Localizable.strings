@@ -14,6 +14,7 @@
 "onboarding.child.title" = "Child’s Device";
 
 "onboarding.familySharing.title" = "Set up Family Sharing \n and invite your child";
+"onboarding.childDetails.title" = "Set child details";
 
 "familySharing.settings.title" = "Go to Settings";
 "familySharing.settings.description" = "";
@@ -32,3 +33,10 @@
 
 "familySharing.done" = "Done, I’ve set it up";
 "familySharing.cancel" = "Open Settings";
+
+"childDetails.upload" = "Upload photo";
+"childDetails.name" = "Child name";
+"childDetails.grade" = "Grade level";
+"childDetails.add" = "Add another child";
+
+"common.continue" = "Continue";

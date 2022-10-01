@@ -22,7 +22,7 @@ struct CancelButton: View {
                 Text(LocalizedStringKey(title))
                     .font(.appButton)
             })
-            .foregroundColor(.primary)
+            .foregroundColor(.primaryPurple)
         }
         .frame(height: height)
         .cornerRadius(cornerRadius)

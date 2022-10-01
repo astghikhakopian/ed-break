@@ -27,7 +27,7 @@ struct FamilySharing<M: FamilySharingViewModeling>: View {
                 NavigationButton(
                     title: "familySharing.done",
                     didTap: { viewModel.addParent() },
-                    content: { Text("uhj") })
+                    content: { ChildDetails(viewModel: ChildDetailsViewModel()) })
                 CancelButton(action: {
                     openURL(settingsUrl)
                 }, title: "familySharing.cancel")

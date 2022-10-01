@@ -71,7 +71,7 @@ extension MainBackground {
                 Image.Background.backgroundEcliipse3
                 Spacer().frame(width: 18)
             }
-        }.background(Color.primary)
+        }.background(Color.primaryPurple)
     }
 }
 

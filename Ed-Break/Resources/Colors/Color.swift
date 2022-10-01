@@ -9,7 +9,7 @@ import SwiftUI
 
 extension Color {
     
-    public static var primary: Color {
+    public static var primaryPurple: Color {
         return Color("Primary")
     }
     
@@ -27,6 +27,10 @@ extension Color {
     
     public static var link: Color {
         return Color("Link")
+    }
+    
+    public static var border: Color {
+        return Color("Border")
     }
     
     public static var appWhite: Color {

@@ -45,4 +45,16 @@ extension Image {
             return Image("familySharing.info")
         }
     }
+    
+    public struct ChildDetails {
+        public static var uploadPlaceholder: Image {
+            return Image("childDetails.upload.placeholder")
+        }
+    }
+    
+    public struct Common {
+        public static var dropdownArrow: Image {
+            return Image("common.dropdownArrow")
+        }
+    }
 }

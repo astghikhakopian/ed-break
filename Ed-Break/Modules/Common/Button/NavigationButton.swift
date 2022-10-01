@@ -20,7 +20,7 @@ struct NavigationButton<Content> : View where Content : View {
     var body: some View {
         NavigationLink(destination: content(), tag: 1, selection: $selection) {
             ZStack {
-                Color.primary
+                Color.primaryPurple
                 Button {
                     selection = 1
                     didTap?()

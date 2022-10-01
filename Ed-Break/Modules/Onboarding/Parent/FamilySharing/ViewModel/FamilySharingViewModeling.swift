@@ -11,4 +11,3 @@ protocol FamilySharingViewModeling: ObservableObject {
     
     func addParent()
 }
-

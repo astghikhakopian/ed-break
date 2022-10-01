@@ -17,7 +17,7 @@ struct ConfirmButton: View {
     
     var body: some View {
         ZStack {
-            Color.primary
+            Color.primaryPurple
             Button(action: action, label: {
                 Text(LocalizedStringKey(title))
                     .font(.appButton)
