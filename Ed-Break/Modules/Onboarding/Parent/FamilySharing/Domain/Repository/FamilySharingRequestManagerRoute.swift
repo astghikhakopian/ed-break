@@ -15,11 +15,11 @@ enum FamilySharingRequestManagerRoute: TargetType {
     var baseURL: URL {
         return RequestServices.Users.baseUrl
     }
-
+    
     var path: String {
         switch self {
         case .addParent:
-            return "/users/parent"
+            return "/users/parent/"
         }
     }
     
@@ -35,18 +35,16 @@ enum FamilySharingRequestManagerRoute: TargetType {
         case .addParent(let username):
             return .requestParameters(
                 parameters: [
-                    "username": username
+                    "username" : username
                 ],
-                encoding: URLEncoding.default
+                encoding: URLEncoding.queryString
             )
         }
     }
-
+    
     var headers: [String: String]? {[
-//        "Content-Type": "application/json",
-        "accept": "application/json",
-        "X-CSRFToken": "jXBDXw7atmkhWpQLKzy4jEmvCmOtPrA9lx04Ri6NpuoiTKf4YLV6XgdDO9KzZB6f",
-        "Referer": "https://back-ed-break-dev.appelloproject.xyz"
+        "Content-Type": "application/json",
+        "accept": "application/json"
     ]}
 }
 

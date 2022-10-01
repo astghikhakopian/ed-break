@@ -28,6 +28,8 @@
 		1BA9DFB028E7290A006980D1 /* ConfirmButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BA9DFAF28E7290A006980D1 /* ConfirmButton.swift */; };
 		1BA9DFB228E72C73006980D1 /* CancelButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BA9DFB128E72C73006980D1 /* CancelButton.swift */; };
 		1BA9DFB428E73001006980D1 /* NavigationButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BA9DFB328E73001006980D1 /* NavigationButton.swift */; };
+		1BE72A2B28E8901000447167 /* UserDefaultsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BE72A2A28E8901000447167 /* UserDefaultsService.swift */; };
+		1BE72A2D28E8902300447167 /* UserDefaultsKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BE72A2C28E8902300447167 /* UserDefaultsKeys.swift */; };
 		EF43B69828E1982E00DBE6B6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EF43B69728E1982E00DBE6B6 /* LaunchScreen.storyboard */; };
 		EF43B69A28E1986F00DBE6B6 /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EF43B69928E1986F00DBE6B6 /* Colors.xcassets */; };
 		EF43B69E28E19D5E00DBE6B6 /* OnboardingRole.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF43B69D28E19D5E00DBE6B6 /* OnboardingRole.swift */; };
@@ -79,6 +81,8 @@
 		1BA9DFAF28E7290A006980D1 /* ConfirmButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmButton.swift; sourceTree = "<group>"; };
 		1BA9DFB128E72C73006980D1 /* CancelButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CancelButton.swift; sourceTree = "<group>"; };
 		1BA9DFB328E73001006980D1 /* NavigationButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationButton.swift; sourceTree = "<group>"; };
+		1BE72A2A28E8901000447167 /* UserDefaultsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsService.swift; sourceTree = "<group>"; };
+		1BE72A2C28E8902300447167 /* UserDefaultsKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsKeys.swift; sourceTree = "<group>"; };
 		EF43B69728E1982E00DBE6B6 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		EF43B69928E1986F00DBE6B6 /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
 		EF43B69D28E19D5E00DBE6B6 /* OnboardingRole.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingRole.swift; sourceTree = "<group>"; };
@@ -205,6 +209,7 @@
 		1BA30D5E28E79E9000926820 /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				1BE72A2928E88FF600447167 /* UserDefaults Service */,
 				1BA30D5F28E79EA200926820 /* RequestManager */,
 			);
 			path = Services;
@@ -251,6 +256,15 @@
 			children = (
 			);
 			path = ChildDetails;
+			sourceTree = "<group>";
+		};
+		1BE72A2928E88FF600447167 /* UserDefaults Service */ = {
+			isa = PBXGroup;
+			children = (
+				1BE72A2A28E8901000447167 /* UserDefaultsService.swift */,
+				1BE72A2C28E8902300447167 /* UserDefaultsKeys.swift */,
+			);
+			path = "UserDefaults Service";
 			sourceTree = "<group>";
 		};
 		1BF313AE28E2F53000232CB3 /* Utils */ = {
@@ -552,6 +566,7 @@
 				EFE6E42828E1A67A00B3F83D /* Image.swift in Sources */,
 				1BA30D6128E79EE100926820 /* RequestServices.swift in Sources */,
 				1BA9DFB228E72C73006980D1 /* CancelButton.swift in Sources */,
+				1BE72A2D28E8902300447167 /* UserDefaultsKeys.swift in Sources */,
 				1BA30D6A28E7A24400926820 /* TokensDto.swift in Sources */,
 				1BA30D6528E79FF400926820 /* BasicAuthenticationPlugin.swift in Sources */,
 				EFE6E46328E2206A00B3F83D /* Font.swift in Sources */,
@@ -559,6 +574,7 @@
 				1BA9DFB428E73001006980D1 /* NavigationButton.swift in Sources */,
 				1BA30D6328E79FD400926820 /* RequestServiceError.swift in Sources */,
 				EFE9288928E18C3A00675F28 /* ContentView.swift in Sources */,
+				1BE72A2B28E8901000447167 /* UserDefaultsService.swift in Sources */,
 				1BA30D5128E79A4200926820 /* FamilySharingViewModel.swift in Sources */,
 				EF43B6A628E19F8400DBE6B6 /* Color.swift in Sources */,
 				1BA30D7128E7A4D600926820 /* FamilySharingUseCase.swift in Sources */,

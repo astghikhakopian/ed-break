@@ -10,17 +10,19 @@ import UIKit
 final class FamilySharingViewModel: FamilySharingViewModeling, Identifiable {
     
     private var addParentUseCase: AddParentUseCase
+    private let localStorageService: LocalStorageService
     
-    init(addParentUseCase: AddParentUseCase) {
+    init(addParentUseCase: AddParentUseCase, localStorageService: LocalStorageService) {
         self.addParentUseCase = addParentUseCase
+        self.localStorageService = localStorageService
     }
     
     func addParent() {
         guard let deviceId = UIDevice.current.identifierForVendor?.uuidString else { return }
-        addParentUseCase.execute(username: deviceId) { result in
+        addParentUseCase.execute(username: deviceId) { [weak self] result in
             switch result {
-            case .success(let success):
-                print(success)
+            case .success(let token):
+                self?.localStorageService.setObject(token, forKey: .User.token)
             case .failure(let failure):
                 print(failure)
             }
