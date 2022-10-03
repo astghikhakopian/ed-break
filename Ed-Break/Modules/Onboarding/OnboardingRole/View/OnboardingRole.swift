@@ -17,7 +17,7 @@ struct OnboardingRole: View {
             MainBackground(title: "onboarding.role", withNavbar: false) {
                 VStack(spacing: spacing) {
                     OnboardingRoleCell(role: .parent) {
-                        FamilySharing(viewModel: FamilySharingViewModel(addParentUseCase: AddParentUseCase(familySharingRepository: DefaultFamilySharingRepository()), localStorageService: UserDefaultsService()))
+                        FamilySharingView(viewModel: FamilySharingViewModel(addParentUseCase: AddParentUseCase(familySharingRepository: DefaultFamilySharingRepository()), localStorageService: UserDefaultsService()))
                     }.frame(height: cellHeight)
                     
                     OnboardingRoleCell(role: .child) {

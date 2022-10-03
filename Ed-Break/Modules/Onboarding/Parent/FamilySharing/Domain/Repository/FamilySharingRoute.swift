@@ -8,7 +8,7 @@
 import Foundation
 import Moya
 
-enum FamilySharingRequestManagerRoute: TargetType {
+enum FamilySharingRoute: TargetType {
     
     case addParent(username: String)
     

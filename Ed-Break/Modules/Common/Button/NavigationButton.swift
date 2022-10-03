@@ -22,8 +22,8 @@ struct NavigationButton<Content> : View where Content : View {
             ZStack {
                 Color.primaryPurple
                 Button {
-                    selection = 1
                     didTap?()
+                    selection = 1
                 } label: {
                     Text(LocalizedStringKey(title))
                         .font(.appButton)

@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct ChildDetails<M: ChildDetailsViewModeling>: View {
+struct ChildDetailsView<M: ChildDetailsViewModeling>: View {
     
     @ObservedObject var viewModel: M
     
@@ -21,7 +21,9 @@ struct ChildDetails<M: ChildDetailsViewModeling>: View {
                 childView
                 NavigationButton(
                     title: "common.continue",
-                    didTap: {  },
+                    didTap: {
+                        viewModel.addChild()
+                    },
                     content: { Text("uhj") })
             }
         }
@@ -29,7 +31,7 @@ struct ChildDetails<M: ChildDetailsViewModeling>: View {
     }
 }
 
-private extension ChildDetails {
+private extension ChildDetailsView {
     
     var childView: some View {
         ZStack(alignment: .leading) {
@@ -41,7 +43,8 @@ private extension ChildDetails {
                 CommonTextField(title: "childDetails.name", text: $viewModel.childName)
                 PickerTextField(title: "childDetails.grade", selection: $viewModel.grade, datasource: $viewModel.grades)
                 CancelButton(action: {
-                    print("grade")
+                    viewModel.addChild()
+                    viewModel.prepareForNewChild()
                 }, title: "childDetails.add")
             }.padding(spacing)
         }
@@ -62,6 +65,6 @@ struct ChildDetails_Previews: PreviewProvider {
     @State static var gradeLevel = "Grade 2"
     
     static var previews: some View {
-        ChildDetails(viewModel: MockChildDetailsViewModel())
+        ChildDetailsView(viewModel: MockChildDetailsViewModel())
     }
 }

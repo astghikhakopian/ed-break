@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct FamilySharing<M: FamilySharingViewModeling>: View {
+struct FamilySharingView<M: FamilySharingViewModeling>: View {
     
     @ObservedObject var viewModel: M
     
@@ -27,7 +27,7 @@ struct FamilySharing<M: FamilySharingViewModeling>: View {
                 NavigationButton(
                     title: "familySharing.done",
                     didTap: { viewModel.addParent() },
-                    content: { ChildDetails(viewModel: ChildDetailsViewModel()) })
+                    content: { ChildDetailsView(viewModel: ChildDetailsViewModel(addChildUseCase: AddChildUseCase(childDetailsRepository: DefaultChildDetailsRepository(plugins: [BasicAuthenticationPlugin()])))) })
                 CancelButton(action: {
                     openURL(settingsUrl)
                 }, title: "familySharing.cancel")
@@ -36,7 +36,7 @@ struct FamilySharing<M: FamilySharingViewModeling>: View {
     }
 }
 
-private extension FamilySharing {
+private extension FamilySharingView {
     
     var steps: some View {
         ZStack(alignment: .leading) {
@@ -67,6 +67,6 @@ private extension FamilySharing {
 
 struct FamilySharing_Previews: PreviewProvider {
     static var previews: some View {
-        FamilySharing(viewModel: MockFamilySharingViewModel())
+        FamilySharingView(viewModel: MockFamilySharingViewModel())
     }
 }

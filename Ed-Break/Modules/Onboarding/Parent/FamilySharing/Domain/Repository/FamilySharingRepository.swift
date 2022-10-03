@@ -12,7 +12,7 @@ protocol FamilySharingRepository {
     func addParent(username: String, completion:  @escaping(Result<TokenDto, Error>) -> Void)
 }
 
-final class DefaultFamilySharingRepository: MoyaProvider<FamilySharingRequestManagerRoute>, FamilySharingRepository, ObservableObject {
+final class DefaultFamilySharingRepository: MoyaProvider<FamilySharingRoute>, FamilySharingRepository, ObservableObject {
     
     func addParent(username: String, completion:  @escaping(Result<TokenDto, Error>) -> Void) {
         requestDecodable(.addParent(username: username), completion: completion)
