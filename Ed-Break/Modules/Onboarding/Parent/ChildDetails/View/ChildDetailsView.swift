@@ -13,7 +13,7 @@ struct ChildDetailsView<M: ChildDetailsViewModeling>: View {
     
     private let cornerRadius = 12.0
     private let spacing = 25.0
-    private let gap = 15.0
+    private let gap = 20.0
     
     var body: some View {
         MainBackground(title: "onboarding.childDetails.title", withNavbar: true) {
@@ -24,10 +24,10 @@ struct ChildDetailsView<M: ChildDetailsViewModeling>: View {
                     didTap: {
                         viewModel.addChild()
                     },
-                    content: { Text("uhj") })
+                    isContentValid: $viewModel.isContentValid,
+                    content: { QRCodeView() })
             }
         }
-        
     }
 }
 

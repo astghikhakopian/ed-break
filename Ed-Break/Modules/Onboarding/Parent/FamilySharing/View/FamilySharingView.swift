@@ -13,9 +13,10 @@ struct FamilySharingView<M: FamilySharingViewModeling>: View {
     
     @Environment(\.openURL) private var openURL
     
+    @State private var isContentValid = true
     private let cornerRadius = 12.0
     private let spacing = 25.0
-    private let gap = 15.0
+    private let gap = 20.0
     private let settingsUrl = URL(string: UIApplication.openSettingsURLString)!
     
     var body: some View {
@@ -26,7 +27,7 @@ struct FamilySharingView<M: FamilySharingViewModeling>: View {
                 info
                 NavigationButton(
                     title: "familySharing.done",
-                    didTap: { viewModel.addParent() },
+                    didTap: { viewModel.addParent() }, isContentValid: $isContentValid,
                     content: { ChildDetailsView(viewModel: ChildDetailsViewModel(addChildUseCase: AddChildUseCase(childDetailsRepository: DefaultChildDetailsRepository(plugins: [BasicAuthenticationPlugin()])))) })
                 CancelButton(action: {
                     openURL(settingsUrl)

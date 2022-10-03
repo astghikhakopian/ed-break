@@ -46,6 +46,12 @@ extension Image {
         }
     }
     
+    public struct QRCode {
+        public static var qrCode: Image {
+            return Image("qrCode.qrCode")
+        }
+    }
+    
     public struct ChildDetails {
         public static var uploadPlaceholder: Image {
             return Image("childDetails.upload.placeholder")
@@ -55,6 +61,9 @@ extension Image {
     public struct Common {
         public static var dropdownArrow: Image {
             return Image("common.dropdownArrow")
+        }
+        public static var checkmark: Image {
+            return Image("common.checkmark")
         }
     }
 }

@@ -42,6 +42,9 @@
 		1BEE80F328EACA33004F75CA /* ChildDetailsRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BEE80F228EACA33004F75CA /* ChildDetailsRepository.swift */; };
 		1BEE80F528EACB24004F75CA /* ChildDetailsUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BEE80F428EACB24004F75CA /* ChildDetailsUseCase.swift */; };
 		1BEE80F728EAD13D004F75CA /* AddChildUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BEE80F628EAD13D004F75CA /* AddChildUseCase.swift */; };
+		1BEE80FD28EB1D29004F75CA /* QRCodeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BEE80FC28EB1D29004F75CA /* QRCodeView.swift */; };
+		1BEE810128EB5B2E004F75CA /* ChildrenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BEE810028EB5B2E004F75CA /* ChildrenView.swift */; };
+		1BEE810328EB5CB8004F75CA /* ChildCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BEE810228EB5CB8004F75CA /* ChildCell.swift */; };
 		EF43B69828E1982E00DBE6B6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EF43B69728E1982E00DBE6B6 /* LaunchScreen.storyboard */; };
 		EF43B69A28E1986F00DBE6B6 /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EF43B69928E1986F00DBE6B6 /* Colors.xcassets */; };
 		EF43B69E28E19D5E00DBE6B6 /* OnboardingRole.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF43B69D28E19D5E00DBE6B6 /* OnboardingRole.swift */; };
@@ -107,6 +110,9 @@
 		1BEE80F228EACA33004F75CA /* ChildDetailsRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChildDetailsRepository.swift; sourceTree = "<group>"; };
 		1BEE80F428EACB24004F75CA /* ChildDetailsUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChildDetailsUseCase.swift; sourceTree = "<group>"; };
 		1BEE80F628EAD13D004F75CA /* AddChildUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddChildUseCase.swift; sourceTree = "<group>"; };
+		1BEE80FC28EB1D29004F75CA /* QRCodeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRCodeView.swift; sourceTree = "<group>"; };
+		1BEE810028EB5B2E004F75CA /* ChildrenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChildrenView.swift; sourceTree = "<group>"; };
+		1BEE810228EB5CB8004F75CA /* ChildCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChildCell.swift; sourceTree = "<group>"; };
 		EF43B69728E1982E00DBE6B6 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		EF43B69928E1986F00DBE6B6 /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
 		EF43B69D28E19D5E00DBE6B6 /* OnboardingRole.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingRole.swift; sourceTree = "<group>"; };
@@ -160,6 +166,8 @@
 			children = (
 				1B3581A928E6384800612976 /* FamilySharing */,
 				1BA9DFB528E73332006980D1 /* ChildDetails */,
+				1BEE80F828EB0CF2004F75CA /* QRCode */,
+				1BEE80FE28EB5AE8004F75CA /* Children */,
 			);
 			path = Parent;
 			sourceTree = "<group>";
@@ -370,6 +378,39 @@
 				1BE72A4028E8D69900447167 /* ImageUploadView.swift */,
 			);
 			path = ImageUploadView;
+			sourceTree = "<group>";
+		};
+		1BEE80F828EB0CF2004F75CA /* QRCode */ = {
+			isa = PBXGroup;
+			children = (
+				1BEE80F928EB1CE5004F75CA /* View */,
+			);
+			path = QRCode;
+			sourceTree = "<group>";
+		};
+		1BEE80F928EB1CE5004F75CA /* View */ = {
+			isa = PBXGroup;
+			children = (
+				1BEE80FC28EB1D29004F75CA /* QRCodeView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		1BEE80FE28EB5AE8004F75CA /* Children */ = {
+			isa = PBXGroup;
+			children = (
+				1BEE80FF28EB5B1B004F75CA /* View */,
+			);
+			path = Children;
+			sourceTree = "<group>";
+		};
+		1BEE80FF28EB5B1B004F75CA /* View */ = {
+			isa = PBXGroup;
+			children = (
+				1BEE810028EB5B2E004F75CA /* ChildrenView.swift */,
+				1BEE810228EB5CB8004F75CA /* ChildCell.swift */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 		1BF313AE28E2F53000232CB3 /* Utils */ = {
@@ -681,11 +722,13 @@
 				1BE5191C28E8E24A0067E8B1 /* PickerTextField.swift in Sources */,
 				1BA30D6528E79FF400926820 /* BasicAuthenticationPlugin.swift in Sources */,
 				1BEE80F728EAD13D004F75CA /* AddChildUseCase.swift in Sources */,
+				1BEE80FD28EB1D29004F75CA /* QRCodeView.swift in Sources */,
 				EFE6E46328E2206A00B3F83D /* Font.swift in Sources */,
 				1BE72A3A28E8A20100447167 /* ChildDetailsViewModeling.swift in Sources */,
 				EF43B69E28E19D5E00DBE6B6 /* OnboardingRole.swift in Sources */,
 				1BA9DFB428E73001006980D1 /* NavigationButton.swift in Sources */,
 				1B7C09F828EAC21E001DB6A1 /* CreateChildPayload.swift in Sources */,
+				1BEE810328EB5CB8004F75CA /* ChildCell.swift in Sources */,
 				1BA30D6328E79FD400926820 /* RequestServiceError.swift in Sources */,
 				EFE9288928E18C3A00675F28 /* ContentView.swift in Sources */,
 				1BE72A3D28E8ADB100447167 /* ImagePicker.swift in Sources */,
@@ -698,6 +741,7 @@
 				1BA9DFB028E7290A006980D1 /* ConfirmButton.swift in Sources */,
 				1BE72A3828E8A1F400447167 /* ChildDetailsViewModel.swift in Sources */,
 				EFE9288728E18C3A00675F28 /* Ed_BreakApp.swift in Sources */,
+				1BEE810128EB5B2E004F75CA /* ChildrenView.swift in Sources */,
 				1BA30D5D28E79E5700926820 /* FamilySharingRoute.swift in Sources */,
 				1BEE80F328EACA33004F75CA /* ChildDetailsRepository.swift in Sources */,
 				1BA9DFAA28E7131D006980D1 /* FamilySharingCell.swift in Sources */,

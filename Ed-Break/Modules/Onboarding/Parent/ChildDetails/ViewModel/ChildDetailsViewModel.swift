@@ -10,18 +10,25 @@ import UIKit
 final class ChildDetailsViewModel: ChildDetailsViewModeling, Identifiable {
     
     @Published var image: UIImage = UIImage()
-    @Published var childName: String = ""
     @Published var grade: Grade = .first
     @Published var grades: [Grade] = Grade.allCases
-    
+    @Published var isContentValid: Bool = false
+    @Published var childName: String = "" {
+        didSet {
+            isContentValid = !childName.replacingOccurrences(of: " ", with: "").isEmpty
+        }
+    }
+
     private var addChildUseCase: AddChildUseCase
     
     init(addChildUseCase: AddChildUseCase) {
         self.addChildUseCase = addChildUseCase
+        
+        
     }
     
     func addChild() {
-        guard !childName.replacingOccurrences(of: " ", with: "").isEmpty else  { return }
+        guard isContentValid else  { return }
         let payload = CreateChildPayload(name: childName, grade: grade, restrictionTime: nil, photo: image == UIImage() ? nil : image)
         addChildUseCase.execute(payload: payload) { result in
             switch result {
@@ -49,6 +56,8 @@ final class MockChildDetailsViewModel: ChildDetailsViewModeling, Identifiable {
     var childName = ""
     var grade = Grade.first
     var grades = Grade.allCases
+    
+    var isContentValid = true
     
     func addChild() { }
     func prepareForNewChild() { }

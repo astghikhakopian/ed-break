@@ -14,6 +14,8 @@ protocol ChildDetailsViewModeling: ObservableObject {
     var grade: Grade { get set }
     var grades: [Grade] { get set }
     
+    var isContentValid: Bool { get set }
+    
     func addChild()
     func prepareForNewChild()
 }

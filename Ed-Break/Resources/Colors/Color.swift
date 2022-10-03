@@ -21,6 +21,14 @@ extension Color {
         return Color("PrimaryDescription")
     }
     
+    public static var primaryText: Color {
+        return Color("PrimaryText")
+    }
+    
+    public static var primaryGreen: Color {
+        return Color("PrimaryGreen")
+    }
+    
     public static var shadow: Color {
         return Color("Shadow")
     }
