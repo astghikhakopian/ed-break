@@ -7,7 +7,9 @@
 
 import SwiftUI
 
-struct ChildrenView: View {
+struct ChildrenView<M: ChildrenViewModeling>: View {
+    
+    @StateObject var viewModel: M
     
     private let cornerRadius = 12.0
     private let spacing = 14.0
@@ -23,6 +25,8 @@ struct ChildrenView: View {
                     didTap: { },
                     content: { Text("uhj") })
             }
+        }.onAppear {
+            viewModel.getChildren()
         }
     }
 }
@@ -34,14 +38,15 @@ private extension ChildrenView {
             Color.appWhite
                 .cornerRadius(cornerRadius)
                 .shadow(color: .shadow, radius: 40, x: 0, y: 20)
-            VStack(spacing: spacing) {
+            VStack(alignment: .leading, spacing: spacing) {
                 Text("children.description")
                     .font(.appHeadline)
                     .foregroundColor(.primaryText)
                     .multilineTextAlignment(.center)
-                ChildCell(name: "Emma", grade: .second, state: Binding.constant(.connected), scanAction: {})
-                ChildCell(name: "David", grade: .third, state: Binding.constant(.scan), scanAction: {})
-            }.padding(padding)
+                ForEach(viewModel.children.results, id: \.id) { child in
+                    ChildCell(name: child.name, grade: child.grade, imageUrl: child.photoUrl, state: Binding.constant(.scan), scanAction: {})
+                }
+            }.padding(spacing)
         }
     }
 }
@@ -49,6 +54,6 @@ private extension ChildrenView {
 
 struct ChildrenView_Previews: PreviewProvider {
     static var previews: some View {
-        ChildrenView()
+        ChildrenView(viewModel: MockChildrenViewModeling())
     }
 }

@@ -23,7 +23,12 @@ struct QRCodeView: View {
                 NavigationButton(
                     title: "common.continue",
                     didTap: { },
-                    content: { ChildrenView() })
+                    content: {
+                        ChildrenView(
+                            viewModel: ChildrenViewModel(
+                                getChildrenUseCase: GetChildrenUseCase(
+                                    childrenRepository: DefaultChildrenRepository(
+                                        plugins: [BasicAuthenticationPlugin()])))) })
             }
         }
     }

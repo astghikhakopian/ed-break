@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Foundation
 
 enum ChildCellState {
     case connected, scan
@@ -15,6 +16,7 @@ struct ChildCell: View {
     
     let name: String
     let grade: Grade
+    let imageUrl: URL?
     @Binding var state: ChildCellState
     let scanAction: () -> Void
     
@@ -27,10 +29,16 @@ struct ChildCell: View {
     
     var body: some View {
         HStack(spacing: spacing) {
-            Image.ChildDetails.uploadPlaceholder
-                .resizable()
-                .frame(width: imageHeight, height: imageHeight)
-                .cornerRadius(imageHeight/2)
+            if let imageUrl = imageUrl {
+                AsyncImageView(withURL: imageUrl.absoluteString, width: imageHeight, height: imageHeight)
+                    .frame(width: imageHeight, height: imageHeight)
+                    .cornerRadius(imageHeight/2)
+            } else {
+                Image.ChildDetails.uploadPlaceholder
+                    .resizable()
+                    .frame(width: imageHeight, height: imageHeight)
+                    .cornerRadius(imageHeight/2)
+            }
             VStack(alignment: .leading) {
                 Text(name)
                     .font(.appButton)
@@ -68,6 +76,6 @@ struct ChildCell: View {
 struct ChildCell_Previews: PreviewProvider {
     @State static var state: ChildCellState = .connected
     static var previews: some View {
-        ChildCell(name: "Emma", grade: .third, state: $state) { }
+        ChildCell(name: "Emma", grade: .third, imageUrl: nil, state: $state) { }
     }
 }

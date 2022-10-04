@@ -7,8 +7,10 @@
 
 import SwiftUI
 
-enum Grade: CaseIterable, PickerItem {
-    case first, second, third
+enum Grade: String, CaseIterable, PickerItem {
+    case first  = "GRADE_1"
+    case second = "GRADE_2"
+    case third  = "GRADE_3"
     
     var name: String {
         switch self {

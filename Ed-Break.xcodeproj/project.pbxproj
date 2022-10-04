@@ -9,6 +9,16 @@
 /* Begin PBXBuildFile section */
 		1B3581A728E621E600612976 /* OnboardingRoleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B3581A628E621E600612976 /* OnboardingRoleCell.swift */; };
 		1B3581AC28E6387000612976 /* FamilySharingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B3581AB28E6387000612976 /* FamilySharingView.swift */; };
+		1B445AE928EC3DA700B0B310 /* PagingDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B445AE828EC3DA700B0B310 /* PagingDto.swift */; };
+		1B445AEB28EC531B00B0B310 /* ChildModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B445AEA28EC531B00B0B310 /* ChildModel.swift */; };
+		1B445AEE28EC71F700B0B310 /* AsynchronousImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B445AED28EC71F700B0B310 /* AsynchronousImage.swift */; };
+		1B445AF028EC725700B0B310 /* AsyncImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B445AEF28EC725700B0B310 /* AsyncImageView.swift */; };
+		1B76B64228EC250400602003 /* ChildrenRoute.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B76B64128EC250400602003 /* ChildrenRoute.swift */; };
+		1B76B64428EC266100602003 /* ChildrenRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B76B64328EC266100602003 /* ChildrenRepository.swift */; };
+		1B76B64628EC26B800602003 /* ChildrenUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B76B64528EC26B800602003 /* ChildrenUseCase.swift */; };
+		1B76B64828EC26EC00602003 /* GetChildrenUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B76B64728EC26EC00602003 /* GetChildrenUseCase.swift */; };
+		1B76B64A28EC286800602003 /* ChildrenViewModeling.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B76B64928EC286800602003 /* ChildrenViewModeling.swift */; };
+		1B76B64C28EC289300602003 /* ChildrenViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B76B64B28EC289300602003 /* ChildrenViewModel.swift */; };
 		1B7C09F628EAC170001DB6A1 /* ChildDetailsRoute.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B7C09F528EAC170001DB6A1 /* ChildDetailsRoute.swift */; };
 		1B7C09F828EAC21E001DB6A1 /* CreateChildPayload.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B7C09F728EAC21E001DB6A1 /* CreateChildPayload.swift */; };
 		1BA30D5128E79A4200926820 /* FamilySharingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BA30D5028E79A4200926820 /* FamilySharingViewModel.swift */; };
@@ -79,6 +89,16 @@
 /* Begin PBXFileReference section */
 		1B3581A628E621E600612976 /* OnboardingRoleCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingRoleCell.swift; sourceTree = "<group>"; };
 		1B3581AB28E6387000612976 /* FamilySharingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FamilySharingView.swift; sourceTree = "<group>"; };
+		1B445AE828EC3DA700B0B310 /* PagingDto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PagingDto.swift; sourceTree = "<group>"; };
+		1B445AEA28EC531B00B0B310 /* ChildModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChildModel.swift; sourceTree = "<group>"; };
+		1B445AED28EC71F700B0B310 /* AsynchronousImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsynchronousImage.swift; sourceTree = "<group>"; };
+		1B445AEF28EC725700B0B310 /* AsyncImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsyncImageView.swift; sourceTree = "<group>"; };
+		1B76B64128EC250400602003 /* ChildrenRoute.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChildrenRoute.swift; sourceTree = "<group>"; };
+		1B76B64328EC266100602003 /* ChildrenRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChildrenRepository.swift; sourceTree = "<group>"; };
+		1B76B64528EC26B800602003 /* ChildrenUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChildrenUseCase.swift; sourceTree = "<group>"; };
+		1B76B64728EC26EC00602003 /* GetChildrenUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetChildrenUseCase.swift; sourceTree = "<group>"; };
+		1B76B64928EC286800602003 /* ChildrenViewModeling.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChildrenViewModeling.swift; sourceTree = "<group>"; };
+		1B76B64B28EC289300602003 /* ChildrenViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChildrenViewModel.swift; sourceTree = "<group>"; };
 		1B7C09F528EAC170001DB6A1 /* ChildDetailsRoute.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChildDetailsRoute.swift; sourceTree = "<group>"; };
 		1B7C09F728EAC21E001DB6A1 /* CreateChildPayload.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateChildPayload.swift; sourceTree = "<group>"; };
 		1BA30D5028E79A4200926820 /* FamilySharingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FamilySharingViewModel.swift; sourceTree = "<group>"; };
@@ -191,6 +211,68 @@
 				1BA9DFAB28E7206F006980D1 /* FamilySharingInfoCell.swift */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		1B445AEC28EC71E000B0B310 /* AsyncImage */ = {
+			isa = PBXGroup;
+			children = (
+				1B445AED28EC71F700B0B310 /* AsynchronousImage.swift */,
+				1B445AEF28EC725700B0B310 /* AsyncImageView.swift */,
+			);
+			path = AsyncImage;
+			sourceTree = "<group>";
+		};
+		1B76B63B28EC249B00602003 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				1B445AEA28EC531B00B0B310 /* ChildModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		1B76B63C28EC24A400602003 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				1B76B64928EC286800602003 /* ChildrenViewModeling.swift */,
+				1B76B64B28EC289300602003 /* ChildrenViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		1B76B63D28EC24AE00602003 /* Domain */ = {
+			isa = PBXGroup;
+			children = (
+				1B76B63E28EC24CA00602003 /* Model */,
+				1B76B63F28EC24D200602003 /* UseCase */,
+				1B76B64028EC24DC00602003 /* Repository */,
+			);
+			path = Domain;
+			sourceTree = "<group>";
+		};
+		1B76B63E28EC24CA00602003 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				1B445AE828EC3DA700B0B310 /* PagingDto.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		1B76B63F28EC24D200602003 /* UseCase */ = {
+			isa = PBXGroup;
+			children = (
+				1B76B64528EC26B800602003 /* ChildrenUseCase.swift */,
+				1B76B64728EC26EC00602003 /* GetChildrenUseCase.swift */,
+			);
+			path = UseCase;
+			sourceTree = "<group>";
+		};
+		1B76B64028EC24DC00602003 /* Repository */ = {
+			isa = PBXGroup;
+			children = (
+				1B76B64128EC250400602003 /* ChildrenRoute.swift */,
+				1B76B64328EC266100602003 /* ChildrenRepository.swift */,
+			);
+			path = Repository;
 			sourceTree = "<group>";
 		};
 		1B7C09F028EAC10F001DB6A1 /* Domain */ = {
@@ -399,6 +481,9 @@
 		1BEE80FE28EB5AE8004F75CA /* Children */ = {
 			isa = PBXGroup;
 			children = (
+				1B76B63D28EC24AE00602003 /* Domain */,
+				1B76B63C28EC24A400602003 /* ViewModel */,
+				1B76B63B28EC249B00602003 /* Model */,
 				1BEE80FF28EB5B1B004F75CA /* View */,
 			);
 			path = Children;
@@ -416,6 +501,7 @@
 		1BF313AE28E2F53000232CB3 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				1B445AEC28EC71E000B0B310 /* AsyncImage */,
 				1BE72A3B28E8AD9E00447167 /* ImagePicker */,
 				1BA30D6B28E7A32D00926820 /* Shared */,
 			);
@@ -719,6 +805,7 @@
 				1BA9DFB228E72C73006980D1 /* CancelButton.swift in Sources */,
 				1BE72A2D28E8902300447167 /* UserDefaultsKeys.swift in Sources */,
 				1BA30D6A28E7A24400926820 /* TokensDto.swift in Sources */,
+				1B76B64C28EC289300602003 /* ChildrenViewModel.swift in Sources */,
 				1BE5191C28E8E24A0067E8B1 /* PickerTextField.swift in Sources */,
 				1BA30D6528E79FF400926820 /* BasicAuthenticationPlugin.swift in Sources */,
 				1BEE80F728EAD13D004F75CA /* AddChildUseCase.swift in Sources */,
@@ -727,28 +814,37 @@
 				1BE72A3A28E8A20100447167 /* ChildDetailsViewModeling.swift in Sources */,
 				EF43B69E28E19D5E00DBE6B6 /* OnboardingRole.swift in Sources */,
 				1BA9DFB428E73001006980D1 /* NavigationButton.swift in Sources */,
+				1B445AF028EC725700B0B310 /* AsyncImageView.swift in Sources */,
+				1B76B64628EC26B800602003 /* ChildrenUseCase.swift in Sources */,
 				1B7C09F828EAC21E001DB6A1 /* CreateChildPayload.swift in Sources */,
 				1BEE810328EB5CB8004F75CA /* ChildCell.swift in Sources */,
+				1B445AEE28EC71F700B0B310 /* AsynchronousImage.swift in Sources */,
 				1BA30D6328E79FD400926820 /* RequestServiceError.swift in Sources */,
+				1B76B64A28EC286800602003 /* ChildrenViewModeling.swift in Sources */,
 				EFE9288928E18C3A00675F28 /* ContentView.swift in Sources */,
 				1BE72A3D28E8ADB100447167 /* ImagePicker.swift in Sources */,
 				1BE72A2B28E8901000447167 /* UserDefaultsService.swift in Sources */,
 				1BE72A3528E8984600447167 /* CommonTextField.swift in Sources */,
 				1BA30D5128E79A4200926820 /* FamilySharingViewModel.swift in Sources */,
+				1B76B64428EC266100602003 /* ChildrenRepository.swift in Sources */,
 				EF43B6A628E19F8400DBE6B6 /* Color.swift in Sources */,
+				1B445AEB28EC531B00B0B310 /* ChildModel.swift in Sources */,
 				1BE72A4128E8D69900447167 /* ImageUploadView.swift in Sources */,
 				1BA30D7128E7A4D600926820 /* FamilySharingUseCase.swift in Sources */,
 				1BA9DFB028E7290A006980D1 /* ConfirmButton.swift in Sources */,
 				1BE72A3828E8A1F400447167 /* ChildDetailsViewModel.swift in Sources */,
 				EFE9288728E18C3A00675F28 /* Ed_BreakApp.swift in Sources */,
 				1BEE810128EB5B2E004F75CA /* ChildrenView.swift in Sources */,
+				1B445AE928EC3DA700B0B310 /* PagingDto.swift in Sources */,
 				1BA30D5D28E79E5700926820 /* FamilySharingRoute.swift in Sources */,
 				1BEE80F328EACA33004F75CA /* ChildDetailsRepository.swift in Sources */,
+				1B76B64828EC26EC00602003 /* GetChildrenUseCase.swift in Sources */,
 				1BA9DFAA28E7131D006980D1 /* FamilySharingCell.swift in Sources */,
 				1B7C09F628EAC170001DB6A1 /* ChildDetailsRoute.swift in Sources */,
 				1BA30D6F28E7A49B00926820 /* AddParentUseCase.swift in Sources */,
 				1BA30D6728E7A1D700926820 /* FamilySharingRepository.swift in Sources */,
 				1B3581AC28E6387000612976 /* FamilySharingView.swift in Sources */,
+				1B76B64228EC250400602003 /* ChildrenRoute.swift in Sources */,
 				1BA30D7328E7A5AC00926820 /* TokenModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

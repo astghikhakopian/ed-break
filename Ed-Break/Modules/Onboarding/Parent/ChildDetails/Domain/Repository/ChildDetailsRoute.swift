@@ -48,7 +48,7 @@ enum ChildDetailsRoute: TargetType, AccessTokenAuthorizable {
                 formData.append(MultipartFormData(provider: .data(gradeData), name: "grade"))
             }
             if let photo = payload.photo, let photoData = photo.jpegData(compressionQuality: 1.0) {
-                formData.append(MultipartFormData(provider: .data(photoData), name: "photo.jpeg", fileName: "file.jpeg", mimeType: "image/jpeg"))
+                formData.append(MultipartFormData(provider: .data(photoData), name: "photo", fileName: "file.jpeg", mimeType: "image/jpeg"))
             }
             if let restrictionTime = payload.restrictionTime, let restrictionTimeData = String(restrictionTime).data(using: .utf8) {
                 formData.append(MultipartFormData(provider: .data(restrictionTimeData), name: "restriction_timeData"))
