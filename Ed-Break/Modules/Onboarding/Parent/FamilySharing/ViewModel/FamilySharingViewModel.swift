@@ -9,6 +9,8 @@ import UIKit
 
 final class FamilySharingViewModel: FamilySharingViewModeling, Identifiable {
     
+    @Published var isLoading: Bool = false
+    
     private var addParentUseCase: AddParentUseCase
     private let localStorageService: LocalStorageService
     
@@ -19,7 +21,9 @@ final class FamilySharingViewModel: FamilySharingViewModeling, Identifiable {
     
     func addParent() {
         guard let deviceId = UIDevice.current.identifierForVendor?.uuidString else { return }
+        isLoading = true
         addParentUseCase.execute(username: deviceId) { [weak self] result in
+            DispatchQueue.main.async { self?.isLoading = false }
             switch result {
             case .success(let token):
                 self?.localStorageService.setObject(token, forKey: .User.token)
@@ -34,6 +38,8 @@ final class FamilySharingViewModel: FamilySharingViewModeling, Identifiable {
 // MARK: - Preview
 
 final class MockFamilySharingViewModel: FamilySharingViewModeling, Identifiable {
+    
+    var isLoading = false
     
     func addParent() { }
 }

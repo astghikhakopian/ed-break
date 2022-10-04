@@ -9,5 +9,7 @@ import SwiftUI
 
 protocol FamilySharingViewModeling: ObservableObject {
     
+    var isLoading: Bool { get set }
+    
     func addParent()
 }

@@ -22,9 +22,11 @@ struct ChildDetailsView<M: ChildDetailsViewModeling>: View {
                 NavigationButton(
                     title: "common.continue",
                     didTap: {
-                        viewModel.addChild()
+                        viewModel.addChild(shouldShowLoading: true)
                     },
                     isContentValid: $viewModel.isContentValid,
+                    isLoading: $viewModel.isLoading,
+                    shouldNavigateAfterLoading: true,
                     content: { QRCodeView() })
             }
         }
@@ -43,7 +45,7 @@ private extension ChildDetailsView {
                 CommonTextField(title: "childDetails.name", text: $viewModel.childName)
                 PickerTextField(title: "childDetails.grade", selection: $viewModel.grade, datasource: $viewModel.grades)
                 CancelButton(action: {
-                    viewModel.addChild()
+                    viewModel.addChild(shouldShowLoading: false)
                     viewModel.prepareForNewChild()
                 }, title: "childDetails.add")
             }.padding(spacing)

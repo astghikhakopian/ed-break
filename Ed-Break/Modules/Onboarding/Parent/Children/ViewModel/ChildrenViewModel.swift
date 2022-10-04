@@ -9,10 +9,8 @@ import UIKit
 
 final class ChildrenViewModel: ChildrenViewModeling, Identifiable {
     
-//    var children: PagingModel<ChildModel> {
-//        childrenLocal
-//    }
     @Published var children = PagingModel<ChildModel>(results: [])
+    @Published var isLoading: Bool = false
     
     private var getChildrenUseCase: GetChildrenUseCase
     
@@ -21,12 +19,13 @@ final class ChildrenViewModel: ChildrenViewModeling, Identifiable {
     }
     
     func getChildren() {
+        isLoading = true
         getChildrenUseCase.execute { result in
+            DispatchQueue.main.async { self.isLoading = false }
             switch result {
             case .success(let models):
                 DispatchQueue.main.async { [weak self] in
                     self?.children = PagingModel(results: models)
-//                    self?.childrenrLocal.objectWillChange.send()
                 }
             case .failure(let failure):
                 print(failure.localizedDescription)
@@ -40,6 +39,7 @@ final class ChildrenViewModel: ChildrenViewModeling, Identifiable {
 
 final class MockChildrenViewModeling: ChildrenViewModeling, Identifiable {
     
+    var isLoading = false
     var children = PagingModel<ChildModel>(results: [])
     func getChildren() { }
 }

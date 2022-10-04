@@ -23,6 +23,7 @@ struct QRCodeView: View {
                 NavigationButton(
                     title: "common.continue",
                     didTap: { },
+                    shouldNavigateAfterLoading: true,
                     content: {
                         ChildrenView(
                             viewModel: ChildrenViewModel(

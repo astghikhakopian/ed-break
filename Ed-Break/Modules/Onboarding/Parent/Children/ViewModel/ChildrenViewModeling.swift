@@ -10,6 +10,7 @@ import SwiftUI
 protocol ChildrenViewModeling: ObservableObject {
     
     var children: PagingModel<ChildModel> { get }
+    var isLoading: Bool { get set }
     
     func getChildren()
 }

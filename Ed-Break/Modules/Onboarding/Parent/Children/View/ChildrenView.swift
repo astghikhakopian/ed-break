@@ -23,6 +23,7 @@ struct ChildrenView<M: ChildrenViewModeling>: View {
                 NavigationButton(
                     title: "common.continue",
                     didTap: { },
+                    isLoading: $viewModel.isLoading,
                     content: { Text("uhj") })
             }
         }.onAppear {

@@ -13,6 +13,7 @@ final class ChildDetailsViewModel: ChildDetailsViewModeling, Identifiable {
     @Published var grade: Grade = .first
     @Published var grades: [Grade] = Grade.allCases
     @Published var isContentValid: Bool = false
+    @Published var isLoading: Bool = false
     @Published var childName: String = "" {
         didSet {
             isContentValid = !childName.replacingOccurrences(of: " ", with: "").isEmpty
@@ -27,10 +28,16 @@ final class ChildDetailsViewModel: ChildDetailsViewModeling, Identifiable {
         
     }
     
-    func addChild() {
+    func addChild(shouldShowLoading: Bool = false) {
         guard isContentValid else  { return }
+        if shouldShowLoading { isLoading = true }
         let payload = CreateChildPayload(name: childName, grade: grade, restrictionTime: nil, photo: image == UIImage() ? nil : image)
-        addChildUseCase.execute(payload: payload) { result in
+        addChildUseCase.execute(payload: payload) { [weak self] result in
+            DispatchQueue.main.async {
+                if shouldShowLoading {
+                    self?.isLoading = false
+                }
+            }
             switch result {
             case .none:
                 print("Child added")
@@ -58,7 +65,8 @@ final class MockChildDetailsViewModel: ChildDetailsViewModeling, Identifiable {
     var grades = Grade.allCases
     
     var isContentValid = true
+    var isLoading = false
     
-    func addChild() { }
+    func addChild(shouldShowLoading: Bool) { }
     func prepareForNewChild() { }
 }
