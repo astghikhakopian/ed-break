@@ -24,8 +24,6 @@ final class ChildDetailsViewModel: ChildDetailsViewModeling, Identifiable {
     
     init(addChildUseCase: AddChildUseCase) {
         self.addChildUseCase = addChildUseCase
-        
-        
     }
     
     func addChild(shouldShowLoading: Bool = false) {

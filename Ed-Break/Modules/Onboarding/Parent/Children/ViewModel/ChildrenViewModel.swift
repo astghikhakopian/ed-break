@@ -11,6 +11,7 @@ final class ChildrenViewModel: ChildrenViewModeling, Identifiable {
     
     @Published var children = PagingModel<ChildModel>(results: [])
     @Published var isLoading: Bool = false
+    @Published var connectedChildren = [ChildModel]()
     
     private var getChildrenUseCase: GetChildrenUseCase
     
@@ -40,6 +41,8 @@ final class ChildrenViewModel: ChildrenViewModeling, Identifiable {
 final class MockChildrenViewModeling: ChildrenViewModeling, Identifiable {
     
     var isLoading = false
+    var connectedChildren = [ChildModel]()
     var children = PagingModel<ChildModel>(results: [])
+    
     func getChildren() { }
 }

@@ -6,10 +6,15 @@
 //
 
 import SwiftUI
+import CodeScanner
 
 struct ChildrenView<M: ChildrenViewModeling>: View {
     
     @StateObject var viewModel: M
+    
+    @State private var isShowingScanner = false
+    
+    @State private var scanningChild: ChildModel?
     
     private let cornerRadius = 12.0
     private let spacing = 14.0
@@ -20,15 +25,29 @@ struct ChildrenView<M: ChildrenViewModeling>: View {
         MainBackground(title: "onboarding.children.title", withNavbar: true) {
             VStack(spacing: gap) {
                 content
-                NavigationButton(
-                    title: "common.continue",
-                    didTap: { },
-                    isLoading: $viewModel.isLoading,
-                    content: { Text("uhj") })
+                ConfirmButton(action: {
+                    guard viewModel.connectedChildren.count == viewModel.children.count else { return }
+                    
+                }, title: "common.continue", isLoading:  $viewModel.isLoading)
             }
         }.onAppear {
             viewModel.getChildren()
         }
+        .sheet(isPresented: $isShowingScanner) {
+            CodeScannerView(codeTypes: [.qr], completion: handleScan)
+        }
+    }
+    
+    func handleScan(result: Result<ScanResult, ScanError>) {
+       isShowingScanner = false
+        switch result {
+        case .success:
+            guard let scanningChild = scanningChild else { return }
+            viewModel.connectedChildren.append(scanningChild)
+        case .failure(let error):
+            print("Scanning failed: \(error.localizedDescription)")
+        }
+        scanningChild = nil
     }
 }
 
@@ -45,7 +64,10 @@ private extension ChildrenView {
                     .foregroundColor(.primaryText)
                     .multilineTextAlignment(.center)
                 ForEach(viewModel.children.results, id: \.id) { child in
-                    ChildCell(name: child.name, grade: child.grade, imageUrl: child.photoUrl, state: Binding.constant(.scan), scanAction: {})
+                    ChildCell(name: child.name, grade: child.grade, imageUrl: child.photoUrl, state: Binding.constant(viewModel.connectedChildren.contains(child) ? .connected : .scan), scanAction: {
+                        scanningChild = child
+                        isShowingScanner = true
+                    })
                 }
             }.padding(spacing)
         }

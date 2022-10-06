@@ -11,6 +11,7 @@ protocol ChildrenViewModeling: ObservableObject {
     
     var children: PagingModel<ChildModel> { get }
     var isLoading: Bool { get set }
+    var connectedChildren: [ChildModel] { get set }
     
     func getChildren()
 }

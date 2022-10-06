@@ -45,6 +45,7 @@ private extension ChildDetailsView {
                 CommonTextField(title: "childDetails.name", text: $viewModel.childName)
                 PickerTextField(title: "childDetails.grade", selection: $viewModel.grade, datasource: $viewModel.grades)
                 CancelButton(action: {
+                    guard !viewModel.isLoading else { return }
                     viewModel.addChild(shouldShowLoading: false)
                     viewModel.prepareForNewChild()
                 }, title: "childDetails.add")

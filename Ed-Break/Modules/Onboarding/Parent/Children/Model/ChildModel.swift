@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct ChildModel {
+struct ChildModel: Equatable {
     var id: Int
     var name: String
     var grade: Grade
@@ -21,6 +21,7 @@ struct ChildModel {
         restrictionTime = dto.restrictionTime
         photoUrl = URL(string: dto.photo ?? "")
     }
+    
 }
 
 struct PagingModel<R> {
