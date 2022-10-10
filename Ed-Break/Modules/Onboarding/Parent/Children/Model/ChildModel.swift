@@ -13,6 +13,10 @@ struct ChildModel: Equatable {
     var grade: Grade
     var restrictionTime: Int?
     var photoUrl: URL?
+    let todayAnswers: Int
+    let todayCorrectAnswers: Int
+    let percentageToday: Float
+    let lastLogin: String
     
     init(dto: ChildDto) {
         id = dto.id
@@ -20,6 +24,11 @@ struct ChildModel: Equatable {
         grade = Grade(rawValue: dto.grade) ?? .first
         restrictionTime = dto.restrictionTime
         photoUrl = URL(string: dto.photo ?? "")
+        
+        todayAnswers = dto.todayAnswers ?? 0
+        todayCorrectAnswers = dto.todayCorrectAnswers ?? 0
+        percentageToday = dto.percentageToday ?? 0
+        lastLogin = dto.lastLogin ?? ""
     }
     
 }

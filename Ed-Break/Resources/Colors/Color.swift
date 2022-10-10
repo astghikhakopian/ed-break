@@ -29,6 +29,10 @@ extension Color {
         return Color("PrimaryGreen")
     }
     
+    public static var primaryOrange: Color {
+        return Color("PrimaryOrange")
+    }
+    
     public static var shadow: Color {
         return Color("Shadow")
     }
@@ -39,6 +43,10 @@ extension Color {
     
     public static var border: Color {
         return Color("Border")
+    }
+    
+    public static var divader: Color {
+        return Color("Divader")
     }
     
     public static var appWhite: Color {

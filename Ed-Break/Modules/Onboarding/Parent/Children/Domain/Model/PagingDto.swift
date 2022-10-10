@@ -18,4 +18,8 @@ struct ChildDto: Codable {
     let grade: String
     let restrictionTime: Int?
     let photo: String?
+    let todayAnswers: Int?
+    let todayCorrectAnswers: Int?
+    let percentageToday: Float?
+    let lastLogin: String?
 }

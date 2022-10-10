@@ -14,6 +14,8 @@
 		1B445AEB28EC531B00B0B310 /* ChildModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B445AEA28EC531B00B0B310 /* ChildModel.swift */; };
 		1B445AEE28EC71F700B0B310 /* AsynchronousImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B445AED28EC71F700B0B310 /* AsynchronousImage.swift */; };
 		1B445AF028EC725700B0B310 /* AsyncImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B445AEF28EC725700B0B310 /* AsyncImageView.swift */; };
+		1B56107D28F420B700DA3043 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B56107C28F420B700DA3043 /* HomeView.swift */; };
+		1B56107F28F4263E00DA3043 /* HomeChildCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B56107E28F4263E00DA3043 /* HomeChildCell.swift */; };
 		1B76B64228EC250400602003 /* ChildrenRoute.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B76B64128EC250400602003 /* ChildrenRoute.swift */; };
 		1B76B64428EC266100602003 /* ChildrenRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B76B64328EC266100602003 /* ChildrenRepository.swift */; };
 		1B76B64628EC26B800602003 /* ChildrenUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B76B64528EC26B800602003 /* ChildrenUseCase.swift */; };
@@ -96,6 +98,8 @@
 		1B445AEA28EC531B00B0B310 /* ChildModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChildModel.swift; sourceTree = "<group>"; };
 		1B445AED28EC71F700B0B310 /* AsynchronousImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsynchronousImage.swift; sourceTree = "<group>"; };
 		1B445AEF28EC725700B0B310 /* AsyncImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsyncImageView.swift; sourceTree = "<group>"; };
+		1B56107C28F420B700DA3043 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		1B56107E28F4263E00DA3043 /* HomeChildCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeChildCell.swift; sourceTree = "<group>"; };
 		1B76B64128EC250400602003 /* ChildrenRoute.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChildrenRoute.swift; sourceTree = "<group>"; };
 		1B76B64328EC266100602003 /* ChildrenRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChildrenRepository.swift; sourceTree = "<group>"; };
 		1B76B64528EC26B800602003 /* ChildrenUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChildrenUseCase.swift; sourceTree = "<group>"; };
@@ -188,7 +192,7 @@
 		1B0BC1F828EF420A00DBBD65 /* Main */ = {
 			isa = PBXGroup;
 			children = (
-				1B0BC1F928EF421A00DBBD65 /* TabView */,
+				1B56107828F41BEA00DA3043 /* Parent */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -248,6 +252,40 @@
 				1B445AEF28EC725700B0B310 /* AsyncImageView.swift */,
 			);
 			path = AsyncImage;
+			sourceTree = "<group>";
+		};
+		1B56107828F41BEA00DA3043 /* Parent */ = {
+			isa = PBXGroup;
+			children = (
+				1B0BC1F928EF421A00DBBD65 /* TabView */,
+				1B56107928F41BF200DA3043 /* Dashboard */,
+			);
+			path = Parent;
+			sourceTree = "<group>";
+		};
+		1B56107928F41BF200DA3043 /* Dashboard */ = {
+			isa = PBXGroup;
+			children = (
+				1B56107A28F41C0200DA3043 /* Home */,
+			);
+			path = Dashboard;
+			sourceTree = "<group>";
+		};
+		1B56107A28F41C0200DA3043 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				1B56107B28F41C0900DA3043 /* View */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		1B56107B28F41C0900DA3043 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				1B56107C28F420B700DA3043 /* HomeView.swift */,
+				1B56107E28F4263E00DA3043 /* HomeChildCell.swift */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 		1B76B63B28EC249B00602003 /* Model */ = {
@@ -846,6 +884,7 @@
 				EF43B69E28E19D5E00DBE6B6 /* OnboardingRole.swift in Sources */,
 				1BA9DFB428E73001006980D1 /* NavigationButton.swift in Sources */,
 				1B445AF028EC725700B0B310 /* AsyncImageView.swift in Sources */,
+				1B56107F28F4263E00DA3043 /* HomeChildCell.swift in Sources */,
 				1B76B64628EC26B800602003 /* ChildrenUseCase.swift in Sources */,
 				1B7C09F828EAC21E001DB6A1 /* CreateChildPayload.swift in Sources */,
 				1BEE810328EB5CB8004F75CA /* ChildCell.swift in Sources */,
@@ -862,6 +901,7 @@
 				1B445AEB28EC531B00B0B310 /* ChildModel.swift in Sources */,
 				1BE72A4128E8D69900447167 /* ImageUploadView.swift in Sources */,
 				1BA30D7128E7A4D600926820 /* FamilySharingUseCase.swift in Sources */,
+				1B56107D28F420B700DA3043 /* HomeView.swift in Sources */,
 				1BA9DFB028E7290A006980D1 /* ConfirmButton.swift in Sources */,
 				1BE72A3828E8A1F400447167 /* ChildDetailsViewModel.swift in Sources */,
 				EFE9288728E18C3A00675F28 /* Ed_BreakApp.swift in Sources */,
