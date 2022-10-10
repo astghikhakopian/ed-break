@@ -20,7 +20,7 @@ struct MainBackground<Content> : View where Content : View {
             VStack(spacing: 0) {
                 navigationBackground
                 Color.primaryBackground
-            } .ignoresSafeArea()
+            }.ignoresSafeArea()
             VStack(spacing: 34) {
                 HStack(alignment: .center) {
                     if withNavbar {
@@ -43,12 +43,13 @@ struct MainBackground<Content> : View where Content : View {
                     content()
                     Spacer()
                 }
-            }.padding(EdgeInsets(
-                top: withNavbar ? -8 : 30,
+            }
+            .padding(EdgeInsets(
+                top: withNavbar ? 0 : 10,
                 leading: 15,
                 bottom: 0,
                 trailing: 15))
-        }
+        }.navigationBarTitleDisplayMode(.inline)//.navigationTitle(title ?? "")// .ignoresSafeArea()
     }
 }
 

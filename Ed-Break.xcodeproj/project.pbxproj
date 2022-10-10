@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1B0BC1FC28EF425400DBBD65 /* TabBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B0BC1FB28EF425400DBBD65 /* TabBarView.swift */; };
 		1B3581A728E621E600612976 /* OnboardingRoleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B3581A628E621E600612976 /* OnboardingRoleCell.swift */; };
 		1B3581AC28E6387000612976 /* FamilySharingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B3581AB28E6387000612976 /* FamilySharingView.swift */; };
 		1B445AE928EC3DA700B0B310 /* PagingDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B445AE828EC3DA700B0B310 /* PagingDto.swift */; };
@@ -88,6 +89,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1B0BC1FB28EF425400DBBD65 /* TabBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarView.swift; sourceTree = "<group>"; };
 		1B3581A628E621E600612976 /* OnboardingRoleCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingRoleCell.swift; sourceTree = "<group>"; };
 		1B3581AB28E6387000612976 /* FamilySharingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FamilySharingView.swift; sourceTree = "<group>"; };
 		1B445AE828EC3DA700B0B310 /* PagingDto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PagingDto.swift; sourceTree = "<group>"; };
@@ -183,6 +185,30 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1B0BC1F828EF420A00DBBD65 /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				1B0BC1F928EF421A00DBBD65 /* TabView */,
+			);
+			path = Main;
+			sourceTree = "<group>";
+		};
+		1B0BC1F928EF421A00DBBD65 /* TabView */ = {
+			isa = PBXGroup;
+			children = (
+				1B0BC1FA28EF423B00DBBD65 /* View */,
+			);
+			path = TabView;
+			sourceTree = "<group>";
+		};
+		1B0BC1FA28EF423B00DBBD65 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				1B0BC1FB28EF425400DBBD65 /* TabBarView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		1B3581A828E6383B00612976 /* Parent */ = {
 			isa = PBXGroup;
 			children = (
@@ -672,6 +698,7 @@
 			children = (
 				EF43B69628E1981700DBE6B6 /* Launching */,
 				EF51A11728E1916C0020F135 /* Onboarding */,
+				1B0BC1F828EF420A00DBBD65 /* Main */,
 				EFE9288828E18C3A00675F28 /* ContentView.swift */,
 				EF43B69F28E19E5500DBE6B6 /* Common */,
 			);
@@ -849,6 +876,7 @@
 				1BA30D6728E7A1D700926820 /* FamilySharingRepository.swift in Sources */,
 				1B3581AC28E6387000612976 /* FamilySharingView.swift in Sources */,
 				1B76B64228EC250400602003 /* ChildrenRoute.swift in Sources */,
+				1B0BC1FC28EF425400DBBD65 /* TabBarView.swift in Sources */,
 				1BA30D7328E7A5AC00926820 /* TokenModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

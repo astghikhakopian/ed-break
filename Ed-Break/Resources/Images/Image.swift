@@ -58,6 +58,35 @@ extension Image {
         }
     }
     
+    public struct TabView {
+        public struct Dashboard {
+            public static var selected: Image {
+                return Image("tab.dashboard.selected")
+            }
+            public static var unselected: Image {
+                return Image("tab.dashboard.unselected")
+            }
+        }
+       
+        public struct Coaching {
+            public static var selected: Image {
+                return Image("tab.coaching.selected")
+            }
+            public static var unselected: Image {
+                return Image("tab.coaching.unselected")
+            }
+        }
+        
+        public struct Settings {
+            public static var selected: Image {
+                return Image("tab.settings.selected")
+            }
+            public static var unselected: Image {
+                return Image("tab.settings.unselected")
+            }
+        }
+    }
+    
     public struct Common {
         public static var dropdownArrow: Image {
             return Image("common.dropdownArrow")

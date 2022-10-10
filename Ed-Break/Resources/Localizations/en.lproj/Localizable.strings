@@ -48,3 +48,10 @@
 "childern.scanQR" = "Scan QR";
 
 "common.continue" = "Continue";
+
+
+// Tabbar
+
+"tabbar.dashboard.title" = "Dashboard";
+"tabbar.coaching.title" = "Coaching";
+"tabbar.settings.title" = "Settings";
