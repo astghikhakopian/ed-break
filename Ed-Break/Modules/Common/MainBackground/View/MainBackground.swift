@@ -11,9 +11,12 @@ struct MainBackground<Content> : View where Content : View {
     
     let title: String?
     let withNavbar: Bool
+    var hideBackButton: Bool = false
     @ViewBuilder let  content: (() -> Content)
     
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
+    
+    private let contentCornerRadius = 12.0
     
     var body: some View {
         ZStack {
@@ -23,7 +26,7 @@ struct MainBackground<Content> : View where Content : View {
             }.ignoresSafeArea()
             VStack(spacing: 34) {
                 HStack(alignment: .center) {
-                    if withNavbar {
+                    if withNavbar && !hideBackButton {
                         Button {
                             presentationMode.wrappedValue.dismiss()
                         } label: {
@@ -40,12 +43,12 @@ struct MainBackground<Content> : View where Content : View {
                     }
                 }
                 ScrollView(showsIndicators: false) {
-                    content()
+                    content().cornerRadius(contentCornerRadius)
                     Spacer()
                 }
             }
             .padding(EdgeInsets(
-                top: withNavbar ? 0 : 10,
+                top: hideBackButton ? -48 : withNavbar ? 0 : 10,
                 leading: 15,
                 bottom: 0,
                 trailing: 15))

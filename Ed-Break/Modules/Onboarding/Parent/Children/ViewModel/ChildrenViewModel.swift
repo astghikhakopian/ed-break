@@ -17,6 +17,8 @@ final class ChildrenViewModel: ChildrenViewModeling, Identifiable {
     
     init(getChildrenUseCase: GetChildrenUseCase) {
         self.getChildrenUseCase = getChildrenUseCase
+        
+        getChildren()
     }
     
     func getChildren() {

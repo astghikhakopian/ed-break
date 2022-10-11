@@ -94,5 +94,14 @@ extension Image {
         public static var checkmark: Image {
             return Image("common.checkmark")
         }
+        public static var back: Image {
+            return Image("common.back")
+        }
+        public static var more: Image {
+            return Image("common.more")
+        }
+        public static var upArrow: Image {
+            return Image("common.upArrow")
+        }
     }
 }

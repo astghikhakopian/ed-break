@@ -9,9 +9,13 @@ import SwiftUI
 
 @main
 struct Ed_BreakApp: App {
+    
+    let appState = AppState()
+    
     var body: some Scene {
         WindowGroup {
             ContentView()
+                .environmentObject(appState)
         }
     }
 }

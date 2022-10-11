@@ -19,6 +19,7 @@ extension UserDefaults.Key {
     struct User {
         
         static let token = UserDefaults.Key(rawValue: "User.token")
+        static let isLoggedIn = UserDefaults.Key(rawValue: "User.isLoggedIn")
     }
 }
 

@@ -14,7 +14,7 @@ struct NavigationButton<Content> : View where Content : View {
     @Binding var isLoading: Bool
     @ViewBuilder let content: (() -> Content)
     
-    @State private var selection: Bool = false
+    @State private var selection: Int? = nil
     private var shouldTrackLoading: Bool
     private var shouldNavigateAfterLoading: Bool
     
@@ -41,7 +41,8 @@ struct NavigationButton<Content> : View where Content : View {
         }
     
     var body: some View {
-        NavigationLink(destination: content(), isActive: $selection) {
+        VStack {
+            NavigationLink("", destination: content(), tag: 1, selection: $selection)
             ZStack {
                 Color.primaryPurple
                 if !isLoading {
@@ -50,7 +51,7 @@ struct NavigationButton<Content> : View where Content : View {
                         if isContentValid {
                             didTap?()
                             if !shouldTrackLoading {
-                                selection = true
+                                selection = 1
                             }
                         }
                     } label: {
@@ -65,12 +66,12 @@ struct NavigationButton<Content> : View where Content : View {
             }
             .frame(height: height)
             .cornerRadius(cornerRadius)
-        }.onChange(of: $isLoading.wrappedValue) { newValue in
-            if newValue == false, shouldNavigateAfterLoading  {
-                selection = true
+    }.onChange(of: $isLoading.wrappedValue) { newValue in
+            if newValue == false, shouldNavigateAfterLoading {
+                selection = 1
             }
         }.onAppear {
-            selection = false
+            selection = nil
         }
     }
 }

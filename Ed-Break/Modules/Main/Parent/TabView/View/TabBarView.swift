@@ -34,34 +34,19 @@ struct TabBarView: View {
             .tag(0)
             
             
-            NavigationView {
-                //            MainBackground(title: "Home", withNavbar: false) {
-                
-                List(1...10, id: \.self) { index in
-                    NavigationLink(
-                        destination: Text("Item #\(index) Details"),
-                        label: {
-                            Text("Item #\(index)")
-                                .font(.system(size: 20, weight: .bold, design: .rounded))
-                        })
-                    
-                    //                    }
+            Spacer()
+                .tabItem {
+                    if selection == 1 {
+                        Image.TabView.Coaching.selected
+                    } else {
+                        Image.TabView.Coaching.unselected
+                    }
+                    Text("tabbar.coaching.title")
+                        .font(.appBody)
                 }
-            }
+                .tag(1)
             
-            .tabItem {
-                if selection == 1 {
-                    Image.TabView.Coaching.selected
-                } else {
-                    Image.TabView.Coaching.unselected
-                }
-                Text("tabbar.coaching.title")
-                    .font(.appBody)
-            }
-            .tag(1)
-            
-            Text("Bookmark Tab")
-                .font(.system(size: 30, weight: .bold, design: .rounded))
+            Spacer()
                 .tabItem {
                     if selection == 2 {
                         Image.TabView.Settings.selected
@@ -75,11 +60,7 @@ struct TabBarView: View {
             
         }
         .accentColor(.primaryPurple)
-        .onAppear() {
-            UITabBar.appearance().barTintColor = .white
-        }
-        //            .navigationBarTitle(Text(""), displayMode: .inline)
-        //        }
+        .onAppear { UITabBar.appearance().backgroundColor = UIColor.white }
     }
 }
 

@@ -11,6 +11,7 @@ import CodeScanner
 struct ChildrenView<M: ChildrenViewModeling>: View {
     
     @StateObject var viewModel: M
+    @EnvironmentObject var appState: AppState
     
     @State private var isShowingScanner = false
     
@@ -27,7 +28,7 @@ struct ChildrenView<M: ChildrenViewModeling>: View {
                 content
                 ConfirmButton(action: {
                     guard viewModel.connectedChildren.count == viewModel.children.count else { return }
-                    
+                    appState.moveToDashboard = true
                 }, title: "common.continue", isLoading:  $viewModel.isLoading)
             }
         }.onAppear {

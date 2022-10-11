@@ -102,6 +102,6 @@ private extension HomeChildCell {
 
 struct HomeChildCell_Previews: PreviewProvider {
     static var previews: some View {
-        HomeChildCell(child: ChildModel(dto: ChildDto(id: 0, name: "Emma", grade: "GRADE_3", restrictionTime: nil, photo: nil, todayAnswers: 20, todayCorrectAnswers: 19, percentageToday: 95, lastLogin: "Active 14 min ago")))
+        HomeChildCell(child: ChildModel(dto: ChildDto(id: 0, name: "Emma", grade: 3, restrictionTime: nil, photo: nil, todayAnswers: 20, todayCorrectAnswers: 19, percentageToday: 95, lastLogin: "Active 14 min ago")))
     }
 }

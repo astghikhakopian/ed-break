@@ -28,7 +28,6 @@ struct HomeView<M: ChildrenViewModeling>: View {
                 }
             }
         }
-        .onAppear { viewModel.getChildren() }
     }
 }
 
@@ -38,7 +37,10 @@ private extension HomeView {
         
         ForEach(viewModel.children.results, id: \.id) { child in
             NavigationLink(
-                destination: Text("\(child.name) Details"),
+                destination:
+                    MainBackground(title: nil, withNavbar: true, hideBackButton: true) {
+                        ChildProfileView(child: child)
+                    },
                 label: { HomeChildCell(child: child) })
         }
     }

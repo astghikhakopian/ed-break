@@ -15,7 +15,7 @@ struct PagingDto<R: Codable>: Codable {
 struct ChildDto: Codable {
     let id: Int
     let name: String
-    let grade: String
+    let grade: Int
     let restrictionTime: Int?
     let photo: String?
     let todayAnswers: Int?

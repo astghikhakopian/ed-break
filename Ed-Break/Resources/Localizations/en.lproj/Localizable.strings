@@ -47,7 +47,11 @@
 "childern.connected" = "Connected";
 "childern.scanQR" = "Scan QR";
 
+
+// Common
+
 "common.continue" = "Continue";
+"common.manage" = "Manage";
 
 
 // Tabbar
@@ -62,3 +66,22 @@
 "main.parent.home" = "Home";
 "main.parent.home.questions" = "questions today";
 "main.parent.home.answers" = "correct answers";
+
+"main.parent.childProfile.education" = "Education";
+"main.parent.childProfile.questions" = "Questions";
+"main.parent.childProfile.correctAnswers" = "Correct answers";
+"main.parent.childProfile.beter" = "better than previous time period";
+"main.parent.childProfile.bad" = "bad than previous time period";
+"main.parent.childProfile.activity" = "Activity";
+"main.parent.childProfile.hours" = "hrs";
+"main.parent.childProfile.minutes" = "minutes";
+"main.parent.childProfile.activityfor" = "activity";
+"main.parent.childProfile.avgSession" = "avg. session";
+"main.parent.childProfile.restrictions" = "Restrictions";
+"main.parent.childProfile.restrictionPeriod" = "Restriction time period";
+"main.parent.childProfile.restrictedApps" = "Restricted app & categories";
+
+
+
+
+
