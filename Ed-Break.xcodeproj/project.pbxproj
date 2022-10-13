@@ -14,6 +14,7 @@
 		1B445AEB28EC531B00B0B310 /* ChildModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B445AEA28EC531B00B0B310 /* ChildModel.swift */; };
 		1B445AEE28EC71F700B0B310 /* AsynchronousImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B445AED28EC71F700B0B310 /* AsynchronousImage.swift */; };
 		1B445AF028EC725700B0B310 /* AsyncImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B445AEF28EC725700B0B310 /* AsyncImageView.swift */; };
+		1B47815C28F8595800AA8BF8 /* ChildProfileModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B47815B28F8595800AA8BF8 /* ChildProfileModel.swift */; };
 		1B4C1E2928F4678300C69FB1 /* ChildProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B4C1E2828F4678300C69FB1 /* ChildProfileView.swift */; };
 		1B56107D28F420B700DA3043 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B56107C28F420B700DA3043 /* HomeView.swift */; };
 		1B56107F28F4263E00DA3043 /* HomeChildCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B56107E28F4263E00DA3043 /* HomeChildCell.swift */; };
@@ -23,6 +24,8 @@
 		1B76B64828EC26EC00602003 /* GetChildrenUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B76B64728EC26EC00602003 /* GetChildrenUseCase.swift */; };
 		1B76B64A28EC286800602003 /* ChildrenViewModeling.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B76B64928EC286800602003 /* ChildrenViewModeling.swift */; };
 		1B76B64C28EC289300602003 /* ChildrenViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B76B64B28EC289300602003 /* ChildrenViewModel.swift */; };
+		1B779D4E28F84EAD0051D712 /* GetChildDetailsUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B779D4D28F84EAD0051D712 /* GetChildDetailsUseCase.swift */; };
+		1B779D5028F84FA60051D712 /* GetChildDetailsPayload.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B779D4F28F84FA60051D712 /* GetChildDetailsPayload.swift */; };
 		1B7C09F628EAC170001DB6A1 /* ChildDetailsRoute.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B7C09F528EAC170001DB6A1 /* ChildDetailsRoute.swift */; };
 		1B7C09F828EAC21E001DB6A1 /* CreateChildPayload.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B7C09F728EAC21E001DB6A1 /* CreateChildPayload.swift */; };
 		1BA2403728F5DB5700649467 /* ChildProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BA2403628F5DB5700649467 /* ChildProfileViewModel.swift */; };
@@ -102,6 +105,7 @@
 		1B445AEA28EC531B00B0B310 /* ChildModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChildModel.swift; sourceTree = "<group>"; };
 		1B445AED28EC71F700B0B310 /* AsynchronousImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsynchronousImage.swift; sourceTree = "<group>"; };
 		1B445AEF28EC725700B0B310 /* AsyncImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsyncImageView.swift; sourceTree = "<group>"; };
+		1B47815B28F8595800AA8BF8 /* ChildProfileModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChildProfileModel.swift; sourceTree = "<group>"; };
 		1B4C1E2828F4678300C69FB1 /* ChildProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChildProfileView.swift; sourceTree = "<group>"; };
 		1B56107C28F420B700DA3043 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		1B56107E28F4263E00DA3043 /* HomeChildCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeChildCell.swift; sourceTree = "<group>"; };
@@ -111,6 +115,8 @@
 		1B76B64728EC26EC00602003 /* GetChildrenUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetChildrenUseCase.swift; sourceTree = "<group>"; };
 		1B76B64928EC286800602003 /* ChildrenViewModeling.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChildrenViewModeling.swift; sourceTree = "<group>"; };
 		1B76B64B28EC289300602003 /* ChildrenViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChildrenViewModel.swift; sourceTree = "<group>"; };
+		1B779D4D28F84EAD0051D712 /* GetChildDetailsUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetChildDetailsUseCase.swift; sourceTree = "<group>"; };
+		1B779D4F28F84FA60051D712 /* GetChildDetailsPayload.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetChildDetailsPayload.swift; sourceTree = "<group>"; };
 		1B7C09F528EAC170001DB6A1 /* ChildDetailsRoute.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChildDetailsRoute.swift; sourceTree = "<group>"; };
 		1B7C09F728EAC21E001DB6A1 /* CreateChildPayload.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateChildPayload.swift; sourceTree = "<group>"; };
 		1BA2403628F5DB5700649467 /* ChildProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChildProfileViewModel.swift; sourceTree = "<group>"; };
@@ -262,12 +268,21 @@
 			path = AsyncImage;
 			sourceTree = "<group>";
 		};
+		1B47815A28F8594300AA8BF8 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				1B47815B28F8595800AA8BF8 /* ChildProfileModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		1B4C1E2628F4674E00C69FB1 /* ChildProfile */ = {
 			isa = PBXGroup;
 			children = (
 				1BA2403A28F5DC2D00649467 /* Domain */,
 				1BA2403528F5DB3B00649467 /* ViewModel */,
 				1B4C1E2728F4677100C69FB1 /* View */,
+				1B47815A28F8594300AA8BF8 /* Model */,
 			);
 			path = ChildProfile;
 			sourceTree = "<group>";
@@ -346,6 +361,7 @@
 			isa = PBXGroup;
 			children = (
 				1B445AE828EC3DA700B0B310 /* PagingDto.swift */,
+				1B779D4F28F84FA60051D712 /* GetChildDetailsPayload.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -366,6 +382,14 @@
 				1B76B64328EC266100602003 /* ChildrenRepository.swift */,
 			);
 			path = Repository;
+			sourceTree = "<group>";
+		};
+		1B779D4C28F84E890051D712 /* UseCase */ = {
+			isa = PBXGroup;
+			children = (
+				1B779D4D28F84EAD0051D712 /* GetChildDetailsUseCase.swift */,
+			);
+			path = UseCase;
 			sourceTree = "<group>";
 		};
 		1B7C09F028EAC10F001DB6A1 /* Domain */ = {
@@ -416,6 +440,7 @@
 		1BA2403A28F5DC2D00649467 /* Domain */ = {
 			isa = PBXGroup;
 			children = (
+				1B779D4C28F84E890051D712 /* UseCase */,
 				1BA2403B28F5DC3900649467 /* Model */,
 			);
 			path = Domain;
@@ -915,6 +940,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1BA30D6D28E7A34100926820 /* Moya+Extensions.swift in Sources */,
+				1B779D5028F84FA60051D712 /* GetChildDetailsPayload.swift in Sources */,
 				1B3581A728E621E600612976 /* OnboardingRoleCell.swift in Sources */,
 				1BA9DFAC28E7206F006980D1 /* FamilySharingInfoCell.swift in Sources */,
 				1BE72A3028E8925400447167 /* ChildDetailsView.swift in Sources */,
@@ -962,10 +988,12 @@
 				EFE9288728E18C3A00675F28 /* Ed_BreakApp.swift in Sources */,
 				1BEE810128EB5B2E004F75CA /* ChildrenView.swift in Sources */,
 				1B445AE928EC3DA700B0B310 /* PagingDto.swift in Sources */,
+				1B47815C28F8595800AA8BF8 /* ChildProfileModel.swift in Sources */,
 				1BA30D5D28E79E5700926820 /* FamilySharingRoute.swift in Sources */,
 				1BEE80F328EACA33004F75CA /* ChildDetailsRepository.swift in Sources */,
 				1B76B64828EC26EC00602003 /* GetChildrenUseCase.swift in Sources */,
 				1BA9DFAA28E7131D006980D1 /* FamilySharingCell.swift in Sources */,
+				1B779D4E28F84EAD0051D712 /* GetChildDetailsUseCase.swift in Sources */,
 				1B7C09F628EAC170001DB6A1 /* ChildDetailsRoute.swift in Sources */,
 				1BA30D6F28E7A49B00926820 /* AddParentUseCase.swift in Sources */,
 				1BA30D6728E7A1D700926820 /* FamilySharingRepository.swift in Sources */,
@@ -1132,7 +1160,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_ASSET_PATHS = "\"Ed-Break/Resources/Preview Content\"";
 				DEVELOPMENT_TEAM = 59UY34K59P;
 				ENABLE_PREVIEWS = YES;
@@ -1166,7 +1194,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_ASSET_PATHS = "\"Ed-Break/Resources/Preview Content\"";
 				DEVELOPMENT_TEAM = 59UY34K59P;
 				ENABLE_PREVIEWS = YES;

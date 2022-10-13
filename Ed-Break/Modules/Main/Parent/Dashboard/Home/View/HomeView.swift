@@ -18,11 +18,11 @@ struct HomeView<M: ChildrenViewModeling>: View {
     
     var body: some View {
         ScrollView {
-        if viewModel.isLoading {
-            ProgressView()
-                .progressViewStyle(
-                    CircularProgressViewStyle(tint: .appWhite))
-        } else {
+            if viewModel.isLoading {
+                ProgressView()
+                    .progressViewStyle(
+                        CircularProgressViewStyle(tint: .appWhite))
+            } else {
                 VStack(spacing: gap) {
                     content
                 }
@@ -39,7 +39,11 @@ private extension HomeView {
             NavigationLink(
                 destination:
                     MainBackground(title: nil, withNavbar: true, hideBackButton: true) {
-                        ChildProfileView(child: child)
+                        ChildProfileView(
+                            viewModel: ChildProfileViewModel(
+                                child: child,
+                                getChildDetailsUseCase: GetChildDetailsUseCase(
+                                    childrenRepository: DefaultChildrenRepository())))
                     },
                 label: { HomeChildCell(child: child) })
         }

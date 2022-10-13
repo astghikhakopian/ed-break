@@ -10,8 +10,11 @@ import SwiftUI
 protocol ChildProfileViewModeling: ObservableObject {
     
     var child: ChildModel { get }
+    var datasource: [TimePeriod] { get }
+    var detailsInfo: ChildProfileModel { get set }
     var isLoading: Bool { get set }
-    var connectedChildren: [ChildModel] { get set }
+    var selectedEducationPeriod: TimePeriod { get set }
+    var selectedActivityPeriod: TimePeriod { get set }
     
     func getChildDetails()
 }

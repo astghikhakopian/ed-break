@@ -48,7 +48,7 @@ struct MainBackground<Content> : View where Content : View {
                 }
             }
             .padding(EdgeInsets(
-                top: hideBackButton ? -48 : withNavbar ? 0 : 10,
+                top: hideBackButton ? -74 : withNavbar ? 0 : 10,
                 leading: 15,
                 bottom: 0,
                 trailing: 15))

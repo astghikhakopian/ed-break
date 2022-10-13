@@ -10,12 +10,12 @@ import Moya
 
 protocol ChildDetailsRepository {
     
-    func addChild(payload: CreateChildPayload, completion:  @escaping(Error?) -> Void)
+    func addChild(payload: CreateChildPayload, completion: @escaping(Error?) -> Void)
 }
 
 final class DefaultChildDetailsRepository: MoyaProvider<ChildDetailsRoute>, ChildDetailsRepository, ObservableObject {
     
-    func addChild(payload: CreateChildPayload, completion:  @escaping(Error?) -> Void) {
+    func addChild(payload: CreateChildPayload, completion: @escaping(Error?) -> Void) {
         requestSimple(.addChild(payload: payload), completion: completion)
     }
 }

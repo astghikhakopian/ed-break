@@ -29,15 +29,11 @@ enum TimePeriod: String, CaseIterable, PickerItem {
     }
 }
 
-struct ChildProfileView: View {
+struct ChildProfileView<M: ChildProfileViewModeling>: View {
     
-    let child: ChildModel
+    @StateObject var viewModel: M
     
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
-    
-    @State var selectedEducationPeriod: TimePeriod = .day
-    @State var selectedActivityPeriod: TimePeriod = .day
-    var datasource: [TimePeriod] = TimePeriod.allCases
     
     private let imageHeight = 90.0
     private let cornerRadius = 12.0
@@ -55,6 +51,8 @@ struct ChildProfileView: View {
                 activityView
             }
         }.background(Color.primaryBackground)
+            .navigationBarBackButtonHidden(true)
+             .navigationBarItems(leading: backItem, trailing: moreItem)
         
     }
 }
@@ -63,8 +61,8 @@ struct ChildProfileView: View {
 private extension ChildProfileView {
     var header: some View {
         VStack(spacing: spacing) {
-            navigationItems
-            if let imageUrl = child.photoUrl {
+            Color.appWhite.frame(height: 1)
+            if let imageUrl = viewModel.child.photoUrl {
                 AsyncImageView(withURL: imageUrl.absoluteString, width: imageHeight, height: imageHeight)
                     .frame(width: imageHeight, height: imageHeight)
                     .cornerRadius(imageHeight/2)
@@ -76,9 +74,9 @@ private extension ChildProfileView {
             }
             
             VStack() {
-                Text(child.name)
+                Text(viewModel.child.name)
                     .font(.appLargeTitle)
-                Text(child.lastLogin)
+                Text(viewModel.detailsInfo.lastLogin)
                     .font(.appHeadline)
                     .foregroundColor(.primaryDescription)
             }
@@ -86,19 +84,20 @@ private extension ChildProfileView {
             .background(Color.appWhite)
             .cornerRadius(cornerRadius)
     }
-    var navigationItems: some View {
-        HStack {
-            Button {
-                presentationMode.wrappedValue.dismiss()
-            } label: {
-                Image.Common.back
-            }
-            Spacer()
-            Button {
-                // TODO: -
-            } label: {
-                Image.Common.more
-            }
+    
+    var backItem: some View {
+        Button {
+            presentationMode.wrappedValue.dismiss()
+        } label: {
+            Image.Common.back.padding(EdgeInsets(top: 21, leading: 17, bottom: 0, trailing: 0))
+        }
+    }
+    
+    var moreItem: some View {
+        Button {
+            // TODO: -
+        } label: {
+            Image.Common.more.padding(EdgeInsets(top: 24, leading: 0, bottom: 0, trailing: 19))
         }
     }
 }
@@ -110,7 +109,7 @@ private extension ChildProfileView {
     var educationView: some View {
         VStack(spacing: contentSpacing) {
             educationHeader
-            educationStatistics(child: child)
+            educationStatistics(child: viewModel.child)
         }
         .padding(padding)
         .background(Color.appWhite)
@@ -123,13 +122,13 @@ private extension ChildProfileView {
                 .font(.appLargeTitle)
             Spacer()
             Menu {
-                Picker(selection: $selectedEducationPeriod) {
-                    ForEach(datasource, id: \.self) {
+                Picker(selection: $viewModel.selectedEducationPeriod) {
+                    ForEach(viewModel.datasource, id: \.self) {
                         Text($0.name).font(.appHeadline)
                     }.font(.appHeadline)
                 } label: { }
             } label: {
-                Text(selectedEducationPeriod.name).font(.appHeadline)
+                Text(viewModel.selectedEducationPeriod.name).font(.appHeadline)
                 Image.Common.dropdownArrow.renderingMode(.template)
             }.foregroundColor(.primaryPurple)
         }
@@ -139,10 +138,10 @@ private extension ChildProfileView {
         VStack(spacing: contentSpacing) {
             HStack {
                 statisticsItem(
-                    title: "\(child.todayCorrectAnswers) of \(child.todayAnswers)",
+                    title: "\(viewModel.detailsInfo.periodCorrectAnswers) of \(viewModel.detailsInfo.periodAnswers)",
                     description: "main.parent.childProfile.questions")
                 Spacer()
-                statisticsItem(title: "\(Int(child.percentageToday))%", description: "main.parent.childProfile.correctAnswers")
+                statisticsItem(title: "\(Int(viewModel.detailsInfo.percentageForPeriod))%", description: "main.parent.childProfile.correctAnswers")
             }
             HStack {
                 statisticsItem(
@@ -167,7 +166,7 @@ private extension ChildProfileView {
     var activityView: some View {
         VStack(spacing: contentSpacing) {
             activityHeader
-            activityStatistics(child: child)
+            activityStatistics(child: viewModel.child)
         }
         .padding(padding)
         .background(Color.appWhite)
@@ -180,13 +179,13 @@ private extension ChildProfileView {
                 .font(.appLargeTitle)
             Spacer()
             Menu {
-                Picker(selection: $selectedActivityPeriod) {
-                    ForEach(datasource, id: \.self) {
+                Picker(selection: $viewModel.selectedActivityPeriod) {
+                    ForEach(viewModel.datasource, id: \.self) {
                         Text($0.name).font(.appHeadline)
                     }.font(.appHeadline)
                 } label: { }
             } label: {
-                Text(selectedActivityPeriod.name).font(.appHeadline)
+                Text(viewModel.selectedActivityPeriod.name).font(.appHeadline)
                 Image.Common.dropdownArrow.renderingMode(.template)
             }.foregroundColor(.primaryPurple)
         }
@@ -196,14 +195,16 @@ private extension ChildProfileView {
         VStack(spacing: contentSpacing) {
             HStack {
                 statisticsItem(
-                    title: "\(4.5)",
+                    title: String(viewModel.detailsInfo.periodActivity),
                     description: "main.parent.childProfile.questions",
                     subtitle: "main.parent.childProfile.hours")
                 Spacer()
                 Divider().foregroundColor(.border)
                 Spacer()
-                statisticsItem(title: "\(0.4)", description: "main.parent.childProfile.avgSession",
-                               subtitle: "main.parent.childProfile.hours")
+                statisticsItem(
+                    title: String(viewModel.detailsInfo.averageActivity),
+                    description: "main.parent.childProfile.avgSession",
+                    subtitle: "main.parent.childProfile.hours")
             }
         }.padding(24)
             .overlay(
@@ -245,6 +246,6 @@ private extension ChildProfileView {
 
 struct ChildProfileView_Previews: PreviewProvider {
     static var previews: some View {
-        ChildProfileView(child: ChildModel(dto: ChildDto(id: -1, name: "Emma", grade: 1, restrictionTime: nil, photo: nil, todayAnswers: 140, todayCorrectAnswers: 130, percentageToday: 98, lastLogin: "Active 3 days ago")))
+        ChildProfileView(viewModel: MockChildProfileViewModel())
     }
 }

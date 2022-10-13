@@ -44,7 +44,7 @@ enum ChildDetailsRoute: TargetType, AccessTokenAuthorizable {
             if let nameData = payload.name.data(using: .utf8) {
                 formData.append(MultipartFormData(provider: .data(nameData), name: "name"))
             }
-            if let gradeData = payload.grade.key.data(using: .utf8) {
+            if let gradeData = "\(payload.grade.rawValue)".data(using: .utf8) { //payload.gradekey.data(using: .utf8) {
                 formData.append(MultipartFormData(provider: .data(gradeData), name: "grade"))
             }
             if let photo = payload.photo, let photoData = photo.jpegData(compressionQuality: 1.0) {

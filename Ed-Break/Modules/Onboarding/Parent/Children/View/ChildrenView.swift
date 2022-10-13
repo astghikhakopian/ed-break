@@ -27,7 +27,7 @@ struct ChildrenView<M: ChildrenViewModeling>: View {
             VStack(spacing: gap) {
                 content
                 ConfirmButton(action: {
-                    guard viewModel.connectedChildren.count == viewModel.children.count else { return }
+                    // guard viewModel.connectedChildren.count == viewModel.children.count else { return }
                     appState.moveToDashboard = true
                 }, title: "common.continue", isLoading:  $viewModel.isLoading)
             }
