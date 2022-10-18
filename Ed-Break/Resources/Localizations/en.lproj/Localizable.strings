@@ -37,9 +37,14 @@
 "familySharing.cancel" = "Open Settings";
 
 "childDetails.upload" = "Upload photo";
+"childDetails.upload.options" = "Photo Options...";
+"childDetails.upload.takePhoto" = "Take a Photo";
+"childDetails.upload.choose" = "Choose Existing";
+"childDetails.upload.clear" = "Clear Photo";
 "childDetails.name" = "Child name";
 "childDetails.grade" = "Grade level";
 "childDetails.add" = "Add another child";
+"childDetails.delete" = "Delete child’s device";
 
 "qrCode.description" = "Get Ed-Break app from the App Store or scan the QR-code on the child’s Device";
 
@@ -72,6 +77,7 @@
 "main.parent.childProfile.correctAnswers" = "Correct answers";
 "main.parent.childProfile.beter" = "better than previous time period";
 "main.parent.childProfile.bad" = "bad than previous time period";
+
 "main.parent.childProfile.activity" = "Activity";
 "main.parent.childProfile.hours" = "hrs";
 "main.parent.childProfile.minutes" = "minutes";

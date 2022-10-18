@@ -8,6 +8,20 @@
 
 /* Begin PBXBuildFile section */
 		1B0BC1FC28EF425400DBBD65 /* TabBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B0BC1FB28EF425400DBBD65 /* TabBarView.swift */; };
+		1B16F78C28F963480047AE6A /* Allow2PairingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B16F77E28F963470047AE6A /* Allow2PairingViewController.swift */; };
+		1B16F78D28F963480047AE6A /* Allow2CheckResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B16F77F28F963470047AE6A /* Allow2CheckResult.swift */; };
+		1B16F78E28F963480047AE6A /* NPPinCodeField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B16F78028F963470047AE6A /* NPPinCodeField.swift */; };
+		1B16F78F28F963480047AE6A /* DayTypePickerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B16F78128F963470047AE6A /* DayTypePickerCell.swift */; };
+		1B16F79028F963480047AE6A /* PinVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B16F78228F963470047AE6A /* PinVC.swift */; };
+		1B16F79128F963480047AE6A /* Allow2+QR.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B16F78328F963470047AE6A /* Allow2+QR.swift */; };
+		1B16F79228F963480047AE6A /* Allow2RequestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B16F78428F963470047AE6A /* Allow2RequestViewController.swift */; };
+		1B16F79328F963480047AE6A /* Allow2Bluetooth.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B16F78528F963470047AE6A /* Allow2Bluetooth.swift */; };
+		1B16F79428F963480047AE6A /* MessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B16F78628F963470047AE6A /* MessageCell.swift */; };
+		1B16F79528F963480047AE6A /* Allow2BlockViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B16F78728F963470047AE6A /* Allow2BlockViewController.swift */; };
+		1B16F79628F963480047AE6A /* Allow2LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B16F78828F963470047AE6A /* Allow2LoginViewController.swift */; };
+		1B16F79728F963480047AE6A /* Allow2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B16F78928F963470047AE6A /* Allow2.swift */; };
+		1B16F79828F963480047AE6A /* SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B16F78A28F963470047AE6A /* SwiftyJSON.swift */; };
+		1B16F79928F963480047AE6A /* Allow2Storyboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1B16F78B28F963470047AE6A /* Allow2Storyboard.storyboard */; };
 		1B3581A728E621E600612976 /* OnboardingRoleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B3581A628E621E600612976 /* OnboardingRoleCell.swift */; };
 		1B3581AC28E6387000612976 /* FamilySharingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B3581AB28E6387000612976 /* FamilySharingView.swift */; };
 		1B445AE928EC3DA700B0B310 /* PagingDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B445AE828EC3DA700B0B310 /* PagingDto.swift */; };
@@ -99,8 +113,24 @@
 
 /* Begin PBXFileReference section */
 		1B0BC1FB28EF425400DBBD65 /* TabBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarView.swift; sourceTree = "<group>"; };
+		1B16F77E28F963470047AE6A /* Allow2PairingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Allow2PairingViewController.swift; path = AActivityMonitor/AActivityMonitor/Sources/Allow2PairingViewController.swift; sourceTree = SOURCE_ROOT; };
+		1B16F77F28F963470047AE6A /* Allow2CheckResult.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Allow2CheckResult.swift; path = AActivityMonitor/AActivityMonitor/Sources/Allow2CheckResult.swift; sourceTree = SOURCE_ROOT; };
+		1B16F78028F963470047AE6A /* NPPinCodeField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NPPinCodeField.swift; path = AActivityMonitor/AActivityMonitor/Sources/NPPinCodeField.swift; sourceTree = SOURCE_ROOT; };
+		1B16F78128F963470047AE6A /* DayTypePickerCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DayTypePickerCell.swift; path = AActivityMonitor/AActivityMonitor/Sources/DayTypePickerCell.swift; sourceTree = SOURCE_ROOT; };
+		1B16F78228F963470047AE6A /* PinVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PinVC.swift; path = AActivityMonitor/AActivityMonitor/Sources/PinVC.swift; sourceTree = SOURCE_ROOT; };
+		1B16F78328F963470047AE6A /* Allow2+QR.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Allow2+QR.swift"; path = "AActivityMonitor/AActivityMonitor/Sources/Allow2+QR.swift"; sourceTree = SOURCE_ROOT; };
+		1B16F78428F963470047AE6A /* Allow2RequestViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Allow2RequestViewController.swift; path = AActivityMonitor/AActivityMonitor/Sources/Allow2RequestViewController.swift; sourceTree = SOURCE_ROOT; };
+		1B16F78528F963470047AE6A /* Allow2Bluetooth.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Allow2Bluetooth.swift; path = AActivityMonitor/AActivityMonitor/Sources/Allow2Bluetooth.swift; sourceTree = SOURCE_ROOT; };
+		1B16F78628F963470047AE6A /* MessageCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MessageCell.swift; path = AActivityMonitor/AActivityMonitor/Sources/MessageCell.swift; sourceTree = SOURCE_ROOT; };
+		1B16F78728F963470047AE6A /* Allow2BlockViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Allow2BlockViewController.swift; path = AActivityMonitor/AActivityMonitor/Sources/Allow2BlockViewController.swift; sourceTree = SOURCE_ROOT; };
+		1B16F78828F963470047AE6A /* Allow2LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Allow2LoginViewController.swift; path = AActivityMonitor/AActivityMonitor/Sources/Allow2LoginViewController.swift; sourceTree = SOURCE_ROOT; };
+		1B16F78928F963470047AE6A /* Allow2.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Allow2.swift; path = AActivityMonitor/AActivityMonitor/Sources/Allow2.swift; sourceTree = SOURCE_ROOT; };
+		1B16F78A28F963470047AE6A /* SwiftyJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SwiftyJSON.swift; path = AActivityMonitor/AActivityMonitor/Sources/SwiftyJSON.swift; sourceTree = SOURCE_ROOT; };
+		1B16F78B28F963470047AE6A /* Allow2Storyboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Allow2Storyboard.storyboard; path = AActivityMonitor/AActivityMonitor/Sources/Allow2Storyboard.storyboard; sourceTree = SOURCE_ROOT; };
 		1B3581A628E621E600612976 /* OnboardingRoleCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingRoleCell.swift; sourceTree = "<group>"; };
 		1B3581AB28E6387000612976 /* FamilySharingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FamilySharingView.swift; sourceTree = "<group>"; };
+		1B3DCFBC28FDF0260094F7A1 /* Ed-Break.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Ed-Break.entitlements"; sourceTree = "<group>"; };
+		1B3DCFBE28FDFB890094F7A1 /* DeviceActivity.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DeviceActivity.framework; path = System/Library/Frameworks/DeviceActivity.framework; sourceTree = SDKROOT; };
 		1B445AE828EC3DA700B0B310 /* PagingDto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PagingDto.swift; sourceTree = "<group>"; };
 		1B445AEA28EC531B00B0B310 /* ChildModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChildModel.swift; sourceTree = "<group>"; };
 		1B445AED28EC71F700B0B310 /* AsynchronousImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsynchronousImage.swift; sourceTree = "<group>"; };
@@ -227,6 +257,27 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		1B16F77D28F963380047AE6A /* qqq */ = {
+			isa = PBXGroup;
+			children = (
+				1B16F78928F963470047AE6A /* Allow2.swift */,
+				1B16F78328F963470047AE6A /* Allow2+QR.swift */,
+				1B16F78728F963470047AE6A /* Allow2BlockViewController.swift */,
+				1B16F78528F963470047AE6A /* Allow2Bluetooth.swift */,
+				1B16F77F28F963470047AE6A /* Allow2CheckResult.swift */,
+				1B16F78828F963470047AE6A /* Allow2LoginViewController.swift */,
+				1B16F77E28F963470047AE6A /* Allow2PairingViewController.swift */,
+				1B16F78428F963470047AE6A /* Allow2RequestViewController.swift */,
+				1B16F78B28F963470047AE6A /* Allow2Storyboard.storyboard */,
+				1B16F78128F963470047AE6A /* DayTypePickerCell.swift */,
+				1B16F78628F963470047AE6A /* MessageCell.swift */,
+				1B16F78028F963470047AE6A /* NPPinCodeField.swift */,
+				1B16F78228F963470047AE6A /* PinVC.swift */,
+				1B16F78A28F963470047AE6A /* SwiftyJSON.swift */,
+			);
+			path = qqq;
+			sourceTree = "<group>";
+		};
 		1B3581A828E6383B00612976 /* Parent */ = {
 			isa = PBXGroup;
 			children = (
@@ -257,6 +308,14 @@
 				1BA9DFAB28E7206F006980D1 /* FamilySharingInfoCell.swift */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		1B3DCFBD28FDFB890094F7A1 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				1B3DCFBE28FDFB890094F7A1 /* DeviceActivity.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 		1B445AEC28EC71E000B0B310 /* AsyncImage */ = {
@@ -785,6 +844,7 @@
 			children = (
 				EFE9288528E18C3A00675F28 /* Ed-Break */,
 				EFE9288428E18C3A00675F28 /* Products */,
+				1B3DCFBD28FDFB890094F7A1 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -799,6 +859,8 @@
 		EFE9288528E18C3A00675F28 /* Ed-Break */ = {
 			isa = PBXGroup;
 			children = (
+				1B3DCFBC28FDF0260094F7A1 /* Ed-Break.entitlements */,
+				1B16F77D28F963380047AE6A /* qqq */,
 				1BA30D5E28E79E9000926820 /* Services */,
 				EFE9289428E18F6D00675F28 /* Modules */,
 				1BF313AE28E2F53000232CB3 /* Utils */,
@@ -913,6 +975,7 @@
 				EFE6E44528E1DAEA00B3F83D /* Poppins-ExtraBold.ttf in Resources */,
 				EFE6E44E28E1DB3A00B3F83D /* Poppins-ThinItalic.ttf in Resources */,
 				EFE6E44B28E1DAEA00B3F83D /* Poppins-ExtraBoldItalic.ttf in Resources */,
+				1B16F79928F963480047AE6A /* Allow2Storyboard.storyboard in Resources */,
 				EFE6E44128E1DAEA00B3F83D /* Poppins-SemiBoldItalic.ttf in Resources */,
 				EFE6E44C28E1DAEA00B3F83D /* Poppins-ExtraLightItalic.ttf in Resources */,
 				EFE6E44028E1DAEA00B3F83D /* Poppins-LightItalic.ttf in Resources */,
@@ -944,16 +1007,21 @@
 				1B3581A728E621E600612976 /* OnboardingRoleCell.swift in Sources */,
 				1BA9DFAC28E7206F006980D1 /* FamilySharingInfoCell.swift in Sources */,
 				1BE72A3028E8925400447167 /* ChildDetailsView.swift in Sources */,
+				1B16F78E28F963480047AE6A /* NPPinCodeField.swift in Sources */,
 				1BA2403928F5DB6300649467 /* ChildProfileViewModeling.swift in Sources */,
+				1B16F79828F963480047AE6A /* SwiftyJSON.swift in Sources */,
 				1BA30D5328E79A8E00926820 /* FamilySharingViewModeling.swift in Sources */,
 				EF43B6A228E19EF000DBE6B6 /* MainBackground.swift in Sources */,
 				EFE6E42828E1A67A00B3F83D /* Image.swift in Sources */,
 				1BA30D6128E79EE100926820 /* RequestServices.swift in Sources */,
 				1BEE80F528EACB24004F75CA /* ChildDetailsUseCase.swift in Sources */,
 				1BA2403728F5DB5700649467 /* ChildProfileViewModel.swift in Sources */,
+				1B16F79728F963480047AE6A /* Allow2.swift in Sources */,
 				1BA9DFB228E72C73006980D1 /* CancelButton.swift in Sources */,
 				1BE72A2D28E8902300447167 /* UserDefaultsKeys.swift in Sources */,
 				1BA30D6A28E7A24400926820 /* TokensDto.swift in Sources */,
+				1B16F78F28F963480047AE6A /* DayTypePickerCell.swift in Sources */,
+				1B16F79428F963480047AE6A /* MessageCell.swift in Sources */,
 				1B76B64C28EC289300602003 /* ChildrenViewModel.swift in Sources */,
 				1BE5191C28E8E24A0067E8B1 /* PickerTextField.swift in Sources */,
 				1BA30D6528E79FF400926820 /* BasicAuthenticationPlugin.swift in Sources */,
@@ -967,21 +1035,26 @@
 				1B56107F28F4263E00DA3043 /* HomeChildCell.swift in Sources */,
 				1B76B64628EC26B800602003 /* ChildrenUseCase.swift in Sources */,
 				1B7C09F828EAC21E001DB6A1 /* CreateChildPayload.swift in Sources */,
+				1B16F79528F963480047AE6A /* Allow2BlockViewController.swift in Sources */,
 				1BEE810328EB5CB8004F75CA /* ChildCell.swift in Sources */,
 				1B445AEE28EC71F700B0B310 /* AsynchronousImage.swift in Sources */,
 				1BA30D6328E79FD400926820 /* RequestServiceError.swift in Sources */,
 				1B76B64A28EC286800602003 /* ChildrenViewModeling.swift in Sources */,
 				EFE9288928E18C3A00675F28 /* ContentView.swift in Sources */,
+				1B16F79228F963480047AE6A /* Allow2RequestViewController.swift in Sources */,
 				1BA2403D28F5DC5000649467 /* ChildRetriveDto.swift in Sources */,
+				1B16F78C28F963480047AE6A /* Allow2PairingViewController.swift in Sources */,
 				1BE72A3D28E8ADB100447167 /* ImagePicker.swift in Sources */,
 				1BE72A2B28E8901000447167 /* UserDefaultsService.swift in Sources */,
 				1BE72A3528E8984600447167 /* CommonTextField.swift in Sources */,
+				1B16F79128F963480047AE6A /* Allow2+QR.swift in Sources */,
 				1BA30D5128E79A4200926820 /* FamilySharingViewModel.swift in Sources */,
 				1B76B64428EC266100602003 /* ChildrenRepository.swift in Sources */,
 				EF43B6A628E19F8400DBE6B6 /* Color.swift in Sources */,
 				1B445AEB28EC531B00B0B310 /* ChildModel.swift in Sources */,
 				1BE72A4128E8D69900447167 /* ImageUploadView.swift in Sources */,
 				1BA30D7128E7A4D600926820 /* FamilySharingUseCase.swift in Sources */,
+				1B16F79028F963480047AE6A /* PinVC.swift in Sources */,
 				1B56107D28F420B700DA3043 /* HomeView.swift in Sources */,
 				1BA9DFB028E7290A006980D1 /* ConfirmButton.swift in Sources */,
 				1BE72A3828E8A1F400447167 /* ChildDetailsViewModel.swift in Sources */,
@@ -993,7 +1066,10 @@
 				1BEE80F328EACA33004F75CA /* ChildDetailsRepository.swift in Sources */,
 				1B76B64828EC26EC00602003 /* GetChildrenUseCase.swift in Sources */,
 				1BA9DFAA28E7131D006980D1 /* FamilySharingCell.swift in Sources */,
+				1B16F78D28F963480047AE6A /* Allow2CheckResult.swift in Sources */,
+				1B16F79328F963480047AE6A /* Allow2Bluetooth.swift in Sources */,
 				1B779D4E28F84EAD0051D712 /* GetChildDetailsUseCase.swift in Sources */,
+				1B16F79628F963480047AE6A /* Allow2LoginViewController.swift in Sources */,
 				1B7C09F628EAC170001DB6A1 /* ChildDetailsRoute.swift in Sources */,
 				1BA30D6F28E7A49B00926820 /* AddParentUseCase.swift in Sources */,
 				1BA30D6728E7A1D700926820 /* FamilySharingRepository.swift in Sources */,
@@ -1159,8 +1235,9 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
+				CODE_SIGN_ENTITLEMENTS = "Ed-Break/Ed-Break.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 3;
+				CURRENT_PROJECT_VERSION = 4;
 				DEVELOPMENT_ASSET_PATHS = "\"Ed-Break/Resources/Preview Content\"";
 				DEVELOPMENT_TEAM = 59UY34K59P;
 				ENABLE_PREVIEWS = YES;
@@ -1173,7 +1250,7 @@
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen.storyboard;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1193,8 +1270,9 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
+				CODE_SIGN_ENTITLEMENTS = "Ed-Break/Ed-Break.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 3;
+				CURRENT_PROJECT_VERSION = 4;
 				DEVELOPMENT_ASSET_PATHS = "\"Ed-Break/Resources/Preview Content\"";
 				DEVELOPMENT_TEAM = 59UY34K59P;
 				ENABLE_PREVIEWS = YES;
@@ -1207,7 +1285,7 @@
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen.storyboard;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

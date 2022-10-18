@@ -7,16 +7,24 @@
 
 import UIKit
 
+class ChildDetailsModel {
+    var id: UUID = UUID()
+    @Published var image = UIImage()
+    var grade: Grade = .first
+    var childName: String = ""
+}
+
 final class ChildDetailsViewModel: ChildDetailsViewModeling, Identifiable {
     
-    @Published var image: UIImage = UIImage()
-    @Published var grade: Grade = .first
+//    @Published var image: UIImage = UIImage()
+//    @Published var grade: Grade = .first
     @Published var grades: [Grade] = Grade.allCases
     @Published var isContentValid: Bool = false
     @Published var isLoading: Bool = false
-    @Published var childName: String = "" {
+//    @Published var childName: String = "" {
+    @Published var children: [ChildDetailsModel] = [ChildDetailsModel()] {
         didSet {
-            isContentValid = !childName.replacingOccurrences(of: " ", with: "").isEmpty
+            isContentValid = !(children.last?.childName.replacingOccurrences(of: " ", with: "").isEmpty ?? true)
         }
     }
 
@@ -26,29 +34,34 @@ final class ChildDetailsViewModel: ChildDetailsViewModeling, Identifiable {
         self.addChildUseCase = addChildUseCase
     }
     
-    func addChild(shouldShowLoading: Bool = false) {
-        guard isContentValid else  { return }
-        if shouldShowLoading { isLoading = true }
-        let payload = CreateChildPayload(name: childName, grade: grade, restrictionTime: nil, photo: image == UIImage() ? nil : image)
-        addChildUseCase.execute(payload: payload) { [weak self] result in
-            DispatchQueue.main.async {
-                if shouldShowLoading {
-                    self?.isLoading = false
-                }
-            }
-            switch result {
-            case .none:
-                print("Child added")
-            case .some(let failure):
-                print(failure)
-            }
-        }
+    func addAnotherChild() {
+        guard isContentValid else { return }
+        children.append(ChildDetailsModel())
     }
-    
-    func prepareForNewChild() {
-        image = UIImage()
-        childName = ""
-        grade = .first
+    func appendChildren() {
+                guard isContentValid else  { return }
+                 isLoading = true
+        let validChildren = children.filter{ !$0.childName.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty }
+        var waitingChildCount = validChildren.count
+        for child in validChildren {
+            let payload = CreateChildPayload(name: child.childName, grade: child.grade, restrictionTime: nil, photo: child.image == UIImage() ? nil : child.image)
+                addChildUseCase.execute(payload: payload) { [weak self] result in
+                    DispatchQueue.main.async {
+                        waitingChildCount -= 1
+                        if waitingChildCount == 0 {
+                            self?.isLoading = false
+                        }
+                        }
+        //            }
+                    switch result {
+                    case .none:
+                        print("Child added")
+                    case .some(let failure):
+                        print(failure)
+                    }
+                }
+                        
+                    }
     }
 }
 
@@ -57,14 +70,13 @@ final class ChildDetailsViewModel: ChildDetailsViewModeling, Identifiable {
 
 final class MockChildDetailsViewModel: ChildDetailsViewModeling, Identifiable {
     
-    var image = UIImage()
-    var childName = ""
-    var grade = Grade.first
+    var children: [ChildDetailsModel] = []
     var grades = Grade.allCases
     
     var isContentValid = true
     var isLoading = false
     
-    func addChild(shouldShowLoading: Bool) { }
-    func prepareForNewChild() { }
+    func addAnotherChild() { }
+    
+    func appendChildren() { }
 }

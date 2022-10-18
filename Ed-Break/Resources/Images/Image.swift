@@ -58,6 +58,14 @@ extension Image {
         }
     }
     
+    public struct Parent {
+        public struct Dashboard {
+            public static var restrictions: Image {
+                return Image("parent.dashboard.restrictions")
+            }
+        }
+    }
+    
     public struct TabView {
         public struct Dashboard {
             public static var selected: Image {

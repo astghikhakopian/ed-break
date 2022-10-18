@@ -11,18 +11,19 @@ struct CancelButton: View {
     
     let action: () -> Void
     let title: String
+    var color: Color = .primaryPurple
     
     private let height = 54.0
     private let cornerRadius = 12.0
     
     var body: some View {
         ZStack {
-            Color.primaryBackground
+            color.opacity(0.05)
             Button(action: action, label: {
                 Text(LocalizedStringKey(title))
                     .font(.appButton)
             })
-            .foregroundColor(.primaryPurple)
+            .foregroundColor(color)
         }
         .frame(height: height)
         .cornerRadius(cornerRadius)

@@ -9,6 +9,8 @@ import SwiftUI
 
 struct TabBarView: View {
     
+    @EnvironmentObject var model: DataModel
+    
     @State private var selection = 0
     
     var body: some View {
@@ -18,6 +20,7 @@ struct TabBarView: View {
             NavigationView {
                 MainBackground(title: "main.parent.home", withNavbar: false) {
                     HomeView(viewModel: ChildrenViewModel(getChildrenUseCase: GetChildrenUseCase(childrenRepository: DefaultChildrenRepository())))
+                        .environmentObject(model)
                 }
             }
             .foregroundColor(.appBlack)

@@ -34,6 +34,8 @@ struct ChildProfileView<M: ChildProfileViewModeling>: View {
     @StateObject var viewModel: M
     
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
+    @EnvironmentObject var model: DataModel
+    @State private var isDiscouragedPresented = false
     
     private let imageHeight = 90.0
     private let cornerRadius = 12.0
@@ -49,10 +51,12 @@ struct ChildProfileView<M: ChildProfileViewModeling>: View {
                 header
                 educationView
                 activityView
+                restrictionsView
             }
         }.background(Color.primaryBackground)
             .navigationBarBackButtonHidden(true)
-             .navigationBarItems(leading: backItem, trailing: moreItem)
+            .navigationBarItems(leading: backItem, trailing: moreItem)
+            .familyActivityPicker(isPresented: $isDiscouragedPresented, selection: $model.selectionToDiscourage)
         
     }
 }
@@ -211,6 +215,66 @@ private extension ChildProfileView {
                 RoundedRectangle(cornerRadius: cornerRadius)
                     .stroke(Color.border, lineWidth: 1)
             )
+    }
+}
+
+
+// MARK: - Restrictions
+
+private extension ChildProfileView {
+    
+    var restrictionsView: some View {
+        VStack(spacing: contentSpacing) {
+            restrictionsHeader
+            restrictionsPeriod(minutes: viewModel.child.restrictionTime ?? 0)
+        }
+        .padding(padding)
+        .background(Color.appWhite)
+        .cornerRadius(cornerRadius)
+    }
+    
+    var restrictionsHeader: some View {
+        HStack() {
+            Text("main.parent.childProfile.restrictions")
+                .font(.appLargeTitle)
+            Spacer()
+        }
+    }
+    
+    private func restrictionsPeriod(minutes: Int) -> some View {
+        Button {
+            isDiscouragedPresented = true
+        } label: {
+            VStack(spacing: contentSpacing) {
+                HStack(spacing: 14) {
+                    Image.Parent.Dashboard.restrictions
+                    VStack(alignment: .leading) {
+                        Text("main.parent.childProfile.restrictionPeriod")
+                            .font(.appHeadline)
+                            .foregroundColor(.primaryDescription)
+                        Text(getTime(minutes: minutes))
+                            .font(.appHeadline)
+                            .foregroundColor(.primaryPurple)
+                    }
+                    Spacer()
+                    Image.Common.back
+                }
+            }.padding(24)
+                .overlay(
+                    RoundedRectangle(cornerRadius: cornerRadius)
+                        .stroke(Color.border, lineWidth: 1)
+                )
+        }
+    }
+    
+    private func getTime(minutes: Int) -> String {
+        let seconds = minutes * 60
+        
+        let days = seconds / 86400
+        let hours = (seconds % 86400) / 3600
+        let minutes = (seconds % 3600) / 60
+        
+        return "\(days > 0 ? "\(days) days " : "")\(hours > 0 ? "\(hours) hour\(hours > 1 ? "s " : " ")" : "")\(minutes > -1 ? "\(minutes) minute\(minutes > 1 ? "s" : "")" : "")"
     }
 }
 

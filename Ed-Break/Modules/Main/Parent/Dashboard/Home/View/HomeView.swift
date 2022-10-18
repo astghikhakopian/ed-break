@@ -10,6 +10,7 @@ import SwiftUI
 struct HomeView<M: ChildrenViewModeling>: View {
     
     @StateObject var viewModel: M
+    @EnvironmentObject var model: DataModel
     
     private let cornerRadius = 12.0
     private let spacing = 14.0
@@ -44,6 +45,7 @@ private extension HomeView {
                                 child: child,
                                 getChildDetailsUseCase: GetChildDetailsUseCase(
                                     childrenRepository: DefaultChildrenRepository())))
+                        .environmentObject(model)
                     },
                 label: { HomeChildCell(child: child) })
         }

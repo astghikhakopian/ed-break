@@ -9,14 +9,12 @@ import SwiftUI
 
 protocol ChildDetailsViewModeling: ObservableObject {
     
-    var image: UIImage { get set }
-    var childName: String { get set }
-    var grade: Grade { get set }
+    var children: [ChildDetailsModel] { get set }
     var grades: [Grade] { get set }
     
     var isContentValid: Bool { get set }
     var isLoading: Bool { get set }
     
-    func addChild(shouldShowLoading: Bool)
-    func prepareForNewChild()
+    func addAnotherChild()
+    func appendChildren()
 }

@@ -22,7 +22,7 @@ struct ChildDetailsView<M: ChildDetailsViewModeling>: View {
                 NavigationButton(
                     title: "common.continue",
                     didTap: {
-                        viewModel.addChild(shouldShowLoading: true)
+                        viewModel.appendChildren()
                     },
                     isContentValid: $viewModel.isContentValid,
                     isLoading: $viewModel.isLoading,
@@ -41,22 +41,29 @@ private extension ChildDetailsView {
                 .cornerRadius(cornerRadius)
                 .shadow(color: .shadow, radius: 40, x: 0, y: 20)
             VStack(alignment: .leading, spacing: spacing) {
-                uploadPhotoView
-                CommonTextField(title: "childDetails.name", text: $viewModel.childName)
-                PickerTextField(title: "childDetails.grade", selection: $viewModel.grade, datasource: $viewModel.grades)
+                ForEach($viewModel.children, id: \.id) { child in
+                    uploadPhotoView(image: child.image)
+                    CommonTextField(title: "childDetails.name", text: child.childName)
+                    PickerTextField(title: "childDetails.grade", selection: child.grade, datasource: $viewModel.grades)
+                    if $viewModel.children.count > 1 {
+                        CancelButton(action: {
+                            guard !viewModel.isLoading else { return }
+                            viewModel.addAnotherChild()
+                        }, title: "childDetails.delete", color: .primaryRed)
+                    }
+                }
                 CancelButton(action: {
                     guard !viewModel.isLoading else { return }
-                    viewModel.addChild(shouldShowLoading: false)
-                    viewModel.prepareForNewChild()
+                    viewModel.addAnotherChild()
                 }, title: "childDetails.add")
             }.padding(spacing)
         }
     }
     
-    var uploadPhotoView: some View {
+    func uploadPhotoView(image: Binding<UIImage>) -> some View {
         HStack {
             Spacer()
-            ImageUploadView(selectedImage: $viewModel.image)
+            ImageUploadView(selectedImage: image)
             Spacer()
         }
     }
