@@ -10,6 +10,7 @@ import FamilyControls
 
 class AppState: ObservableObject {
     @Published var moveToDashboard: Bool = false
+    @Published var moveToChildQR: Bool = false
 }
 
 //import SwiftUI
@@ -78,29 +79,37 @@ struct ContentView: View {
     @EnvironmentObject var appState: AppState
     @EnvironmentObject var model: DataModel
     @State var isLoggedIn: Bool
+    @State var waitingChild = false
     
     init() {
         let isLoggedIn: Bool? = UserDefaultsService().getPrimitive(forKey: .User.isLoggedIn)
-        self.isLoggedIn = isLoggedIn ?? true
+        self.isLoggedIn = isLoggedIn ?? false
     }
     
     var body: some View {
         Group {
-            if isLoggedIn {
-//                 Allow2PairingView()
-//                  Allow2RequestView()
-                // Allow2BlockView()
-                 TabBarView()
-                    .environmentObject(model)
-                
+            if waitingChild {
+                ChildQRView()
             } else {
-                OnboardingRole()
+                if isLoggedIn {
+                    TabBarView()
+                        .environmentObject(model)
+                } else {
+                    OnboardingRole()
+                }
             }
-        }.onReceive(appState.$moveToDashboard) { moveToDashboard in
+        }
+        .onReceive(appState.$moveToDashboard) { moveToDashboard in
             guard moveToDashboard else { return }
             appState.moveToDashboard = false
             isLoggedIn = true
-        }.onAppear {
+        }
+        .onReceive(appState.$moveToChildQR) { moveToChildQR in
+            guard moveToChildQR else { return }
+            appState.moveToChildQR = false
+            waitingChild = true
+        }
+        .onAppear {
             // Allow2.shared.deviceToken = UIDevice.current.identifierForVendor?.uuidString ?? ""
             // Allow2.shared.env = .sandbox
 //            AuthorizationCenter.shared.requestAuthorization { result in

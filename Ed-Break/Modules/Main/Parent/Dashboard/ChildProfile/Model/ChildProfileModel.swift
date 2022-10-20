@@ -23,7 +23,7 @@ struct ChildProfileModel {
         childId = dto.childId
         periodAnswers = dto.periodAnswers
         periodCorrectAnswers = dto.periodCorrectAnswers
-        percentageForPeriod = dto.percentageForPeriod
+        percentageForPeriod = dto.percentageForPeriod ?? 0
         lastLogin = dto.lastLogin ?? ""
         periodActivity = Float(Int(dto.periodActivity*10))/10
         averageActivity = Float(Int(dto.averageActivity*10))/10 

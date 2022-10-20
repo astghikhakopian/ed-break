@@ -6,6 +6,8 @@
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>
 	<string>$(PRODUCT_BUNDLE_IDENTIFIER)</string>
+	<key>CFBundleInfoDictionaryVersion</key>
+	<string>6.0</string>
 	<key>CFBundlePackageType</key>
 	<string>$(PRODUCT_BUNDLE_PACKAGE_TYPE)</string>
 	<key>CFBundleShortVersionString</key>
@@ -22,7 +24,7 @@
 	<key>NSBluetoothAlwaysUsageDescription</key>
 	<string>Our app uses bluetooth to find, connect and transfer data between different devices</string>
 	<key>NSCameraUsageDescription</key>
-	<string>Upload photo</string>
+	<string>Allow camera access to scan QR code</string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>Poppins-Black.ttf</string>

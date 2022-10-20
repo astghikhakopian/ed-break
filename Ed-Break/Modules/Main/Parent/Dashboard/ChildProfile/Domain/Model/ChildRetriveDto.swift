@@ -12,7 +12,7 @@ struct ChildRetriveDto: Codable {
   let childId: Int
   let periodAnswers: Int
   let periodCorrectAnswers: Int
-  let percentageForPeriod: Float
+  let percentageForPeriod: Float?
   let lastLogin: String?
   let periodActivity: Float
   let averageActivity: Float

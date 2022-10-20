@@ -18,6 +18,14 @@
 "onboarding.qrCode.title" = "Install Ed-Break \n on the child’s device";
 "onboarding.children.title" = "Connect child’s device";
 
+"onboarding.childSignIn.title" = "Sign in to allow parental control";
+"onboarding.childSignIn.description" = "Sign in with your parent Apple account to pair devices and enable parental control";
+"onboarding.childSignIn.action" = "Sign in with parent’s Apple ID";
+
+"onboarding.childQRCode.title" = "Scan QR code on your \n parent device";
+"onboarding.childQRCode.description" = "Open “Ed-Break” on parent device and scan the QR code to pair device";
+"onboarding.childQRCode.waiting" = "Waiting for the parent to complete pairing";
+
 "familySharing.settings.title" = "Go to Settings";
 "familySharing.settings.description" = "";
 "familySharing.appleId.title" = "Tap on your Apple ID name";
@@ -29,9 +37,8 @@
 "familySharing.returnBack.title" = "Return to Ed-Break";
 "familySharing.returnBack.description" = "";
 
-
-"familySharing.settings.title" = "How to set up Family Sharing";
-"familySharing.appleId.title" = "How to create a child’s Apple ID";
+"familySharing.setup.title" = "How to set up Family Sharing";
+"familySharing.childAppleId.title" = "How to create a child’s Apple ID";
 
 "familySharing.done" = "Done, I’ve set it up";
 "familySharing.cancel" = "Open Settings";
@@ -81,7 +88,7 @@
 "main.parent.childProfile.activity" = "Activity";
 "main.parent.childProfile.hours" = "hrs";
 "main.parent.childProfile.minutes" = "minutes";
-"main.parent.childProfile.activityfor" = "activity";
+"main.parent.childProfile.activityfor" = "activity today";
 "main.parent.childProfile.avgSession" = "avg. session";
 "main.parent.childProfile.restrictions" = "Restrictions";
 "main.parent.childProfile.restrictionPeriod" = "Restriction time period";

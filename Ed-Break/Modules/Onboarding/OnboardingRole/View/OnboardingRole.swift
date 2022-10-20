@@ -21,7 +21,7 @@ struct OnboardingRole: View {
                     }.frame(height: cellHeight)
                     
                     OnboardingRoleCell(role: .child) {
-                        // FamilySharing()
+                        ChildSignInView()
                     }.frame(height: cellHeight)
                 }
             }

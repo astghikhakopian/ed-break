@@ -16,18 +16,15 @@ class ChildDetailsModel {
 
 final class ChildDetailsViewModel: ChildDetailsViewModeling, Identifiable {
     
-//    @Published var image: UIImage = UIImage()
-//    @Published var grade: Grade = .first
     @Published var grades: [Grade] = Grade.allCases
     @Published var isContentValid: Bool = false
     @Published var isLoading: Bool = false
-//    @Published var childName: String = "" {
     @Published var children: [ChildDetailsModel] = [ChildDetailsModel()] {
         didSet {
             isContentValid = !(children.last?.childName.replacingOccurrences(of: " ", with: "").isEmpty ?? true)
         }
     }
-
+    
     private var addChildUseCase: AddChildUseCase
     
     init(addChildUseCase: AddChildUseCase) {
@@ -38,30 +35,31 @@ final class ChildDetailsViewModel: ChildDetailsViewModeling, Identifiable {
         guard isContentValid else { return }
         children.append(ChildDetailsModel())
     }
+    func removeChild(child: ChildDetailsModel) {
+        children.removeAll(where: { child.id == $0.id })
+    }
     func appendChildren() {
-                guard isContentValid else  { return }
-                 isLoading = true
+        guard isContentValid else  { return }
+        isLoading = true
         let validChildren = children.filter{ !$0.childName.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty }
         var waitingChildCount = validChildren.count
         for child in validChildren {
             let payload = CreateChildPayload(name: child.childName, grade: child.grade, restrictionTime: nil, photo: child.image == UIImage() ? nil : child.image)
-                addChildUseCase.execute(payload: payload) { [weak self] result in
-                    DispatchQueue.main.async {
-                        waitingChildCount -= 1
-                        if waitingChildCount == 0 {
-                            self?.isLoading = false
-                        }
-                        }
-        //            }
-                    switch result {
-                    case .none:
-                        print("Child added")
-                    case .some(let failure):
-                        print(failure)
+            addChildUseCase.execute(payload: payload) { [weak self] result in
+                DispatchQueue.main.async {
+                    waitingChildCount -= 1
+                    if waitingChildCount == 0 {
+                        self?.isLoading = false
                     }
                 }
-                        
-                    }
+                switch result {
+                case .none:
+                    print("Child added")
+                case .some(let failure):
+                    print(failure)
+                }
+            }
+        }
     }
 }
 
@@ -77,6 +75,7 @@ final class MockChildDetailsViewModel: ChildDetailsViewModeling, Identifiable {
     var isLoading = false
     
     func addAnotherChild() { }
+    func removeChild(child: ChildDetailsModel) { }
     
     func appendChildren() { }
 }

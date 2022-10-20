@@ -200,7 +200,7 @@ private extension ChildProfileView {
             HStack {
                 statisticsItem(
                     title: String(viewModel.detailsInfo.periodActivity),
-                    description: "main.parent.childProfile.questions",
+                    description: "main.parent.childProfile.activityfor",
                     subtitle: "main.parent.childProfile.hours")
                 Spacer()
                 Divider().foregroundColor(.border)

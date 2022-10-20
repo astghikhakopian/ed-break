@@ -46,7 +46,7 @@ enum FamilySharingInfoCellType: CaseIterable {
     
     var title: String {
         switch self {
-        case .setup:    return "familySharing.settings.title"
+        case .setup:    return "familySharing.setup.title"
         case .appleId:  return "familySharing.appleId.title"
         }
     }

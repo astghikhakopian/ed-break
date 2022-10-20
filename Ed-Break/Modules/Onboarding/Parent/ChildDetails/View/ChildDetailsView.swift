@@ -48,7 +48,7 @@ private extension ChildDetailsView {
                     if $viewModel.children.count > 1 {
                         CancelButton(action: {
                             guard !viewModel.isLoading else { return }
-                            viewModel.addAnotherChild()
+                            viewModel.removeChild(child:  child.wrappedValue)
                         }, title: "childDetails.delete", color: .primaryRed)
                     }
                 }

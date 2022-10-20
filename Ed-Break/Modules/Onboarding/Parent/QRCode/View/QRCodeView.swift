@@ -43,7 +43,7 @@ private extension QRCodeView {
                 .cornerRadius(cornerRadius)
                 .shadow(color: .shadow, radius: 40, x: 0, y: 20)
             VStack(spacing: spacing) {
-                Image.QRCode.qrCode
+                Image.QRCode.qrCode.resizable().frame(width: 200, height: 200)
                 Text("qrCode.description")
                     .font(.appHeadline)
                     .foregroundColor(.primaryText)

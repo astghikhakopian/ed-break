@@ -22,4 +22,3 @@ extension UserDefaults.Key {
         static let isLoggedIn = UserDefaults.Key(rawValue: "User.isLoggedIn")
     }
 }
-
