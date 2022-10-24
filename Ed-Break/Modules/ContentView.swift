@@ -10,6 +10,7 @@ import FamilyControls
 
 class AppState: ObservableObject {
     @Published var moveToDashboard: Bool = false
+    @Published var moveToLogin: Bool = false
     @Published var moveToChildQR: Bool = false
 }
 
@@ -103,6 +104,11 @@ struct ContentView: View {
             guard moveToDashboard else { return }
             appState.moveToDashboard = false
             isLoggedIn = true
+        }
+        .onReceive(appState.$moveToLogin) { moveToLogin in
+            guard moveToLogin else { return }
+            appState.moveToLogin = false
+            isLoggedIn = false
         }
         .onReceive(appState.$moveToChildQR) { moveToChildQR in
             guard moveToChildQR else { return }

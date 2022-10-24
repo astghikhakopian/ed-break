@@ -51,19 +51,23 @@ struct TabBarView: View {
             
             NavigationView {
                 MainBackground(title: "main.parent.settings", withNavbar: false) {
-                    ParentSettingsView()
+                    ParentSettingsView(
+                        viewModel: ParentSettingsViewModel(
+                            deleteParentUseCase: DeleteParentUseCase(
+                                parentRepository: DefaultParentRepository(plugins: [BasicAuthenticationPlugin()])),
+                            localStorageService: UserDefaultsService()))
                 }
             }
-                .tabItem {
-                    if selection == 2 {
-                        Image.TabView.Settings.selected
-                    } else {
-                        Image.TabView.Settings.unselected
-                    }
-                    Text("tabbar.settings.title")
-                        .font(.appBody)
+            .tabItem {
+                if selection == 2 {
+                    Image.TabView.Settings.selected
+                } else {
+                    Image.TabView.Settings.unselected
                 }
-                .tag(2)
+                Text("tabbar.settings.title")
+                    .font(.appBody)
+            }
+            .tag(2)
             
         }
         .accentColor(.primaryPurple)

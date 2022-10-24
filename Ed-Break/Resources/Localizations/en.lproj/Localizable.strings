@@ -18,7 +18,7 @@
 "onboarding.qrCode.title" = "Install Ed-Break \n on the child’s device";
 "onboarding.children.title" = "Connect child’s device";
 
-"onboarding.childSignIn.title" = "Sign in to allow parental control";
+"onboarding.childSignIn.title" = "Sign in to allow \n parental control";
 "onboarding.childSignIn.description" = "Sign in with your parent Apple account to pair devices and enable parental control";
 "onboarding.childSignIn.action" = "Sign in with parent’s Apple ID";
 
@@ -102,3 +102,4 @@
 "main.parent.settings.termsAndConditions" = "Terms and Conditions";
 "main.parent.settings.rateTheApp" = "Rate the app";
 "main.parent.settings.delete" = "Delete account";
+"main.parent.settings.cancel" = "Cancel";

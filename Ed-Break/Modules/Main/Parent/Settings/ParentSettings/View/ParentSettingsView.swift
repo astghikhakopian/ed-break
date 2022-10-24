@@ -6,53 +6,17 @@
 //
 
 import SwiftUI
+import StoreKit
 
-enum ParentSettingsCellType: CaseIterable {
-    case childDevices, termsAndConditions, rateTheApp, deleteAccount
+struct ParentSettingsView<M: ParentSettingsViewModeling>: View {
     
-    var image: Image {
-        switch self {
-        case .childDevices:
-            return .Settings.mobile
-        case .termsAndConditions:
-            return .Settings.asterisk
-        case .rateTheApp:
-            return .Settings.star
-        case .deleteAccount:
-            return .Settings.delete
-        }
-    }
+    @ObservedObject var viewModel: M
     
-    // "main.parent.settings.delete" = "Delete account";
+    @EnvironmentObject var appState: AppState
+    @Environment(\.openURL) private var openURL
+    private let privacyUrl = URL(string: "https://pillow-talk.com.au/privacy-policy")!
     
-    var title: String {
-        switch self {
-        case .childDevices:
-            return "main.parent.settings.childDevices"
-        case .termsAndConditions:
-            return "main.parent.settings.termsAndConditions"
-        case .rateTheApp:
-            return "main.parent.settings.rateTheApp"
-        case .deleteAccount:
-            return "main.parent.settings.delete"
-        }
-    }
-    
-    var isMoreShown: Bool {
-        switch self {
-        case .childDevices: return true
-        case .termsAndConditions, .rateTheApp, .deleteAccount: return false
-        }
-    }
-    var isDeviderShown: Bool {
-        switch self {
-        case .childDevices, .termsAndConditions: return true
-        case .rateTheApp, .deleteAccount: return false
-        }
-    }
-}
-
-struct ParentSettingsView: View {
+    @State private var showDeleteOptions = false
     
     private let gap = 20.0
     private let spacing = 24.0
@@ -62,48 +26,85 @@ struct ParentSettingsView: View {
     
     var body: some View {
         VStack(alignment: .leading, spacing: gap) {
-            
-            ZStack(alignment: .leading) {
-                Color.appWhite
-                    .cornerRadius(cornerRadius)
-                    .shadow(color: .shadow, radius: 40, x: 0, y: 20)
-                
-                VStack(alignment: .leading, spacing: 0) {
-                    ForEach(ParentSettingsCellType.allCases.filter{ $0 != .deleteAccount }, id: \.self) {
-                        settingsCell(type: $0)
+            mainContent
+            deleteSection
+        }.confirmationDialog(
+            "main.parent.settings.delete",
+            isPresented: $showDeleteOptions,
+            titleVisibility: .visible) {
+                Button("main.parent.settings.delete", role: .destructive) {
+                    viewModel.deleteParent {
+                        DispatchQueue.main.async {
+                            appState.moveToLogin = true
+                        }
                     }
-                }.padding(spacing)
-            }
-            
-            settingsCell(type: .deleteAccount)
-                .padding(spacing)
-                .background(Color.appWhite)
-                .cornerRadius(cornerRadius)
-                .shadow(color: .shadow, radius: 40, x: 0, y: 20)
-        }
-    }
-    
-    func settingsCell(type: ParentSettingsCellType) -> some View {
-        VStack(spacing: 0) {
-            HStack(spacing: itemSpacing) {
-                type.image
-                Text(LocalizedStringKey(type.title))
-                    .font(.appButton)
-                    .foregroundColor(.primaryDescription)
-                Spacer()
-                if type.isMoreShown {
-                    Image.Settings.more
+                }
+                Button("main.parent.settings.cancel", role: .cancel) {
+                    showDeleteOptions = false
                 }
             }
-            if type.isDeviderShown {
-                Divider().foregroundColor(Color.divader).padding(EdgeInsets(top: padding, leading: 0, bottom: padding, trailing: 0))
+    }
+}
+
+
+// MARK: - Components
+
+extension ParentSettingsView {
+    var mainContent: some View {
+        VStack(alignment: .leading, spacing: 0) {
+            settingsCell(type: .childDevices) {
+                showDeleteOptions = true
+            }
+            settingsCell(type: .termsAndConditions) {
+                openURL(privacyUrl)
+            }
+            settingsCell(type: .rateTheApp) {
+                guard let currentScene = UIApplication.shared.connectedScenes.first as? UIWindowScene else { return }
+                SKStoreReviewController.requestReview(in: currentScene)
+            }
+        }.padding(spacing)
+            .background(Color.appWhite)
+            .cornerRadius(cornerRadius)
+            .shadow(color: .shadow, radius: 40, x: 0, y: 20)
+    }
+    
+    var deleteSection: some View {
+        settingsCell(type: .deleteAccount, action: {
+            showDeleteOptions = true
+        }).padding(spacing)
+            .background(Color.appWhite)
+            .cornerRadius(cornerRadius)
+            .shadow(color: .shadow, radius: 40, x: 0, y: 20)
+    }
+    
+    func settingsCell(type: ParentSettingsCellType, action: @escaping ()->()) -> some View {
+        Button {
+            action()
+        } label: {
+            VStack(spacing: 0) {
+                HStack(spacing: itemSpacing) {
+                    type.image
+                    Text(LocalizedStringKey(type.title))
+                        .font(.appButton)
+                        .foregroundColor(.primaryDescription)
+                    Spacer()
+                    if type.isMoreShown {
+                        Image.Settings.more
+                    }
+                }
+                if type.isDeviderShown {
+                    Divider().foregroundColor(Color.divader).padding(EdgeInsets(top: padding, leading: 0, bottom: padding, trailing: 0))
+                }
             }
         }
     }
 }
 
+
+// MARK: - Preview
+
 struct ParentSettingsView_Previews: PreviewProvider {
     static var previews: some View {
-        ParentSettingsView()
+        ParentSettingsView(viewModel: MockParentSettingsViewModel())
     }
 }

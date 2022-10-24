@@ -67,6 +67,13 @@
 		1BEE80FD28EB1D29004F75CA /* QRCodeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BEE80FC28EB1D29004F75CA /* QRCodeView.swift */; };
 		1BEE810128EB5B2E004F75CA /* ChildrenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BEE810028EB5B2E004F75CA /* ChildrenView.swift */; };
 		1BEE810328EB5CB8004F75CA /* ChildCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BEE810228EB5CB8004F75CA /* ChildCell.swift */; };
+		1BF1E13D2906BB44008A08D4 /* ParentSettingsCellType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BF1E13C2906BB44008A08D4 /* ParentSettingsCellType.swift */; };
+		1BF1E1402906BC05008A08D4 /* ParentSettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BF1E13F2906BC05008A08D4 /* ParentSettingsViewModel.swift */; };
+		1BF1E1442906BCA3008A08D4 /* ParentRoute.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BF1E1432906BCA3008A08D4 /* ParentRoute.swift */; };
+		1BF1E1462906BD5C008A08D4 /* ParentRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BF1E1452906BD5C008A08D4 /* ParentRepository.swift */; };
+		1BF1E1492906BDDE008A08D4 /* ParentUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BF1E1482906BDDE008A08D4 /* ParentUseCase.swift */; };
+		1BF1E14B2906BE11008A08D4 /* DeleteParentUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BF1E14A2906BE11008A08D4 /* DeleteParentUseCase.swift */; };
+		1BF1E14D2906BEBD008A08D4 /* ParentSettingsViewModeling.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BF1E14C2906BEBD008A08D4 /* ParentSettingsViewModeling.swift */; };
 		1BFF5A7B29015F4C00710D9B /* ChildSignInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BFF5A7A29015F4C00710D9B /* ChildSignInView.swift */; };
 		EF43B69828E1982E00DBE6B6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EF43B69728E1982E00DBE6B6 /* LaunchScreen.storyboard */; };
 		EF43B69A28E1986F00DBE6B6 /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EF43B69928E1986F00DBE6B6 /* Colors.xcassets */; };
@@ -173,6 +180,13 @@
 		1BEE80FC28EB1D29004F75CA /* QRCodeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRCodeView.swift; sourceTree = "<group>"; };
 		1BEE810028EB5B2E004F75CA /* ChildrenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChildrenView.swift; sourceTree = "<group>"; };
 		1BEE810228EB5CB8004F75CA /* ChildCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChildCell.swift; sourceTree = "<group>"; };
+		1BF1E13C2906BB44008A08D4 /* ParentSettingsCellType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParentSettingsCellType.swift; sourceTree = "<group>"; };
+		1BF1E13F2906BC05008A08D4 /* ParentSettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParentSettingsViewModel.swift; sourceTree = "<group>"; };
+		1BF1E1432906BCA3008A08D4 /* ParentRoute.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParentRoute.swift; sourceTree = "<group>"; };
+		1BF1E1452906BD5C008A08D4 /* ParentRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParentRepository.swift; sourceTree = "<group>"; };
+		1BF1E1482906BDDE008A08D4 /* ParentUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParentUseCase.swift; sourceTree = "<group>"; };
+		1BF1E14A2906BE11008A08D4 /* DeleteParentUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteParentUseCase.swift; sourceTree = "<group>"; };
+		1BF1E14C2906BEBD008A08D4 /* ParentSettingsViewModeling.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParentSettingsViewModeling.swift; sourceTree = "<group>"; };
 		1BFF5A6D29014C9700710D9B /* DeviceActivityMonitorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceActivityMonitorExtension.swift; sourceTree = "<group>"; };
 		1BFF5A6F29014C9700710D9B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1BFF5A7029014C9700710D9B /* ActivityMonitoring.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ActivityMonitoring.entitlements; sourceTree = "<group>"; };
@@ -690,6 +704,50 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		1BF1E13B2906BB37008A08D4 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				1BF1E13C2906BB44008A08D4 /* ParentSettingsCellType.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		1BF1E13E2906BBF4008A08D4 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				1BF1E13F2906BC05008A08D4 /* ParentSettingsViewModel.swift */,
+				1BF1E14C2906BEBD008A08D4 /* ParentSettingsViewModeling.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		1BF1E1412906BC32008A08D4 /* Domain */ = {
+			isa = PBXGroup;
+			children = (
+				1BF1E1472906BDC3008A08D4 /* UseCase */,
+				1BF1E1422906BC75008A08D4 /* Repository */,
+			);
+			path = Domain;
+			sourceTree = "<group>";
+		};
+		1BF1E1422906BC75008A08D4 /* Repository */ = {
+			isa = PBXGroup;
+			children = (
+				1BF1E1432906BCA3008A08D4 /* ParentRoute.swift */,
+				1BF1E1452906BD5C008A08D4 /* ParentRepository.swift */,
+			);
+			path = Repository;
+			sourceTree = "<group>";
+		};
+		1BF1E1472906BDC3008A08D4 /* UseCase */ = {
+			isa = PBXGroup;
+			children = (
+				1BF1E1482906BDDE008A08D4 /* ParentUseCase.swift */,
+				1BF1E14A2906BE11008A08D4 /* DeleteParentUseCase.swift */,
+			);
+			path = UseCase;
+			sourceTree = "<group>";
+		};
 		1BF313AE28E2F53000232CB3 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
@@ -939,6 +997,9 @@
 		EFEAAAA0290695F300FE0A39 /* ParentSettings */ = {
 			isa = PBXGroup;
 			children = (
+				1BF1E1412906BC32008A08D4 /* Domain */,
+				1BF1E13E2906BBF4008A08D4 /* ViewModel */,
+				1BF1E13B2906BB37008A08D4 /* Model */,
 				EFEAAAA1290695FF00FE0A39 /* View */,
 			);
 			path = ParentSettings;
@@ -1059,6 +1120,7 @@
 				1BE72A3028E8925400447167 /* ChildDetailsView.swift in Sources */,
 				1BA2403928F5DB6300649467 /* ChildProfileViewModeling.swift in Sources */,
 				1BA30D5328E79A8E00926820 /* FamilySharingViewModeling.swift in Sources */,
+				1BF1E1462906BD5C008A08D4 /* ParentRepository.swift in Sources */,
 				EF43B6A228E19EF000DBE6B6 /* MainBackground.swift in Sources */,
 				EFE6E42828E1A67A00B3F83D /* Image.swift in Sources */,
 				1BA30D6128E79EE100926820 /* RequestServices.swift in Sources */,
@@ -1067,6 +1129,7 @@
 				1BA9DFB228E72C73006980D1 /* CancelButton.swift in Sources */,
 				1BE72A2D28E8902300447167 /* UserDefaultsKeys.swift in Sources */,
 				1BA30D6A28E7A24400926820 /* TokensDto.swift in Sources */,
+				1BF1E1402906BC05008A08D4 /* ParentSettingsViewModel.swift in Sources */,
 				1B76B64C28EC289300602003 /* ChildrenViewModel.swift in Sources */,
 				1BE5191C28E8E24A0067E8B1 /* PickerTextField.swift in Sources */,
 				1BA30D6528E79FF400926820 /* BasicAuthenticationPlugin.swift in Sources */,
@@ -1084,13 +1147,16 @@
 				1B445AEE28EC71F700B0B310 /* AsynchronousImage.swift in Sources */,
 				1BA30D6328E79FD400926820 /* RequestServiceError.swift in Sources */,
 				1B76B64A28EC286800602003 /* ChildrenViewModeling.swift in Sources */,
+				1BF1E14B2906BE11008A08D4 /* DeleteParentUseCase.swift in Sources */,
 				EFE9288928E18C3A00675F28 /* ContentView.swift in Sources */,
 				1BA2403D28F5DC5000649467 /* ChildRetriveDto.swift in Sources */,
 				1BE72A3D28E8ADB100447167 /* ImagePicker.swift in Sources */,
+				1BF1E14D2906BEBD008A08D4 /* ParentSettingsViewModeling.swift in Sources */,
 				1BE72A2B28E8901000447167 /* UserDefaultsService.swift in Sources */,
 				EFEAAAA32906961600FE0A39 /* ParentSettingsView.swift in Sources */,
 				1BE72A3528E8984600447167 /* CommonTextField.swift in Sources */,
 				1BA30D5128E79A4200926820 /* FamilySharingViewModel.swift in Sources */,
+				1BF1E1442906BCA3008A08D4 /* ParentRoute.swift in Sources */,
 				1B76B64428EC266100602003 /* ChildrenRepository.swift in Sources */,
 				EF43B6A628E19F8400DBE6B6 /* Color.swift in Sources */,
 				1B445AEB28EC531B00B0B310 /* ChildModel.swift in Sources */,
@@ -1110,6 +1176,7 @@
 				1BA9DFAA28E7131D006980D1 /* FamilySharingCell.swift in Sources */,
 				1B779D4E28F84EAD0051D712 /* GetChildDetailsUseCase.swift in Sources */,
 				1BFF5A7B29015F4C00710D9B /* ChildSignInView.swift in Sources */,
+				1BF1E13D2906BB44008A08D4 /* ParentSettingsCellType.swift in Sources */,
 				1B7C09F628EAC170001DB6A1 /* ChildDetailsRoute.swift in Sources */,
 				1BA30D6F28E7A49B00926820 /* AddParentUseCase.swift in Sources */,
 				1BA30D6728E7A1D700926820 /* FamilySharingRepository.swift in Sources */,
@@ -1118,6 +1185,7 @@
 				1B0BC1FC28EF425400DBBD65 /* TabBarView.swift in Sources */,
 				1B4C1E2928F4678300C69FB1 /* ChildProfileView.swift in Sources */,
 				1BA30D7328E7A5AC00926820 /* TokenModel.swift in Sources */,
+				1BF1E1492906BDDE008A08D4 /* ParentUseCase.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
