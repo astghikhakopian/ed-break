@@ -97,6 +97,7 @@
 		EFE9288728E18C3A00675F28 /* Ed_BreakApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFE9288628E18C3A00675F28 /* Ed_BreakApp.swift */; };
 		EFE9288928E18C3A00675F28 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFE9288828E18C3A00675F28 /* ContentView.swift */; };
 		EFE9288B28E18C3E00675F28 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EFE9288A28E18C3E00675F28 /* Assets.xcassets */; };
+		EFEAAAA32906961600FE0A39 /* ParentSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFEAAAA22906961600FE0A39 /* ParentSettingsView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -209,6 +210,7 @@
 		EFE9288628E18C3A00675F28 /* Ed_BreakApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ed_BreakApp.swift; sourceTree = "<group>"; };
 		EFE9288828E18C3A00675F28 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		EFE9288A28E18C3E00675F28 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		EFEAAAA22906961600FE0A39 /* ParentSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParentSettingsView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -346,6 +348,7 @@
 			children = (
 				1B0BC1F928EF421A00DBBD65 /* TabView */,
 				1B56107928F41BF200DA3043 /* Dashboard */,
+				EF9137CD2906915600409E1B /* Settings */,
 			);
 			path = Parent;
 			sourceTree = "<group>";
@@ -820,6 +823,14 @@
 			path = Onboarding;
 			sourceTree = "<group>";
 		};
+		EF9137CD2906915600409E1B /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				EFEAAAA0290695F300FE0A39 /* ParentSettings */,
+			);
+			path = Settings;
+			sourceTree = "<group>";
+		};
 		EFE6E45028E1DB6100B3F83D /* Poppins */ = {
 			isa = PBXGroup;
 			children = (
@@ -923,6 +934,22 @@
 				EFE9288628E18C3A00675F28 /* Ed_BreakApp.swift */,
 			);
 			path = App;
+			sourceTree = "<group>";
+		};
+		EFEAAAA0290695F300FE0A39 /* ParentSettings */ = {
+			isa = PBXGroup;
+			children = (
+				EFEAAAA1290695FF00FE0A39 /* View */,
+			);
+			path = ParentSettings;
+			sourceTree = "<group>";
+		};
+		EFEAAAA1290695FF00FE0A39 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				EFEAAAA22906961600FE0A39 /* ParentSettingsView.swift */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -1061,6 +1088,7 @@
 				1BA2403D28F5DC5000649467 /* ChildRetriveDto.swift in Sources */,
 				1BE72A3D28E8ADB100447167 /* ImagePicker.swift in Sources */,
 				1BE72A2B28E8901000447167 /* UserDefaultsService.swift in Sources */,
+				EFEAAAA32906961600FE0A39 /* ParentSettingsView.swift in Sources */,
 				1BE72A3528E8984600447167 /* CommonTextField.swift in Sources */,
 				1BA30D5128E79A4200926820 /* FamilySharingViewModel.swift in Sources */,
 				1B76B64428EC266100602003 /* ChildrenRepository.swift in Sources */,

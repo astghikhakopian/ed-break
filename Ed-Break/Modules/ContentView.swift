@@ -83,7 +83,7 @@ struct ContentView: View {
     
     init() {
         let isLoggedIn: Bool? = UserDefaultsService().getPrimitive(forKey: .User.isLoggedIn)
-        self.isLoggedIn = isLoggedIn ?? false
+        self.isLoggedIn = isLoggedIn ?? true
     }
     
     var body: some View {

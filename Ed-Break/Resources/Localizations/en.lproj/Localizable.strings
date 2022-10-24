@@ -95,6 +95,10 @@
 "main.parent.childProfile.restrictedApps" = "Restricted app & categories";
 
 
+// Settings
 
-
-
+"main.parent.settings" = "Settings";
+"main.parent.settings.childDevices" = "Child devices";
+"main.parent.settings.termsAndConditions" = "Terms and Conditions";
+"main.parent.settings.rateTheApp" = "Rate the app";
+"main.parent.settings.delete" = "Delete account";

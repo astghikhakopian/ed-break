@@ -95,6 +95,24 @@ extension Image {
         }
     }
     
+    public struct Settings {
+        public static var asterisk: Image {
+            return Image("settings.asterisk")
+        }
+        public static var star: Image {
+            return Image("settings.star")
+        }
+        public static var more: Image {
+            return Image("settings.more")
+        }
+        public static var delete: Image {
+            return Image("settings.delete")
+        }
+        public static var mobile: Image {
+            return Image("settings.mobile")
+        }
+    }
+    
     public struct Common {
         public static var dropdownArrow: Image {
             return Image("common.dropdownArrow")

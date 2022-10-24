@@ -49,7 +49,11 @@ struct TabBarView: View {
                 }
                 .tag(1)
             
-            Spacer()
+            NavigationView {
+                MainBackground(title: "main.parent.settings", withNavbar: false) {
+                    ParentSettingsView()
+                }
+            }
                 .tabItem {
                     if selection == 2 {
                         Image.TabView.Settings.selected
