@@ -10,6 +10,8 @@
 		1B0BC1FC28EF425400DBBD65 /* TabBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B0BC1FB28EF425400DBBD65 /* TabBarView.swift */; };
 		1B1346342907D54D00943AA5 /* WebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B1346332907D54D00943AA5 /* WebView.swift */; };
 		1B1346362907DA6800943AA5 /* ChildDeiviceCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B1346352907DA6800943AA5 /* ChildDeiviceCell.swift */; };
+		1B13463B290822E900943AA5 /* UpdateChildUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B13463A290822E900943AA5 /* UpdateChildUseCase.swift */; };
+		1B13463D290826A800943AA5 /* DeleteChildUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B13463C290826A800943AA5 /* DeleteChildUseCase.swift */; };
 		1B29CB7829016D7D0036988F /* ChildQRView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B29CB7729016D7D0036988F /* ChildQRView.swift */; };
 		1B3581A728E621E600612976 /* OnboardingRoleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B3581A628E621E600612976 /* OnboardingRoleCell.swift */; };
 		1B3581AC28E6387000612976 /* FamilySharingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B3581AB28E6387000612976 /* FamilySharingView.swift */; };
@@ -128,6 +130,8 @@
 		1B0BC1FB28EF425400DBBD65 /* TabBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarView.swift; sourceTree = "<group>"; };
 		1B1346332907D54D00943AA5 /* WebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebView.swift; sourceTree = "<group>"; };
 		1B1346352907DA6800943AA5 /* ChildDeiviceCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChildDeiviceCell.swift; sourceTree = "<group>"; };
+		1B13463A290822E900943AA5 /* UpdateChildUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateChildUseCase.swift; sourceTree = "<group>"; };
+		1B13463C290826A800943AA5 /* DeleteChildUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteChildUseCase.swift; sourceTree = "<group>"; };
 		1B29CB7729016D7D0036988F /* ChildQRView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChildQRView.swift; sourceTree = "<group>"; };
 		1B3581A628E621E600612976 /* OnboardingRoleCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingRoleCell.swift; sourceTree = "<group>"; };
 		1B3581AB28E6387000612976 /* FamilySharingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FamilySharingView.swift; sourceTree = "<group>"; };
@@ -494,6 +498,8 @@
 			children = (
 				1BEE80F428EACB24004F75CA /* ChildDetailsUseCase.swift */,
 				1BEE80F628EAD13D004F75CA /* AddChildUseCase.swift */,
+				1B13463A290822E900943AA5 /* UpdateChildUseCase.swift */,
+				1B13463C290826A800943AA5 /* DeleteChildUseCase.swift */,
 			);
 			path = UseCase;
 			sourceTree = "<group>";
@@ -1184,6 +1190,7 @@
 				1BF1E1402906BC05008A08D4 /* ParentSettingsViewModel.swift in Sources */,
 				1B76B64C28EC289300602003 /* ChildrenViewModel.swift in Sources */,
 				1BE5191C28E8E24A0067E8B1 /* PickerTextField.swift in Sources */,
+				1B13463B290822E900943AA5 /* UpdateChildUseCase.swift in Sources */,
 				1BA30D6528E79FF400926820 /* BasicAuthenticationPlugin.swift in Sources */,
 				1BEE80F728EAD13D004F75CA /* AddChildUseCase.swift in Sources */,
 				1BEE80FD28EB1D29004F75CA /* QRCodeView.swift in Sources */,
@@ -1203,6 +1210,7 @@
 				1BF1E14B2906BE11008A08D4 /* DeleteParentUseCase.swift in Sources */,
 				EFE9288928E18C3A00675F28 /* ContentView.swift in Sources */,
 				1B1346342907D54D00943AA5 /* WebView.swift in Sources */,
+				1B13463D290826A800943AA5 /* DeleteChildUseCase.swift in Sources */,
 				1BA2403D28F5DC5000649467 /* ChildRetriveDto.swift in Sources */,
 				1BE72A3D28E8ADB100447167 /* ImagePicker.swift in Sources */,
 				1BF1E14D2906BEBD008A08D4 /* ParentSettingsViewModeling.swift in Sources */,

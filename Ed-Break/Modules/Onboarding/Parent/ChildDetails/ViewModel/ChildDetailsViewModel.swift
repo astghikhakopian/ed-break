@@ -9,12 +9,31 @@ import UIKit
 
 class ChildDetailsModel {
     var id: UUID = UUID()
+    var childId: Int? = nil
     @Published var image = UIImage()
     var grade: Grade = .first
     var childName: String = ""
+    
+    init(childId: Int? = nil, image: UIImage = UIImage(), grade: Grade, childName: String) {
+        self.id = UUID()
+        self.childId = childId
+        self.image = image
+        self.grade = grade
+        self.childName = childName
+    }
+    
+    init() {
+        self.id = UUID()
+        self.childId = nil
+        self.image = UIImage()
+        self.grade = .first
+        self.childName = ""
+    }
 }
 
 final class ChildDetailsViewModel: ChildDetailsViewModeling, Identifiable {
+    
+    let child: ChildModel?
     
     @Published var grades: [Grade] = Grade.allCases
     @Published var isContentValid: Bool = false
@@ -25,10 +44,19 @@ final class ChildDetailsViewModel: ChildDetailsViewModeling, Identifiable {
         }
     }
     
-    private var addChildUseCase: AddChildUseCase
+    private var addChildUseCase: AddChildUseCase?
+    private var updateChildUseCase: UpdateChildUseCase?
+    private var deleteChildUseCase: DeleteChildUseCase?
     
-    init(addChildUseCase: AddChildUseCase) {
+    init(child: ChildModel? = nil, addChildUseCase: AddChildUseCase? = nil, updateChildUseCase: UpdateChildUseCase? = nil, deleteChildUseCase: DeleteChildUseCase? = nil) {
+        self.child = child
         self.addChildUseCase = addChildUseCase
+        self.updateChildUseCase = updateChildUseCase
+        self.deleteChildUseCase = deleteChildUseCase
+        
+        if let child = child {
+            children = [ChildDetailsModel(childId: child.id, grade: child.grade, childName: child.name)]
+        }
     }
     
     func addAnotherChild() {
@@ -38,7 +66,9 @@ final class ChildDetailsViewModel: ChildDetailsViewModeling, Identifiable {
     func removeChild(child: ChildDetailsModel) {
         children.removeAll(where: { child.id == $0.id })
     }
+    
     func appendChildren() {
+        guard let addChildUseCase = addChildUseCase else { return }
         guard isContentValid else  { return }
         isLoading = true
         let validChildren = children.filter{ !$0.childName.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty }
@@ -61,6 +91,43 @@ final class ChildDetailsViewModel: ChildDetailsViewModeling, Identifiable {
             }
         }
     }
+    
+    func updateChild(completion: (()->())? = nil) {
+        guard let updateChildUseCase = updateChildUseCase, let child = children.first else { return }
+        guard isContentValid else  { return }
+        isLoading = true
+        let payload = CreateChildPayload(name: child.childName, grade: child.grade, restrictionTime: nil, photo: child.image == UIImage() ? nil : child.image)
+        updateChildUseCase.execute(payload: payload) { [weak self] result in
+            DispatchQueue.main.async {
+                self?.isLoading = false
+            }
+            switch result {
+            case .none:
+                print("Child updated")
+                completion?()
+            case .some(let failure):
+                print(failure)
+            }
+        }
+    }
+    func deleteChild(completion: (()->())? = nil) {
+        guard let deleteChildUseCase = deleteChildUseCase, let child = children.first else { return }
+        guard isContentValid else  { return }
+        isLoading = true
+        let payload = CreateChildPayload(name: child.childName, grade: child.grade, restrictionTime: nil, photo: child.image == UIImage() ? nil : child.image)
+        deleteChildUseCase.execute(id: child.childId ?? 0) { [weak self] result in
+            DispatchQueue.main.async {
+                self?.isLoading = false
+            }
+            switch result {
+            case .none:
+                print("Child updated")
+                completion?()
+            case .some(let failure):
+                print(failure)
+            }
+        }
+    }
 }
 
 
@@ -75,6 +142,8 @@ final class MockChildDetailsViewModel: ChildDetailsViewModeling, Identifiable {
     var isLoading = false
     
     func addAnotherChild() { }
+    func updateChild(completion: (()->())?) {}
+    func deleteChild(completion: (()->())?) {}
     func removeChild(child: ChildDetailsModel) { }
     
     func appendChildren() { }

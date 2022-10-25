@@ -64,6 +64,7 @@
 
 "common.continue" = "Continue";
 "common.manage" = "Manage";
+"common.delete" = "Delete";
 
 
 // Tabbar
@@ -103,3 +104,5 @@
 "main.parent.settings.rateTheApp" = "Rate the app";
 "main.parent.settings.delete" = "Delete account";
 "main.parent.settings.cancel" = "Cancel";
+"main.parent.settings.delete.description" = "Do you want to delete this child’s device?";
+"main.parent.settings.delete.description.details" = "You can’t undo this action";

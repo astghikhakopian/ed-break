@@ -9,9 +9,10 @@ import SwiftUI
 
 struct ChildEditView<M: ChildDetailsViewModeling>: View {
     
-    var simpleAdd: Bool = false
     @ObservedObject var viewModel: M
+    @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     
+    @State private var showDeletingAlert: Bool = false
     private let cornerRadius = 12.0
     private let spacing = 25.0
     private let gap = 20.0
@@ -20,17 +21,27 @@ struct ChildEditView<M: ChildDetailsViewModeling>: View {
         MainBackground(title: "onboarding.childDetails.title", withNavbar: true) {
             VStack(spacing: gap) {
                 childView
-                NavigationButton(
-                    title: "common.continue",
-                    didTap: {
-                        viewModel.appendChildren()
-                    },
-                    isContentValid: $viewModel.isContentValid,
-                    isLoading: $viewModel.isLoading,
-                    shouldNavigateAfterLoading: true,
-                    content: { QRCodeView() })
+                ConfirmButton(action: {
+                    viewModel.updateChild {
+                        presentationMode.wrappedValue.dismiss()
+                    }
+                }, title: "common.continue", isLoading: $viewModel.isLoading)
+                CancelButton(action: {
+                    showDeletingAlert = true
+                }, title: "childDetails.delete", color: .primaryRed)
             }
-        }
+        }.alert("main.parent.settings.delete.description", isPresented: $showDeletingAlert, actions: {
+            Button("common.delete", role: .destructive, action: {
+                guard !viewModel.isLoading else { return }
+                viewModel.deleteChild {
+                    DispatchQueue.main.async {
+                        presentationMode.wrappedValue.dismiss()
+                    }
+                }
+            })
+        }, message: {
+            Text("main.parent.settings.delete.description.details")
+        })
     }
 }
 
@@ -52,12 +63,6 @@ private extension ChildEditView {
                             viewModel.removeChild(child:  child.wrappedValue)
                         }, title: "childDetails.delete", color: .primaryRed)
                     }
-                }
-                if !simpleAdd {
-                    CancelButton(action: {
-                        guard !viewModel.isLoading else { return }
-                        viewModel.addAnotherChild()
-                    }, title: "childDetails.add")
                 }
             }.padding(spacing)
         }

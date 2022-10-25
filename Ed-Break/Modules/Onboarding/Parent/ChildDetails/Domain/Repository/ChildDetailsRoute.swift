@@ -12,6 +12,8 @@ import UIKit
 enum ChildDetailsRoute: TargetType, AccessTokenAuthorizable {
     
     case addChild(payload: CreateChildPayload)
+    case updateChild(payload: CreateChildPayload)
+    case deleteChild(id: Int)
     
     var authorizationType: AuthorizationType? {
         .bearer
@@ -25,6 +27,10 @@ enum ChildDetailsRoute: TargetType, AccessTokenAuthorizable {
         switch self {
         case .addChild:
             return "/users/child/"
+        case .updateChild:
+            return "/users/child/"
+        case .deleteChild(let id):
+            return "/users/delete-child/\(id)/"
         }
     }
     
@@ -32,6 +38,10 @@ enum ChildDetailsRoute: TargetType, AccessTokenAuthorizable {
         switch self {
         case .addChild:
             return .post
+        case .updateChild:
+            return .patch
+        case .deleteChild:
+            return .delete
         }
     }
     
@@ -55,6 +65,29 @@ enum ChildDetailsRoute: TargetType, AccessTokenAuthorizable {
             }
             
             return .uploadMultipart(formData)
+        case .updateChild(let payload):
+            
+            var formData = [MultipartFormData]()
+            
+            if let nameData = payload.name.data(using: .utf8) {
+                formData.append(MultipartFormData(provider: .data(nameData), name: "name"))
+            }
+            if let gradeData = "\(payload.grade.rawValue)".data(using: .utf8) { //payload.gradekey.data(using: .utf8) {
+                formData.append(MultipartFormData(provider: .data(gradeData), name: "grade"))
+            }
+            if let photo = payload.photo, let photoData = photo.jpegData(compressionQuality: 1.0) {
+                formData.append(MultipartFormData(provider: .data(photoData), name: "photo", fileName: "file.jpeg", mimeType: "image/jpeg"))
+            }
+            if let restrictionTime = payload.restrictionTime, let restrictionTimeData = String(restrictionTime).data(using: .utf8) {
+                formData.append(MultipartFormData(provider: .data(restrictionTimeData), name: "restriction_timeData"))
+            }
+            
+            return .uploadMultipart(formData)
+        case .deleteChild:
+            return .requestParameters(
+                parameters: [:],
+                encoding: URLEncoding.queryString
+            )
         }
     }
     
@@ -62,9 +95,9 @@ enum ChildDetailsRoute: TargetType, AccessTokenAuthorizable {
         let token: TokenModel? = UserDefaultsService().getObject(forKey: .User.token)
         let accessToken = token?.access ?? ""
         return [
-        "Content-Type": "application/json",
-        "accept": "application/json",
-        "Authorization": "Bearer \(accessToken)"
-    ]}
+            "Content-Type": "application/json",
+            "accept": "application/json",
+            "Authorization": "Bearer \(accessToken)"
+        ]}
 }
 

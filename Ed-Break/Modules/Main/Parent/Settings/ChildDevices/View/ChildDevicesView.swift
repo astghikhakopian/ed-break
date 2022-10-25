@@ -50,7 +50,15 @@ private extension ChildDevicesView {
         
         VStack(alignment: .leading, spacing: spacing) {
             ForEach(viewModel.children.results, id: \.id) { child in
-                ChildDeiviceCell(name: child.name, grade: child.grade, imageUrl: child.photoUrl)
+                NavigationLink {
+                    ChildEditView(viewModel: ChildDetailsViewModel(
+                        child: child,
+                        updateChildUseCase: UpdateChildUseCase(childDetailsRepository: DefaultChildDetailsRepository()),
+                        deleteChildUseCase: DeleteChildUseCase(childDetailsRepository: DefaultChildDetailsRepository()))
+                    )
+                } label: {
+                    ChildDeiviceCell(name: child.name, grade: child.grade, imageUrl: child.photoUrl)
+                }
             }
         }
         

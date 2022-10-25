@@ -16,6 +16,8 @@ protocol ChildDetailsViewModeling: ObservableObject {
     var isLoading: Bool { get set }
     
     func addAnotherChild()
+    func updateChild(completion: (()->())?)
+    func deleteChild(completion: (()->())?)
     func removeChild(child: ChildDetailsModel)
     func appendChildren()
 }
