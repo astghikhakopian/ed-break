@@ -1,13 +1,13 @@
 //
-//  ChildDetails.swift
+//  ChildEditView.swift
 //  Ed-Break
 //
-//  Created by Astghik Hakopian on 01.10.22.
+//  Created by Astghik Hakopian on 25.10.22.
 //
 
 import SwiftUI
 
-struct ChildDetailsView<M: ChildDetailsViewModeling>: View {
+struct ChildEditView<M: ChildDetailsViewModeling>: View {
     
     var simpleAdd: Bool = false
     @ObservedObject var viewModel: M
@@ -34,7 +34,7 @@ struct ChildDetailsView<M: ChildDetailsViewModeling>: View {
     }
 }
 
-private extension ChildDetailsView {
+private extension ChildEditView {
     
     var childView: some View {
         ZStack(alignment: .leading) {
@@ -72,7 +72,7 @@ private extension ChildDetailsView {
     }
 }
 
-struct ChildDetails_Previews: PreviewProvider {
+struct ChildEditView_Previews: PreviewProvider {
     
     @State static var childName = "Emma"
     @State static var gradeLevel = "Grade 2"

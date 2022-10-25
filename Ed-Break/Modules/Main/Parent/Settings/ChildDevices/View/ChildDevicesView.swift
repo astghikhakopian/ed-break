@@ -19,15 +19,24 @@ struct ChildDevicesView<M: ChildrenViewModeling>: View {
     
     var body: some View {
         MainBackground(title: "main.parent.settings.childDevices", withNavbar: true) {
-            viewModel.isLoading {
-                
-            }
-            VStack(spacing: gap) {
-                content
-                Spacer()
-                ConfirmButton(action: {
-//                    appState.moveToDashboard = true
-                }, title: "common.continue", isLoading:  $viewModel.isLoading)
+            ZStack(alignment: .leading) {
+                Color.appWhite
+                    .cornerRadius(cornerRadius)
+                    .shadow(color: .shadow, radius: 40, x: 0, y: 20)
+                VStack(spacing: gap) {
+                    if viewModel.isLoading {
+                        ProgressView()
+                            .progressViewStyle(
+                                CircularProgressViewStyle(tint: .primaryPurple))
+                    } else {
+                        content
+                    }
+                    NavigationLink {
+                        ChildDetailsView(simpleAdd: true, viewModel: ChildDetailsViewModel(addChildUseCase: AddChildUseCase(childDetailsRepository: DefaultChildDetailsRepository())))
+                    } label: {
+                        CancelButton(action: { }, title: "childDetails.add").disabled(true)
+                    }
+                }.padding(spacing)
             }
         }.onAppear {
             viewModel.getChildren()
@@ -38,16 +47,13 @@ struct ChildDevicesView<M: ChildrenViewModeling>: View {
 private extension ChildDevicesView {
     
     var content: some View {
-        ZStack(alignment: .leading) {
-            Color.appWhite
-                .cornerRadius(cornerRadius)
-                .shadow(color: .shadow, radius: 40, x: 0, y: 20)
-            VStack(alignment: .leading, spacing: spacing) {
-                ForEach(viewModel.children.results, id: \.id) { child in
-                    ChildDeiviceCell(name: child.name, grade: child.grade, imageUrl: child.photoUrl)
-                }
-            }.padding(spacing)
+        
+        VStack(alignment: .leading, spacing: spacing) {
+            ForEach(viewModel.children.results, id: \.id) { child in
+                ChildDeiviceCell(name: child.name, grade: child.grade, imageUrl: child.photoUrl)
+            }
         }
+        
     }
 }
 
