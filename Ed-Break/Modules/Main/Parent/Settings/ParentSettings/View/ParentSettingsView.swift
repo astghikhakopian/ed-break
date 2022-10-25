@@ -17,6 +17,7 @@ struct ParentSettingsView<M: ParentSettingsViewModeling>: View {
     private let privacyUrl = URL(string: "https://pillow-talk.com.au/privacy-policy")!
     
     @State private var showDeleteOptions = false
+    @State private var showWebView = false
     
     private let gap = 20.0
     private let spacing = 24.0
@@ -43,6 +44,9 @@ struct ParentSettingsView<M: ParentSettingsViewModeling>: View {
                     showDeleteOptions = false
                 }
             }
+            .sheet(isPresented: $showWebView) {
+                WebView(url: privacyUrl)
+            }
     }
 }
 
@@ -52,11 +56,13 @@ struct ParentSettingsView<M: ParentSettingsViewModeling>: View {
 extension ParentSettingsView {
     var mainContent: some View {
         VStack(alignment: .leading, spacing: 0) {
-            settingsCell(type: .childDevices) {
-                showDeleteOptions = true
+            NavigationLink {
+                ChildDevicesView(viewModel: ChildrenViewModel(getChildrenUseCase: GetChildrenUseCase(childrenRepository: DefaultChildrenRepository())))
+            } label: {
+                settingsCell(type: .childDevices).disabled(true)
             }
             settingsCell(type: .termsAndConditions) {
-                openURL(privacyUrl)
+                showWebView = true
             }
             settingsCell(type: .rateTheApp) {
                 guard let currentScene = UIApplication.shared.connectedScenes.first as? UIWindowScene else { return }
@@ -77,9 +83,9 @@ extension ParentSettingsView {
             .shadow(color: .shadow, radius: 40, x: 0, y: 20)
     }
     
-    func settingsCell(type: ParentSettingsCellType, action: @escaping ()->()) -> some View {
+    func settingsCell(type: ParentSettingsCellType, action: (()->())? = nil) -> some View {
         Button {
-            action()
+            action?()
         } label: {
             VStack(spacing: 0) {
                 HStack(spacing: itemSpacing) {

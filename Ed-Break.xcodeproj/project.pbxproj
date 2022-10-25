@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		1B0BC1FC28EF425400DBBD65 /* TabBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B0BC1FB28EF425400DBBD65 /* TabBarView.swift */; };
+		1B1346342907D54D00943AA5 /* WebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B1346332907D54D00943AA5 /* WebView.swift */; };
+		1B1346362907DA6800943AA5 /* ChildDeiviceCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B1346352907DA6800943AA5 /* ChildDeiviceCell.swift */; };
 		1B29CB7829016D7D0036988F /* ChildQRView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B29CB7729016D7D0036988F /* ChildQRView.swift */; };
 		1B3581A728E621E600612976 /* OnboardingRoleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B3581A628E621E600612976 /* OnboardingRoleCell.swift */; };
 		1B3581AC28E6387000612976 /* FamilySharingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B3581AB28E6387000612976 /* FamilySharingView.swift */; };
@@ -74,6 +76,7 @@
 		1BF1E1492906BDDE008A08D4 /* ParentUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BF1E1482906BDDE008A08D4 /* ParentUseCase.swift */; };
 		1BF1E14B2906BE11008A08D4 /* DeleteParentUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BF1E14A2906BE11008A08D4 /* DeleteParentUseCase.swift */; };
 		1BF1E14D2906BEBD008A08D4 /* ParentSettingsViewModeling.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BF1E14C2906BEBD008A08D4 /* ParentSettingsViewModeling.swift */; };
+		1BF1E1512906C837008A08D4 /* ChildDevicesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BF1E1502906C837008A08D4 /* ChildDevicesView.swift */; };
 		1BFF5A7B29015F4C00710D9B /* ChildSignInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BFF5A7A29015F4C00710D9B /* ChildSignInView.swift */; };
 		EF43B69828E1982E00DBE6B6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EF43B69728E1982E00DBE6B6 /* LaunchScreen.storyboard */; };
 		EF43B69A28E1986F00DBE6B6 /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EF43B69928E1986F00DBE6B6 /* Colors.xcassets */; };
@@ -122,6 +125,8 @@
 
 /* Begin PBXFileReference section */
 		1B0BC1FB28EF425400DBBD65 /* TabBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarView.swift; sourceTree = "<group>"; };
+		1B1346332907D54D00943AA5 /* WebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebView.swift; sourceTree = "<group>"; };
+		1B1346352907DA6800943AA5 /* ChildDeiviceCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChildDeiviceCell.swift; sourceTree = "<group>"; };
 		1B29CB7729016D7D0036988F /* ChildQRView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChildQRView.swift; sourceTree = "<group>"; };
 		1B3581A628E621E600612976 /* OnboardingRoleCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingRoleCell.swift; sourceTree = "<group>"; };
 		1B3581AB28E6387000612976 /* FamilySharingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FamilySharingView.swift; sourceTree = "<group>"; };
@@ -187,6 +192,7 @@
 		1BF1E1482906BDDE008A08D4 /* ParentUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParentUseCase.swift; sourceTree = "<group>"; };
 		1BF1E14A2906BE11008A08D4 /* DeleteParentUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteParentUseCase.swift; sourceTree = "<group>"; };
 		1BF1E14C2906BEBD008A08D4 /* ParentSettingsViewModeling.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParentSettingsViewModeling.swift; sourceTree = "<group>"; };
+		1BF1E1502906C837008A08D4 /* ChildDevicesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChildDevicesView.swift; sourceTree = "<group>"; };
 		1BFF5A6D29014C9700710D9B /* DeviceActivityMonitorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceActivityMonitorExtension.swift; sourceTree = "<group>"; };
 		1BFF5A6F29014C9700710D9B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1BFF5A7029014C9700710D9B /* ActivityMonitoring.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ActivityMonitoring.entitlements; sourceTree = "<group>"; };
@@ -263,6 +269,14 @@
 				1B0BC1FB28EF425400DBBD65 /* TabBarView.swift */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		1B1346322907D52F00943AA5 /* WebView */ = {
+			isa = PBXGroup;
+			children = (
+				1B1346332907D54D00943AA5 /* WebView.swift */,
+			);
+			path = WebView;
 			sourceTree = "<group>";
 		};
 		1B29CB7629016D5B0036988F /* ChildQRCode */ = {
@@ -748,6 +762,23 @@
 			path = UseCase;
 			sourceTree = "<group>";
 		};
+		1BF1E14E2906C813008A08D4 /* ChildDevices */ = {
+			isa = PBXGroup;
+			children = (
+				1BF1E14F2906C828008A08D4 /* View */,
+			);
+			path = ChildDevices;
+			sourceTree = "<group>";
+		};
+		1BF1E14F2906C828008A08D4 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				1BF1E1502906C837008A08D4 /* ChildDevicesView.swift */,
+				1B1346352907DA6800943AA5 /* ChildDeiviceCell.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		1BF313AE28E2F53000232CB3 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
@@ -821,6 +852,7 @@
 		EF43B69F28E19E5500DBE6B6 /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				1B1346322907D52F00943AA5 /* WebView */,
 				1BE72A3F28E8D66F00447167 /* ImageUploadView */,
 				1BE72A3128E8979800447167 /* TextField */,
 				1BA9DFAD28E728E8006980D1 /* Button */,
@@ -885,6 +917,7 @@
 			isa = PBXGroup;
 			children = (
 				EFEAAAA0290695F300FE0A39 /* ParentSettings */,
+				1BF1E14E2906C813008A08D4 /* ChildDevices */,
 			);
 			path = Settings;
 			sourceTree = "<group>";
@@ -1147,8 +1180,10 @@
 				1B445AEE28EC71F700B0B310 /* AsynchronousImage.swift in Sources */,
 				1BA30D6328E79FD400926820 /* RequestServiceError.swift in Sources */,
 				1B76B64A28EC286800602003 /* ChildrenViewModeling.swift in Sources */,
+				1B1346362907DA6800943AA5 /* ChildDeiviceCell.swift in Sources */,
 				1BF1E14B2906BE11008A08D4 /* DeleteParentUseCase.swift in Sources */,
 				EFE9288928E18C3A00675F28 /* ContentView.swift in Sources */,
+				1B1346342907D54D00943AA5 /* WebView.swift in Sources */,
 				1BA2403D28F5DC5000649467 /* ChildRetriveDto.swift in Sources */,
 				1BE72A3D28E8ADB100447167 /* ImagePicker.swift in Sources */,
 				1BF1E14D2906BEBD008A08D4 /* ParentSettingsViewModeling.swift in Sources */,
@@ -1166,6 +1201,7 @@
 				1BA9DFB028E7290A006980D1 /* ConfirmButton.swift in Sources */,
 				1BE72A3828E8A1F400447167 /* ChildDetailsViewModel.swift in Sources */,
 				EFE9288728E18C3A00675F28 /* Ed_BreakApp.swift in Sources */,
+				1BF1E1512906C837008A08D4 /* ChildDevicesView.swift in Sources */,
 				1BEE810128EB5B2E004F75CA /* ChildrenView.swift in Sources */,
 				1B29CB7829016D7D0036988F /* ChildQRView.swift in Sources */,
 				1B445AE928EC3DA700B0B310 /* PagingDto.swift in Sources */,
