@@ -12,6 +12,8 @@ enum ChildrenRoute: TargetType {
     
     case getChildren
     case getChildDetails(payload: GetChildDetailsPayload)
+    case pairChild(payload: PairChildPayload)
+    case checkConnection(payload: PairChildPayload)
     
     var baseURL: URL {
         return RequestServices.Users.baseUrl
@@ -23,6 +25,11 @@ enum ChildrenRoute: TargetType {
             return "/users/child/"
         case .getChildDetails:
             return "/users/get-child/"
+        case .pairChild:
+            return "/users/child-device/"
+        case .checkConnection:
+            return "/users/parent-device/"
+
         }
     }
     
@@ -31,6 +38,10 @@ enum ChildrenRoute: TargetType {
         case .getChildren:
             return .get
         case .getChildDetails:
+            return .get
+        case .pairChild:
+            return .patch
+        case .checkConnection:
             return .get
         }
     }
@@ -47,6 +58,15 @@ enum ChildrenRoute: TargetType {
                 "child_id": payload.id,
                 "education_period": payload.educationPeriod.key,
                 "activity_period": payload.activityPeriod.key
+            ], encoding: URLEncoding.queryString)
+        case .pairChild(let payload):
+            return .requestParameters(parameters: [
+                "id": payload.id,
+                "child_device_id": payload.deviceToken
+            ], encoding: URLEncoding.queryString)
+        case .checkConnection(let payload):
+            return .requestParameters(parameters: [
+                "child_device_id": payload.deviceToken
             ], encoding: URLEncoding.queryString)
         }
     }

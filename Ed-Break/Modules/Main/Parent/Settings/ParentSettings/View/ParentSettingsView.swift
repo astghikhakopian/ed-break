@@ -57,7 +57,7 @@ extension ParentSettingsView {
     var mainContent: some View {
         VStack(alignment: .leading, spacing: 0) {
             NavigationLink {
-                ChildDevicesView(viewModel: ChildrenViewModel(getChildrenUseCase: GetChildrenUseCase(childrenRepository: DefaultChildrenRepository())))
+                ChildDevicesView(viewModel: ChildrenViewModel(getChildrenUseCase: GetChildrenUseCase(childrenRepository: DefaultChildrenRepository()), pairChildUseCase: PairChildUseCase(childrenRepository: DefaultChildrenRepository())))
             } label: {
                 settingsCell(type: .childDevices).disabled(true)
             }

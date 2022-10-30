@@ -135,7 +135,7 @@ final class ChildDetailsViewModel: ChildDetailsViewModeling, Identifiable {
 
 final class MockChildDetailsViewModel: ChildDetailsViewModeling, Identifiable {
     
-    var children: [ChildDetailsModel] = []
+    var children: [ChildDetailsModel] = [ChildDetailsModel()]
     var grades = Grade.allCases
     
     var isContentValid = true

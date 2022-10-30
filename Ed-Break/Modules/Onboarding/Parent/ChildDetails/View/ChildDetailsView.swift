@@ -12,6 +12,9 @@ struct ChildDetailsView<M: ChildDetailsViewModeling>: View {
     var simpleAdd: Bool = false
     @ObservedObject var viewModel: M
     
+    @State private var selectedChildIndex: Int?
+    @State private var showGradeOptions = false
+    
     private let cornerRadius = 12.0
     private let spacing = 25.0
     private let gap = 20.0
@@ -31,6 +34,14 @@ struct ChildDetailsView<M: ChildDetailsViewModeling>: View {
                     content: { QRCodeView() })
             }
         }
+        .confirmationDialog("childDetails.grade", isPresented: $showGradeOptions, titleVisibility: .visible) {
+            ForEach(viewModel.grades, id: \.rawValue) { grade in
+                Button(grade.name) {
+                    guard let selectedChildIndex = selectedChildIndex else { return }
+                    viewModel.children[selectedChildIndex].grade = grade
+                }
+            }
+        }
     }
 }
 
@@ -45,7 +56,11 @@ private extension ChildDetailsView {
                 ForEach($viewModel.children, id: \.id) { child in
                     uploadPhotoView(image: child.image)
                     CommonTextField(title: "childDetails.name", text: child.childName)
-                    PickerTextField(title: "childDetails.grade", selection: child.grade, datasource: $viewModel.grades)
+                    DropdownButton(title: "childDetails.grade", grade: child.grade) {
+                        selectedChildIndex = viewModel.children.firstIndex(where: {$0.id == child.wrappedValue.id})
+                        showGradeOptions = true
+                    }
+                    //PickerTextField(title: "childDetails.grade", selection: child.grade, datasource: $viewModel.grades)
                     if $viewModel.children.count > 1 {
                         CancelButton(action: {
                             guard !viewModel.isLoading else { return }

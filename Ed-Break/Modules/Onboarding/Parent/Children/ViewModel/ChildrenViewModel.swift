@@ -14,9 +14,11 @@ final class ChildrenViewModel: ChildrenViewModeling, Identifiable {
     @Published var connectedChildren = [ChildModel]()
     
     private var getChildrenUseCase: GetChildrenUseCase
+    private var pairChildUseCase: PairChildUseCase
     
-    init(getChildrenUseCase: GetChildrenUseCase) {
+    init(getChildrenUseCase: GetChildrenUseCase, pairChildUseCase: PairChildUseCase) {
         self.getChildrenUseCase = getChildrenUseCase
+        self.pairChildUseCase = pairChildUseCase
         
         getChildren()
     }
@@ -35,6 +37,19 @@ final class ChildrenViewModel: ChildrenViewModeling, Identifiable {
             }
         }
     }
+    
+    func pairChild(id: Int, deviceToken: String, compleated: @escaping (Bool)->()) {
+        isLoading = true
+        pairChildUseCase.execute(payload: PairChildPayload(id: id, deviceToken: deviceToken)) { error in
+            DispatchQueue.main.async { self.isLoading = false }
+            if let error = error {
+                compleated(false)
+                print(error.localizedDescription)
+                return
+            }
+            compleated(true)
+        }
+    }
 }
 
 
@@ -47,4 +62,5 @@ final class MockChildrenViewModeling: ChildrenViewModeling, Identifiable {
     var children = PagingModel<ChildModel>(results: [])
     
     func getChildren() { }
+    func pairChild(id: Int, deviceToken: String, compleated: @escaping (Bool)->()) { }
 }

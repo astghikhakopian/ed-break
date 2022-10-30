@@ -19,7 +19,7 @@ struct TabBarView: View {
             
             NavigationView {
                 MainBackground(title: "main.parent.home", withNavbar: false) {
-                    HomeView(viewModel: ChildrenViewModel(getChildrenUseCase: GetChildrenUseCase(childrenRepository: DefaultChildrenRepository())))
+                    HomeView(viewModel: ChildrenViewModel(getChildrenUseCase: GetChildrenUseCase(childrenRepository: DefaultChildrenRepository()), pairChildUseCase: PairChildUseCase(childrenRepository: DefaultChildrenRepository())))
                         .environmentObject(model)
                 }
             }

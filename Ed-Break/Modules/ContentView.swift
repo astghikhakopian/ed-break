@@ -10,6 +10,7 @@ import FamilyControls
 
 class AppState: ObservableObject {
     @Published var moveToDashboard: Bool = false
+    @Published var moveToChildDashboard: Bool = false
     @Published var moveToLogin: Bool = false
     @Published var moveToChildQR: Bool = false
 }
@@ -80,19 +81,22 @@ struct ContentView: View {
     @EnvironmentObject var appState: AppState
     @EnvironmentObject var model: DataModel
     @State var isLoggedIn: Bool
+    @State var isChildLoggedIn: Bool = false
     @State var waitingChild = false
     
     init() {
         let isLoggedIn: Bool? = UserDefaultsService().getPrimitive(forKey: .User.isLoggedIn)
-        self.isLoggedIn = isLoggedIn ?? true
+        self.isLoggedIn = isLoggedIn ?? false
     }
     
     var body: some View {
         Group {
             if waitingChild {
-                ChildQRView()
+                ChildQRView(viewModel: ChildQRViewModel(pairChildUseCase: PairChildUseCase(childrenRepository: DefaultChildrenRepository())))
             } else {
-                if isLoggedIn {
+                if isChildLoggedIn {
+                    Text("Child Logged In")
+                } else if isLoggedIn {
                     TabBarView()
                         .environmentObject(model)
                 } else {
@@ -104,6 +108,11 @@ struct ContentView: View {
             guard moveToDashboard else { return }
             appState.moveToDashboard = false
             isLoggedIn = true
+        }
+        .onReceive(appState.$moveToChildDashboard) { moveToChildDashboard in
+            guard moveToChildDashboard else { return }
+            appState.moveToChildDashboard = false
+            isChildLoggedIn = true
         }
         .onReceive(appState.$moveToLogin) { moveToLogin in
             guard moveToLogin else { return }

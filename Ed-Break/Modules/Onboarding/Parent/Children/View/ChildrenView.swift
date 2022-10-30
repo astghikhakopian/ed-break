@@ -27,7 +27,7 @@ struct ChildrenView<M: ChildrenViewModeling>: View {
             VStack(spacing: gap) {
                 content
                 ConfirmButton(action: {
-                    // guard viewModel.connectedChildren.count == viewModel.children.count else { return }
+                    guard viewModel.connectedChildren.count == viewModel.children.count else { return }
                     appState.moveToDashboard = true
                 }, title: "common.continue", isLoading:  $viewModel.isLoading)
             }
@@ -42,9 +42,18 @@ struct ChildrenView<M: ChildrenViewModeling>: View {
     func handleScan(result: Result<ScanResult, ScanError>) {
        isShowingScanner = false
         switch result {
-        case .success:
+        case .success(let info):
+            let string = info.string
+            guard
+                let data = string.data(using: .utf8),
+                let json = try? JSONSerialization.jsonObject(with: data, options: .mutableContainers) as? [String: Any],
+                let uuid = json["uuid"] as? String
+            else { return }
             guard let scanningChild = scanningChild else { return }
-            viewModel.connectedChildren.append(scanningChild)
+            viewModel.pairChild(id: scanningChild.id, deviceToken: uuid) { success in
+                guard success else { return }
+                viewModel.connectedChildren.append(scanningChild)
+            }
         case .failure(let error):
             print("Scanning failed: \(error.localizedDescription)")
         }

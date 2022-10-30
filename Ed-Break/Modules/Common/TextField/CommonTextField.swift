@@ -10,6 +10,7 @@ import SwiftUI
 struct CommonTextField: View {
     
     let title: String
+    var dropdown: Bool = false
     @Binding var text: String
     
     private let padding = EdgeInsets(top: 16, leading: 20, bottom: 16, trailing: 20)
@@ -24,12 +25,16 @@ struct CommonTextField: View {
                 .font(.appHeadline)
                 .frame(height: labelHeight)
                 .foregroundColor(.primaryDescription)
-            TextField("", text: $text)
-                .font(.appHeadline)
-                .padding(padding)
-                .background(Color.appWhite)
-                .accentColor(.primaryPurple)
-                .cornerRadius(cornerRadius)
+            HStack {
+                TextField("", text: $text)
+                    .font(.appHeadline)
+                    .background(Color.appWhite)
+                    .accentColor(.primaryPurple)
+                    .cornerRadius(cornerRadius)
+                if dropdown {
+                    Image.Common.dropdownArrow
+                }
+            }.padding(padding)
                 .overlay(
                     RoundedRectangle(cornerRadius: cornerRadius)
                         .stroke(Color.border, lineWidth: borderWidth)

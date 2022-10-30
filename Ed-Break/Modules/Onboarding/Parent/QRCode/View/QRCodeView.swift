@@ -29,7 +29,10 @@ struct QRCodeView: View {
                             viewModel: ChildrenViewModel(
                                 getChildrenUseCase: GetChildrenUseCase(
                                     childrenRepository: DefaultChildrenRepository(
-                                        plugins: [BasicAuthenticationPlugin()])))) })
+                                        plugins: [BasicAuthenticationPlugin()])),
+                                pairChildUseCase: PairChildUseCase(childrenRepository: DefaultChildrenRepository(
+                                    plugins: [BasicAuthenticationPlugin()]))
+                            ))})
             }
         }
     }

@@ -23,6 +23,11 @@
 		1B4C1E2928F4678300C69FB1 /* ChildProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B4C1E2828F4678300C69FB1 /* ChildProfileView.swift */; };
 		1B56107D28F420B700DA3043 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B56107C28F420B700DA3043 /* HomeView.swift */; };
 		1B56107F28F4263E00DA3043 /* HomeChildCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B56107E28F4263E00DA3043 /* HomeChildCell.swift */; };
+		1B687134290D51FE00651A33 /* PairChildPayload.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B687133290D51FE00651A33 /* PairChildPayload.swift */; };
+		1B687136290D532700651A33 /* PairChildUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B687135290D532700651A33 /* PairChildUseCase.swift */; };
+		1B68713B290D678300651A33 /* CheckConnectionUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B68713A290D678300651A33 /* CheckConnectionUseCase.swift */; };
+		1B68713E290D68E700651A33 /* ChildQRViewModeling.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B68713D290D68E700651A33 /* ChildQRViewModeling.swift */; };
+		1B687140290D68F000651A33 /* ChildQRViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B68713F290D68F000651A33 /* ChildQRViewModel.swift */; };
 		1B76B64228EC250400602003 /* ChildrenRoute.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B76B64128EC250400602003 /* ChildrenRoute.swift */; };
 		1B76B64428EC266100602003 /* ChildrenRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B76B64328EC266100602003 /* ChildrenRepository.swift */; };
 		1B76B64628EC26B800602003 /* ChildrenUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B76B64528EC26B800602003 /* ChildrenUseCase.swift */; };
@@ -33,6 +38,7 @@
 		1B779D5028F84FA60051D712 /* GetChildDetailsPayload.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B779D4F28F84FA60051D712 /* GetChildDetailsPayload.swift */; };
 		1B7C09F628EAC170001DB6A1 /* ChildDetailsRoute.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B7C09F528EAC170001DB6A1 /* ChildDetailsRoute.swift */; };
 		1B7C09F828EAC21E001DB6A1 /* CreateChildPayload.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B7C09F728EAC21E001DB6A1 /* CreateChildPayload.swift */; };
+		1B8C4286290EAA3400FD5598 /* DropdownButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B8C4285290EAA3400FD5598 /* DropdownButton.swift */; };
 		1BA2403728F5DB5700649467 /* ChildProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BA2403628F5DB5700649467 /* ChildProfileViewModel.swift */; };
 		1BA2403928F5DB6300649467 /* ChildProfileViewModeling.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BA2403828F5DB6300649467 /* ChildProfileViewModeling.swift */; };
 		1BA2403D28F5DC5000649467 /* ChildRetriveDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BA2403C28F5DC5000649467 /* ChildRetriveDto.swift */; };
@@ -145,6 +151,11 @@
 		1B4C1E2828F4678300C69FB1 /* ChildProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChildProfileView.swift; sourceTree = "<group>"; };
 		1B56107C28F420B700DA3043 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		1B56107E28F4263E00DA3043 /* HomeChildCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeChildCell.swift; sourceTree = "<group>"; };
+		1B687133290D51FE00651A33 /* PairChildPayload.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PairChildPayload.swift; sourceTree = "<group>"; };
+		1B687135290D532700651A33 /* PairChildUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PairChildUseCase.swift; sourceTree = "<group>"; };
+		1B68713A290D678300651A33 /* CheckConnectionUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckConnectionUseCase.swift; sourceTree = "<group>"; };
+		1B68713D290D68E700651A33 /* ChildQRViewModeling.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChildQRViewModeling.swift; sourceTree = "<group>"; };
+		1B68713F290D68F000651A33 /* ChildQRViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChildQRViewModel.swift; sourceTree = "<group>"; };
 		1B76B64128EC250400602003 /* ChildrenRoute.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChildrenRoute.swift; sourceTree = "<group>"; };
 		1B76B64328EC266100602003 /* ChildrenRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChildrenRepository.swift; sourceTree = "<group>"; };
 		1B76B64528EC26B800602003 /* ChildrenUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChildrenUseCase.swift; sourceTree = "<group>"; };
@@ -155,6 +166,7 @@
 		1B779D4F28F84FA60051D712 /* GetChildDetailsPayload.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetChildDetailsPayload.swift; sourceTree = "<group>"; };
 		1B7C09F528EAC170001DB6A1 /* ChildDetailsRoute.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChildDetailsRoute.swift; sourceTree = "<group>"; };
 		1B7C09F728EAC21E001DB6A1 /* CreateChildPayload.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateChildPayload.swift; sourceTree = "<group>"; };
+		1B8C4285290EAA3400FD5598 /* DropdownButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DropdownButton.swift; sourceTree = "<group>"; };
 		1BA2403628F5DB5700649467 /* ChildProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChildProfileViewModel.swift; sourceTree = "<group>"; };
 		1BA2403828F5DB6300649467 /* ChildProfileViewModeling.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChildProfileViewModeling.swift; sourceTree = "<group>"; };
 		1BA2403C28F5DC5000649467 /* ChildRetriveDto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChildRetriveDto.swift; sourceTree = "<group>"; };
@@ -288,6 +300,8 @@
 		1B29CB7629016D5B0036988F /* ChildQRCode */ = {
 			isa = PBXGroup;
 			children = (
+				1B687139290D676F00651A33 /* Domain */,
+				1B68713C290D68D100651A33 /* ViewModel */,
 				1B29CB7929016D820036988F /* View */,
 			);
 			path = ChildQRCode;
@@ -413,6 +427,31 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		1B687138290D676800651A33 /* UseCase */ = {
+			isa = PBXGroup;
+			children = (
+				1B68713A290D678300651A33 /* CheckConnectionUseCase.swift */,
+			);
+			path = UseCase;
+			sourceTree = "<group>";
+		};
+		1B687139290D676F00651A33 /* Domain */ = {
+			isa = PBXGroup;
+			children = (
+				1B687138290D676800651A33 /* UseCase */,
+			);
+			path = Domain;
+			sourceTree = "<group>";
+		};
+		1B68713C290D68D100651A33 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				1B68713D290D68E700651A33 /* ChildQRViewModeling.swift */,
+				1B68713F290D68F000651A33 /* ChildQRViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
 		1B76B63B28EC249B00602003 /* Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -445,6 +484,7 @@
 			children = (
 				1B445AE828EC3DA700B0B310 /* PagingDto.swift */,
 				1B779D4F28F84FA60051D712 /* GetChildDetailsPayload.swift */,
+				1B687133290D51FE00651A33 /* PairChildPayload.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -454,6 +494,7 @@
 			children = (
 				1B76B64528EC26B800602003 /* ChildrenUseCase.swift */,
 				1B76B64728EC26EC00602003 /* GetChildrenUseCase.swift */,
+				1B687135290D532700651A33 /* PairChildUseCase.swift */,
 			);
 			path = UseCase;
 			sourceTree = "<group>";
@@ -625,6 +666,7 @@
 				1BA9DFAF28E7290A006980D1 /* ConfirmButton.swift */,
 				1BA9DFB328E73001006980D1 /* NavigationButton.swift */,
 				1BA9DFB128E72C73006980D1 /* CancelButton.swift */,
+				1B8C4285290EAA3400FD5598 /* DropdownButton.swift */,
 			);
 			path = Button;
 			sourceTree = "<group>";
@@ -1179,6 +1221,7 @@
 				1BA2403928F5DB6300649467 /* ChildProfileViewModeling.swift in Sources */,
 				1BA30D5328E79A8E00926820 /* FamilySharingViewModeling.swift in Sources */,
 				1BF1E1462906BD5C008A08D4 /* ParentRepository.swift in Sources */,
+				1B8C4286290EAA3400FD5598 /* DropdownButton.swift in Sources */,
 				EF43B6A228E19EF000DBE6B6 /* MainBackground.swift in Sources */,
 				EFE6E42828E1A67A00B3F83D /* Image.swift in Sources */,
 				1BA30D6128E79EE100926820 /* RequestServices.swift in Sources */,
@@ -1195,13 +1238,16 @@
 				1BEE80F728EAD13D004F75CA /* AddChildUseCase.swift in Sources */,
 				1BEE80FD28EB1D29004F75CA /* QRCodeView.swift in Sources */,
 				EFE6E46328E2206A00B3F83D /* Font.swift in Sources */,
+				1B687140290D68F000651A33 /* ChildQRViewModel.swift in Sources */,
 				1BE72A3A28E8A20100447167 /* ChildDetailsViewModeling.swift in Sources */,
 				EF43B69E28E19D5E00DBE6B6 /* OnboardingRole.swift in Sources */,
+				1B68713E290D68E700651A33 /* ChildQRViewModeling.swift in Sources */,
 				1BA9DFB428E73001006980D1 /* NavigationButton.swift in Sources */,
 				1B445AF028EC725700B0B310 /* AsyncImageView.swift in Sources */,
 				1B56107F28F4263E00DA3043 /* HomeChildCell.swift in Sources */,
 				1B76B64628EC26B800602003 /* ChildrenUseCase.swift in Sources */,
 				1B7C09F828EAC21E001DB6A1 /* CreateChildPayload.swift in Sources */,
+				1B687136290D532700651A33 /* PairChildUseCase.swift in Sources */,
 				1BEE810328EB5CB8004F75CA /* ChildCell.swift in Sources */,
 				1B445AEE28EC71F700B0B310 /* AsynchronousImage.swift in Sources */,
 				1BA30D6328E79FD400926820 /* RequestServiceError.swift in Sources */,
@@ -1224,12 +1270,14 @@
 				1B445AEB28EC531B00B0B310 /* ChildModel.swift in Sources */,
 				1BE72A4128E8D69900447167 /* ImageUploadView.swift in Sources */,
 				1BA30D7128E7A4D600926820 /* FamilySharingUseCase.swift in Sources */,
+				1B68713B290D678300651A33 /* CheckConnectionUseCase.swift in Sources */,
 				1B56107D28F420B700DA3043 /* HomeView.swift in Sources */,
 				1BA9DFB028E7290A006980D1 /* ConfirmButton.swift in Sources */,
 				1BE72A3828E8A1F400447167 /* ChildDetailsViewModel.swift in Sources */,
 				EFE9288728E18C3A00675F28 /* Ed_BreakApp.swift in Sources */,
 				1BF1E1512906C837008A08D4 /* ChildDevicesView.swift in Sources */,
 				1BEE810128EB5B2E004F75CA /* ChildrenView.swift in Sources */,
+				1B687134290D51FE00651A33 /* PairChildPayload.swift in Sources */,
 				1B29CB7829016D7D0036988F /* ChildQRView.swift in Sources */,
 				1B445AE928EC3DA700B0B310 /* PagingDto.swift in Sources */,
 				1B47815C28F8595800AA8BF8 /* ChildProfileModel.swift in Sources */,
@@ -1410,7 +1458,7 @@
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_ENTITLEMENTS = "Ed-Break/Ed-Break.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 5;
+				CURRENT_PROJECT_VERSION = 6;
 				DEVELOPMENT_ASSET_PATHS = "Ed-Break/Resources/Preview\\ Content";
 				DEVELOPMENT_TEAM = 59UY34K59P;
 				ENABLE_PREVIEWS = YES;
@@ -1446,7 +1494,7 @@
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_ENTITLEMENTS = "Ed-Break/Ed-Break.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 5;
+				CURRENT_PROJECT_VERSION = 6;
 				DEVELOPMENT_ASSET_PATHS = "Ed-Break/Resources/Preview\\ Content";
 				DEVELOPMENT_TEAM = 59UY34K59P;
 				ENABLE_PREVIEWS = YES;

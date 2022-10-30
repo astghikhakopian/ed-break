@@ -14,4 +14,5 @@ protocol ChildrenViewModeling: ObservableObject {
     var connectedChildren: [ChildModel] { get set }
     
     func getChildren()
+    func pairChild(id: Int, deviceToken: String, compleated: @escaping (Bool)->())
 }

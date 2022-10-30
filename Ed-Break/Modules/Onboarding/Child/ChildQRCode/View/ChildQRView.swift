@@ -7,7 +7,10 @@
 
 import SwiftUI
 
-struct ChildQRView: View {
+struct ChildQRView<M: ChildQRViewModeling>: View {
+    
+    @StateObject var viewModel: M
+    @EnvironmentObject var appState: AppState
     
     private let cornerRadius = 12.0
     private let spacing = 10.0
@@ -47,6 +50,10 @@ private extension ChildQRView {
                     .multilineTextAlignment(.center)
             }.padding(padding)
         }
+        .onChange(of: viewModel.isLoading) { isloading in
+            guard isloading else { return }
+            appState.moveToChildDashboard = false
+        }
     }
     
     var loadingView: some View {
@@ -79,6 +86,6 @@ private extension ChildQRView {
 
 struct ChildQRView_Previews: PreviewProvider {
     static var previews: some View {
-        ChildQRView()
+        ChildQRView(viewModel: ChildQRViewModel(pairChildUseCase: PairChildUseCase(childrenRepository: DefaultChildrenRepository())))
     }
 }
