@@ -8,24 +8,48 @@
 import UIKit
 
 final class ChildrenViewModel: ChildrenViewModeling, Identifiable {
-    
     @Published var children = PagingModel<ChildModel>(results: [])
     @Published var isLoading: Bool = false
     @Published var connectedChildren = [ChildModel]()
+    @Published var selectedPeriod: TimePeriod = .week  {
+        didSet {
+            getCoachingChildren()
+        }
+    }
+    var timePeriodDatasource: [TimePeriod] = TimePeriod.allCases
     
     private var getChildrenUseCase: GetChildrenUseCase
     private var pairChildUseCase: PairChildUseCase
+    private var getCoachingUseCase: GetCoachingUseCase?
     
-    init(getChildrenUseCase: GetChildrenUseCase, pairChildUseCase: PairChildUseCase) {
+    init(getChildrenUseCase: GetChildrenUseCase, pairChildUseCase: PairChildUseCase, getCoachingUseCase: GetCoachingUseCase? = nil) {
         self.getChildrenUseCase = getChildrenUseCase
         self.pairChildUseCase = pairChildUseCase
+        self.getCoachingUseCase = getCoachingUseCase
         
         getChildren()
+        getCoachingChildren()
     }
     
     func getChildren() {
         isLoading = true
         getChildrenUseCase.execute { result in
+            DispatchQueue.main.async { self.isLoading = false }
+            switch result {
+            case .success(let models):
+                DispatchQueue.main.async { [weak self] in
+                    self?.children = PagingModel(results: models)
+                }
+            case .failure(let failure):
+                print(failure.localizedDescription)
+            }
+        }
+    }
+    
+    func getCoachingChildren() {
+        guard let getCoachingUseCase = getCoachingUseCase else { return }
+        isLoading = true
+        getCoachingUseCase.execute(timePeriod: selectedPeriod) { result in
             DispatchQueue.main.async { self.isLoading = false }
             switch result {
             case .success(let models):
@@ -59,7 +83,9 @@ final class MockChildrenViewModeling: ChildrenViewModeling, Identifiable {
     
     var isLoading = false
     var connectedChildren = [ChildModel]()
-    var children = PagingModel<ChildModel>(results: [])
+    var selectedPeriod: TimePeriod = .day
+    var timePeriodDatasource: [TimePeriod] = TimePeriod.allCases
+    var children = PagingModel<ChildModel>(results: [ChildModel(dto: ChildDto(id: 0, name: "Emma", grade: 3, restrictionTime: nil, photo: nil, todayAnswers: 20, todayCorrectAnswers: 19, percentageToday: 95, lastLogin: "Active 14 min ago"))])
     
     func getChildren() { }
     func pairChild(id: Int, deviceToken: String, compleated: @escaping (Bool)->()) { }

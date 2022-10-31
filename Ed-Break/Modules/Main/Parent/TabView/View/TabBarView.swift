@@ -37,7 +37,13 @@ struct TabBarView: View {
             .tag(0)
             
             
-            Spacer()
+            NavigationView {
+                MainBackground(title: "main.parent.coaching", withNavbar: false) {
+                    CoachingView(viewModel: ChildrenViewModel(getChildrenUseCase: GetChildrenUseCase(childrenRepository: DefaultChildrenRepository()), pairChildUseCase: PairChildUseCase(childrenRepository: DefaultChildrenRepository()), getCoachingUseCase: GetCoachingUseCase(childrenRepository: DefaultChildrenRepository())))
+                }
+            }
+            .foregroundColor(.appBlack)
+            .accentColor(.appClear)
                 .tabItem {
                     if selection == 1 {
                         Image.TabView.Coaching.selected

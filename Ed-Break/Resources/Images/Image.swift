@@ -56,6 +56,9 @@ extension Image {
         public static var uploadPlaceholder: Image {
             return Image("childDetails.upload.placeholder")
         }
+        public static var calender: Image {
+            return Image("childdDetails.calender")
+        }
     }
     
     public struct Parent {

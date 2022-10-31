@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1B02821B29105D4B0094FD2A /* CoachingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B02821A29105D4B0094FD2A /* CoachingView.swift */; };
+		1B02821D29105EB00094FD2A /* CoachingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B02821C29105EB00094FD2A /* CoachingViewModel.swift */; };
+		1B02821F29105EBB0094FD2A /* CoachingViewModeling.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B02821E29105EBB0094FD2A /* CoachingViewModeling.swift */; };
 		1B0BC1FC28EF425400DBBD65 /* TabBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B0BC1FB28EF425400DBBD65 /* TabBarView.swift */; };
 		1B1346342907D54D00943AA5 /* WebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B1346332907D54D00943AA5 /* WebView.swift */; };
 		1B1346362907DA6800943AA5 /* ChildDeiviceCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B1346352907DA6800943AA5 /* ChildDeiviceCell.swift */; };
@@ -39,6 +42,8 @@
 		1B7C09F628EAC170001DB6A1 /* ChildDetailsRoute.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B7C09F528EAC170001DB6A1 /* ChildDetailsRoute.swift */; };
 		1B7C09F828EAC21E001DB6A1 /* CreateChildPayload.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B7C09F728EAC21E001DB6A1 /* CreateChildPayload.swift */; };
 		1B8C4286290EAA3400FD5598 /* DropdownButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B8C4285290EAA3400FD5598 /* DropdownButton.swift */; };
+		1B99050E29106570001E7303 /* CoachingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B99050D29106570001E7303 /* CoachingCell.swift */; };
+		1B99051029106FEF001E7303 /* GetCoachingUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B99050F29106FEF001E7303 /* GetCoachingUseCase.swift */; };
 		1BA2403728F5DB5700649467 /* ChildProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BA2403628F5DB5700649467 /* ChildProfileViewModel.swift */; };
 		1BA2403928F5DB6300649467 /* ChildProfileViewModeling.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BA2403828F5DB6300649467 /* ChildProfileViewModeling.swift */; };
 		1BA2403D28F5DC5000649467 /* ChildRetriveDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BA2403C28F5DC5000649467 /* ChildRetriveDto.swift */; };
@@ -133,6 +138,9 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		1B02821A29105D4B0094FD2A /* CoachingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoachingView.swift; sourceTree = "<group>"; };
+		1B02821C29105EB00094FD2A /* CoachingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoachingViewModel.swift; sourceTree = "<group>"; };
+		1B02821E29105EBB0094FD2A /* CoachingViewModeling.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoachingViewModeling.swift; sourceTree = "<group>"; };
 		1B0BC1FB28EF425400DBBD65 /* TabBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarView.swift; sourceTree = "<group>"; };
 		1B1346332907D54D00943AA5 /* WebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebView.swift; sourceTree = "<group>"; };
 		1B1346352907DA6800943AA5 /* ChildDeiviceCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChildDeiviceCell.swift; sourceTree = "<group>"; };
@@ -167,6 +175,8 @@
 		1B7C09F528EAC170001DB6A1 /* ChildDetailsRoute.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChildDetailsRoute.swift; sourceTree = "<group>"; };
 		1B7C09F728EAC21E001DB6A1 /* CreateChildPayload.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateChildPayload.swift; sourceTree = "<group>"; };
 		1B8C4285290EAA3400FD5598 /* DropdownButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DropdownButton.swift; sourceTree = "<group>"; };
+		1B99050D29106570001E7303 /* CoachingCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoachingCell.swift; sourceTree = "<group>"; };
+		1B99050F29106FEF001E7303 /* GetCoachingUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetCoachingUseCase.swift; sourceTree = "<group>"; };
 		1BA2403628F5DB5700649467 /* ChildProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChildProfileViewModel.swift; sourceTree = "<group>"; };
 		1BA2403828F5DB6300649467 /* ChildProfileViewModeling.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChildProfileViewModeling.swift; sourceTree = "<group>"; };
 		1BA2403C28F5DC5000649467 /* ChildRetriveDto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChildRetriveDto.swift; sourceTree = "<group>"; };
@@ -265,6 +275,33 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1B02821829105D2B0094FD2A /* Coaching */ = {
+			isa = PBXGroup;
+			children = (
+				1B02822029105EC30094FD2A /* ViewModel */,
+				1B02821929105D380094FD2A /* View */,
+			);
+			path = Coaching;
+			sourceTree = "<group>";
+		};
+		1B02821929105D380094FD2A /* View */ = {
+			isa = PBXGroup;
+			children = (
+				1B02821A29105D4B0094FD2A /* CoachingView.swift */,
+				1B99050D29106570001E7303 /* CoachingCell.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		1B02822029105EC30094FD2A /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				1B02821C29105EB00094FD2A /* CoachingViewModel.swift */,
+				1B02821E29105EBB0094FD2A /* CoachingViewModeling.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
 		1B0BC1F828EF420A00DBBD65 /* Main */ = {
 			isa = PBXGroup;
 			children = (
@@ -396,6 +433,7 @@
 			children = (
 				1B0BC1F928EF421A00DBBD65 /* TabView */,
 				1B56107928F41BF200DA3043 /* Dashboard */,
+				1B02821829105D2B0094FD2A /* Coaching */,
 				EF9137CD2906915600409E1B /* Settings */,
 			);
 			path = Parent;
@@ -495,6 +533,7 @@
 				1B76B64528EC26B800602003 /* ChildrenUseCase.swift */,
 				1B76B64728EC26EC00602003 /* GetChildrenUseCase.swift */,
 				1B687135290D532700651A33 /* PairChildUseCase.swift */,
+				1B99050F29106FEF001E7303 /* GetCoachingUseCase.swift */,
 			);
 			path = UseCase;
 			sourceTree = "<group>";
@@ -1219,6 +1258,7 @@
 				1BA9DFAC28E7206F006980D1 /* FamilySharingInfoCell.swift in Sources */,
 				1BE72A3028E8925400447167 /* ChildDetailsView.swift in Sources */,
 				1BA2403928F5DB6300649467 /* ChildProfileViewModeling.swift in Sources */,
+				1B99051029106FEF001E7303 /* GetCoachingUseCase.swift in Sources */,
 				1BA30D5328E79A8E00926820 /* FamilySharingViewModeling.swift in Sources */,
 				1BF1E1462906BD5C008A08D4 /* ParentRepository.swift in Sources */,
 				1B8C4286290EAA3400FD5598 /* DropdownButton.swift in Sources */,
@@ -1240,7 +1280,9 @@
 				EFE6E46328E2206A00B3F83D /* Font.swift in Sources */,
 				1B687140290D68F000651A33 /* ChildQRViewModel.swift in Sources */,
 				1BE72A3A28E8A20100447167 /* ChildDetailsViewModeling.swift in Sources */,
+				1B02821F29105EBB0094FD2A /* CoachingViewModeling.swift in Sources */,
 				EF43B69E28E19D5E00DBE6B6 /* OnboardingRole.swift in Sources */,
+				1B02821B29105D4B0094FD2A /* CoachingView.swift in Sources */,
 				1B68713E290D68E700651A33 /* ChildQRViewModeling.swift in Sources */,
 				1BA9DFB428E73001006980D1 /* NavigationButton.swift in Sources */,
 				1B445AF028EC725700B0B310 /* AsyncImageView.swift in Sources */,
@@ -1295,9 +1337,11 @@
 				1B3581AC28E6387000612976 /* FamilySharingView.swift in Sources */,
 				1B76B64228EC250400602003 /* ChildrenRoute.swift in Sources */,
 				1B0BC1FC28EF425400DBBD65 /* TabBarView.swift in Sources */,
+				1B99050E29106570001E7303 /* CoachingCell.swift in Sources */,
 				1B4C1E2928F4678300C69FB1 /* ChildProfileView.swift in Sources */,
 				1BA30D7328E7A5AC00926820 /* TokenModel.swift in Sources */,
 				1BF1E1492906BDDE008A08D4 /* ParentUseCase.swift in Sources */,
+				1B02821D29105EB00094FD2A /* CoachingViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

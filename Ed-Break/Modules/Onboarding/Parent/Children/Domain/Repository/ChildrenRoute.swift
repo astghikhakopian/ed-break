@@ -11,6 +11,7 @@ import Moya
 enum ChildrenRoute: TargetType {
     
     case getChildren
+    case getCoachingChildren(payload: TimePeriod)
     case getChildDetails(payload: GetChildDetailsPayload)
     case pairChild(payload: PairChildPayload)
     case checkConnection(payload: PairChildPayload)
@@ -25,6 +26,8 @@ enum ChildrenRoute: TargetType {
             return "/users/child/"
         case .getChildDetails:
             return "/users/get-child/"
+        case .getCoachingChildren:
+            return "/users/child/"
         case .pairChild:
             return "/users/child-device/"
         case .checkConnection:
@@ -38,6 +41,8 @@ enum ChildrenRoute: TargetType {
         case .getChildren:
             return .get
         case .getChildDetails:
+            return .get
+        case .getCoachingChildren:
             return .get
         case .pairChild:
             return .patch
@@ -58,6 +63,10 @@ enum ChildrenRoute: TargetType {
                 "child_id": payload.id,
                 "education_period": payload.educationPeriod.key,
                 "activity_period": payload.activityPeriod.key
+            ], encoding: URLEncoding.queryString)
+        case .getCoachingChildren(let payload):
+            return .requestParameters(parameters: [
+                "education_period": payload.key
             ], encoding: URLEncoding.queryString)
         case .pairChild(let payload):
             return .requestParameters(parameters: [

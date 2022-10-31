@@ -29,6 +29,14 @@ extension Color {
         return Color("PrimaryGreen")
     }
     
+    public static var primaryGreenLight: Color {
+        return Color("PrimaryGreenLight")
+    }
+    
+    public static var primaryBlueDark: Color {
+        return Color("PrimaryBlueDark")
+    }
+    
     public static var primaryOrange: Color {
         return Color("PrimaryOrange")
     }
