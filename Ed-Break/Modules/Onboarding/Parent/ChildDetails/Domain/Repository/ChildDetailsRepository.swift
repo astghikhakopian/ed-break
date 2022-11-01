@@ -11,7 +11,7 @@ import Moya
 protocol ChildDetailsRepository {
     
     func addChild(payload: CreateChildPayload, completion: @escaping(Error?) -> Void)
-    func updateChild(payload: CreateChildPayload, completion: @escaping(Error?) -> Void)
+    func updateChild(id: Int, payload: CreateChildPayload, completion: @escaping(Error?) -> Void)
     func deleteChild(id: Int, completion: @escaping(Error?) -> Void)
 }
 
@@ -20,8 +20,8 @@ final class DefaultChildDetailsRepository: MoyaProvider<ChildDetailsRoute>, Chil
     func addChild(payload: CreateChildPayload, completion: @escaping(Error?) -> Void) {
         requestSimple(.addChild(payload: payload), completion: completion)
     }
-    func updateChild(payload: CreateChildPayload, completion: @escaping(Error?) -> Void) {
-        requestSimple(.updateChild(payload: payload), completion: completion)
+    func updateChild(id: Int, payload: CreateChildPayload, completion: @escaping(Error?) -> Void) {
+        requestSimple(.updateChild(id: id, payload: payload), completion: completion)
     }
     func deleteChild(id: Int, completion: @escaping(Error?) -> Void) {
         requestSimple(.deleteChild(id: id), completion: completion)

@@ -88,6 +88,15 @@ extension Image {
             }
         }
         
+        public struct Home {
+            public static var selected: Image {
+                return Image("tab.home.selected")
+            }
+            public static var unselected: Image {
+                return Image("tab.home.unselected")
+            }
+        }
+        
         public struct Settings {
             public static var selected: Image {
                 return Image("tab.settings.selected")

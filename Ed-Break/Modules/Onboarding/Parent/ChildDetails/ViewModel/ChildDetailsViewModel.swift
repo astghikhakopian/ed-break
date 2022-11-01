@@ -93,11 +93,11 @@ final class ChildDetailsViewModel: ChildDetailsViewModeling, Identifiable {
     }
     
     func updateChild(completion: (()->())? = nil) {
-        guard let updateChildUseCase = updateChildUseCase, let child = children.first else { return }
+        guard let updateChildUseCase = updateChildUseCase, let child = children.first, let childId = child.childId else { return }
         guard isContentValid else  { return }
         isLoading = true
         let payload = CreateChildPayload(name: child.childName, grade: child.grade, restrictionTime: nil, photo: child.image == UIImage() ? nil : child.image)
-        updateChildUseCase.execute(payload: payload) { [weak self] result in
+        updateChildUseCase.execute(id: childId, payload: payload) { [weak self] result in
             DispatchQueue.main.async {
                 self?.isLoading = false
             }
@@ -111,11 +111,10 @@ final class ChildDetailsViewModel: ChildDetailsViewModeling, Identifiable {
         }
     }
     func deleteChild(completion: (()->())? = nil) {
-        guard let deleteChildUseCase = deleteChildUseCase, let child = children.first else { return }
+        guard let deleteChildUseCase = deleteChildUseCase, let child = children.first, let childId = child.childId else { return }
         guard isContentValid else  { return }
         isLoading = true
-        let payload = CreateChildPayload(name: child.childName, grade: child.grade, restrictionTime: nil, photo: child.image == UIImage() ? nil : child.image)
-        deleteChildUseCase.execute(id: child.childId ?? 0) { [weak self] result in
+        deleteChildUseCase.execute(id: childId) { [weak self] result in
             DispatchQueue.main.async {
                 self?.isLoading = false
             }

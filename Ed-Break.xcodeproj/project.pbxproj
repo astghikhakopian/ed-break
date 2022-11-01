@@ -41,6 +41,7 @@
 		1B779D5028F84FA60051D712 /* GetChildDetailsPayload.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B779D4F28F84FA60051D712 /* GetChildDetailsPayload.swift */; };
 		1B7C09F628EAC170001DB6A1 /* ChildDetailsRoute.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B7C09F528EAC170001DB6A1 /* ChildDetailsRoute.swift */; };
 		1B7C09F828EAC21E001DB6A1 /* CreateChildPayload.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B7C09F728EAC21E001DB6A1 /* CreateChildPayload.swift */; };
+		1B7E649729110B610084E6A0 /* ChildTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B7E649629110B610084E6A0 /* ChildTabView.swift */; };
 		1B8C4286290EAA3400FD5598 /* DropdownButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B8C4285290EAA3400FD5598 /* DropdownButton.swift */; };
 		1B99050E29106570001E7303 /* CoachingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B99050D29106570001E7303 /* CoachingCell.swift */; };
 		1B99051029106FEF001E7303 /* GetCoachingUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B99050F29106FEF001E7303 /* GetCoachingUseCase.swift */; };
@@ -121,7 +122,7 @@
 		EFE9288728E18C3A00675F28 /* Ed_BreakApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFE9288628E18C3A00675F28 /* Ed_BreakApp.swift */; };
 		EFE9288928E18C3A00675F28 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFE9288828E18C3A00675F28 /* ContentView.swift */; };
 		EFE9288B28E18C3E00675F28 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EFE9288A28E18C3E00675F28 /* Assets.xcassets */; };
-		EFEAAAA32906961600FE0A39 /* ParentSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFEAAAA22906961600FE0A39 /* ParentSettingsView.swift */; };
+		EFEAAAA32906961600FE0A39 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFEAAAA22906961600FE0A39 /* SettingsView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -174,6 +175,7 @@
 		1B779D4F28F84FA60051D712 /* GetChildDetailsPayload.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetChildDetailsPayload.swift; sourceTree = "<group>"; };
 		1B7C09F528EAC170001DB6A1 /* ChildDetailsRoute.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChildDetailsRoute.swift; sourceTree = "<group>"; };
 		1B7C09F728EAC21E001DB6A1 /* CreateChildPayload.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateChildPayload.swift; sourceTree = "<group>"; };
+		1B7E649629110B610084E6A0 /* ChildTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChildTabView.swift; sourceTree = "<group>"; };
 		1B8C4285290EAA3400FD5598 /* DropdownButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DropdownButton.swift; sourceTree = "<group>"; };
 		1B99050D29106570001E7303 /* CoachingCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoachingCell.swift; sourceTree = "<group>"; };
 		1B99050F29106FEF001E7303 /* GetCoachingUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetCoachingUseCase.swift; sourceTree = "<group>"; };
@@ -258,7 +260,7 @@
 		EFE9288628E18C3A00675F28 /* Ed_BreakApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ed_BreakApp.swift; sourceTree = "<group>"; };
 		EFE9288828E18C3A00675F28 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		EFE9288A28E18C3E00675F28 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		EFEAAAA22906961600FE0A39 /* ParentSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParentSettingsView.swift; sourceTree = "<group>"; };
+		EFEAAAA22906961600FE0A39 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -306,6 +308,7 @@
 			isa = PBXGroup;
 			children = (
 				1B56107828F41BEA00DA3043 /* Parent */,
+				1B7E649329110A160084E6A0 /* Child */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -591,6 +594,30 @@
 				1BEE80F228EACA33004F75CA /* ChildDetailsRepository.swift */,
 			);
 			path = Repository;
+			sourceTree = "<group>";
+		};
+		1B7E649329110A160084E6A0 /* Child */ = {
+			isa = PBXGroup;
+			children = (
+				1B7E649429110ACD0084E6A0 /* TabView */,
+			);
+			path = Child;
+			sourceTree = "<group>";
+		};
+		1B7E649429110ACD0084E6A0 /* TabView */ = {
+			isa = PBXGroup;
+			children = (
+				1B7E649529110AF10084E6A0 /* View */,
+			);
+			path = TabView;
+			sourceTree = "<group>";
+		};
+		1B7E649529110AF10084E6A0 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				1B7E649629110B610084E6A0 /* ChildTabView.swift */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 		1BA2403528F5DB3B00649467 /* ViewModel */ = {
@@ -1147,7 +1174,7 @@
 		EFEAAAA1290695FF00FE0A39 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				EFEAAAA22906961600FE0A39 /* ParentSettingsView.swift */,
+				EFEAAAA22906961600FE0A39 /* SettingsView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1270,6 +1297,7 @@
 				1BA9DFB228E72C73006980D1 /* CancelButton.swift in Sources */,
 				1BE72A2D28E8902300447167 /* UserDefaultsKeys.swift in Sources */,
 				1BA30D6A28E7A24400926820 /* TokensDto.swift in Sources */,
+				1B7E649729110B610084E6A0 /* ChildTabView.swift in Sources */,
 				1BF1E1402906BC05008A08D4 /* ParentSettingsViewModel.swift in Sources */,
 				1B76B64C28EC289300602003 /* ChildrenViewModel.swift in Sources */,
 				1BE5191C28E8E24A0067E8B1 /* PickerTextField.swift in Sources */,
@@ -1303,7 +1331,7 @@
 				1BE72A3D28E8ADB100447167 /* ImagePicker.swift in Sources */,
 				1BF1E14D2906BEBD008A08D4 /* ParentSettingsViewModeling.swift in Sources */,
 				1BE72A2B28E8901000447167 /* UserDefaultsService.swift in Sources */,
-				EFEAAAA32906961600FE0A39 /* ParentSettingsView.swift in Sources */,
+				EFEAAAA32906961600FE0A39 /* SettingsView.swift in Sources */,
 				1BE72A3528E8984600447167 /* CommonTextField.swift in Sources */,
 				1BA30D5128E79A4200926820 /* FamilySharingViewModel.swift in Sources */,
 				1BF1E1442906BCA3008A08D4 /* ParentRoute.swift in Sources */,

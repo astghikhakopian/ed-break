@@ -10,6 +10,7 @@ import SwiftUI
 protocol ParentSettingsViewModeling: ObservableObject {
     
     var isLoading: Bool { get set }
+    var isUserLoggedIn: Bool { get }
     
     func deleteParent(completion: @escaping ()->())
 }

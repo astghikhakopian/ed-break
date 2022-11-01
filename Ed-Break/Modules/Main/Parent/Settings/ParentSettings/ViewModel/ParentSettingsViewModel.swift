@@ -10,6 +10,9 @@ import UIKit
 final class ParentSettingsViewModel: ParentSettingsViewModeling, Identifiable {
     
     @Published var isLoading: Bool = false
+    var isUserLoggedIn: Bool {
+        UserDefaultsService().getPrimitive(forKey: .User.isLoggedIn) ?? false
+    }
     
     private var deleteParentUseCase: DeleteParentUseCase
     private let localStorageService: LocalStorageService
@@ -36,6 +39,7 @@ final class ParentSettingsViewModel: ParentSettingsViewModeling, Identifiable {
 final class MockParentSettingsViewModel: ParentSettingsViewModeling, Identifiable {
     
     var isLoading = false
+    let isUserLoggedIn: Bool = false
     
     func deleteParent(completion: @escaping ()->()) { }
 }

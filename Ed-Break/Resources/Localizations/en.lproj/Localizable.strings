@@ -71,6 +71,7 @@
 
 "tabbar.dashboard.title" = "Dashboard";
 "tabbar.coaching.title" = "Coaching";
+"tabbar.home.title" = "Home";
 "tabbar.settings.title" = "Settings";
 
 

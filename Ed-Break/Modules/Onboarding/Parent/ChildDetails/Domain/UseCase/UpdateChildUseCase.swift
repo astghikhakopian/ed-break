@@ -9,7 +9,7 @@ import Foundation
 
 class UpdateChildUseCase: ChildDetailsUseCase {
   
-    func execute(payload: CreateChildPayload, completion: @escaping (Error?) -> Void) {
-        return childDetailsRepository.updateChild(payload: payload, completion: completion)
+    func execute(id: Int, payload: CreateChildPayload, completion: @escaping (Error?) -> Void) {
+        return childDetailsRepository.updateChild(id: id, payload: payload, completion: completion)
   }
 }

@@ -81,7 +81,7 @@ struct ContentView: View {
     @EnvironmentObject var appState: AppState
     @EnvironmentObject var model: DataModel
     @State var isLoggedIn: Bool
-    @State var isChildLoggedIn: Bool = false
+    @State var isChildLoggedIn: Bool = true
     @State var waitingChild = false
     
     init() {
@@ -95,7 +95,8 @@ struct ContentView: View {
                 ChildQRView(viewModel: ChildQRViewModel(pairChildUseCase: PairChildUseCase(childrenRepository: DefaultChildrenRepository())))
             } else {
                 if isChildLoggedIn {
-                    Text("Child Logged In")
+                    ChildTabView()
+                        .environmentObject(model)
                 } else if isLoggedIn {
                     TabBarView()
                         .environmentObject(model)

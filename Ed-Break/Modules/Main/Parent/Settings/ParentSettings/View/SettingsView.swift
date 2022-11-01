@@ -1,5 +1,5 @@
 //
-//  ParentSettingsView.swift
+//  SettingsView.swift
 //  Ed-Break
 //
 //  Created by Astghik Hakopian on 24.10.22.
@@ -8,7 +8,7 @@
 import SwiftUI
 import StoreKit
 
-struct ParentSettingsView<M: ParentSettingsViewModeling>: View {
+struct SettingsView<M: ParentSettingsViewModeling>: View {
     
     @ObservedObject var viewModel: M
     
@@ -53,13 +53,15 @@ struct ParentSettingsView<M: ParentSettingsViewModeling>: View {
 
 // MARK: - Components
 
-extension ParentSettingsView {
+extension SettingsView {
     var mainContent: some View {
         VStack(alignment: .leading, spacing: 0) {
-            NavigationLink {
-                ChildDevicesView(viewModel: ChildrenViewModel(getChildrenUseCase: GetChildrenUseCase(childrenRepository: DefaultChildrenRepository()), pairChildUseCase: PairChildUseCase(childrenRepository: DefaultChildrenRepository())))
-            } label: {
-                settingsCell(type: .childDevices).disabled(true)
+            if viewModel.isUserLoggedIn {
+                NavigationLink {
+                    ChildDevicesView(viewModel: ChildrenViewModel(getChildrenUseCase: GetChildrenUseCase(childrenRepository: DefaultChildrenRepository()), pairChildUseCase: PairChildUseCase(childrenRepository: DefaultChildrenRepository())))
+                } label: {
+                    settingsCell(type: .childDevices).disabled(true)
+                }
             }
             settingsCell(type: .termsAndConditions) {
                 showWebView = true
@@ -111,6 +113,6 @@ extension ParentSettingsView {
 
 struct ParentSettingsView_Previews: PreviewProvider {
     static var previews: some View {
-        ParentSettingsView(viewModel: MockParentSettingsViewModel())
+        SettingsView(viewModel: MockParentSettingsViewModel())
     }
 }

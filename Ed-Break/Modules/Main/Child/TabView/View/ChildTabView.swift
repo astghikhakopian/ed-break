@@ -1,13 +1,13 @@
 //
-//  TabBarView.swift
+//  ChildTabView.swift
 //  Ed-Break
 //
-//  Created by Astghik Hakopian on 06.10.22.
+//  Created by Astghik Hakopian on 01.11.22.
 //
 
 import SwiftUI
 
-struct TabBarView: View {
+struct ChildTabView: View {
     
     @EnvironmentObject var model: DataModel
     
@@ -27,33 +27,14 @@ struct TabBarView: View {
             .accentColor(.appClear)
             .tabItem {
                 if selection == 0 {
-                    Image.TabView.Dashboard.selected
+                    Image.TabView.Home.selected
                 } else {
-                    Image.TabView.Dashboard.unselected
+                    Image.TabView.Home.unselected
                 }
-                Text("tabbar.dashboard.title")
+                Text("tabbar.home.title")
                     .font(.appBody)
             }
             .tag(0)
-            
-            
-            NavigationView {
-                MainBackground(title: "main.parent.coaching", withNavbar: false) {
-                    CoachingView(viewModel: ChildrenViewModel(getChildrenUseCase: GetChildrenUseCase(childrenRepository: DefaultChildrenRepository()), pairChildUseCase: PairChildUseCase(childrenRepository: DefaultChildrenRepository()), getCoachingUseCase: GetCoachingUseCase(childrenRepository: DefaultChildrenRepository())))
-                }
-            }
-            .foregroundColor(.appBlack)
-            .accentColor(.appClear)
-                .tabItem {
-                    if selection == 1 {
-                        Image.TabView.Coaching.selected
-                    } else {
-                        Image.TabView.Coaching.unselected
-                    }
-                    Text("tabbar.coaching.title")
-                        .font(.appBody)
-                }
-                .tag(1)
             
             NavigationView {
                 MainBackground(title: "main.parent.settings", withNavbar: false) {
@@ -65,7 +46,7 @@ struct TabBarView: View {
                 }
             }
             .tabItem {
-                if selection == 2 {
+                if selection == 1 {
                     Image.TabView.Settings.selected
                 } else {
                     Image.TabView.Settings.unselected
@@ -73,7 +54,7 @@ struct TabBarView: View {
                 Text("tabbar.settings.title")
                     .font(.appBody)
             }
-            .tag(2)
+            .tag(1)
             
         }
         .accentColor(.primaryPurple)
@@ -81,8 +62,8 @@ struct TabBarView: View {
     }
 }
 
-struct TabBarView_Previews: PreviewProvider {
+struct ChildTabView_Previews: PreviewProvider {
     static var previews: some View {
-        TabBarView()
+        ChildTabView()
     }
 }

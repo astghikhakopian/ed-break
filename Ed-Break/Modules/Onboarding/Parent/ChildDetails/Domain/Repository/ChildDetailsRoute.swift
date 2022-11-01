@@ -12,7 +12,7 @@ import UIKit
 enum ChildDetailsRoute: TargetType, AccessTokenAuthorizable {
     
     case addChild(payload: CreateChildPayload)
-    case updateChild(payload: CreateChildPayload)
+    case updateChild(id: Int, payload: CreateChildPayload)
     case deleteChild(id: Int)
     
     var authorizationType: AuthorizationType? {
@@ -27,8 +27,8 @@ enum ChildDetailsRoute: TargetType, AccessTokenAuthorizable {
         switch self {
         case .addChild:
             return "/users/child/"
-        case .updateChild:
-            return "/users/child/"
+        case .updateChild(let id, _):
+            return "/users/child/\(id)/"
         case .deleteChild(let id):
             return "/users/delete-child/\(id)/"
         }
@@ -65,7 +65,7 @@ enum ChildDetailsRoute: TargetType, AccessTokenAuthorizable {
             }
             
             return .uploadMultipart(formData)
-        case .updateChild(let payload):
+        case .updateChild(_, let payload):
             
             var formData = [MultipartFormData]()
             
