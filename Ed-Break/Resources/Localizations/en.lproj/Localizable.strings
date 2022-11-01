@@ -98,6 +98,9 @@
 
 "main.parent.coaching" = "Coaching";
 
+"main.child.home.min" = "min";
+"main.child.home.usage" = "Device usage \n remaining today";
+
 
 // Settings
 

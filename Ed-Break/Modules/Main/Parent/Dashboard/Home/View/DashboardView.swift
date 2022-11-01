@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct HomeView<M: ChildrenViewModeling>: View {
+struct DashboardView<M: ChildrenViewModeling>: View {
     
     @StateObject var viewModel: M
     @EnvironmentObject var model: DataModel
@@ -32,7 +32,7 @@ struct HomeView<M: ChildrenViewModeling>: View {
     }
 }
 
-private extension HomeView {
+private extension DashboardView {
     
     var content: some View {
         
@@ -52,8 +52,8 @@ private extension HomeView {
     }
 }
 
-struct HomeView_Previews: PreviewProvider {
+struct DashboardView_Previews: PreviewProvider {
     static var previews: some View {
-        HomeView(viewModel: MockChildrenViewModeling())
+        DashboardView(viewModel: MockChildrenViewModeling())
     }
 }
