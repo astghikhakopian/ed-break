@@ -51,6 +51,7 @@ extension MoyaProvider {
 
                     if response.needsAuthentication {
                         print("Could not complete request for \(target): \(error)")
+                        completion(.failure(error))
                         //Session.current?.deactivate() TODO: add auth session deactivation here
                     } else {
                         completion(.failure(error))

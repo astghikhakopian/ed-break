@@ -27,6 +27,7 @@ final class FamilySharingViewModel: FamilySharingViewModeling, Identifiable {
             switch result {
             case .success(let token):
                 self?.localStorageService.setObject(token, forKey: .User.token)
+                self?.localStorageService.setPrimitive(true, forKey: .User.isLoggedIn)
             case .failure(let failure):
                 print(failure)
             }

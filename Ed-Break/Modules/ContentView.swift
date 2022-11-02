@@ -81,18 +81,21 @@ struct ContentView: View {
     @EnvironmentObject var appState: AppState
     @EnvironmentObject var model: DataModel
     @State var isLoggedIn: Bool
-    @State var isChildLoggedIn: Bool = true
+    @State var isChildLoggedIn: Bool
     @State var waitingChild = false
     
     init() {
         let isLoggedIn: Bool? = UserDefaultsService().getPrimitive(forKey: .User.isLoggedIn)
-        self.isLoggedIn = isLoggedIn ?? true
+        self.isLoggedIn = isLoggedIn ?? false
+        
+        let isChildLoggedIn: Bool? = UserDefaultsService().getPrimitive(forKey: .ChildUser.isLoggedIn)
+        self.isChildLoggedIn = isChildLoggedIn ?? false
     }
     
     var body: some View {
         Group {
             if waitingChild {
-                ChildQRView(viewModel: ChildQRViewModel(pairChildUseCase: PairChildUseCase(childrenRepository: DefaultChildrenRepository())))
+                ChildQRView(viewModel: ChildQRViewModel(checkConnectionUseCase: CheckConnectionUseCase(childrenRepository: DefaultChildrenRepository()), localStorageService: UserDefaultsService()))
             } else {
                 if isChildLoggedIn {
                     ChildTabView()
@@ -108,17 +111,21 @@ struct ContentView: View {
         .onReceive(appState.$moveToDashboard) { moveToDashboard in
             guard moveToDashboard else { return }
             appState.moveToDashboard = false
+            waitingChild = false
             isLoggedIn = true
         }
         .onReceive(appState.$moveToChildDashboard) { moveToChildDashboard in
             guard moveToChildDashboard else { return }
             appState.moveToChildDashboard = false
+            waitingChild = false
             isChildLoggedIn = true
         }
         .onReceive(appState.$moveToLogin) { moveToLogin in
             guard moveToLogin else { return }
             appState.moveToLogin = false
+            waitingChild = false
             isLoggedIn = false
+            isChildLoggedIn = false
         }
         .onReceive(appState.$moveToChildQR) { moveToChildQR in
             guard moveToChildQR else { return }

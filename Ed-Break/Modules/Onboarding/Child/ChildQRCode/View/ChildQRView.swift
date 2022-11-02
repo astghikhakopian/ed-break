@@ -51,8 +51,8 @@ private extension ChildQRView {
             }.padding(padding)
         }
         .onChange(of: viewModel.isLoading) { isloading in
-            guard isloading else { return }
-            appState.moveToChildDashboard = false
+            guard !isloading else { return }
+            appState.moveToChildDashboard = true
         }
     }
     
@@ -86,6 +86,6 @@ private extension ChildQRView {
 
 struct ChildQRView_Previews: PreviewProvider {
     static var previews: some View {
-        ChildQRView(viewModel: ChildQRViewModel(pairChildUseCase: PairChildUseCase(childrenRepository: DefaultChildrenRepository())))
+        ChildQRView(viewModel: ChildQRViewModel(checkConnectionUseCase: CheckConnectionUseCase(childrenRepository: DefaultChildrenRepository()), localStorageService: UserDefaultsService()))
     }
 }

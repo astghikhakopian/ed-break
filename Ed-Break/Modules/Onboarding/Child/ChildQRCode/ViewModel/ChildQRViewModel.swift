@@ -11,13 +11,15 @@ final class ChildQRViewModel: ChildQRViewModeling, Identifiable {
     
     @Published var isLoading: Bool = false
     
-    private var pairChildUseCase: PairChildUseCase
+    private var checkConnectionUseCase: CheckConnectionUseCase
+    private let localStorageService: LocalStorageService
     
     private var timer: Timer?
     private let timeInterval = 3.0
     
-    init(pairChildUseCase: PairChildUseCase) {
-        self.pairChildUseCase = pairChildUseCase
+    init(checkConnectionUseCase: CheckConnectionUseCase, localStorageService: LocalStorageService) {
+        self.checkConnectionUseCase = checkConnectionUseCase
+        self.localStorageService = localStorageService
         
         timer = Timer.scheduledTimer(withTimeInterval: timeInterval, repeats: true) { [weak self] timer in
             self?.checkConnection { success in
@@ -28,18 +30,19 @@ final class ChildQRViewModel: ChildQRViewModeling, Identifiable {
         }
     }
     
-    
     func checkConnection(compleated: @escaping (Bool)->()) {
         isLoading = true
         guard let uuid = UIDevice.current.identifierForVendor?.uuidString else { return }
-        pairChildUseCase.execute(payload: PairChildPayload(id: -1, deviceToken: uuid)) { error in
-            if let error = error {
-                compleated(false)
-                print(error.localizedDescription)
-                return
+        checkConnectionUseCase.execute(payload: PairChildPayload(id: -1, deviceToken: uuid)) { [weak self] result in
+            switch result {
+            case .success(let token):
+                self?.localStorageService.setObject(token, forKey: .ChildUser.token)
+                self?.localStorageService.setPrimitive(true, forKey: .ChildUser.isLoggedIn)
+                compleated(true)
+                DispatchQueue.main.async { self?.isLoading = false }
+            case .failure(let failure):
+                print(failure.localizedDescription)
             }
-            DispatchQueue.main.async { self.isLoading = false }
-            compleated(true)
         }
     }
 }

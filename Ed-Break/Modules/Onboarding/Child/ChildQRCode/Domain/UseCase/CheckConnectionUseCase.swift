@@ -9,7 +9,7 @@ import Foundation
 
 class CheckConnectionUseCase: ChildrenUseCase {
     
-    func execute(payload: PairChildPayload, completion: @escaping (Error?) -> Void) {
+    func execute(payload: PairChildPayload, completion: @escaping (Result<TokenDto, Error>) -> Void) {
         childrenRepository.checkConnection(payload: payload, completion: completion)
     }
 }

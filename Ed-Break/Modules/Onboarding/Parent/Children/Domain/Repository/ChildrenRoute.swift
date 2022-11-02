@@ -31,7 +31,7 @@ enum ChildrenRoute: TargetType {
         case .pairChild:
             return "/users/child-device/"
         case .checkConnection:
-            return "/users/parent-device/"
+            return "/users/child-status/"
 
         }
     }
@@ -47,7 +47,7 @@ enum ChildrenRoute: TargetType {
         case .pairChild:
             return .patch
         case .checkConnection:
-            return .get
+            return .post
         }
     }
     
@@ -75,18 +75,23 @@ enum ChildrenRoute: TargetType {
             ], encoding: URLEncoding.queryString)
         case .checkConnection(let payload):
             return .requestParameters(parameters: [
-                "child_device_id": payload.deviceToken
+                "device_token": payload.deviceToken
             ], encoding: URLEncoding.queryString)
         }
     }
     
     var headers: [String: String]? {
-        let token: TokenModel? = UserDefaultsService().getObject(forKey: .User.token)
-        let accessToken = token?.access ?? ""
-        return [
-            "Content-Type": "application/json",
-            "accept": "application/json",
-            "Authorization": "Bearer \(accessToken)"
-        ]}
+        switch self {
+        case .checkConnection:
+            return [:]
+        default:
+            let token: TokenModel? = UserDefaultsService().getObject(forKey: .User.token)
+            let accessToken = token?.access ?? ""
+            return [
+                "Content-Type": "application/json",
+                "accept": "application/json",
+                "Authorization": "Bearer \(accessToken)"
+            ]}
+    }
 }
 

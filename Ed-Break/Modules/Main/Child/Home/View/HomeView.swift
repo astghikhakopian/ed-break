@@ -34,7 +34,7 @@ struct HomeView: View {
                         .multilineTextAlignment(.center)
                 }
                 
-                CircularProgressView(progress: 0.7).frame(width: progressWidth)
+                CircularProgressView(progress: 0.7).frame(height: progressWidth)
             }.padding(headerPadding)
             Spacer()
         }.background(Color.appWhite)
