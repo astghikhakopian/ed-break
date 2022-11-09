@@ -100,6 +100,8 @@
 
 "main.child.home.min" = "min";
 "main.child.home.usage" = "Device usage \n remaining today";
+"main.child.home.completed" = "Completed";
+"main.child.home.notcompleted" = "Not completed";
 
 
 // Settings

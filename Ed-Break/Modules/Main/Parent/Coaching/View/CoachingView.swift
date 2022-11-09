@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct CoachingView<M: ChildrenViewModeling>: View {
+struct CoachingView<M: CoachingViewModeling>: View {
     
     @StateObject var viewModel: M
     
@@ -28,6 +28,8 @@ struct CoachingView<M: ChildrenViewModeling>: View {
                     content
                 }
             }
+        }.onLoad {
+            viewModel.getCoachingChildren()
         }
     }
 }
@@ -65,6 +67,6 @@ private extension CoachingView {
 
 struct CoachingView_Previews: PreviewProvider {
     static var previews: some View {
-        CoachingView(viewModel: MockChildrenViewModeling())
+        CoachingView(viewModel: MockCoachingViewModel())
     }
 }

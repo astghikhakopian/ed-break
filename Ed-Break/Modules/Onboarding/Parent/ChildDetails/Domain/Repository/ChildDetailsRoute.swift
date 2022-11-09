@@ -26,7 +26,7 @@ enum ChildDetailsRoute: TargetType, AccessTokenAuthorizable {
     var path: String {
         switch self {
         case .addChild:
-            return "/users/child/"
+            return "/users/child"
         case .updateChild(let id, _):
             return "/users/child/\(id)/"
         case .deleteChild(let id):

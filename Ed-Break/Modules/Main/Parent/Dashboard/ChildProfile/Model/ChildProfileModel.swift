@@ -16,6 +16,8 @@ struct ChildProfileModel {
     let lastLogin: String
     let periodActivity: Float
     let averageActivity: Float
+    let restrictionTime: Int
+    let percentProgress: Int?
     
     init(dto: ChildRetriveDto) {
         educationPeriod = TimePeriod(rawValue: dto.educationPeriod) ?? .day
@@ -23,10 +25,12 @@ struct ChildProfileModel {
         childId = dto.childId
         periodAnswers = dto.periodAnswers
         periodCorrectAnswers = dto.periodCorrectAnswers
-        percentageForPeriod = dto.percentageForPeriod ?? 0
+        percentageForPeriod = dto.percentagesOfCorrectAnswers ?? 0
         lastLogin = dto.lastLogin ?? ""
         periodActivity = Float(Int(dto.periodActivity*10))/10
-        averageActivity = Float(Int(dto.averageActivity*10))/10 
+        averageActivity = Float(Int(dto.averageActivity*10))/10
+        restrictionTime = dto.restrictionTime ?? 0
+        percentProgress = dto.percentProgress
     }
     
     init(childId: Int) {
@@ -39,5 +43,7 @@ struct ChildProfileModel {
         lastLogin = ""
         periodActivity = 0
         averageActivity = 0
+        restrictionTime = 0
+        percentProgress = 0
     }
 }

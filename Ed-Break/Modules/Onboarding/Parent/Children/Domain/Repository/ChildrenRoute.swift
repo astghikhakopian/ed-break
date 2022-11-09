@@ -16,6 +16,8 @@ enum ChildrenRoute: TargetType {
     case pairChild(payload: PairChildPayload)
     case checkConnection(payload: PairChildPayload)
     
+    case getSubjects
+    
     var baseURL: URL {
         return RequestServices.Users.baseUrl
     }
@@ -23,16 +25,18 @@ enum ChildrenRoute: TargetType {
     var path: String {
         switch self {
         case .getChildren:
-            return "/users/child/"
+            return "/users/child"
         case .getChildDetails:
             return "/users/get-child/"
         case .getCoachingChildren:
-            return "/users/child/"
+            return "/users/child"
         case .pairChild:
             return "/users/child-device/"
         case .checkConnection:
             return "/users/child-status/"
-
+            
+        case .getSubjects:
+            return "/users/child-home/"
         }
     }
     
@@ -48,6 +52,8 @@ enum ChildrenRoute: TargetType {
             return .patch
         case .checkConnection:
             return .post
+        case .getSubjects:
+            return .get
         }
     }
     
@@ -70,18 +76,29 @@ enum ChildrenRoute: TargetType {
             ], encoding: URLEncoding.queryString)
         case .pairChild(let payload):
             return .requestParameters(parameters: [
-                "id": payload.id,
-                "child_device_id": payload.deviceToken
+                "child_id": payload.id,
+                "child_device_token": payload.deviceToken
             ], encoding: URLEncoding.queryString)
         case .checkConnection(let payload):
             return .requestParameters(parameters: [
                 "device_token": payload.deviceToken
+            ], encoding: URLEncoding.queryString)
+        case .getSubjects:
+            return .requestParameters(parameters: [ :
             ], encoding: URLEncoding.queryString)
         }
     }
     
     var headers: [String: String]? {
         switch self {
+        case .getSubjects:
+            let token: TokenModel? = UserDefaultsService().getObject(forKey: .ChildUser.token)
+            let accessToken = token?.access ?? ""
+            return [
+                "Content-Type": "application/json",
+                "accept": "application/json",
+                "Authorization": "Bearer \(accessToken)"
+            ]
         case .checkConnection:
             return [:]
         default:

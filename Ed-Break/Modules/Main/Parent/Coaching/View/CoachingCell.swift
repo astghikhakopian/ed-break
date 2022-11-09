@@ -26,7 +26,7 @@ struct CoachingCell: View {
                 statistics(child: child)
                 HStack {
                     statisticsItem(
-                        title: "\(7)%",
+                        title: "\(child.percentageProgress)%",
                         description: "main.parent.childProfile.beter",
                         image: .Common.upArrow
                     )
@@ -144,7 +144,7 @@ private extension CoachingCell {
 
 struct CoachingCell_Previews: PreviewProvider {
     static var previews: some View {
-        CoachingCell(child: ChildModel(dto: ChildDto(id: 0, name: "Emma", grade: 3, restrictionTime: nil, photo: nil, todayAnswers: 20, todayCorrectAnswers: 19, percentageToday: 95, lastLogin: "Active 14 min ago")))
+        CoachingCell(child: ChildModel(dto: ChildDto(id: 0, name: "Emma", grade: 3, restrictionTime: nil, photo: nil, todayAnswers: 20, todayCorrectAnswers: 19, percentageToday: 75, percentageProgress: 95, lastLogin: "Active 14 min ago")))
     }
 }
 

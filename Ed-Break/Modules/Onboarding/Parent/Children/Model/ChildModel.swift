@@ -16,6 +16,7 @@ struct ChildModel: Equatable {
     let todayAnswers: Int
     let todayCorrectAnswers: Int
     let percentageToday: Float
+    let percentageProgress: Float
     let lastLogin: String
     
     init(dto: ChildDto) {
@@ -28,6 +29,7 @@ struct ChildModel: Equatable {
         todayAnswers = dto.todayAnswers ?? 0
         todayCorrectAnswers = dto.todayCorrectAnswers ?? 0
         percentageToday = dto.percentageToday ?? 0
+        percentageProgress = dto.percentageProgress ?? 0
         lastLogin = dto.lastLogin ?? ""
     }
     

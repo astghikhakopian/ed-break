@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-protocol ChildProfileViewModeling: ObservableObject {
+protocol ChildProfileViewModeling: ObservableObject, Identifiable {
     
     var child: ChildModel { get }
     var datasource: [TimePeriod] { get }

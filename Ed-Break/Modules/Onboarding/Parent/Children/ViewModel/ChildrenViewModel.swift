@@ -85,7 +85,7 @@ final class MockChildrenViewModeling: ChildrenViewModeling, Identifiable {
     var connectedChildren = [ChildModel]()
     var selectedPeriod: TimePeriod = .day
     var timePeriodDatasource: [TimePeriod] = TimePeriod.allCases
-    var children = PagingModel<ChildModel>(results: [ChildModel(dto: ChildDto(id: 0, name: "Emma", grade: 3, restrictionTime: nil, photo: nil, todayAnswers: 20, todayCorrectAnswers: 19, percentageToday: 95, lastLogin: "Active 14 min ago"))])
+    var children = PagingModel<ChildModel>(results: [ChildModel(dto: ChildDto(id: 0, name: "Emma", grade: 3, restrictionTime: nil, photo: nil, todayAnswers: 20, todayCorrectAnswers: 19, percentageToday: 85, percentageProgress: 95, lastLogin: "Active 14 min ago"))])
     
     func getChildren() { }
     func pairChild(id: Int, deviceToken: String, compleated: @escaping (Bool)->()) { }

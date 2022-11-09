@@ -39,7 +39,7 @@ struct TabBarView: View {
             
             NavigationView {
                 MainBackground(title: "main.parent.coaching", withNavbar: false) {
-                    CoachingView(viewModel: ChildrenViewModel(getChildrenUseCase: GetChildrenUseCase(childrenRepository: DefaultChildrenRepository()), pairChildUseCase: PairChildUseCase(childrenRepository: DefaultChildrenRepository()), getCoachingUseCase: GetCoachingUseCase(childrenRepository: DefaultChildrenRepository())))
+                    CoachingView(viewModel: CoachingViewModel(getCoachingUseCase: GetCoachingUseCase(childrenRepository: DefaultChildrenRepository())))
                 }
             }
             .foregroundColor(.appBlack)

@@ -59,7 +59,7 @@ final class ChildProfileViewModel: ChildProfileViewModeling, Identifiable {
 final class MockChildProfileViewModel: ChildProfileViewModeling, Identifiable {
     var detailsInfo = ChildProfileModel(childId: 0)
     
-    var child: ChildModel = ChildModel(dto: ChildDto(id: 0, name: "Emma", grade: 3, restrictionTime: nil, photo: nil, todayAnswers: 20, todayCorrectAnswers: 19, percentageToday: 95, lastLogin: "Active 14 min ago"))
+    var child: ChildModel = ChildModel(dto: ChildDto(id: 0, name: "Emma", grade: 3, restrictionTime: nil, photo: nil, todayAnswers: 20, todayCorrectAnswers: 19, percentageToday: 75, percentageProgress: 95, lastLogin: "Active 14 min ago"))
     var datasource: [TimePeriod] = TimePeriod.allCases
     var isLoading = false
     

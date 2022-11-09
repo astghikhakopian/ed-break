@@ -21,5 +21,6 @@ struct ChildDto: Codable {
     let todayAnswers: Int?
     let todayCorrectAnswers: Int?
     let percentageToday: Float?
+    let percentageProgress: Float?
     let lastLogin: String?
 }

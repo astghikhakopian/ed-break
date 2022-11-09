@@ -60,6 +60,7 @@ extension Font {
     static let appParagraphP3 = font(type: .poppins, weight: .regular, size: 25)
     static let appLargeTitle = font(type: .poppins, weight: .bold, size: 21)
     static let appTitle = font(type: .poppins, weight: .bold, size: 19)
+    static let appSubTitle = font(type: .poppins, weight: .bold, size: 17)
     static let appSecondaryTitle = font(type: .poppins, weight: .bold, style: .title2)
     static let appTertiaryTitle = font(type: .poppins, weight: .bold, style: .title3)
     static let appButton = font(type: .poppins, weight: .medium, size: 14)

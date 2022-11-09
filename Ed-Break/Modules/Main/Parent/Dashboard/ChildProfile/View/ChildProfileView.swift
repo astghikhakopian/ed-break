@@ -57,7 +57,9 @@ struct ChildProfileView<M: ChildProfileViewModeling>: View {
             .navigationBarBackButtonHidden(true)
             .navigationBarItems(leading: backItem, trailing: moreItem)
             .familyActivityPicker(isPresented: $isDiscouragedPresented, selection: $model.selectionToDiscourage)
-        
+            .onChange(of: model.selectionToDiscourage) { newSelection in
+                DataModel.shared.setShieldRestrictions()
+            }
     }
 }
 
@@ -149,7 +151,7 @@ private extension ChildProfileView {
             }
             HStack {
                 statisticsItem(
-                    title: "\(7)%",
+                    title: "\(viewModel.detailsInfo.percentProgress ?? 0)%",
                     description: "main.parent.childProfile.beter",
                     image: .Common.upArrow
                 )
@@ -311,5 +313,6 @@ private extension ChildProfileView {
 struct ChildProfileView_Previews: PreviewProvider {
     static var previews: some View {
         ChildProfileView(viewModel: MockChildProfileViewModel())
+            .environmentObject(DataModel())
     }
 }
