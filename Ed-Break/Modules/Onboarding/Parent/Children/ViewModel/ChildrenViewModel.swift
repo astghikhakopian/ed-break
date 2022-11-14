@@ -9,6 +9,7 @@ import UIKit
 
 final class ChildrenViewModel: ChildrenViewModeling, Identifiable {
     @Published var children = PagingModel<ChildModel>(results: [])
+    @Published var coachingChildren = [CoachingChildModel]()
     @Published var isLoading: Bool = false
     @Published var connectedChildren = [ChildModel]()
     @Published var selectedPeriod: TimePeriod = .week  {
@@ -54,7 +55,7 @@ final class ChildrenViewModel: ChildrenViewModeling, Identifiable {
             switch result {
             case .success(let models):
                 DispatchQueue.main.async { [weak self] in
-                    self?.children = PagingModel(results: models)
+                    self?.coachingChildren = models
                 }
             case .failure(let failure):
                 print(failure.localizedDescription)
@@ -86,6 +87,7 @@ final class MockChildrenViewModeling: ChildrenViewModeling, Identifiable {
     var selectedPeriod: TimePeriod = .day
     var timePeriodDatasource: [TimePeriod] = TimePeriod.allCases
     var children = PagingModel<ChildModel>(results: [ChildModel(dto: ChildDto(id: 0, name: "Emma", grade: 3, restrictionTime: nil, photo: nil, todayAnswers: 20, todayCorrectAnswers: 19, percentageToday: 85, percentageProgress: 95, lastLogin: "Active 14 min ago"))])
+    var coachingChildren = [CoachingChildModel]()
     
     func getChildren() { }
     func pairChild(id: Int, deviceToken: String, compleated: @escaping (Bool)->()) { }

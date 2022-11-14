@@ -29,7 +29,7 @@ enum ChildrenRoute: TargetType {
         case .getChildDetails:
             return "/users/get-child/"
         case .getCoachingChildren:
-            return "/users/child"
+            return "/questions/coaching/"
         case .pairChild:
             return "/users/child-device/"
         case .checkConnection:
@@ -72,7 +72,7 @@ enum ChildrenRoute: TargetType {
             ], encoding: URLEncoding.queryString)
         case .getCoachingChildren(let payload):
             return .requestParameters(parameters: [
-                "education_period": payload.key
+                "education_period": "\(payload.key)"
             ], encoding: URLEncoding.queryString)
         case .pairChild(let payload):
             return .requestParameters(parameters: [

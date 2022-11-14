@@ -17,4 +17,5 @@ protocol ChildProfileViewModeling: ObservableObject, Identifiable {
     var selectedActivityPeriod: TimePeriod { get set }
     
     func getChildDetails()
+    func addRestrictions()
 }

@@ -26,6 +26,10 @@ final class HomeViewModel: HomeViewModeling, Identifiable {
             case .success(let model):
                 DispatchQueue.main.async { [weak self] in
                     self?.contentModel = model
+                    if let restrictions = model.restrictions {
+                        DataModel.shared.selectionToDiscourage = restrictions
+                        DataModel.shared.setShieldRestrictions()
+                    }
                 }
             case .failure(let failure):
                 print(failure.localizedDescription)

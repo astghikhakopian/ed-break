@@ -8,7 +8,7 @@
 import UIKit
 
 final class CoachingViewModel: CoachingViewModeling, Identifiable {
-    @Published var children = PagingModel<ChildModel>(results: [])
+    @Published var children = PagingModel<CoachingChildModel>(results: [])
     @Published var isLoading: Bool = false
     @Published var selectedPeriod: TimePeriod = .week  {
         didSet {
@@ -46,10 +46,10 @@ final class CoachingViewModel: CoachingViewModeling, Identifiable {
 final class MockCoachingViewModel: CoachingViewModeling, Identifiable {
     
     var isLoading = false
-    var connectedChildren = [ChildModel]()
+    var connectedChildren = [CoachingChildModel]()
     var selectedPeriod: TimePeriod = .day
     var timePeriodDatasource: [TimePeriod] = TimePeriod.allCases
-    var children = PagingModel<ChildModel>(results: [])
+    var children = PagingModel<CoachingChildModel>(results: [])
     
     func getCoachingChildren() { }
 }

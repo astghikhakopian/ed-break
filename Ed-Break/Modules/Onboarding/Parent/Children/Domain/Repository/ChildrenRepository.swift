@@ -12,7 +12,7 @@ protocol ChildrenRepository {
     
     func getChildren(completion: @escaping (Result<PagingDto<ChildDto>, Error>) -> Void)
     func getChildDetails(payload: GetChildDetailsPayload, completion: @escaping (Result<ChildRetriveDto, Error>) -> Void)
-    func getCoachingChildren(timePeriod: TimePeriod,completion: @escaping (Result<PagingDto<ChildDto>, Error>) -> Void)
+    func getCoachingChildren(timePeriod: TimePeriod,completion: @escaping (Result<DataContainerDto<[CoachingChildDto]>, Error>) -> Void)
     func pairChild(payload: PairChildPayload, completion: @escaping(Error?) -> Void)
     func checkConnection(payload: PairChildPayload, completion: @escaping (Result<TokenDto, Error>) -> Void)
     func getSubjects(completion: @escaping (Result<HomeDto, Error>) -> Void)
@@ -26,7 +26,7 @@ final class DefaultChildrenRepository: MoyaProvider<ChildrenRoute>, ChildrenRepo
     func getChildDetails(payload: GetChildDetailsPayload, completion:  @escaping (Result<ChildRetriveDto, Error>) -> Void) {
         requestDecodable(.getChildDetails(payload: payload), completion: completion)
     }
-    func getCoachingChildren(timePeriod: TimePeriod,completion: @escaping (Result<PagingDto<ChildDto>, Error>) -> Void) {
+    func getCoachingChildren(timePeriod: TimePeriod,completion: @escaping (Result<DataContainerDto<[CoachingChildDto]>, Error>) -> Void) {
         requestDecodable(.getCoachingChildren(payload: timePeriod), completion: completion)
     }
     func pairChild(payload: PairChildPayload, completion: @escaping(Error?) -> Void) {

@@ -11,12 +11,13 @@ struct HomeDto: Codable {
     let childId: Int
     let lastLogin: String?
     let restrictionTime: Int
+    let restrictions: String?
     let subjects: [SubjectDto]
 }
 
 struct SubjectDto: Codable {
     let id: Int
-    let title: String?
+    let subject: String?
     let photo: String?
     let questionsCount: Int
     let completedCount: Int

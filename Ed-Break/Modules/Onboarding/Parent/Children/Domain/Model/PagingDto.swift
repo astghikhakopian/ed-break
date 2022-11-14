@@ -24,3 +24,30 @@ struct ChildDto: Codable {
     let percentageProgress: Float?
     let lastLogin: String?
 }
+
+struct DataContainerDto<T: Codable>: Codable {
+    let data: T
+}
+
+struct CoachingChildDto: Codable {
+    let childName: String
+    let childId: Int
+    let correctAnswers: Int
+    let correctPercent: Float?
+    let photo: String?
+    let previousDifference: Float?
+    let grade: Int
+    let questionsCount: Int?
+    let answersCount: Int?
+    let subjects: [CoachingSubjectDto]?
+}
+
+struct CoachingSubjectDto: Codable {
+    let prevCorrectCount: Int
+    let questionsCount: Int
+    let id: Int
+    let title: String
+    let subPreviousDifference: Float
+    let correctAnswersCount: Int
+    let answersCount: Int
+}

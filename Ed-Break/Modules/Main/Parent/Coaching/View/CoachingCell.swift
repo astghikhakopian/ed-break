@@ -9,7 +9,7 @@ import SwiftUI
 
 struct CoachingCell: View {
     
-    let child: ChildModel
+    let child: CoachingChildModel
     
     private let imageHeight = 52.0
     private let cornerRadius = 12.0
@@ -46,7 +46,7 @@ struct CoachingCell: View {
 }
 
 private extension CoachingCell {
-    private func childInfoView(child: ChildModel) -> some View {
+    private func childInfoView(child: CoachingChildModel) -> some View {
         HStack(spacing: spacing) {
             if let imageUrl = child.photoUrl {
                 AsyncImageView(withURL: imageUrl.absoluteString, width: imageHeight, height: imageHeight)
@@ -62,7 +62,7 @@ private extension CoachingCell {
             VStack(alignment: .leading) {
                 Text(child.name)
                     .font(.appButton)
-                Text(child.lastLogin)
+                Text(child.grade.name)
                     .font(.appBody)
                     .foregroundColor(.primaryDescription)
             }
@@ -70,7 +70,7 @@ private extension CoachingCell {
         }
     }
     
-    private func statistics(child: ChildModel) -> some View {
+    private func statistics(child: CoachingChildModel) -> some View {
         HStack {
             statisticsItem(
                 title: "\(child.todayCorrectAnswers) of \(child.todayAnswers)",
@@ -102,21 +102,20 @@ private extension CoachingCell {
     
     private var progress: some View {
         VStack(spacing: spacing) {
-            progress(name: "Math", blue: 54, green: 60)
-            progress(name: "English", blue: 76, green: 80)
-            progress(name: "Spanish", blue: 20, green: 50)
-            progress(name: "Science", blue: 87, green: 90)
+            ForEach(child.subjects, id: \.id) {
+                progress(name: $0.title, percentage: $0.subPreviousDifference, blue: CGFloat($0.subPreviousDifference), green: 60)
+            }
         }
     }
     
-    private func progress(name: String, blue: CGFloat, green: CGFloat, grey: CGFloat = 100) -> some View {
+    private func progress(name: String, percentage: Float, blue: CGFloat, green: CGFloat, grey: CGFloat = 100) -> some View {
         VStack(alignment: .leading, spacing: 6) {
             HStack {
                 Text("\(name) - \(Int(blue))%")
                     .font(.appBody)
                     .foregroundColor(.black)
                 Spacer()
-                Text("+2,4%")
+                Text("\(Int(percentage))%")
                     .font(.appBody)
                     .foregroundColor(.primaryPurple)
             }
@@ -142,9 +141,9 @@ private extension CoachingCell {
 }
 
 
-struct CoachingCell_Previews: PreviewProvider {
-    static var previews: some View {
-        CoachingCell(child: ChildModel(dto: ChildDto(id: 0, name: "Emma", grade: 3, restrictionTime: nil, photo: nil, todayAnswers: 20, todayCorrectAnswers: 19, percentageToday: 75, percentageProgress: 95, lastLogin: "Active 14 min ago")))
-    }
-}
+//struct CoachingCell_Previews: PreviewProvider {
+//    static var previews: some View {
+//        CoachingCell(child: ChildModel(dto: ChildDto(id: 0, name: "Emma", grade: 3, restrictionTime: nil, photo: nil, todayAnswers: 20, todayCorrectAnswers: 19, percentageToday: 75, percentageProgress: 95, lastLogin: "Active 14 min ago")))
+//    }
+//}
 

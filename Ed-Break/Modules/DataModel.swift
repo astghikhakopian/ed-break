@@ -80,15 +80,15 @@ open class DataModel: ObservableObject {
     }
     
     func setShieldRestrictions() {
-        let apps = DataModel.shared.selectionToDiscourage
+        // let apps = DataModel.shared.selectionToDiscourage
+        let applications = DataModel.shared.selectionToDiscourage
         
-//        store.shield.applications = applications.applicationTokens.isEmpty ? nil : applications.applicationTokens
-//        store.shield.applicationCategories = applications.categoryTokens.isEmpty
-//        ? nil
-//        : ShieldSettings.ActivityCategoryPolicy.specific(applications.categoryTokens)
-//        print(store.shield.applicationCategories)
-//        ScheduleModel.setSchedule()
-        
+        store.shield.applications = applications.applicationTokens.isEmpty ? nil : applications.applicationTokens
+        store.shield.applicationCategories = applications.categoryTokens.isEmpty
+        ? nil
+        : ShieldSettings.ActivityCategoryPolicy.specific(applications.categoryTokens)
+        ScheduleModel.setSchedule()
+        /*
         let applications = apps.applicationTokens
         let q = try! JSONEncoder().encode(DataModel.shared.selectionToDiscourage)
         print(q)
@@ -104,6 +104,7 @@ open class DataModel: ObservableObject {
         store.shield.webDomains = webCategories
         
         ScheduleModel.setSchedule()
+         */
     }
 }
 

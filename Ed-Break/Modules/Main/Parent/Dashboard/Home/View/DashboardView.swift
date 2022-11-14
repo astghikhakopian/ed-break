@@ -44,7 +44,9 @@ private extension DashboardView {
                             viewModel: ChildProfileViewModel(
                                 child: child,
                                 getChildDetailsUseCase: GetChildDetailsUseCase(
-                                    childrenRepository: DefaultChildrenRepository())))
+                                    childrenRepository: DefaultChildrenRepository()),
+                                addRestrictionUseCase: AddRestrictionUseCase(
+                                    restrictionsRepository: DefaultRestrictionsRepository())))
                         .environmentObject(model)
                     },
                 label: { HomeChildCell(child: child) })

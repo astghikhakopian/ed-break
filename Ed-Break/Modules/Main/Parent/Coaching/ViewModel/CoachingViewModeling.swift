@@ -9,7 +9,7 @@ import SwiftUI
 
 protocol CoachingViewModeling: ObservableObject {
     
-    var children: PagingModel<ChildModel> { get }
+    var children: PagingModel<CoachingChildModel> { get }
     var isLoading: Bool { get set }
     var selectedPeriod: TimePeriod { get set }
     var timePeriodDatasource: [TimePeriod] { get }

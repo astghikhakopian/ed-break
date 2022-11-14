@@ -32,7 +32,57 @@ struct ChildModel: Equatable {
         percentageProgress = dto.percentageProgress ?? 0
         lastLogin = dto.lastLogin ?? ""
     }
+}
+
+struct CoachingChildModel: Equatable {
     
+    var id: Int
+    var name: String
+    var grade: Grade
+    var photoUrl: URL?
+    let todayAnswers: Int
+    let todayCorrectAnswers: Int
+    let percentageToday: Float
+    let percentageProgress: Float
+    let questionsCount: Int?
+    let subjects: [CoachingSubjectModel]
+    
+    init(dto: CoachingChildDto) {
+        id = dto.childId
+        name = dto.childName
+        grade = Grade(rawValue: dto.grade) ?? .first
+        photoUrl = URL(string: dto.photo ?? "")
+        todayAnswers = dto.answersCount ?? 0
+        todayCorrectAnswers = dto.correctAnswers
+        percentageToday = dto.correctPercent ?? 0
+        percentageProgress = dto.previousDifference ?? 0
+        questionsCount = dto.questionsCount ?? 0
+        subjects = dto.subjects?.map { CoachingSubjectModel(dto: $0) } ?? []
+    }
+    
+    static func == (lhs: CoachingChildModel, rhs: CoachingChildModel) -> Bool {
+        lhs.id == rhs.id
+    }
+}
+
+struct CoachingSubjectModel {
+    let prevCorrectCount: Int
+    let questionsCount: Int
+    let id: Int
+    let title: String
+    let subPreviousDifference: Float
+    let correctAnswersCount: Int
+    let answersCount: Int
+    
+    init(dto: CoachingSubjectDto) {
+        prevCorrectCount = dto.prevCorrectCount
+        questionsCount = dto.questionsCount
+        id = dto.id
+        title = dto.title
+        subPreviousDifference = dto.subPreviousDifference
+        correctAnswersCount = dto.correctAnswersCount
+        answersCount = dto.answersCount
+    }
 }
 
 struct PagingModel<R> {

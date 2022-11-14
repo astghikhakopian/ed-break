@@ -58,7 +58,7 @@ struct ChildProfileView<M: ChildProfileViewModeling>: View {
             .navigationBarItems(leading: backItem, trailing: moreItem)
             .familyActivityPicker(isPresented: $isDiscouragedPresented, selection: $model.selectionToDiscourage)
             .onChange(of: model.selectionToDiscourage) { newSelection in
-                DataModel.shared.setShieldRestrictions()
+                viewModel.addRestrictions()
             }
     }
 }

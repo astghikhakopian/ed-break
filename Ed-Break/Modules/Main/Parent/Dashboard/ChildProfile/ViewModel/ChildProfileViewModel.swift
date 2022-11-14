@@ -27,11 +27,13 @@ final class ChildProfileViewModel: ChildProfileViewModeling, Identifiable {
     @Published var detailsInfo: ChildProfileModel
     
     private var getChildDetailsUseCase: GetChildDetailsUseCase
+    private var addRestrictionUseCase: AddRestrictionUseCase
     
-    init(child: ChildModel, getChildDetailsUseCase: GetChildDetailsUseCase) {
+    init(child: ChildModel, getChildDetailsUseCase: GetChildDetailsUseCase, addRestrictionUseCase: AddRestrictionUseCase) {
         self.child = child
         self.detailsInfo = ChildProfileModel(childId: child.id)
         self.getChildDetailsUseCase = getChildDetailsUseCase
+        self.addRestrictionUseCase = addRestrictionUseCase
         
         getChildDetails()
     }
@@ -49,6 +51,18 @@ final class ChildProfileViewModel: ChildProfileViewModeling, Identifiable {
             case .failure(let failure):
                 print(failure.localizedDescription)
             }
+        }
+    }
+    
+    func addRestrictions() {
+        let selectionToDiscourage = DataModel.shared.selectionToDiscourage
+        guard let data = try? JSONEncoder().encode(selectionToDiscourage),
+              let json = try? JSONSerialization.jsonObject(with: data, options: []) as? [String : Any],
+              let jsonData = try? JSONSerialization.data(withJSONObject: json, options: .withoutEscapingSlashes),
+              let convertedString = String(data: jsonData, encoding: String.Encoding.utf8)?.replacingOccurrences(of: "\"", with: "\\\"")
+        else { return }
+        addRestrictionUseCase.execute(childId: child.id, restrictions: convertedString) { error in
+            print(error?.localizedDescription ?? "")
         }
     }
 }
@@ -69,4 +83,5 @@ final class MockChildProfileViewModel: ChildProfileViewModeling, Identifiable {
     var selectedActivityPeriod: TimePeriod = .month
     
     func getChildDetails() { }
+    func addRestrictions() { }
 }

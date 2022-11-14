@@ -11,19 +11,22 @@ struct LessonCell: View {
     
     let model: SubjectModel
     
-    let progressHeight: CGFloat = 50
-    let gap: CGFloat = 2
+    private let progressHeight: CGFloat = 50
+    private let cornerRadius: CGFloat = 12
+    private let padding: CGFloat = 16
+    private let gap: CGFloat = 2
     
     var body: some View {
         HStack(spacing: 12) {
             Image("English")
             VStack(alignment: .leading, spacing: 1) {
-                Text(model.title ?? "")
+                Text(model.subject ?? "")
                     .font(.appSubTitle)
                 Text(LocalizedStringKey(model.completed ? "main.child.home.completed" : "main.child.home.notcompleted"))
                     .font(.appBody)
                     .foregroundColor(Color.primaryGreen)
             }
+            Spacer()
             /*
             ZStack {
                 Circle()
@@ -49,11 +52,14 @@ struct LessonCell: View {
             }
              */
         }
+        .padding(padding)
+        .background(Color.appWhite)
+        .cornerRadius(cornerRadius)
     }
 }
 
 struct LessonCell_Previews: PreviewProvider {
     static var previews: some View {
-        LessonCell(model: SubjectModel(dto: SubjectDto(id: 0, title: "Math", photo: "English", questionsCount: 5, completedCount: 5, correctAnswersCount: 3, completed: false)))
+        LessonCell(model: SubjectModel(dto: SubjectDto(id: 0, subject: "Math", photo: "English", questionsCount: 5, completedCount: 5, correctAnswersCount: 3, completed: false)))
     }
 }

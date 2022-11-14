@@ -66,6 +66,10 @@
 		1BA30D6F28E7A49B00926820 /* AddParentUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BA30D6E28E7A49B00926820 /* AddParentUseCase.swift */; };
 		1BA30D7128E7A4D600926820 /* FamilySharingUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BA30D7028E7A4D600926820 /* FamilySharingUseCase.swift */; };
 		1BA30D7328E7A5AC00926820 /* TokenModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BA30D7228E7A5AC00926820 /* TokenModel.swift */; };
+		1BA81819291CE41B00916796 /* RestrictionsRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BA81818291CE41B00916796 /* RestrictionsRepository.swift */; };
+		1BA8181B291CE43B00916796 /* RestrictionsRoute.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BA8181A291CE43B00916796 /* RestrictionsRoute.swift */; };
+		1BA8181D291CED5D00916796 /* AddRestrictionUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BA8181C291CED5D00916796 /* AddRestrictionUseCase.swift */; };
+		1BA8181F291CED7000916796 /* RestrictionsUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BA8181E291CED7000916796 /* RestrictionsUseCase.swift */; };
 		1BA9DFAA28E7131D006980D1 /* FamilySharingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BA9DFA928E7131D006980D1 /* FamilySharingCell.swift */; };
 		1BA9DFAC28E7206F006980D1 /* FamilySharingInfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BA9DFAB28E7206F006980D1 /* FamilySharingInfoCell.swift */; };
 		1BA9DFB028E7290A006980D1 /* ConfirmButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BA9DFAF28E7290A006980D1 /* ConfirmButton.swift */; };
@@ -224,6 +228,10 @@
 		1BA30D6E28E7A49B00926820 /* AddParentUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddParentUseCase.swift; sourceTree = "<group>"; };
 		1BA30D7028E7A4D600926820 /* FamilySharingUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FamilySharingUseCase.swift; sourceTree = "<group>"; };
 		1BA30D7228E7A5AC00926820 /* TokenModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenModel.swift; sourceTree = "<group>"; };
+		1BA81818291CE41B00916796 /* RestrictionsRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestrictionsRepository.swift; sourceTree = "<group>"; };
+		1BA8181A291CE43B00916796 /* RestrictionsRoute.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestrictionsRoute.swift; sourceTree = "<group>"; };
+		1BA8181C291CED5D00916796 /* AddRestrictionUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddRestrictionUseCase.swift; sourceTree = "<group>"; };
+		1BA8181E291CED7000916796 /* RestrictionsUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestrictionsUseCase.swift; sourceTree = "<group>"; };
 		1BA9DFA928E7131D006980D1 /* FamilySharingCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FamilySharingCell.swift; sourceTree = "<group>"; };
 		1BA9DFAB28E7206F006980D1 /* FamilySharingInfoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FamilySharingInfoCell.swift; sourceTree = "<group>"; };
 		1BA9DFAF28E7290A006980D1 /* ConfirmButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmButton.swift; sourceTree = "<group>"; };
@@ -599,7 +607,9 @@
 		1B779D4C28F84E890051D712 /* UseCase */ = {
 			isa = PBXGroup;
 			children = (
+				1BA8181E291CED7000916796 /* RestrictionsUseCase.swift */,
 				1B779D4D28F84EAD0051D712 /* GetChildDetailsUseCase.swift */,
+				1BA8181C291CED5D00916796 /* AddRestrictionUseCase.swift */,
 			);
 			path = UseCase;
 			sourceTree = "<group>";
@@ -718,6 +728,7 @@
 		1BA2403A28F5DC2D00649467 /* Domain */ = {
 			isa = PBXGroup;
 			children = (
+				1BA81817291CE3EE00916796 /* Repository */,
 				1B779D4C28F84E890051D712 /* UseCase */,
 				1BA2403B28F5DC3900649467 /* Model */,
 			);
@@ -811,6 +822,15 @@
 				1B2A4BB6291B90D9008C60D5 /* ViewModifiers.swift */,
 			);
 			path = Shared;
+			sourceTree = "<group>";
+		};
+		1BA81817291CE3EE00916796 /* Repository */ = {
+			isa = PBXGroup;
+			children = (
+				1BA81818291CE41B00916796 /* RestrictionsRepository.swift */,
+				1BA8181A291CE43B00916796 /* RestrictionsRoute.swift */,
+			);
+			path = Repository;
 			sourceTree = "<group>";
 		};
 		1BA9DFAD28E728E8006980D1 /* Button */ = {
@@ -1455,6 +1475,7 @@
 				1BE72A3028E8925400447167 /* ChildDetailsView.swift in Sources */,
 				1BA2403928F5DB6300649467 /* ChildProfileViewModeling.swift in Sources */,
 				1BEC0C43291A96B200116FC0 /* HomeModel.swift in Sources */,
+				1BA8181F291CED7000916796 /* RestrictionsUseCase.swift in Sources */,
 				1B99051029106FEF001E7303 /* GetCoachingUseCase.swift in Sources */,
 				1BA30D5328E79A8E00926820 /* FamilySharingViewModeling.swift in Sources */,
 				1BF1E1462906BD5C008A08D4 /* ParentRepository.swift in Sources */,
@@ -1474,6 +1495,7 @@
 				1B13463B290822E900943AA5 /* UpdateChildUseCase.swift in Sources */,
 				1BE2206B291951DC00796FE1 /* HomeViewModel.swift in Sources */,
 				1BA30D6528E79FF400926820 /* BasicAuthenticationPlugin.swift in Sources */,
+				1BA81819291CE41B00916796 /* RestrictionsRepository.swift in Sources */,
 				1BEE80F728EAD13D004F75CA /* AddChildUseCase.swift in Sources */,
 				1B323B0329116699006BFBF5 /* LessonCell.swift in Sources */,
 				1BEE80FD28EB1D29004F75CA /* QRCodeView.swift in Sources */,
@@ -1483,6 +1505,7 @@
 				1B02821F29105EBB0094FD2A /* CoachingViewModeling.swift in Sources */,
 				EF43B69E28E19D5E00DBE6B6 /* OnboardingRole.swift in Sources */,
 				1B02821B29105D4B0094FD2A /* CoachingView.swift in Sources */,
+				1BA8181D291CED5D00916796 /* AddRestrictionUseCase.swift in Sources */,
 				1B68713E290D68E700651A33 /* ChildQRViewModeling.swift in Sources */,
 				1BA9DFB428E73001006980D1 /* NavigationButton.swift in Sources */,
 				1B445AF028EC725700B0B310 /* AsyncImageView.swift in Sources */,
@@ -1512,6 +1535,7 @@
 				1B76B64428EC266100602003 /* ChildrenRepository.swift in Sources */,
 				EF43B6A628E19F8400DBE6B6 /* Color.swift in Sources */,
 				1B445AEB28EC531B00B0B310 /* ChildModel.swift in Sources */,
+				1BA8181B291CE43B00916796 /* RestrictionsRoute.swift in Sources */,
 				1BE72A4128E8D69900447167 /* ImageUploadView.swift in Sources */,
 				1BEC0C40291A963100116FC0 /* DateFormatter.swift in Sources */,
 				1BA30D7128E7A4D600926820 /* FamilySharingUseCase.swift in Sources */,
