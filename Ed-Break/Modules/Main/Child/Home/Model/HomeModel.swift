@@ -46,10 +46,10 @@ struct SubjectModel {
         id = dto.id
         subject = dto.subject
         photo = dto.photo
-        questionsCount = dto.questionsCount
-        completedCount = dto.completedCount
-        correctAnswersCount = dto.correctAnswersCount
-        completed = dto.completed
+        questionsCount = dto.questionsCount ?? 0
+        completedCount = dto.completedCount ?? 0
+        correctAnswersCount = dto.correctAnswersCount ?? 0
+        completed = dto.completed ?? false
     }
 }
 

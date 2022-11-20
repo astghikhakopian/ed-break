@@ -103,6 +103,9 @@
 "main.child.home.completed" = "Completed";
 "main.child.home.notcompleted" = "Not completed";
 
+"main.child.answer.success" = "Correct!";
+"main.child.answer.failure" = "Wrong";
+
 
 // Settings
 

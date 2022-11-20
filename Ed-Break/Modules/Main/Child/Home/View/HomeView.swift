@@ -17,8 +17,6 @@ struct HomeView<M: HomeViewModeling>: View {
     private let headerHeight: CGFloat = 30
     private let cornerRadius = 12.0
     
-    
-    
     var body: some View {
         VStack(spacing: 12) {
             HStack {
@@ -48,9 +46,22 @@ struct HomeView<M: HomeViewModeling>: View {
             }.background(Color.appWhite)
                 .cornerRadius(cornerRadius)
             ForEach(viewModel.contentModel?.subjects ?? [], id: \.id) { subject in
-                LessonCell(model: subject)
+                NavigationLink {
+                    NavigationLazyView(
+                        MainBackground(title: subject.subject, withNavbar: true, isSimple: true) {
+                            QuestionsView(
+                                viewModel: QuestionsViewModel(
+                                    subject: subject,
+                                    getQuestionsUseCase: GetQuestionsUseCase(
+                                        questionsRepository: DefaultQuestionsRepository()),
+                                    answerQuestionUseCase: AnswerQuestionUseCase(
+                                        questionsRepository: DefaultQuestionsRepository())))
+                        })
+                } label: {
+                    LessonCell(model: subject)
+                }
             }
-        }.onAppear {
+        }.onLoad {
             viewModel.getSubjects()
         }
     }

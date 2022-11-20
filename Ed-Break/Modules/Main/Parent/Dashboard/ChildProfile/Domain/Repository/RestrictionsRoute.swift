@@ -39,13 +39,6 @@ enum RestrictionsRoute: TargetType, AccessTokenAuthorizable {
         switch self {
         case .addRestriction(_, let restrictions):
             return .requestCompositeParameters(bodyParameters: ["restrictions" : restrictions], bodyEncoding:  JSONEncoding.prettyPrinted, urlParameters: [:])
-            
-//            requestParameters(
-//                parameters: [
-//                    "restrictions": restrictions
-//                ],
-//                encoding: URLEncoding.httpBody
-//            )
         }
     }
     

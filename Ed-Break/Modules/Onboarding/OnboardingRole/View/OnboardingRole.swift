@@ -26,6 +26,7 @@ struct OnboardingRole: View {
                 }
             }
         }
+        .navigationViewStyle(StackNavigationViewStyle())
         .foregroundColor(.appBlack)
         .accentColor(.appClear)
     }

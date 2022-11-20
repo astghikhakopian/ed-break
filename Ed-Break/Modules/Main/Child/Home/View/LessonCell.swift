@@ -15,10 +15,13 @@ struct LessonCell: View {
     private let cornerRadius: CGFloat = 12
     private let padding: CGFloat = 16
     private let gap: CGFloat = 2
+    private let imageHeight: CGFloat = 64
     
     var body: some View {
         HStack(spacing: 12) {
-            Image("English")
+            AsyncImageView(withURL: model.photo ?? "", width: imageHeight, height: imageHeight)
+                .background(Color.primaryBackground)
+                .cornerRadius(cornerRadius)
             VStack(alignment: .leading, spacing: 1) {
                 Text(model.subject ?? "")
                     .font(.appSubTitle)

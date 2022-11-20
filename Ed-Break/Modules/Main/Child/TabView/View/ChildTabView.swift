@@ -23,6 +23,7 @@ struct ChildTabView: View {
                         .environmentObject(model)
                 }
             }
+            .navigationViewStyle(StackNavigationViewStyle())
             .foregroundColor(.appBlack)
             .accentColor(.appClear)
             .tabItem {
@@ -45,6 +46,7 @@ struct ChildTabView: View {
                             localStorageService: UserDefaultsService()))
                 }
             }
+            .navigationViewStyle(StackNavigationViewStyle())
             .tabItem {
                 if selection == 1 {
                     Image.TabView.Settings.selected

@@ -103,7 +103,7 @@ private extension CoachingCell {
     private var progress: some View {
         VStack(spacing: spacing) {
             ForEach(child.subjects, id: \.id) {
-                progress(name: $0.title, percentage: $0.subPreviousDifference, blue: CGFloat($0.subPreviousDifference), green: 60)
+                progress(name: $0.title, percentage: $0.subPreviousDifference, blue: CGFloat($0.subPreviousDifference), green: CGFloat($0.answersCount/($0.questionsCount > 0 ?$0.questionsCount : 1)*100))
             }
         }
     }

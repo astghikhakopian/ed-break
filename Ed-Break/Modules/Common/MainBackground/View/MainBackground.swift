@@ -11,6 +11,7 @@ struct MainBackground<Content> : View where Content : View {
     
     let title: String?
     let withNavbar: Bool
+    var isSimple: Bool = false
     var hideBackButton: Bool = false
     @ViewBuilder let  content: (() -> Content)
     
@@ -20,10 +21,15 @@ struct MainBackground<Content> : View where Content : View {
     
     var body: some View {
         ZStack {
-            VStack(spacing: 0) {
-                navigationBackground
-                Color.primaryBackground
-            }.ignoresSafeArea()
+            if isSimple {
+                Color.primaryPurple
+                    .ignoresSafeArea()
+            } else {
+                VStack(spacing: 0) {
+                    navigationBackground
+                    Color.primaryBackground
+                }.ignoresSafeArea()
+            }
             VStack(spacing: 34) {
                 HStack(alignment: .center) {
                     if withNavbar && !hideBackButton {
@@ -44,7 +50,9 @@ struct MainBackground<Content> : View where Content : View {
                 }
                 ScrollView(showsIndicators: false) {
                     content().cornerRadius(contentCornerRadius)
-                    Spacer()
+                    if !isSimple {
+                        Spacer()
+                    }
                 }
             }
             .padding(EdgeInsets(
@@ -53,6 +61,7 @@ struct MainBackground<Content> : View where Content : View {
                 bottom: 0,
                 trailing: 15))
         }.navigationBarTitleDisplayMode(.inline)//.navigationTitle(title ?? "")// .ignoresSafeArea()
+            .navigationViewStyle(StackNavigationViewStyle())
     }
 }
 

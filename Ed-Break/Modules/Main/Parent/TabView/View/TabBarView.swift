@@ -23,6 +23,7 @@ struct TabBarView: View {
                         .environmentObject(model)
                 }
             }
+            .navigationViewStyle(StackNavigationViewStyle())
             .foregroundColor(.appBlack)
             .accentColor(.appClear)
             .tabItem {
@@ -42,6 +43,7 @@ struct TabBarView: View {
                     CoachingView(viewModel: CoachingViewModel(getCoachingUseCase: GetCoachingUseCase(childrenRepository: DefaultChildrenRepository())))
                 }
             }
+            .navigationViewStyle(StackNavigationViewStyle())
             .foregroundColor(.appBlack)
             .accentColor(.appClear)
                 .tabItem {
@@ -64,6 +66,7 @@ struct TabBarView: View {
                             localStorageService: UserDefaultsService()))
                 }
             }
+            .navigationViewStyle(StackNavigationViewStyle())
             .tabItem {
                 if selection == 2 {
                     Image.TabView.Settings.selected
