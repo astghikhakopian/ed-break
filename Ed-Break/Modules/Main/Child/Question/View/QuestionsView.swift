@@ -29,15 +29,19 @@ struct QuestionsView<M: QuestionsViewModeling>: View {
     
     var body: some View {
         VStack(spacing: containerSpacing) {
-            pageIndicator
-            questionView
-            options
-            ConfirmButton(action: {
-                guard let selectedAnswer = selectedAnswer else { return }
-                viewModel.answerQuestion(answer: selectedAnswer) { _ in
-                    presentationMode.wrappedValue.dismiss()
+            if let questionsContainer = viewModel.questionsContainer {
+                pageIndicator
+                if questionsContainer.answeredCount >= questionsContainer.questions.count {
+                    PhoneLockingStateView(state: .locked, action: {
+                        // TODO: -
+                        presentationMode.wrappedValue.dismiss()
+                    }, isLoading: $viewModel.isLoading)
+                } else {
+                    questionView
+                    options
+                    confirmButton
                 }
-            }, title: "common.continue", isLoading: $viewModel.isLoading)
+            }
         }.padding(padding)
             .background(Color.appWhite)
             .onLoad {
@@ -103,6 +107,15 @@ extension QuestionsView {
             .background(Color.primaryLightBackground)
             .cornerRadius(cellCornerRadius)
         })
+    }
+    
+    var confirmButton: some View {
+        ConfirmButton(action: {
+            guard let selectedAnswer = selectedAnswer else { return }
+            viewModel.answerQuestion(answer: selectedAnswer) { _ in
+                presentationMode.wrappedValue.dismiss()
+            }
+        }, title: "common.continue", isLoading: $viewModel.isLoading)
     }
 }
 

@@ -150,4 +150,15 @@ extension Image {
             return Image("common.upArrow")
         }
     }
+    
+    public struct ChildHome {
+        public struct LockState {
+            public static var locked: Image {
+                return Image("childHome.lockState.locked")
+            }
+            public static var unlocked: Image {
+                return Image("childHome.lockState.unlocked")
+            }
+        }
+    }
 }

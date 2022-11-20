@@ -91,6 +91,8 @@
 		1BC5BDEC29294E11006171A5 /* ViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BC5BDE729294E11006171A5 /* ViewExtensions.swift */; };
 		1BC5BDEE29295C8E006171A5 /* AnswerQuestionUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BC5BDED29295C8E006171A5 /* AnswerQuestionUseCase.swift */; };
 		1BC5BDF029296E69006171A5 /* AnswerResultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BC5BDEF29296E69006171A5 /* AnswerResultView.swift */; };
+		1BCD8C7F292A7E9E00CD3D04 /* PhoneLockingStateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BCD8C7E292A7E9E00CD3D04 /* PhoneLockingStateView.swift */; };
+		1BCD8C81292A83BF00CD3D04 /* Image.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFE6E42728E1A67A00B3F83D /* Image.swift */; };
 		1BE2205229190E3B00796FE1 /* DeviceActivity.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1B3DCFBE28FDFB890094F7A1 /* DeviceActivity.framework */; };
 		1BE2205529190E3B00796FE1 /* DeviceActivityMonitorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BE2205429190E3B00796FE1 /* DeviceActivityMonitorExtension.swift */; };
 		1BE2205A29190E3B00796FE1 /* ActivityMonitor.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 1BE2205129190E3B00796FE1 /* ActivityMonitor.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
@@ -134,7 +136,6 @@
 		EF43B6A628E19F8400DBE6B6 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF43B6A528E19F8400DBE6B6 /* Color.swift */; };
 		EF51A11628E190FA0020F135 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EF51A11528E190FA0020F135 /* Preview Assets.xcassets */; };
 		EF52D84C2907F1DD00C6ACF9 /* ChildEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF52D84B2907F1DD00C6ACF9 /* ChildEditView.swift */; };
-		EFE6E42828E1A67A00B3F83D /* Image.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFE6E42728E1A67A00B3F83D /* Image.swift */; };
 		EFE6E43C28E1DAEA00B3F83D /* Poppins-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EFE6E42A28E1DAE100B3F83D /* Poppins-Italic.ttf */; };
 		EFE6E43D28E1DAEA00B3F83D /* Poppins-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EFE6E42B28E1DAE200B3F83D /* Poppins-Light.ttf */; };
 		EFE6E43E28E1DAEA00B3F83D /* Poppins-Thin.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EFE6E42C28E1DAE200B3F83D /* Poppins-Thin.ttf */; };
@@ -269,6 +270,7 @@
 		1BC5BDE729294E11006171A5 /* ViewExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewExtensions.swift; sourceTree = "<group>"; };
 		1BC5BDED29295C8E006171A5 /* AnswerQuestionUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnswerQuestionUseCase.swift; sourceTree = "<group>"; };
 		1BC5BDEF29296E69006171A5 /* AnswerResultView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnswerResultView.swift; sourceTree = "<group>"; };
+		1BCD8C7E292A7E9E00CD3D04 /* PhoneLockingStateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneLockingStateView.swift; sourceTree = "<group>"; };
 		1BE2205129190E3B00796FE1 /* ActivityMonitor.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = ActivityMonitor.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		1BE2205429190E3B00796FE1 /* DeviceActivityMonitorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceActivityMonitorExtension.swift; sourceTree = "<group>"; };
 		1BE2205629190E3B00796FE1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -378,6 +380,7 @@
 			isa = PBXGroup;
 			children = (
 				1B016B262922879700291A9D /* QuestionsView.swift */,
+				1BCD8C7E292A7E9E00CD3D04 /* PhoneLockingStateView.swift */,
 				1BC5BDEF29296E69006171A5 /* AnswerResultView.swift */,
 			);
 			path = View;
@@ -1284,8 +1287,8 @@
 		EF43B6A728E1A5E600DBE6B6 /* Images */ = {
 			isa = PBXGroup;
 			children = (
-				EFE9288A28E18C3E00675F28 /* Assets.xcassets */,
 				EFE6E42728E1A67A00B3F83D /* Image.swift */,
+				EFE9288A28E18C3E00675F28 /* Assets.xcassets */,
 			);
 			path = Images;
 			sourceTree = "<group>";
@@ -1601,7 +1604,6 @@
 				1BF1E1462906BD5C008A08D4 /* ParentRepository.swift in Sources */,
 				1B8C4286290EAA3400FD5598 /* DropdownButton.swift in Sources */,
 				EF43B6A228E19EF000DBE6B6 /* MainBackground.swift in Sources */,
-				EFE6E42828E1A67A00B3F83D /* Image.swift in Sources */,
 				1BA30D6128E79EE100926820 /* RequestServices.swift in Sources */,
 				1BEE80F528EACB24004F75CA /* ChildDetailsUseCase.swift in Sources */,
 				1BA2403728F5DB5700649467 /* ChildProfileViewModel.swift in Sources */,
@@ -1682,11 +1684,13 @@
 				1BA30D5D28E79E5700926820 /* FamilySharingRoute.swift in Sources */,
 				EF52D84C2907F1DD00C6ACF9 /* ChildEditView.swift in Sources */,
 				1B016B552922D67F00291A9D /* GetQuestionsUseCase.swift in Sources */,
+				1BCD8C81292A83BF00CD3D04 /* Image.swift in Sources */,
 				1BEE80F328EACA33004F75CA /* ChildDetailsRepository.swift in Sources */,
 				1B76B64828EC26EC00602003 /* GetChildrenUseCase.swift in Sources */,
 				1BC5BDF029296E69006171A5 /* AnswerResultView.swift in Sources */,
 				1BA9DFAA28E7131D006980D1 /* FamilySharingCell.swift in Sources */,
 				1B779D4E28F84EAD0051D712 /* GetChildDetailsUseCase.swift in Sources */,
+				1BCD8C7F292A7E9E00CD3D04 /* PhoneLockingStateView.swift in Sources */,
 				1BC5BDE929294E11006171A5 /* AppKitIntrospectionView.swift in Sources */,
 				1B7E64A8291146AF0084E6A0 /* HomeView.swift in Sources */,
 				1BFF5A7B29015F4C00710D9B /* ChildSignInView.swift in Sources */,
@@ -1931,7 +1935,7 @@
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_ENTITLEMENTS = "Ed-Break/Ed-Break.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 6;
+				CURRENT_PROJECT_VERSION = 8;
 				DEVELOPMENT_ASSET_PATHS = "Ed-Break/Resources/Preview\\ Content";
 				DEVELOPMENT_TEAM = 59UY34K59P;
 				ENABLE_PREVIEWS = YES;
@@ -1967,7 +1971,7 @@
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_ENTITLEMENTS = "Ed-Break/Ed-Break.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 6;
+				CURRENT_PROJECT_VERSION = 8;
 				DEVELOPMENT_ASSET_PATHS = "Ed-Break/Resources/Preview\\ Content";
 				DEVELOPMENT_TEAM = 59UY34K59P;
 				ENABLE_PREVIEWS = YES;

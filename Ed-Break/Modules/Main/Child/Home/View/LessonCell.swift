@@ -27,7 +27,7 @@ struct LessonCell: View {
                     .font(.appSubTitle)
                 Text(LocalizedStringKey(model.completed ? "main.child.home.completed" : "main.child.home.notcompleted"))
                     .font(.appBody)
-                    .foregroundColor(Color.primaryGreen)
+                    .foregroundColor(model.completed ? .primaryGreen : .primaryDescription)
             }
             Spacer()
             /*

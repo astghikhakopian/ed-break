@@ -106,6 +106,12 @@
 "main.child.answer.success" = "Correct!";
 "main.child.answer.failure" = "Wrong";
 
+"main.child.lockstate.locked" = "Phone locked";
+"main.child.lockstate.locked.description" = "You need to answer three or more questions correctly to unlock your phone";
+
+"main.child.lockstate.unlocked" = "Phone unlocked";
+"main.child.lockstate.unlocked.description" = "You get 15 minutes of phone using. Enjoy!";
+
 
 // Settings
 
