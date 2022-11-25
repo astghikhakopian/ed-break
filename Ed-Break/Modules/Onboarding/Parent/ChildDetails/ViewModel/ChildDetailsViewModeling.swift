@@ -11,6 +11,8 @@ protocol ChildDetailsViewModeling: ObservableObject {
     
     var children: [ChildDetailsModel] { get set }
     var grades: [Grade] { get set }
+    var interuptions: [Interuption] { get set }
+    var subjects: [BottomsheetCellModel] { get set }
     
     var isContentValid: Bool { get set }
     var isLoading: Bool { get set }
@@ -20,4 +22,5 @@ protocol ChildDetailsViewModeling: ObservableObject {
     func deleteChild(completion: (()->())?)
     func removeChild(child: ChildDetailsModel)
     func appendChildren()
+    func getSubjects()
 }

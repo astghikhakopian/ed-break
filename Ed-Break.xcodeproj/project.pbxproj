@@ -25,9 +25,11 @@
 		1B13463D290826A800943AA5 /* DeleteChildUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B13463C290826A800943AA5 /* DeleteChildUseCase.swift */; };
 		1B29CB7829016D7D0036988F /* ChildQRView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B29CB7729016D7D0036988F /* ChildQRView.swift */; };
 		1B2A4BB7291B90D9008C60D5 /* ViewModifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B2A4BB6291B90D9008C60D5 /* ViewModifiers.swift */; };
+		1B2EA77E292FCB9A009EA317 /* GetAllSubjectsUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B2EA77D292FCB9A009EA317 /* GetAllSubjectsUseCase.swift */; };
 		1B323B0329116699006BFBF5 /* LessonCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B323B0229116699006BFBF5 /* LessonCell.swift */; };
 		1B3581A728E621E600612976 /* OnboardingRoleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B3581A628E621E600612976 /* OnboardingRoleCell.swift */; };
 		1B3581AC28E6387000612976 /* FamilySharingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B3581AB28E6387000612976 /* FamilySharingView.swift */; };
+		1B4413A92930FF4900820B55 /* WheelPickerTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B4413A82930FF4900820B55 /* WheelPickerTextField.swift */; };
 		1B445AE928EC3DA700B0B310 /* PagingDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B445AE828EC3DA700B0B310 /* PagingDto.swift */; };
 		1B445AEB28EC531B00B0B310 /* ChildModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B445AEA28EC531B00B0B310 /* ChildModel.swift */; };
 		1B445AEE28EC71F700B0B310 /* AsynchronousImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B445AED28EC71F700B0B310 /* AsynchronousImage.swift */; };
@@ -47,10 +49,12 @@
 		1B76B64828EC26EC00602003 /* GetChildrenUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B76B64728EC26EC00602003 /* GetChildrenUseCase.swift */; };
 		1B76B64A28EC286800602003 /* ChildrenViewModeling.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B76B64928EC286800602003 /* ChildrenViewModeling.swift */; };
 		1B76B64C28EC289300602003 /* ChildrenViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B76B64B28EC289300602003 /* ChildrenViewModel.swift */; };
+		1B776ACF292CBEC30047FEBA /* BottomsheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B776ACE292CBEC30047FEBA /* BottomsheetView.swift */; };
 		1B779D4E28F84EAD0051D712 /* GetChildDetailsUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B779D4D28F84EAD0051D712 /* GetChildDetailsUseCase.swift */; };
 		1B779D5028F84FA60051D712 /* GetChildDetailsPayload.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B779D4F28F84FA60051D712 /* GetChildDetailsPayload.swift */; };
 		1B7C09F628EAC170001DB6A1 /* ChildDetailsRoute.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B7C09F528EAC170001DB6A1 /* ChildDetailsRoute.swift */; };
 		1B7C09F828EAC21E001DB6A1 /* CreateChildPayload.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B7C09F728EAC21E001DB6A1 /* CreateChildPayload.swift */; };
+		1B7DD681292B7F9900F34DBE /* RefreshTokenUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B7DD680292B7F9900F34DBE /* RefreshTokenUseCase.swift */; };
 		1B7E649729110B610084E6A0 /* ChildTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B7E649629110B610084E6A0 /* ChildTabView.swift */; };
 		1B7E64A5291145AE0084E6A0 /* CircularProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B7E64A4291145AE0084E6A0 /* CircularProgressView.swift */; };
 		1B7E64A8291146AF0084E6A0 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B7E64A7291146AF0084E6A0 /* HomeView.swift */; };
@@ -204,11 +208,13 @@
 		1B13463C290826A800943AA5 /* DeleteChildUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteChildUseCase.swift; sourceTree = "<group>"; };
 		1B29CB7729016D7D0036988F /* ChildQRView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChildQRView.swift; sourceTree = "<group>"; };
 		1B2A4BB6291B90D9008C60D5 /* ViewModifiers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModifiers.swift; sourceTree = "<group>"; };
+		1B2EA77D292FCB9A009EA317 /* GetAllSubjectsUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetAllSubjectsUseCase.swift; sourceTree = "<group>"; };
 		1B323B0229116699006BFBF5 /* LessonCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LessonCell.swift; sourceTree = "<group>"; };
 		1B3581A628E621E600612976 /* OnboardingRoleCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingRoleCell.swift; sourceTree = "<group>"; };
 		1B3581AB28E6387000612976 /* FamilySharingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FamilySharingView.swift; sourceTree = "<group>"; };
 		1B3DCFBC28FDF0260094F7A1 /* Ed-Break.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Ed-Break.entitlements"; sourceTree = "<group>"; };
 		1B3DCFBE28FDFB890094F7A1 /* DeviceActivity.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DeviceActivity.framework; path = System/Library/Frameworks/DeviceActivity.framework; sourceTree = SDKROOT; };
+		1B4413A82930FF4900820B55 /* WheelPickerTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WheelPickerTextField.swift; sourceTree = "<group>"; };
 		1B445AE828EC3DA700B0B310 /* PagingDto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PagingDto.swift; sourceTree = "<group>"; };
 		1B445AEA28EC531B00B0B310 /* ChildModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChildModel.swift; sourceTree = "<group>"; };
 		1B445AED28EC71F700B0B310 /* AsynchronousImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsynchronousImage.swift; sourceTree = "<group>"; };
@@ -228,10 +234,12 @@
 		1B76B64728EC26EC00602003 /* GetChildrenUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetChildrenUseCase.swift; sourceTree = "<group>"; };
 		1B76B64928EC286800602003 /* ChildrenViewModeling.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChildrenViewModeling.swift; sourceTree = "<group>"; };
 		1B76B64B28EC289300602003 /* ChildrenViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChildrenViewModel.swift; sourceTree = "<group>"; };
+		1B776ACE292CBEC30047FEBA /* BottomsheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomsheetView.swift; sourceTree = "<group>"; };
 		1B779D4D28F84EAD0051D712 /* GetChildDetailsUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetChildDetailsUseCase.swift; sourceTree = "<group>"; };
 		1B779D4F28F84FA60051D712 /* GetChildDetailsPayload.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetChildDetailsPayload.swift; sourceTree = "<group>"; };
 		1B7C09F528EAC170001DB6A1 /* ChildDetailsRoute.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChildDetailsRoute.swift; sourceTree = "<group>"; };
 		1B7C09F728EAC21E001DB6A1 /* CreateChildPayload.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateChildPayload.swift; sourceTree = "<group>"; };
+		1B7DD680292B7F9900F34DBE /* RefreshTokenUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RefreshTokenUseCase.swift; sourceTree = "<group>"; };
 		1B7E649629110B610084E6A0 /* ChildTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChildTabView.swift; sourceTree = "<group>"; };
 		1B7E64A4291145AE0084E6A0 /* CircularProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircularProgressView.swift; sourceTree = "<group>"; };
 		1B7E64A7291146AF0084E6A0 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
@@ -705,6 +713,14 @@
 			path = Repository;
 			sourceTree = "<group>";
 		};
+		1B776ACD292CBEA60047FEBA /* Bottomsheet */ = {
+			isa = PBXGroup;
+			children = (
+				1B776ACE292CBEC30047FEBA /* BottomsheetView.swift */,
+			);
+			path = Bottomsheet;
+			sourceTree = "<group>";
+		};
 		1B779D4C28F84E890051D712 /* UseCase */ = {
 			isa = PBXGroup;
 			children = (
@@ -740,6 +756,7 @@
 				1BEE80F628EAD13D004F75CA /* AddChildUseCase.swift */,
 				1B13463A290822E900943AA5 /* UpdateChildUseCase.swift */,
 				1B13463C290826A800943AA5 /* DeleteChildUseCase.swift */,
+				1B2EA77D292FCB9A009EA317 /* GetAllSubjectsUseCase.swift */,
 			);
 			path = UseCase;
 			sourceTree = "<group>";
@@ -886,6 +903,7 @@
 			children = (
 				1BA30D7028E7A4D600926820 /* FamilySharingUseCase.swift */,
 				1BA30D6E28E7A49B00926820 /* AddParentUseCase.swift */,
+				1B7DD680292B7F9900F34DBE /* RefreshTokenUseCase.swift */,
 			);
 			path = UseCase;
 			sourceTree = "<group>";
@@ -1042,6 +1060,7 @@
 			children = (
 				1BE72A3428E8984600447167 /* CommonTextField.swift */,
 				1BE5191B28E8E24A0067E8B1 /* PickerTextField.swift */,
+				1B4413A82930FF4900820B55 /* WheelPickerTextField.swift */,
 			);
 			path = TextField;
 			sourceTree = "<group>";
@@ -1249,6 +1268,7 @@
 		EF43B69F28E19E5500DBE6B6 /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				1B776ACD292CBEA60047FEBA /* Bottomsheet */,
 				1B7E64A3291145940084E6A0 /* CircularProgress */,
 				1B1346322907D52F00943AA5 /* WebView */,
 				1BE72A3F28E8D66F00447167 /* ImageUploadView */,
@@ -1617,6 +1637,7 @@
 				1B13463B290822E900943AA5 /* UpdateChildUseCase.swift in Sources */,
 				1BE2206B291951DC00796FE1 /* HomeViewModel.swift in Sources */,
 				1BA30D6528E79FF400926820 /* BasicAuthenticationPlugin.swift in Sources */,
+				1B4413A92930FF4900820B55 /* WheelPickerTextField.swift in Sources */,
 				1BA81819291CE41B00916796 /* RestrictionsRepository.swift in Sources */,
 				1BEE80F728EAD13D004F75CA /* AddChildUseCase.swift in Sources */,
 				1B323B0329116699006BFBF5 /* LessonCell.swift in Sources */,
@@ -1672,6 +1693,7 @@
 				1BA30D7128E7A4D600926820 /* FamilySharingUseCase.swift in Sources */,
 				1B68713B290D678300651A33 /* CheckConnectionUseCase.swift in Sources */,
 				1B56107D28F420B700DA3043 /* DashboardView.swift in Sources */,
+				1B776ACF292CBEC30047FEBA /* BottomsheetView.swift in Sources */,
 				1BA9DFB028E7290A006980D1 /* ConfirmButton.swift in Sources */,
 				1BE72A3828E8A1F400447167 /* ChildDetailsViewModel.swift in Sources */,
 				EFE9288728E18C3A00675F28 /* Ed_BreakApp.swift in Sources */,
@@ -1690,6 +1712,7 @@
 				1BC5BDF029296E69006171A5 /* AnswerResultView.swift in Sources */,
 				1BA9DFAA28E7131D006980D1 /* FamilySharingCell.swift in Sources */,
 				1B779D4E28F84EAD0051D712 /* GetChildDetailsUseCase.swift in Sources */,
+				1B2EA77E292FCB9A009EA317 /* GetAllSubjectsUseCase.swift in Sources */,
 				1BCD8C7F292A7E9E00CD3D04 /* PhoneLockingStateView.swift in Sources */,
 				1BC5BDE929294E11006171A5 /* AppKitIntrospectionView.swift in Sources */,
 				1B7E64A8291146AF0084E6A0 /* HomeView.swift in Sources */,
@@ -1711,6 +1734,7 @@
 				1B4C1E2928F4678300C69FB1 /* ChildProfileView.swift in Sources */,
 				1BA30D7328E7A5AC00926820 /* TokenModel.swift in Sources */,
 				1BF1E1492906BDDE008A08D4 /* ParentUseCase.swift in Sources */,
+				1B7DD681292B7F9900F34DBE /* RefreshTokenUseCase.swift in Sources */,
 				1B02821D29105EB00094FD2A /* CoachingViewModel.swift in Sources */,
 				1BE220652919504400796FE1 /* GetSubjectsUseCase.swift in Sources */,
 			);
@@ -1761,7 +1785,7 @@
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = ActivityMonitor/ActivityMonitor.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 8;
 				DEVELOPMENT_TEAM = 59UY34K59P;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = ActivityMonitor/Info.plist;
@@ -1788,7 +1812,7 @@
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = ActivityMonitor/ActivityMonitor.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 8;
 				DEVELOPMENT_TEAM = 59UY34K59P;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = ActivityMonitor/Info.plist;

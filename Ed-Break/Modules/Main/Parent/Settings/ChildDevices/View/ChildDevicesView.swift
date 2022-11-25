@@ -32,9 +32,15 @@ struct ChildDevicesView<M: ChildrenViewModeling>: View {
                         content
                     }
                     NavigationLink {
-                        ChildDetailsView(simpleAdd: true, viewModel: ChildDetailsViewModel(addChildUseCase: AddChildUseCase(childDetailsRepository: DefaultChildDetailsRepository())))
+                        ChildDetailsView(
+                            simpleAdd: true,
+                            viewModel: ChildDetailsViewModel(
+                                addChildUseCase: AddChildUseCase(
+                                    childDetailsRepository: DefaultChildDetailsRepository()),
+                                getAllSubjectsUseCase: GetAllSubjectsUseCase(
+                                    childDetailsRepository: DefaultChildDetailsRepository())))
                     } label: {
-                        CancelButton(action: { }, title: "childDetails.add").disabled(true)
+                        CancelButton(action: { }, title: "childDetails.add", isContentValid: .constant(true)).disabled(true)
                     }
                 }.padding(spacing)
             }
@@ -53,8 +59,12 @@ private extension ChildDevicesView {
                 NavigationLink {
                     ChildEditView(viewModel: ChildDetailsViewModel(
                         child: child,
-                        updateChildUseCase: UpdateChildUseCase(childDetailsRepository: DefaultChildDetailsRepository()),
-                        deleteChildUseCase: DeleteChildUseCase(childDetailsRepository: DefaultChildDetailsRepository()))
+                        updateChildUseCase: UpdateChildUseCase(
+                            childDetailsRepository: DefaultChildDetailsRepository()),
+                        deleteChildUseCase: DeleteChildUseCase(
+                            childDetailsRepository: DefaultChildDetailsRepository()),
+                        getAllSubjectsUseCase: GetAllSubjectsUseCase(
+                            childDetailsRepository: DefaultChildDetailsRepository()))
                     )
                 } label: {
                     ChildDeiviceCell(name: child.name, grade: child.grade, imageUrl: child.photoUrl)

@@ -51,7 +51,7 @@ struct CoachingChildModel: Equatable {
         id = dto.childId
         name = dto.childName
         grade = Grade(rawValue: dto.grade) ?? .first
-        photoUrl = URL(string: dto.photo ?? "")
+        photoUrl = URL(string: dto.childPhoto ?? "")
         todayAnswers = dto.answersCount ?? 0
         todayCorrectAnswers = dto.correctAnswers
         percentageToday = dto.correctPercent ?? 0
@@ -89,7 +89,7 @@ struct PagingModel<R> {
     let count: Int
     let next: URL?
     let previous: URL?
-    let results: [R]
+    var results: [R]
     
     init(results: [R]) {
         self.count = results.count

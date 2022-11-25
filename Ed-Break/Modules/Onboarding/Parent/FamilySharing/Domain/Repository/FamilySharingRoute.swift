@@ -11,6 +11,7 @@ import Moya
 enum FamilySharingRoute: TargetType {
     
     case addParent(username: String)
+    case refreshToken
     
     var baseURL: URL {
         return RequestServices.Users.baseUrl
@@ -20,12 +21,16 @@ enum FamilySharingRoute: TargetType {
         switch self {
         case .addParent:
             return "/users/parent/"
+        case .refreshToken:
+            return "/api/token/refresh/"
         }
     }
     
     var method: Moya.Method {
         switch self {
         case .addParent:
+            return .post
+        case .refreshToken:
             return .post
         }
     }
@@ -39,12 +44,33 @@ enum FamilySharingRoute: TargetType {
                 ],
                 encoding: URLEncoding.queryString
             )
+        case .refreshToken:
+            let token: TokenModel? = UserDefaultsService().getObject(forKey: .User.token)
+            let refreshToken = token?.refresh ?? ""
+            return .requestParameters(
+                parameters: [
+                    "refresh" : refreshToken
+                ],
+                encoding: URLEncoding.httpBody
+            )
         }
     }
     
-    var headers: [String: String]? {[
-        "Content-Type": "application/json",
-        "accept": "application/json"
-    ]}
+    var headers: [String: String]? {
+        switch self {
+        case.addParent:
+            return [
+                "Content-Type": "application/json",
+                "accept": "application/json"
+            ]
+        case .refreshToken:
+            let token: TokenModel? = UserDefaultsService().getObject(forKey: .User.token)
+            let accessToken = token?.access ?? ""
+            return [
+                "Content-Type": "application/json",
+                "accept": "application/json",
+                "Authorization": "Bearer \(accessToken)"
+            ]}
+    }
 }
 

@@ -7,7 +7,8 @@
 
 import SwiftUI
 
-enum Grade: Int, CaseIterable, PickerItem {
+enum Grade: Int, CaseIterable, PickerItem, BottomsheetCellModel {
+    
     case first  = 1
     case second = 2
     case third  = 3
@@ -26,6 +27,46 @@ enum Grade: Int, CaseIterable, PickerItem {
         case .second:   return "GRADE_2"
         case .third:    return "GRADE_3"
         }
+    }
+    
+    var id: Int {
+        rawValue
+    }
+    
+    var title: String {
+        name
+    }
+    
+    var imageUrl: URL? {
+        nil
+    }
+}
+
+enum Interuption: Int, CaseIterable, PickerItem, BottomsheetCellModel {
+    
+    case i15 = 15
+    case i20 = 20
+    case i25 = 25
+    case i30 = 30
+    
+    var name: String {
+        "\(self.rawValue) minutes"
+    }
+    
+    var key: Int {
+        rawValue
+    }
+    
+    var id: Int {
+        rawValue
+    }
+    
+    var title: String {
+        name
+    }
+    
+    var imageUrl: URL? {
+        nil
     }
 }
 

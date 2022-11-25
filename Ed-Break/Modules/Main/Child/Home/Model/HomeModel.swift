@@ -33,7 +33,10 @@ struct HomeModel {
     }
 }
 
-struct SubjectModel {
+struct SubjectModel: BottomsheetCellModel {
+    var title: String { subject ?? "" }
+    var imageUrl: URL? { photo == nil ? nil : URL(string: photo!) }
+    
     let id: Int
     let subject: String?
     let photo: String?

@@ -12,6 +12,7 @@ struct CancelButton: View {
     let action: () -> Void
     let title: String
     var color: Color = .primaryPurple
+    @Binding var isContentValid: Bool
     
     private let height = 54.0
     private let cornerRadius = 12.0
@@ -20,10 +21,14 @@ struct CancelButton: View {
         ZStack {
             color.opacity(0.05)
             Button(action: action, label: {
-                Text(LocalizedStringKey(title))
-                    .font(.appButton)
+                HStack {
+                    Spacer()
+                    Text(LocalizedStringKey(title))
+                        .font(.appButton)
+                    Spacer()
+                }
             })
-            .foregroundColor(color)
+            .foregroundColor( isContentValid ? color : .primaryDescription )
         }
         .frame(height: height)
         .cornerRadius(cornerRadius)
@@ -32,6 +37,6 @@ struct CancelButton: View {
 
 struct CancelButton_Previews: PreviewProvider {
     static var previews: some View {
-        CancelButton(action: { }, title: "Test")
+        CancelButton(action: { }, title: "Test", isContentValid: .constant(true))
     }
 }

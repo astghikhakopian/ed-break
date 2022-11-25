@@ -11,7 +11,12 @@ final class ChildrenViewModel: ChildrenViewModeling, Identifiable {
     @Published var children = PagingModel<ChildModel>(results: [])
     @Published var coachingChildren = [CoachingChildModel]()
     @Published var isLoading: Bool = false
-    @Published var connectedChildren = [ChildModel]()
+    @Published var isContentValid: Bool = false
+    @Published var connectedChildren = [ChildModel]() {
+        didSet {
+            isContentValid = connectedChildren.count == children.count
+        }
+    }
     @Published var selectedPeriod: TimePeriod = .week  {
         didSet {
             getCoachingChildren()
@@ -83,6 +88,7 @@ final class ChildrenViewModel: ChildrenViewModeling, Identifiable {
 final class MockChildrenViewModeling: ChildrenViewModeling, Identifiable {
     
     var isLoading = false
+    var isContentValid = false
     var connectedChildren = [ChildModel]()
     var selectedPeriod: TimePeriod = .day
     var timePeriodDatasource: [TimePeriod] = TimePeriod.allCases

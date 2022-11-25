@@ -10,7 +10,7 @@ import UIKit
 final class CoachingViewModel: CoachingViewModeling, Identifiable {
     @Published var children = PagingModel<CoachingChildModel>(results: [])
     @Published var isLoading: Bool = false
-    @Published var selectedPeriod: TimePeriod = .week  {
+    @Published var selectedPeriod: TimePeriod = .day  {
         didSet {
             getCoachingChildren()
         }

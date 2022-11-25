@@ -55,7 +55,7 @@ struct ChildProfileView<M: ChildProfileViewModeling>: View {
             }
         }.background(Color.primaryBackground)
             .navigationBarBackButtonHidden(true)
-            .navigationBarItems(leading: backItem, trailing: moreItem)
+            .navigationBarItems(leading: backItem/*, trailing: moreItem*/)
             .familyActivityPicker(isPresented: $isDiscouragedPresented, selection: $model.selectionToDiscourage)
             .onChange(of: model.selectionToDiscourage) { newSelection in
                 viewModel.addRestrictions()

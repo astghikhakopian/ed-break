@@ -36,8 +36,8 @@ struct CoachingView<M: CoachingViewModeling>: View {
 
 private extension CoachingView {
     var content: some View {
-        ForEach(viewModel.children.results, id: \.id) { child in
-            CoachingCell(child: child)
+        ForEach($viewModel.children.results, id: \.id) { $child in
+            CoachingCell(child: $child)
         }
     }
     

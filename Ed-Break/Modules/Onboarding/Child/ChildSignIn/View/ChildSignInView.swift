@@ -41,7 +41,7 @@ struct ChildSignInView: View {
                             }
                         }
 
-                    }, title: "onboarding.childSignIn.action")
+                    }, title: "onboarding.childSignIn.action", isContentValid: .constant(true))
                 }.padding(padding)
             }
         }

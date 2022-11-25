@@ -34,7 +34,7 @@ struct CoachingChildDto: Codable {
     let childId: Int
     let correctAnswers: Int
     let correctPercent: Float?
-    let photo: String?
+    let childPhoto: String?
     let previousDifference: Float?
     let grade: Int
     let questionsCount: Int?

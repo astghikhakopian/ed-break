@@ -12,6 +12,7 @@ struct ConfirmButton: View {
     let action: () -> Void
     let title: String
     
+    @Binding var isContentValid: Bool
     @Binding var isLoading: Bool
     
     private let height = 54.0
@@ -19,13 +20,17 @@ struct ConfirmButton: View {
     
     var body: some View {
         ZStack {
-            Color.primaryPurple
+            isContentValid ? Color.primaryPurple : Color.border
             if !isLoading {
                 Button(action: action, label: {
-                    Text(LocalizedStringKey(title))
-                        .font(.appButton)
+                    HStack {
+                        Spacer()
+                        Text(LocalizedStringKey(title))
+                            .font(.appButton)
+                        Spacer()
+                    }
                 })
-                .foregroundColor(.appWhite)
+                .foregroundColor( isContentValid ? .appWhite : .primaryDescription )
             } else {
                 ProgressView()
                     .progressViewStyle(CircularProgressViewStyle(tint: .appWhite))
@@ -41,6 +46,6 @@ struct ConfirmButton_Previews: PreviewProvider {
     @State static var isLoading = false
     
     static var previews: some View {
-        ConfirmButton(action: { }, title: "Test", isLoading: $isLoading)
+        ConfirmButton(action: { }, title: "Test", isContentValid: .constant(true), isLoading: $isLoading)
     }
 }

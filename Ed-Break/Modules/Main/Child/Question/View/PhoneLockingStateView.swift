@@ -66,7 +66,7 @@ struct PhoneLockingStateView: View {
     }
     
     var confirmButton: some View {
-        ConfirmButton(action: action, title: "common.continue", isLoading: $isLoading)
+        ConfirmButton(action: action, title: "common.continue", isContentValid: .constant(true), isLoading: $isLoading)
     }
 }
 

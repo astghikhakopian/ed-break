@@ -12,14 +12,17 @@ class ChildDetailsModel {
     var childId: Int? = nil
     @Published var image = UIImage()
     var grade: Grade = .first
+    var interuption: Interuption = .i15
     var childName: String = ""
+    var subjects: [BottomsheetCellModel]?
     
-    init(childId: Int? = nil, image: UIImage = UIImage(), grade: Grade, childName: String) {
+    init(childId: Int? = nil, image: UIImage = UIImage(), grade: Grade, childName: String, subjects: [SubjectModel]?) {
         self.id = UUID()
         self.childId = childId
         self.image = image
         self.grade = grade
         self.childName = childName
+        self.subjects = subjects
     }
     
     init() {
@@ -28,6 +31,7 @@ class ChildDetailsModel {
         self.image = UIImage()
         self.grade = .first
         self.childName = ""
+        self.subjects = nil
     }
 }
 
@@ -36,6 +40,8 @@ final class ChildDetailsViewModel: ChildDetailsViewModeling, Identifiable {
     let child: ChildModel?
     
     @Published var grades: [Grade] = Grade.allCases
+    @Published var interuptions: [Interuption] = Interuption.allCases
+    @Published var subjects: [BottomsheetCellModel] = [SubjectModel(dto: SubjectDto(id: 0, subject: "", photo: "", questionsCount: 0, completedCount: 0, correctAnswersCount: 0, completed: false))]
     @Published var isContentValid: Bool = false
     @Published var isLoading: Bool = false
     @Published var children: [ChildDetailsModel] = [ChildDetailsModel()] {
@@ -47,16 +53,20 @@ final class ChildDetailsViewModel: ChildDetailsViewModeling, Identifiable {
     private var addChildUseCase: AddChildUseCase?
     private var updateChildUseCase: UpdateChildUseCase?
     private var deleteChildUseCase: DeleteChildUseCase?
+    private var getAllSubjectsUseCase: GetAllSubjectsUseCase
     
-    init(child: ChildModel? = nil, addChildUseCase: AddChildUseCase? = nil, updateChildUseCase: UpdateChildUseCase? = nil, deleteChildUseCase: DeleteChildUseCase? = nil) {
+    init(child: ChildModel? = nil, addChildUseCase: AddChildUseCase? = nil, updateChildUseCase: UpdateChildUseCase? = nil, deleteChildUseCase: DeleteChildUseCase? = nil, getAllSubjectsUseCase: GetAllSubjectsUseCase) {
         self.child = child
         self.addChildUseCase = addChildUseCase
         self.updateChildUseCase = updateChildUseCase
         self.deleteChildUseCase = deleteChildUseCase
+        self.getAllSubjectsUseCase = getAllSubjectsUseCase
         
         if let child = child {
-            children = [ChildDetailsModel(childId: child.id, grade: child.grade, childName: child.name)]
+            children = [ChildDetailsModel(childId: child.id, grade: child.grade, childName: child.name, subjects: [])] // TODO: - child subjects
         }
+        
+        getSubjects()
     }
     
     func addAnotherChild() {
@@ -74,7 +84,7 @@ final class ChildDetailsViewModel: ChildDetailsViewModeling, Identifiable {
         let validChildren = children.filter{ !$0.childName.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty }
         var waitingChildCount = validChildren.count
         for child in validChildren {
-            let payload = CreateChildPayload(name: child.childName, grade: child.grade, restrictionTime: nil, photo: child.image == UIImage() ? nil : child.image)
+            let payload = CreateChildPayload(name: child.childName, grade: child.grade, restrictionTime: nil, interruption: child.interuption.rawValue, subjects: child.subjects?.map{ $0.id }, photo: child.image == UIImage() ? nil : child.image)
             addChildUseCase.execute(payload: payload) { [weak self] result in
                 DispatchQueue.main.async {
                     waitingChildCount -= 1
@@ -96,7 +106,7 @@ final class ChildDetailsViewModel: ChildDetailsViewModeling, Identifiable {
         guard let updateChildUseCase = updateChildUseCase, let child = children.first, let childId = child.childId else { return }
         guard isContentValid else  { return }
         isLoading = true
-        let payload = CreateChildPayload(name: child.childName, grade: child.grade, restrictionTime: nil, photo: child.image == UIImage() ? nil : child.image)
+        let payload = CreateChildPayload(name: child.childName, grade: child.grade, restrictionTime: nil, interruption: child.interuption.rawValue, subjects: child.subjects?.map{ $0.id }, photo: child.image == UIImage() ? nil : child.image)
         updateChildUseCase.execute(id: childId, payload: payload) { [weak self] result in
             DispatchQueue.main.async {
                 self?.isLoading = false
@@ -127,6 +137,18 @@ final class ChildDetailsViewModel: ChildDetailsViewModeling, Identifiable {
             }
         }
     }
+    func getSubjects() {
+        getAllSubjectsUseCase.execute { [weak self] result in
+            switch result {
+            case .success(let subjects):
+                DispatchQueue.main.async {
+                    self?.subjects = subjects
+                }
+            case .failure(let failure):
+                print(failure)
+            }
+        }
+    }
 }
 
 
@@ -135,7 +157,9 @@ final class ChildDetailsViewModel: ChildDetailsViewModeling, Identifiable {
 final class MockChildDetailsViewModel: ChildDetailsViewModeling, Identifiable {
     
     var children: [ChildDetailsModel] = [ChildDetailsModel()]
+    var interuptions: [Interuption] = Interuption.allCases
     var grades = Grade.allCases
+    var subjects: [BottomsheetCellModel] = []
     
     var isContentValid = true
     var isLoading = false
@@ -146,4 +170,5 @@ final class MockChildDetailsViewModel: ChildDetailsViewModeling, Identifiable {
     func removeChild(child: ChildDetailsModel) { }
     
     func appendChildren() { }
+    func getSubjects() { }
 }

@@ -34,7 +34,6 @@ enum ChildrenRoute: TargetType {
             return "/users/child-device/"
         case .checkConnection:
             return "/users/child-status/"
-            
         case .getSubjects:
             return "/users/child-home/"
         }

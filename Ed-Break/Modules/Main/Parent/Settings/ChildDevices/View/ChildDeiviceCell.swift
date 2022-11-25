@@ -53,9 +53,11 @@ struct ChildDeiviceCell: View {
     }
 }
 
+/*
 struct ChildDeiviceCell_Previews: PreviewProvider {
     @State static var state: ChildCellState = .connected
     static var previews: some View {
-        ChildCell(name: "Emma", grade: .third, imageUrl: nil, state: $state) { }
+        ChildCell(name: "Emma", grade: [Grade.third], imageUrl: nil, state: $state) { }
     }
 }
+*/

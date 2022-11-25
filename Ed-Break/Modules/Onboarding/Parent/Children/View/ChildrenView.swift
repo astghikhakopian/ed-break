@@ -29,7 +29,7 @@ struct ChildrenView<M: ChildrenViewModeling>: View {
                 ConfirmButton(action: {
                     guard viewModel.connectedChildren.count == viewModel.children.count else { return }
                     appState.moveToDashboard = true
-                }, title: "common.continue", isLoading:  $viewModel.isLoading)
+                }, title: "common.continue", isContentValid: $viewModel.isContentValid, isLoading:  $viewModel.isLoading)
             }
         }.onAppear {
             viewModel.getChildren()

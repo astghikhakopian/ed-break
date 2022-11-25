@@ -11,5 +11,7 @@ struct CreateChildPayload {
     let name: String
     let grade: Grade
     let restrictionTime: Int?
+    let interruption: Int?
+    let subjects: [Int]?
     let photo: UIImage?
 }

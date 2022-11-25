@@ -52,6 +52,8 @@
 "childDetails.grade" = "Grade level";
 "childDetails.add" = "Add another child";
 "childDetails.delete" = "Delete child’s device";
+"childDetails.subjects" = "Subjects";
+"childDetails.interruption" = "Interruption";
 
 "qrCode.description" = "Get Ed-Break app from the App Store or scan the QR-code on the child’s Device";
 
@@ -65,6 +67,7 @@
 "common.continue" = "Continue";
 "common.manage" = "Manage";
 "common.delete" = "Delete";
+"common.select" = "Select";
 
 
 // Tabbar

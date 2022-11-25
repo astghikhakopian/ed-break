@@ -25,10 +25,10 @@ struct ChildEditView<M: ChildDetailsViewModeling>: View {
                     viewModel.updateChild {
                         presentationMode.wrappedValue.dismiss()
                     }
-                }, title: "common.continue", isLoading: $viewModel.isLoading)
+                }, title: "common.continue", isContentValid: $viewModel.isContentValid, isLoading: $viewModel.isLoading)
                 CancelButton(action: {
                     showDeletingAlert = true
-                }, title: "childDetails.delete", color: .primaryRed)
+                }, title: "childDetails.delete", color: .primaryRed, isContentValid: .constant(true))
             }
         }.alert("main.parent.settings.delete.description", isPresented: $showDeletingAlert, actions: {
             Button("common.delete", role: .destructive, action: {
@@ -56,12 +56,12 @@ private extension ChildEditView {
                 ForEach($viewModel.children, id: \.id) { child in
                     uploadPhotoView(image: child.image)
                     CommonTextField(title: "childDetails.name", text: child.childName)
-                    PickerTextField(title: "childDetails.grade", selection: child.grade, datasource: $viewModel.grades)
+//                    PickerTextField(title: "childDetails.grade", selection: child.grade, datasource: $viewModel.grades)
                     if $viewModel.children.count > 1 {
                         CancelButton(action: {
                             guard !viewModel.isLoading else { return }
                             viewModel.removeChild(child:  child.wrappedValue)
-                        }, title: "childDetails.delete", color: .primaryRed)
+                        }, title: "childDetails.delete", color: .primaryRed, isContentValid: .constant(true))
                     }
                 }
             }.padding(spacing)

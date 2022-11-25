@@ -9,7 +9,7 @@ import SwiftUI
 
 struct CoachingCell: View {
     
-    let child: CoachingChildModel
+    @Binding var child: CoachingChildModel
     
     private let imageHeight = 52.0
     private let cornerRadius = 12.0
@@ -21,9 +21,9 @@ struct CoachingCell: View {
     
     var body: some View {
         VStack(spacing: spacing) {
-            childInfoView(child: child)
+            childInfoView(child: $child)
             VStack(spacing: spacing) {
-                statistics(child: child)
+                statistics(child: $child)
                 HStack {
                     statisticsItem(
                         title: "\(child.percentageProgress)%",
@@ -46,9 +46,9 @@ struct CoachingCell: View {
 }
 
 private extension CoachingCell {
-    private func childInfoView(child: CoachingChildModel) -> some View {
+    private func childInfoView(child: Binding<CoachingChildModel>) -> some View {
         HStack(spacing: spacing) {
-            if let imageUrl = child.photoUrl {
+            if let imageUrl = child.photoUrl.wrappedValue {
                 AsyncImageView(withURL: imageUrl.absoluteString, width: imageHeight, height: imageHeight)
                     .frame(width: imageHeight, height: imageHeight)
                     .cornerRadius(imageHeight/2)
@@ -60,9 +60,9 @@ private extension CoachingCell {
             }
             
             VStack(alignment: .leading) {
-                Text(child.name)
+                Text(child.name.wrappedValue)
                     .font(.appButton)
-                Text(child.grade.name)
+                Text(child.wrappedValue.grade.name)
                     .font(.appBody)
                     .foregroundColor(.primaryDescription)
             }
@@ -70,13 +70,13 @@ private extension CoachingCell {
         }
     }
     
-    private func statistics(child: CoachingChildModel) -> some View {
+    private func statistics(child: Binding<CoachingChildModel>) -> some View {
         HStack {
             statisticsItem(
-                title: "\(child.todayCorrectAnswers) of \(child.todayAnswers)",
+                title: "\(child.wrappedValue.todayCorrectAnswers) of \(child.wrappedValue.todayAnswers)",
                 description: "main.parent.home.questions")
             Spacer()
-            statisticsItem(title: "\(Int(child.percentageToday))%", description: "main.parent.home.answers")
+            statisticsItem(title: "\(Int(child.wrappedValue.percentageToday))%", description: "main.parent.home.answers")
         }
     }
     private func statisticsItem(title: String, description: String, subtitle: String? = nil, image: Image? = nil) -> some View {

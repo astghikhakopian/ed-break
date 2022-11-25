@@ -115,7 +115,7 @@ extension QuestionsView {
             viewModel.answerQuestion(answer: selectedAnswer) { _ in
                 presentationMode.wrappedValue.dismiss()
             }
-        }, title: "common.continue", isLoading: $viewModel.isLoading)
+        }, title: "common.continue", isContentValid: .constant(true), isLoading: $viewModel.isLoading)
     }
 }
 

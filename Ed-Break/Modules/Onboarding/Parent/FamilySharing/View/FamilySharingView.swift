@@ -32,11 +32,17 @@ struct FamilySharingView<M: FamilySharingViewModeling>: View {
                     isLoading: $viewModel.isLoading,
                     shouldNavigateAfterLoading: true,
                     content: {
-                        ChildDetailsView(viewModel: ChildDetailsViewModel(addChildUseCase: AddChildUseCase(childDetailsRepository: DefaultChildDetailsRepository(plugins: [BasicAuthenticationPlugin()]))))
+                        ChildDetailsView(
+                            viewModel: ChildDetailsViewModel(
+                                addChildUseCase: AddChildUseCase(
+                                    childDetailsRepository: DefaultChildDetailsRepository(
+                                        plugins: [BasicAuthenticationPlugin()])),
+                                getAllSubjectsUseCase: GetAllSubjectsUseCase(
+                                    childDetailsRepository: DefaultChildDetailsRepository())))
                     })
                 CancelButton(action: {
                     openURL(settingsUrl)
-                }, title: "familySharing.cancel")
+                }, title: "familySharing.cancel", isContentValid: .constant(true))
             }
         }
     }
