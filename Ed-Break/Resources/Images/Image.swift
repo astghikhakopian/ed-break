@@ -132,6 +132,9 @@ extension Image {
         public static var checkmark: Image {
             return Image("common.checkmark")
         }
+        public static var roundedCheckmark: Image {
+            return Image("common.roundedCheckmark")
+        }
         public struct Answer {
             public static var failure: Image {
                 return Image("answer.failure")

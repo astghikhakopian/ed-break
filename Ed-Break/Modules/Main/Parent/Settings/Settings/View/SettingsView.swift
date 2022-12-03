@@ -34,7 +34,7 @@ struct SettingsView<M: ParentSettingsViewModeling>: View {
             isPresented: $showDeleteOptions,
             titleVisibility: .visible) {
                 Button("main.parent.settings.delete", role: .destructive) {
-                    viewModel.deleteParent {
+                    viewModel.deleteAccount {
                         DispatchQueue.main.async {
                             appState.moveToLogin = true
                         }
@@ -58,7 +58,7 @@ extension SettingsView {
         VStack(alignment: .leading, spacing: 0) {
             if viewModel.isUserLoggedIn {
                 NavigationLink {
-                    ChildDevicesView(viewModel: ChildrenViewModel(getChildrenUseCase: GetChildrenUseCase(childrenRepository: DefaultChildrenRepository()), pairChildUseCase: PairChildUseCase(childrenRepository: DefaultChildrenRepository())))
+                    ChildDevicesView(viewModel: ChildrenViewModel(getChildrenUseCase: GetChildrenUseCase(childrenRepository: DefaultChildrenRepository()), pairChildUseCase: PairChildUseCase(childrenRepository: DefaultChildrenRepository()), refreshTokenUseCase: RefreshTokenUseCase(familySharingRepository: DefaultFamilySharingRepository())))
                 } label: {
                     settingsCell(type: .childDevices).disabled(true)
                 }

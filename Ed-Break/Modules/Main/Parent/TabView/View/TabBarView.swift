@@ -19,11 +19,17 @@ struct TabBarView: View {
             
             NavigationView {
                 MainBackground(title: "main.parent.home", withNavbar: false) {
-                    DashboardView(viewModel: ChildrenViewModel(getChildrenUseCase: GetChildrenUseCase(childrenRepository: DefaultChildrenRepository()), pairChildUseCase: PairChildUseCase(childrenRepository: DefaultChildrenRepository())))
-                        .environmentObject(model)
+                    DashboardView(
+                        viewModel: ChildrenViewModel(
+                            getChildrenUseCase: GetChildrenUseCase(
+                                childrenRepository: DefaultChildrenRepository()),
+                            pairChildUseCase: PairChildUseCase(
+                                childrenRepository: DefaultChildrenRepository()),
+                            refreshTokenUseCase: RefreshTokenUseCase(
+                                familySharingRepository: DefaultFamilySharingRepository())))
+                    .environmentObject(model)
                 }
-            }
-            .navigationViewStyle(StackNavigationViewStyle())
+            }.navigationViewStyle(StackNavigationViewStyle())
             .foregroundColor(.appBlack)
             .accentColor(.appClear)
             .tabItem {

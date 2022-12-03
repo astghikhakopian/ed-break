@@ -31,7 +31,7 @@ struct QRCodeView: View {
                                     childrenRepository: DefaultChildrenRepository(
                                         plugins: [BasicAuthenticationPlugin()])),
                                 pairChildUseCase: PairChildUseCase(childrenRepository: DefaultChildrenRepository(
-                                    plugins: [BasicAuthenticationPlugin()]))
+                                    plugins: [BasicAuthenticationPlugin()])), refreshTokenUseCase: RefreshTokenUseCase(familySharingRepository: DefaultFamilySharingRepository())
                             ))})
             }
         }
@@ -45,13 +45,17 @@ private extension QRCodeView {
             Color.appWhite
                 .cornerRadius(cornerRadius)
                 .shadow(color: .shadow, radius: 40, x: 0, y: 20)
-            VStack(spacing: spacing) {
-                Image.QRCode.qrCode.resizable().frame(width: 200, height: 200)
-                Text("qrCode.description")
-                    .font(.appHeadline)
-                    .foregroundColor(.primaryText)
-                    .multilineTextAlignment(.center)
-            }.padding(padding)
+            HStack {
+                Spacer()
+                VStack(spacing: spacing) {
+                    Image.QRCode.qrCode.resizable().frame(width: 200, height: 200)
+                    Text("qrCode.description")
+                        .font(.appHeadline)
+                        .foregroundColor(.primaryText)
+                        .multilineTextAlignment(.center)
+                }.padding(padding)
+                Spacer()
+            }
         }
     }
 }

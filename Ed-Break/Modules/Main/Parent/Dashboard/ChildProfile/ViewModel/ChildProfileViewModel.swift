@@ -25,15 +25,20 @@ final class ChildProfileViewModel: ChildProfileViewModeling, Identifiable {
     }
     
     @Published var detailsInfo: ChildProfileModel
+    @Published var interuptions: [Interuption] = Interuption.allCases
+    @Published var interuption: Interuption
     
     private var getChildDetailsUseCase: GetChildDetailsUseCase
     private var addRestrictionUseCase: AddRestrictionUseCase
+    private var addInterruptionUseCase: AddInterruptionUseCase
     
-    init(child: ChildModel, getChildDetailsUseCase: GetChildDetailsUseCase, addRestrictionUseCase: AddRestrictionUseCase) {
+    init(child: ChildModel, getChildDetailsUseCase: GetChildDetailsUseCase, addRestrictionUseCase: AddRestrictionUseCase, addInterruptionUseCase: AddInterruptionUseCase) {
         self.child = child
         self.detailsInfo = ChildProfileModel(childId: child.id)
+        self.interuption = Interuption(rawValue: child.interruption ?? 15) ?? .i15
         self.getChildDetailsUseCase = getChildDetailsUseCase
         self.addRestrictionUseCase = addRestrictionUseCase
+        self.addInterruptionUseCase = addInterruptionUseCase
         
         getChildDetails()
     }
@@ -65,6 +70,12 @@ final class ChildProfileViewModel: ChildProfileViewModeling, Identifiable {
             print(error?.localizedDescription ?? "")
         }
     }
+    
+    func addInterruption() {
+        addInterruptionUseCase.execute(childId: child.id, interruption: interuption.rawValue) { error in
+            print(error?.localizedDescription ?? "")
+        }
+    }
 }
 
 
@@ -73,7 +84,7 @@ final class ChildProfileViewModel: ChildProfileViewModeling, Identifiable {
 final class MockChildProfileViewModel: ChildProfileViewModeling, Identifiable {
     var detailsInfo = ChildProfileModel(childId: 0)
     
-    var child: ChildModel = ChildModel(dto: ChildDto(id: 0, name: "Emma", grade: 3, restrictionTime: nil, photo: nil, todayAnswers: 20, todayCorrectAnswers: 19, percentageToday: 75, percentageProgress: 95, lastLogin: "Active 14 min ago"))
+    var child: ChildModel = ChildModel(dto: ChildDto(id: 0, name: "Emma", grade: 1, restrictionTime: nil, photo: nil, todayAnswers: nil, todayCorrectAnswers: nil, percentageToday: nil, percentageProgress: nil, lastLogin: nil, breakEndDatetime: nil, breakStartDatetime: nil, wrongAnswersTime: nil, deviceToken: nil, restrictions: nil, subjects: []))
     var datasource: [TimePeriod] = TimePeriod.allCases
     var isLoading = false
     
@@ -82,6 +93,10 @@ final class MockChildProfileViewModel: ChildProfileViewModeling, Identifiable {
     
     var selectedActivityPeriod: TimePeriod = .month
     
+    var interuptions: [Interuption] = Interuption.allCases
+    var interuption: Interuption = .i15
+    
     func getChildDetails() { }
     func addRestrictions() { }
+    func addInterruption() { }
 }

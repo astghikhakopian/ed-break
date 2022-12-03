@@ -63,9 +63,17 @@ class WheelPickerTextField<C>: UITextField, UIPickerViewDataSource, UIPickerView
 
         let doneButton = UIBarButtonItem(
             title: "Done",
-            style: .done,
-            target: self,
-            action: #selector(donePressed)
+            primaryAction: UIAction(handler: { [weak self] _ in
+                guard let self = self else { return }
+                let selectedIndex = self.pickerView.selectedRow(inComponent: 0)
+                guard self.data.count > selectedIndex else { return }
+                self.selection = self.data[selectedIndex]
+                self.endEditing(true)
+            })
+            // style: .done,
+            // target: self,
+            
+            //action: #selector(donePressed)
         )
         doneButton.setTitleTextAttributes([
             NSAttributedString.Key.font: UIFont(name: "Poppins-Medium", size: 13)!,
@@ -80,13 +88,12 @@ class WheelPickerTextField<C>: UITextField, UIPickerViewDataSource, UIPickerView
     }()
 
     // MARK: - Private methods
-    @objc
-    private func donePressed() {
-        let selectedIndex = self.pickerView.selectedRow(inComponent: 0)
-        guard data.count > selectedIndex else { return }
-        self.selection = self.data[selectedIndex]
-        self.endEditing(true)
-    }
+//    @objc func donePressed() {
+//        let selectedIndex = self.pickerView.selectedRow(inComponent: 0)
+//        guard data.count > selectedIndex else { return }
+//        self.selection = self.data[selectedIndex]
+//        self.endEditing(true)
+//    }
 
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
@@ -133,7 +140,7 @@ struct WheelPickerRepresentableField<C>: UIViewRepresentable where C: PickerItem
     private let textField: WheelPickerTextField<C>
 
     // MARK: - Initializers
-    init(title: String, placeholder: String? = nil, datasource: Binding<[C]>, selection: Binding<C>) where C: PickerItem {
+    init(title: String, placeholder: String? = nil, datasource: Binding<[C]>, selection: Binding<C>, color: UIColor) where C: PickerItem {
         self.title = title
         self.placeholder = placeholder
         self._datasource = datasource
@@ -142,6 +149,7 @@ struct WheelPickerRepresentableField<C>: UIViewRepresentable where C: PickerItem
         textField = WheelPickerTextField(title: title, data: datasource, selection: selection)
         
         textField.font = UIFont(name: "Poppins-Medium", size: 12)
+        textField.textColor = color
     }
 
     // MARK: - Public methods
@@ -156,7 +164,7 @@ struct WheelPickerRepresentableField<C>: UIViewRepresentable where C: PickerItem
 }
 
 struct WheelPickerField<C>: View where C: PickerItem {
-    
+    var minimumStyle: Bool = false
     let title: String
     @Binding var selection: C
     @Binding var datasource: [C]
@@ -167,21 +175,25 @@ struct WheelPickerField<C>: View where C: PickerItem {
     private let spacing = 0.0
     
     var body: some View {
-        VStack(alignment: .leading, spacing: spacing) {
-            Text(LocalizedStringKey(title))
-                .font(.appHeadline)
-                .foregroundColor(.primaryDescription)
-            Spacer().frame(height: 4)
-            HStack {
-                WheelPickerRepresentableField(title: title, datasource: $datasource, selection: $selection)
-                Spacer()
-                Image.Common.dropdownArrow
-            }.accentColor(.appBlack)
-                .padding(padding)
-                .overlay(
-                    RoundedRectangle(cornerRadius: cornerRadius)
-                        .stroke(Color.border, lineWidth: borderWidth)
-                )
+        if minimumStyle {
+            WheelPickerRepresentableField(title: title, datasource: $datasource, selection: $selection, color: UIColor(Color.primaryPurple))
+        } else {
+            VStack(alignment: .leading, spacing: spacing) {
+                Text(LocalizedStringKey(title))
+                    .font(.appHeadline)
+                    .foregroundColor(.primaryDescription)
+                Spacer().frame(height: 4)
+                HStack {
+                    WheelPickerRepresentableField(title: title, datasource: $datasource, selection: $selection, color: UIColor(Color.appBlack))
+                    Spacer()
+                    Image.Common.dropdownArrow
+                }.accentColor(.appBlack)
+                    .padding(padding)
+                    .overlay(
+                        RoundedRectangle(cornerRadius: cornerRadius)
+                            .stroke(Color.border, lineWidth: borderWidth)
+                    )
+            }
         }
     }
 }

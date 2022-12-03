@@ -17,6 +17,8 @@ struct HomeView<M: HomeViewModeling>: View {
     private let headerHeight: CGFloat = 30
     private let cornerRadius = 12.0
     
+    private let timer = Timer.publish(every: 60, on: .main, in: .common).autoconnect()
+    
     var body: some View {
         VStack(spacing: 12) {
             HStack {
@@ -25,7 +27,7 @@ struct HomeView<M: HomeViewModeling>: View {
                 ZStack {
                     VStack(spacing: textSpacing) {
                         HStack(alignment: .bottom, spacing: textSpacing) {
-                            Text(String(viewModel.contentModel?.restrictionTime ?? 0))
+                            Text(String(viewModel.remindingMinutes))
                                 .font(.appHeadingH2)
                                 .foregroundColor(.primaryPurple)
                             Text("main.child.home.min")
@@ -39,7 +41,7 @@ struct HomeView<M: HomeViewModeling>: View {
                             .multilineTextAlignment(.center)
                     }
                     
-                    CircularProgressView(progress: 0.7)
+                    CircularProgressView(progress: viewModel.progress)
                         .frame(height: progressWidth)
                 }.padding(headerPadding)
                 Spacer()
@@ -52,18 +54,33 @@ struct HomeView<M: HomeViewModeling>: View {
                             QuestionsView(
                                 viewModel: QuestionsViewModel(
                                     subject: subject,
+                                    home: viewModel.contentModel,
                                     getQuestionsUseCase: GetQuestionsUseCase(
                                         questionsRepository: DefaultQuestionsRepository()),
                                     answerQuestionUseCase: AnswerQuestionUseCase(
+                                        questionsRepository: DefaultQuestionsRepository()),
+                                    resultOfAdditionalQuestionsUseCase: ResultOfAdditionalQuestionsUseCase(
                                         questionsRepository: DefaultQuestionsRepository())))
                         })
                 } label: {
                     LessonCell(model: subject)
                 }
             }
-        }.onLoad {
+        }
+        .onReceive(timer) { time in
+            if viewModel.remindingMinutes > 0 {
+                viewModel.remindingMinutes -= 1
+            } else {
+                viewModel.setRestrictions()
+            }
+        }
+        .onAppear {
             viewModel.getSubjects()
         }
+//        .onLoad {
+//            viewModel.getSubjects()
+//        }
+        
     }
 }
 

@@ -22,12 +22,13 @@ final class ParentSettingsViewModel: ParentSettingsViewModeling, Identifiable {
         self.localStorageService = localStorageService
     }
     
-    func deleteParent(completion: @escaping ()->()) {
+    func deleteAccount(completion: @escaping ()->()) {
         isLoading = true
         deleteParentUseCase.execute { [weak self] error in
             DispatchQueue.main.async { self?.isLoading = false }
             if let error = error { print(error.localizedDescription); return }
             self?.localStorageService.remove(key: .User.token)
+            self?.localStorageService.remove(key: .ChildUser.token)
             completion()
         }
     }
@@ -41,5 +42,5 @@ final class MockParentSettingsViewModel: ParentSettingsViewModeling, Identifiabl
     var isLoading = false
     let isUserLoggedIn: Bool = false
     
-    func deleteParent(completion: @escaping ()->()) { }
+    func deleteAccount(completion: @escaping ()->()) { }
 }

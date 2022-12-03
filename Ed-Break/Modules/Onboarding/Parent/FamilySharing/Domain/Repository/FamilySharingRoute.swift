@@ -47,12 +47,13 @@ enum FamilySharingRoute: TargetType {
         case .refreshToken:
             let token: TokenModel? = UserDefaultsService().getObject(forKey: .User.token)
             let refreshToken = token?.refresh ?? ""
-            return .requestParameters(
-                parameters: [
-                    "refresh" : refreshToken
-                ],
-                encoding: URLEncoding.httpBody
-            )
+            return .requestCompositeParameters(bodyParameters: ["refresh" : refreshToken], bodyEncoding:  JSONEncoding.prettyPrinted, urlParameters: [:])
+//            return .requestParameters(
+//                parameters: [
+//                    "refresh" : refreshToken
+//                ],
+//                encoding: URLEncoding.httpBody
+//            )
         }
     }
     

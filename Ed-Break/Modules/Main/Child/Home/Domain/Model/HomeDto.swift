@@ -10,9 +10,14 @@ import Foundation
 struct HomeDto: Codable {
     let childId: Int
     let lastLogin: String?
-    let restrictionTime: Int
+    let restrictionTime: Int?
     let restrictions: String?
+    var interruption: Int?
+    var breakEndDatetime: String?
+    var breakStartDatetime: String?
     let subjects: [SubjectDto]
+    let wrongAnswersTime: String?
+    let deviceToken: String?
 }
 
 struct SubjectDto: Codable {

@@ -19,8 +19,11 @@ struct ChildTabView: View {
             
             NavigationView {
                 MainBackground(title: "main.parent.home", withNavbar: false) {
-                    HomeView(viewModel: HomeViewModel(getSubjectsUseCase: GetSubjectsUseCase(childrenRepository: DefaultChildrenRepository())))
-                        .environmentObject(model)
+                    HomeView(viewModel: HomeViewModel(
+                        getSubjectsUseCase: GetSubjectsUseCase(
+                            childrenRepository: DefaultChildrenRepository()),
+                        checkConnectionUseCase: CheckConnectionUseCase(childrenRepository: DefaultChildrenRepository())))
+                    .environmentObject(model)
                 }
             }
             .navigationViewStyle(StackNavigationViewStyle())

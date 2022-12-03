@@ -65,6 +65,7 @@
 // Common
 
 "common.continue" = "Continue";
+"common.ok" = "OK";
 "common.manage" = "Manage";
 "common.delete" = "Delete";
 "common.select" = "Select";
@@ -73,7 +74,7 @@
 // Tabbar
 
 "tabbar.dashboard.title" = "Dashboard";
-"tabbar.coaching.title" = "Coaching";
+"tabbar.coaching.title" = "Report card";
 "tabbar.home.title" = "Home";
 "tabbar.settings.title" = "Settings";
 
@@ -99,7 +100,7 @@
 "main.parent.childProfile.restrictionPeriod" = "Restriction time period";
 "main.parent.childProfile.restrictedApps" = "Restricted app & categories";
 
-"main.parent.coaching" = "Coaching";
+"main.parent.coaching" = "Report card";
 
 "main.child.home.min" = "min";
 "main.child.home.usage" = "Device usage \n remaining today";

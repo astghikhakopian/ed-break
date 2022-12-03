@@ -38,6 +38,7 @@ struct PhoneLockingStateView: View {
     let action: () -> Void
     
     @Binding var isLoading: Bool
+    var title: String
 
     
     private let spacing: CGFloat = 8
@@ -66,12 +67,12 @@ struct PhoneLockingStateView: View {
     }
     
     var confirmButton: some View {
-        ConfirmButton(action: action, title: "common.continue", isContentValid: .constant(true), isLoading: $isLoading)
+        ConfirmButton(action: action, title: title, isContentValid: .constant(true), isLoading: $isLoading)
     }
 }
 
 struct PhoneLockingStateView_Previews: PreviewProvider {
     static var previews: some View {
-        PhoneLockingStateView(state: .locked, action: {}, isLoading: .constant(false))
+        PhoneLockingStateView(state: .locked, action: {}, isLoading: .constant(false), title: "common.continue")
     }
 }

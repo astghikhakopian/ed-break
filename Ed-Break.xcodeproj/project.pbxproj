@@ -36,8 +36,10 @@
 		1B445AF028EC725700B0B310 /* AsyncImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B445AEF28EC725700B0B310 /* AsyncImageView.swift */; };
 		1B47815C28F8595800AA8BF8 /* ChildProfileModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B47815B28F8595800AA8BF8 /* ChildProfileModel.swift */; };
 		1B4C1E2928F4678300C69FB1 /* ChildProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B4C1E2828F4678300C69FB1 /* ChildProfileView.swift */; };
+		1B4F5719293931D200AE29E3 /* ScheduleModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B4F5718293931D200AE29E3 /* ScheduleModel.swift */; };
 		1B56107D28F420B700DA3043 /* DashboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B56107C28F420B700DA3043 /* DashboardView.swift */; };
 		1B56107F28F4263E00DA3043 /* HomeChildCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B56107E28F4263E00DA3043 /* HomeChildCell.swift */; };
+		1B5A0352293272B40032BB71 /* AddInterruptionUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B5A0351293272B40032BB71 /* AddInterruptionUseCase.swift */; };
 		1B687134290D51FE00651A33 /* PairChildPayload.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B687133290D51FE00651A33 /* PairChildPayload.swift */; };
 		1B687136290D532700651A33 /* PairChildUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B687135290D532700651A33 /* PairChildUseCase.swift */; };
 		1B68713B290D678300651A33 /* CheckConnectionUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B68713A290D678300651A33 /* CheckConnectionUseCase.swift */; };
@@ -61,6 +63,7 @@
 		1B8C4286290EAA3400FD5598 /* DropdownButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B8C4285290EAA3400FD5598 /* DropdownButton.swift */; };
 		1B99050E29106570001E7303 /* CoachingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B99050D29106570001E7303 /* CoachingCell.swift */; };
 		1B99051029106FEF001E7303 /* GetCoachingUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B99050F29106FEF001E7303 /* GetCoachingUseCase.swift */; };
+		1B9B364C293BAC020094B801 /* ResultOfAdditionalQuestionsUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B9B364B293BAC020094B801 /* ResultOfAdditionalQuestionsUseCase.swift */; };
 		1BA2403728F5DB5700649467 /* ChildProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BA2403628F5DB5700649467 /* ChildProfileViewModel.swift */; };
 		1BA2403928F5DB6300649467 /* ChildProfileViewModeling.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BA2403828F5DB6300649467 /* ChildProfileViewModeling.swift */; };
 		1BA2403D28F5DC5000649467 /* ChildRetriveDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BA2403C28F5DC5000649467 /* ChildRetriveDto.swift */; };
@@ -221,8 +224,10 @@
 		1B445AEF28EC725700B0B310 /* AsyncImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsyncImageView.swift; sourceTree = "<group>"; };
 		1B47815B28F8595800AA8BF8 /* ChildProfileModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChildProfileModel.swift; sourceTree = "<group>"; };
 		1B4C1E2828F4678300C69FB1 /* ChildProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChildProfileView.swift; sourceTree = "<group>"; };
+		1B4F5718293931D200AE29E3 /* ScheduleModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleModel.swift; sourceTree = "<group>"; };
 		1B56107C28F420B700DA3043 /* DashboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardView.swift; sourceTree = "<group>"; };
 		1B56107E28F4263E00DA3043 /* HomeChildCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeChildCell.swift; sourceTree = "<group>"; };
+		1B5A0351293272B40032BB71 /* AddInterruptionUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddInterruptionUseCase.swift; sourceTree = "<group>"; };
 		1B687133290D51FE00651A33 /* PairChildPayload.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PairChildPayload.swift; sourceTree = "<group>"; };
 		1B687135290D532700651A33 /* PairChildUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PairChildUseCase.swift; sourceTree = "<group>"; };
 		1B68713A290D678300651A33 /* CheckConnectionUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckConnectionUseCase.swift; sourceTree = "<group>"; };
@@ -246,6 +251,7 @@
 		1B8C4285290EAA3400FD5598 /* DropdownButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DropdownButton.swift; sourceTree = "<group>"; };
 		1B99050D29106570001E7303 /* CoachingCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoachingCell.swift; sourceTree = "<group>"; };
 		1B99050F29106FEF001E7303 /* GetCoachingUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetCoachingUseCase.swift; sourceTree = "<group>"; };
+		1B9B364B293BAC020094B801 /* ResultOfAdditionalQuestionsUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultOfAdditionalQuestionsUseCase.swift; sourceTree = "<group>"; };
 		1BA2403628F5DB5700649467 /* ChildProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChildProfileViewModel.swift; sourceTree = "<group>"; };
 		1BA2403828F5DB6300649467 /* ChildProfileViewModeling.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChildProfileViewModeling.swift; sourceTree = "<group>"; };
 		1BA2403C28F5DC5000649467 /* ChildRetriveDto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChildRetriveDto.swift; sourceTree = "<group>"; };
@@ -427,6 +433,7 @@
 				1B016B522922D63C00291A9D /* QuestionsUseCase.swift */,
 				1B016B542922D67F00291A9D /* GetQuestionsUseCase.swift */,
 				1BC5BDED29295C8E006171A5 /* AnswerQuestionUseCase.swift */,
+				1B9B364B293BAC020094B801 /* ResultOfAdditionalQuestionsUseCase.swift */,
 			);
 			path = UseCase;
 			sourceTree = "<group>";
@@ -579,9 +586,9 @@
 			isa = PBXGroup;
 			children = (
 				1BA2403A28F5DC2D00649467 /* Domain */,
+				1B47815A28F8594300AA8BF8 /* Model */,
 				1BA2403528F5DB3B00649467 /* ViewModel */,
 				1B4C1E2728F4677100C69FB1 /* View */,
-				1B47815A28F8594300AA8BF8 /* Model */,
 			);
 			path = ChildProfile;
 			sourceTree = "<group>";
@@ -727,6 +734,7 @@
 				1BA8181E291CED7000916796 /* RestrictionsUseCase.swift */,
 				1B779D4D28F84EAD0051D712 /* GetChildDetailsUseCase.swift */,
 				1BA8181C291CED5D00916796 /* AddRestrictionUseCase.swift */,
+				1B5A0351293272B40032BB71 /* AddInterruptionUseCase.swift */,
 			);
 			path = UseCase;
 			sourceTree = "<group>";
@@ -833,6 +841,15 @@
 				1B323B0229116699006BFBF5 /* LessonCell.swift */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		1B9B364D293BBE900094B801 /* Restrictions */ = {
+			isa = PBXGroup;
+			children = (
+				1BE2205E2919112F00796FE1 /* DataModel.swift */,
+				1B4F5718293931D200AE29E3 /* ScheduleModel.swift */,
+			);
+			path = Restrictions;
 			sourceTree = "<group>";
 		};
 		1BA2403528F5DB3B00649467 /* ViewModel */ = {
@@ -1206,6 +1223,7 @@
 		1BF313AE28E2F53000232CB3 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				1B9B364D293BBE900094B801 /* Restrictions */,
 				1BC5BDE229294DF6006171A5 /* Introspect */,
 				1BEC0C3E291A961800116FC0 /* Date Formatter */,
 				1B445AEC28EC71E000B0B310 /* AsyncImage */,
@@ -1438,7 +1456,6 @@
 				EF51A11728E1916C0020F135 /* Onboarding */,
 				1B0BC1F828EF420A00DBBD65 /* Main */,
 				EFE9288828E18C3A00675F28 /* ContentView.swift */,
-				1BE2205E2919112F00796FE1 /* DataModel.swift */,
 				EF43B69F28E19E5500DBE6B6 /* Common */,
 			);
 			path = Modules;
@@ -1622,6 +1639,7 @@
 				1B99051029106FEF001E7303 /* GetCoachingUseCase.swift in Sources */,
 				1BA30D5328E79A8E00926820 /* FamilySharingViewModeling.swift in Sources */,
 				1BF1E1462906BD5C008A08D4 /* ParentRepository.swift in Sources */,
+				1B5A0352293272B40032BB71 /* AddInterruptionUseCase.swift in Sources */,
 				1B8C4286290EAA3400FD5598 /* DropdownButton.swift in Sources */,
 				EF43B6A228E19EF000DBE6B6 /* MainBackground.swift in Sources */,
 				1BA30D6128E79EE100926820 /* RequestServices.swift in Sources */,
@@ -1679,6 +1697,7 @@
 				1BF1E14D2906BEBD008A08D4 /* ParentSettingsViewModeling.swift in Sources */,
 				1BE72A2B28E8901000447167 /* UserDefaultsService.swift in Sources */,
 				EFEAAAA32906961600FE0A39 /* SettingsView.swift in Sources */,
+				1B9B364C293BAC020094B801 /* ResultOfAdditionalQuestionsUseCase.swift in Sources */,
 				1BC5BDE029292590006171A5 /* QuestionsContainerDto.swift in Sources */,
 				1BE72A3528E8984600447167 /* CommonTextField.swift in Sources */,
 				1BA30D5128E79A4200926820 /* FamilySharingViewModel.swift in Sources */,
@@ -1714,6 +1733,7 @@
 				1B779D4E28F84EAD0051D712 /* GetChildDetailsUseCase.swift in Sources */,
 				1B2EA77E292FCB9A009EA317 /* GetAllSubjectsUseCase.swift in Sources */,
 				1BCD8C7F292A7E9E00CD3D04 /* PhoneLockingStateView.swift in Sources */,
+				1B4F5719293931D200AE29E3 /* ScheduleModel.swift in Sources */,
 				1BC5BDE929294E11006171A5 /* AppKitIntrospectionView.swift in Sources */,
 				1B7E64A8291146AF0084E6A0 /* HomeView.swift in Sources */,
 				1BFF5A7B29015F4C00710D9B /* ChildSignInView.swift in Sources */,
@@ -1785,7 +1805,7 @@
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = ActivityMonitor/ActivityMonitor.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 8;
+				CURRENT_PROJECT_VERSION = 12;
 				DEVELOPMENT_TEAM = 59UY34K59P;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = ActivityMonitor/Info.plist;
@@ -1812,7 +1832,7 @@
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = ActivityMonitor/ActivityMonitor.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 8;
+				CURRENT_PROJECT_VERSION = 12;
 				DEVELOPMENT_TEAM = 59UY34K59P;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = ActivityMonitor/Info.plist;
@@ -1959,7 +1979,7 @@
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_ENTITLEMENTS = "Ed-Break/Ed-Break.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 8;
+				CURRENT_PROJECT_VERSION = 12;
 				DEVELOPMENT_ASSET_PATHS = "Ed-Break/Resources/Preview\\ Content";
 				DEVELOPMENT_TEAM = 59UY34K59P;
 				ENABLE_PREVIEWS = YES;
@@ -1995,7 +2015,7 @@
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_ENTITLEMENTS = "Ed-Break/Ed-Break.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 8;
+				CURRENT_PROJECT_VERSION = 12;
 				DEVELOPMENT_ASSET_PATHS = "Ed-Break/Resources/Preview\\ Content";
 				DEVELOPMENT_TEAM = 59UY34K59P;
 				ENABLE_PREVIEWS = YES;

@@ -7,24 +7,28 @@
 
 struct QuestionsContainerModel {
     
-    let questions: [QusetionModel]
+    var questions: [QusetionModel]
     var answeredCount: Int
+    var isCorrect: Bool?
     
     init(dto: QuestionsContainerDto) {
         questions = dto.questions?.map { QusetionModel(dto: $0) } ?? []
-        answeredCount = dto.answeredCount
+        answeredCount = dto.answeredCount ?? 0
+        isCorrect = dto.isCorrect
     }
 }
 
 struct QusetionModel {
     
     let id: Int
+    var isCorrect: Bool?
     let questionAnswer: [QuestionAnswerModel]
     let questionText: String?
     let subject: SubjectModel?
     
     init(dto: QusetionDto) {
         id = dto.id
+        isCorrect = dto.isCorrect
         questionAnswer = dto.questionAnswer?.map { QuestionAnswerModel(dto: $0) } ?? []
         questionText = dto.questionText
         subject = dto.subject == nil ? nil : SubjectModel(dto: dto.subject!)

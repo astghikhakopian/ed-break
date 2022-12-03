@@ -46,6 +46,8 @@ private extension DashboardView {
                                 getChildDetailsUseCase: GetChildDetailsUseCase(
                                     childrenRepository: DefaultChildrenRepository()),
                                 addRestrictionUseCase: AddRestrictionUseCase(
+                                    restrictionsRepository: DefaultRestrictionsRepository()),
+                                addInterruptionUseCase: AddInterruptionUseCase(
                                     restrictionsRepository: DefaultRestrictionsRepository())))
                         .environmentObject(model)
                     },

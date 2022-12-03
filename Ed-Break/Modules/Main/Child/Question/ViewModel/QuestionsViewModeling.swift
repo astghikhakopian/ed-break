@@ -13,7 +13,11 @@ protocol QuestionsViewModeling: ObservableObject, Identifiable {
     var answerResultType: AnswerResultType? { get set }
     var questionsContainer: QuestionsContainerModel? { get set }
     var currentQuestion: QusetionModel { get set }
+    var remindingMinutes: Int { get set }
+    var buttonTitle: String { get set }
     
     func getQuestions()
+    func getAdditionalQuestions()
     func answerQuestion(answer: QuestionAnswerModel, completion: @escaping (AnswerResultType)->())
+    func didAnswerAdditionalQuestions(completion: @escaping ()->())
 }

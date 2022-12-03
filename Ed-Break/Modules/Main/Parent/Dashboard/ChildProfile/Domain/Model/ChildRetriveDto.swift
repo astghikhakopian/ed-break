@@ -18,4 +18,5 @@ struct ChildRetriveDto: Codable {
     let percentagesOfCorrectAnswers: Float?
     let percentProgress: Int?
     let restrictionTime: Int?
+    let restrictions: String?
 }

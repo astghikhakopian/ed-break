@@ -13,6 +13,7 @@ struct QuestionsView<M: QuestionsViewModeling>: View {
     
     @State private var selectedAnswer: QuestionAnswerModel?
     @State private var uiTabarController: UITabBarController?
+    @State private var isAdditionalQuestions = false
     
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     
@@ -27,15 +28,35 @@ struct QuestionsView<M: QuestionsViewModeling>: View {
     private let indicatorSpacing: CGFloat = 8
     private let selectionHeight: CGFloat = 20
     
+    private let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
+    
+    
     var body: some View {
         VStack(spacing: containerSpacing) {
             if let questionsContainer = viewModel.questionsContainer {
                 pageIndicator
                 if questionsContainer.answeredCount >= questionsContainer.questions.count {
-                    PhoneLockingStateView(state: .locked, action: {
-                        // TODO: -
-                        presentationMode.wrappedValue.dismiss()
-                    }, isLoading: $viewModel.isLoading)
+                    if questionsContainer.questions.filter { $0.isCorrect ?? false }.count == questionsContainer.questions.count {
+                        PhoneLockingStateView(state: .unlocked, action: {
+                            if isAdditionalQuestions {
+                                viewModel.didAnswerAdditionalQuestions {
+                                    DispatchQueue.main.async {
+                                        presentationMode.wrappedValue.dismiss()
+                                    }
+                                }
+                            } else {
+                                DispatchQueue.main.async {
+                                    presentationMode.wrappedValue.dismiss()
+                                }
+                            }
+                        }, isLoading: $viewModel.isLoading, title: viewModel.buttonTitle)
+                    } else {
+                        PhoneLockingStateView(state: .locked, action: {
+                            guard viewModel.remindingMinutes == 0 else { return }
+                            viewModel.getAdditionalQuestions()
+                            isAdditionalQuestions = true
+                        }, isLoading: $viewModel.isLoading, title: viewModel.buttonTitle)
+                    }
                 } else {
                     questionView
                     options
@@ -44,6 +65,11 @@ struct QuestionsView<M: QuestionsViewModeling>: View {
             }
         }.padding(padding)
             .background(Color.appWhite)
+            .onReceive(timer) { time in
+                if viewModel.remindingMinutes > 0 {
+                    viewModel.remindingMinutes -= 1
+                }
+            }
             .onLoad {
                 viewModel.getQuestions()
             }
@@ -54,6 +80,7 @@ struct QuestionsView<M: QuestionsViewModeling>: View {
                 uiTabarController?.tabBar.isHidden = false
             }
             .answerResult(type: $viewModel.answerResultType)
+            
     }
 }
 
@@ -63,7 +90,7 @@ extension QuestionsView {
         HStack(spacing: indicatorSpacing) {
             ForEach(Array((viewModel.questionsContainer?.questions ?? []).enumerated()), id: \.1.id) { index, answer in
                 Rectangle()
-                    .foregroundColor(index < (viewModel.questionsContainer?.answeredCount ?? 0) ?/* answer.questionAnswer == true ? Color.primaryGreen :*/  Color.primaryRed : Color.divader)
+                    .foregroundColor(index < (viewModel.questionsContainer?.answeredCount ?? 0) ? answer.isCorrect == true ? Color.primaryGreen : Color.primaryRed : Color.divader)
                     .frame(height: indicatorHeight)
                     .cornerRadius(indicatorCornerRadius)
             }
@@ -115,7 +142,7 @@ extension QuestionsView {
             viewModel.answerQuestion(answer: selectedAnswer) { _ in
                 presentationMode.wrappedValue.dismiss()
             }
-        }, title: "common.continue", isContentValid: .constant(true), isLoading: $viewModel.isLoading)
+        }, title: "common.continue", isContentValid: .constant(true), isLoading: $viewModel.isLoading).disabled(viewModel.remindingMinutes > 0)
     }
 }
 

@@ -10,6 +10,7 @@ import SwiftUI
 struct ImageUploadView: View {
     
     @Binding var selectedImage: UIImage
+    var placeholderImageStringUrl: String?
     
     @State private var showSheet = false
     @State private var showCamera = false
@@ -28,6 +29,10 @@ struct ImageUploadView: View {
                         .cornerRadius(uploadPlaceholderHeight/2)
                         .frame(width: uploadPlaceholderHeight, height: uploadPlaceholderHeight)
                         .aspectRatio(contentMode: .fill)
+                        .clipShape(Circle())
+                } else if let placeholderImageStringUrl = placeholderImageStringUrl {
+                    AsyncImageView(withURL: placeholderImageStringUrl, width: uploadPlaceholderHeight, height: uploadPlaceholderHeight)
+                        .cornerRadius(uploadPlaceholderHeight/2)
                         .clipShape(Circle())
                 } else {
                     Image.ChildDetails.uploadPlaceholder

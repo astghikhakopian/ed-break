@@ -41,7 +41,7 @@ class AppDelegate: NSObject, UIApplicationDelegate {
 //            }
 //        }
 
-        ScheduleModel.setSchedule()
+//        ScheduleModel.setSchedule()
         
         return true
     }

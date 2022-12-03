@@ -17,13 +17,21 @@ struct ChildDto: Codable {
     let name: String
     let grade: Int
     let restrictionTime: Int?
+    var interruption: Int?
     let photo: String?
     let todayAnswers: Int?
     let todayCorrectAnswers: Int?
     let percentageToday: Float?
     let percentageProgress: Float?
     let lastLogin: String?
+    let breakEndDatetime: String?
+    let breakStartDatetime: String?
+    let wrongAnswersTime: String?
+    let deviceToken: String?
+    let restrictions: String?
+    let subjects: [SubjectDto]?
 }
+
 
 struct DataContainerDto<T: Codable>: Codable {
     let data: T
@@ -43,11 +51,12 @@ struct CoachingChildDto: Codable {
 }
 
 struct CoachingSubjectDto: Codable {
-    let prevCorrectCount: Int
-    let questionsCount: Int
+    let prevCorrectCount: Int?
+    let questionsCount: Int?
     let id: Int
     let title: String
-    let subPreviousDifference: Float
-    let correctAnswersCount: Int
-    let answersCount: Int
+    let photo: String?
+    let subPreviousDifference: Float?
+    let correctAnswersCount: Int?
+    let answersCount: Int?
 }

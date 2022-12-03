@@ -6,6 +6,8 @@
 //
 
 import SwiftUI
+import FamilyControls
+import ManagedSettings
 
 enum TimePeriod: String, CaseIterable, PickerItem {
     case day = "DAY"
@@ -38,6 +40,7 @@ struct ChildProfileView<M: ChildProfileViewModeling>: View {
     @State private var isDiscouragedPresented = false
     
     private let imageHeight = 90.0
+    private let restrictionImageHeight = 25.0
     private let cornerRadius = 12.0
     private let padding = 20.0
     private let spacing = 8.0
@@ -59,6 +62,13 @@ struct ChildProfileView<M: ChildProfileViewModeling>: View {
             .familyActivityPicker(isPresented: $isDiscouragedPresented, selection: $model.selectionToDiscourage)
             .onChange(of: model.selectionToDiscourage) { newSelection in
                 viewModel.addRestrictions()
+            }
+            .onChange(of: viewModel.interuption) { newValue in
+                viewModel.addInterruption()
+            }
+            .onChange(of: viewModel.detailsInfo) { newValue in
+                guard let restrictions = newValue.restrictions else { return }
+                model.selectionToDiscourage = restrictions
             }
     }
 }
@@ -228,7 +238,10 @@ private extension ChildProfileView {
     var restrictionsView: some View {
         VStack(spacing: contentSpacing) {
             restrictionsHeader
-            restrictionsPeriod(minutes: viewModel.child.restrictionTime ?? 0)
+            restrictionsPeriod(minutes: viewModel.child.interruption ?? 0)
+            if let restrictions = model.selectionToDiscourage {
+                restretedAppsView(restrictions: restrictions)
+            }
         }
         .padding(padding)
         .background(Color.appWhite)
@@ -244,29 +257,71 @@ private extension ChildProfileView {
     }
     
     private func restrictionsPeriod(minutes: Int) -> some View {
-        Button {
-            isDiscouragedPresented = true
-        } label: {
-            VStack(spacing: contentSpacing) {
-                HStack(spacing: 14) {
-                    Image.Parent.Dashboard.restrictions
-                    VStack(alignment: .leading) {
-                        Text("main.parent.childProfile.restrictionPeriod")
-                            .font(.appHeadline)
-                            .foregroundColor(.primaryDescription)
-                        Text(getTime(minutes: minutes))
-                            .font(.appHeadline)
-                            .foregroundColor(.primaryPurple)
-                    }
-                    Spacer()
-                    Image.Common.back
+        VStack(spacing: contentSpacing) {
+            HStack(spacing: 14) {
+                Image.Parent.Dashboard.restrictions
+                VStack(alignment: .leading, spacing: 0) {
+                    Text("main.parent.childProfile.restrictionPeriod")
+                        .font(.appHeadline)
+                        .foregroundColor(.primaryDescription)
+                    WheelPickerField(minimumStyle: true, title: "", selection: $viewModel.interuption, datasource: $viewModel.interuptions)
                 }
-            }.padding(24)
-                .overlay(
-                    RoundedRectangle(cornerRadius: cornerRadius)
-                        .stroke(Color.border, lineWidth: 1)
-                )
+                Spacer()
+                Image.Common.dropdownArrow
+            }
+        }.padding(24)
+            .overlay(
+                RoundedRectangle(cornerRadius: cornerRadius)
+                    .stroke(Color.border, lineWidth: 1)
+            )
+    }
+    
+    private func restretedAppsView(restrictions: FamilyActivitySelection) -> some View {
+        VStack(spacing: contentSpacing) {
+            restrictedAppHeader
+            restrictedAppCells(restrictions: restrictions)
+        }.padding(24)
+            .overlay(
+                RoundedRectangle(cornerRadius: cornerRadius)
+                    .stroke(Color.border, lineWidth: 1)
+            )
+    }
+    
+    var restrictedAppHeader: some View {
+        HStack() {
+            Text("main.parent.childProfile.restrictedApps")
+                .font(.appHeadline)
+                .foregroundColor(.primaryDescription)
+            Spacer()
         }
+    }
+    
+    func restrictedAppCells(restrictions: FamilyActivitySelection) -> some View {
+        VStack(alignment: .leading, spacing: contentSpacing) {
+            if #available(iOS 15.2, *) {
+                ForEach(Array(restrictions.categoryTokens), id: \.hashValue) { item in
+                    Label(item).labelStyle(CustomLabelStyle())
+                    Divider()
+                }
+                ForEach(Array(restrictions.applicationTokens), id: \.hashValue) { item in
+                    Label(item).labelStyle(CustomLabelStyle())
+                    Divider()
+                }
+                ForEach(Array(restrictions.webDomainTokens), id: \.hashValue) { item in
+                    Label(item).labelStyle(CustomLabelStyle())
+                    Divider()
+                }
+            } else {
+                Spacer()
+            }
+            
+            CancelButton(action: {
+                isDiscouragedPresented = true
+            }, title: "common.manage", isContentValid: .constant(true))
+        } .frame(maxWidth: .infinity, alignment: .leading)
+            .font(.appHeadline)
+            .foregroundColor(.primaryDescription)
+            .tint(Color.red)
     }
     
     private func getTime(minutes: Int) -> String {
@@ -313,6 +368,22 @@ private extension ChildProfileView {
 struct ChildProfileView_Previews: PreviewProvider {
     static var previews: some View {
         ChildProfileView(viewModel: MockChildProfileViewModel())
-            .environmentObject(DataModel())
+            .environmentObject(DataModel.shared)
+    }
+}
+
+@available(iOS 15.2, *)
+struct CustomLabelStyle: LabelStyle {
+    func makeBody(configuration: Configuration) -> some View {
+        HStack(spacing: 14) {
+            configuration.icon
+                .frame(width: 25, height: 25)
+                .clipped()
+                .scaledToFill()
+                .cornerRadius(6)
+            configuration.title
+                .font(.appHeadline)
+                .foregroundColor(.primaryDescription)
+        }
     }
 }

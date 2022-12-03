@@ -19,4 +19,5 @@ protocol ChildrenViewModeling: ObservableObject {
     
     func getChildren()
     func pairChild(id: Int, deviceToken: String, compleated: @escaping (Bool)->())
+    func refreshToken(completion: @escaping (Bool) -> Void)
 }

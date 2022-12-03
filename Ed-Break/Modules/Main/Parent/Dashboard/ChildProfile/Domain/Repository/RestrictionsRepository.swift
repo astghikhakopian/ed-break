@@ -12,11 +12,15 @@ import Foundation
 protocol RestrictionsRepository {
     
     func addRestriction(childId: Int, restrictions: String, completion: @escaping(Error?) -> Void)
+    func addInterruption(childId: Int, interruption: Int, completion: @escaping(Error?) -> Void)
 }
 
 final class DefaultRestrictionsRepository: MoyaProvider<RestrictionsRoute>, RestrictionsRepository, ObservableObject {
     
     func addRestriction(childId: Int, restrictions: String, completion: @escaping(Error?) -> Void) {
         requestSimple(.addRestriction(childId: childId, restrictions: restrictions), completion: completion)
+    }
+    func addInterruption(childId: Int, interruption: Int, completion: @escaping(Error?) -> Void) {
+        requestSimple(.addInterruption(childId: childId, interruption: interruption), completion: completion)
     }
 }

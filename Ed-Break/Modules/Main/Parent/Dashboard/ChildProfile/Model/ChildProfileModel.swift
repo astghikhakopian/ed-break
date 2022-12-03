@@ -5,7 +5,10 @@
 //  Created by Astghik Hakopian on 13.10.22.
 //
 
-struct ChildProfileModel {
+import FamilyControls
+import Foundation
+
+struct ChildProfileModel: Equatable {
     
     let educationPeriod: TimePeriod
     let activityPeriod: TimePeriod
@@ -18,6 +21,7 @@ struct ChildProfileModel {
     let averageActivity: Float
     let restrictionTime: Int
     let percentProgress: Int?
+    let restrictions: FamilyActivitySelection?
     
     init(dto: ChildRetriveDto) {
         educationPeriod = TimePeriod(rawValue: dto.educationPeriod) ?? .day
@@ -31,6 +35,14 @@ struct ChildProfileModel {
         averageActivity = Float(Int(dto.averageActivity*10))/10
         restrictionTime = dto.restrictionTime ?? 0
         percentProgress = dto.percentProgress
+        
+        if let restrictions = dto.restrictions?.replacingOccurrences(of: "\\\"", with: "\""),
+           let stringData = restrictions.data(using: .utf8),
+           let selectionObject = try? JSONDecoder().decode(FamilyActivitySelection.self, from: stringData) {
+            self.restrictions = selectionObject
+        } else {
+            restrictions = nil
+        }
     }
     
     init(childId: Int) {
@@ -45,5 +57,6 @@ struct ChildProfileModel {
         averageActivity = 0
         restrictionTime = 0
         percentProgress = 0
+        restrictions = nil
     }
 }

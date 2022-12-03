@@ -30,6 +30,9 @@ struct LessonCell: View {
                     .foregroundColor(model.completed ? .primaryGreen : .primaryDescription)
             }
             Spacer()
+            if model.completed {
+                Image.Common.roundedCheckmark
+            }
             /*
             ZStack {
                 Circle()

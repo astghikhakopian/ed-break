@@ -10,7 +10,8 @@ import Foundation
 struct QuestionsContainerDto: Codable {
 
     let questions: [QusetionDto]?
-    let answeredCount: Int
+    let answeredCount: Int?
+    var isCorrect: Bool?
 }
 
 struct QusetionDto: Codable {
@@ -18,6 +19,7 @@ struct QusetionDto: Codable {
     let id: Int
     let questionAnswer: [QuestionAnswerDto]?
     let questionText: String?
+    let isCorrect: Bool?
     let subject: SubjectDto?
 }
 

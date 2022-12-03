@@ -15,7 +15,10 @@ protocol ChildProfileViewModeling: ObservableObject, Identifiable {
     var isLoading: Bool { get set }
     var selectedEducationPeriod: TimePeriod { get set }
     var selectedActivityPeriod: TimePeriod { get set }
+    var interuptions: [Interuption] { get set }
+    var interuption: Interuption { get set }
     
     func getChildDetails()
     func addRestrictions()
+    func addInterruption()
 }

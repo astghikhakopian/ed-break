@@ -23,23 +23,27 @@ final class ChildrenViewModel: ChildrenViewModeling, Identifiable {
         }
     }
     var timePeriodDatasource: [TimePeriod] = TimePeriod.allCases
+    var updatedRefreshToken = false
     
     private var getChildrenUseCase: GetChildrenUseCase
     private var pairChildUseCase: PairChildUseCase
     private var getCoachingUseCase: GetCoachingUseCase?
+    private let refreshTokenUseCase: RefreshTokenUseCase
     
-    init(getChildrenUseCase: GetChildrenUseCase, pairChildUseCase: PairChildUseCase, getCoachingUseCase: GetCoachingUseCase? = nil) {
+    init(getChildrenUseCase: GetChildrenUseCase, pairChildUseCase: PairChildUseCase, getCoachingUseCase: GetCoachingUseCase? = nil, refreshTokenUseCase: RefreshTokenUseCase) {
         self.getChildrenUseCase = getChildrenUseCase
         self.pairChildUseCase = pairChildUseCase
         self.getCoachingUseCase = getCoachingUseCase
+        self.refreshTokenUseCase = refreshTokenUseCase
         
         getChildren()
         getCoachingChildren()
     }
     
     func getChildren() {
-        isLoading = true
-        getChildrenUseCase.execute { result in
+        DispatchQueue.main.async { self.isLoading = true }
+        getChildrenUseCase.execute { [weak self] result in
+            guard let self = self else { return }
             DispatchQueue.main.async { self.isLoading = false }
             switch result {
             case .success(let models):
@@ -48,6 +52,12 @@ final class ChildrenViewModel: ChildrenViewModeling, Identifiable {
                 }
             case .failure(let failure):
                 print(failure.localizedDescription)
+                guard !self.updatedRefreshToken else { return }
+                self.updatedRefreshToken = true
+                self.refreshToken { [weak self] success in
+                    guard success else { return }
+                    self?.getChildren()
+                }
             }
         }
     }
@@ -80,6 +90,21 @@ final class ChildrenViewModel: ChildrenViewModeling, Identifiable {
             compleated(true)
         }
     }
+    
+    func refreshToken(completion: @escaping (Bool) -> Void) {
+        let localStorageService = UserDefaultsService()
+        refreshTokenUseCase.execute { result in
+            switch result {
+            case .success(let token):
+                localStorageService.setObject(token, forKey: .User.token)
+                localStorageService.setPrimitive(true, forKey: .User.isLoggedIn)
+                completion(true)
+            case .failure(let failure):
+                print(failure)
+                completion(false)
+            }
+        }
+    }
 }
 
 
@@ -92,9 +117,10 @@ final class MockChildrenViewModeling: ChildrenViewModeling, Identifiable {
     var connectedChildren = [ChildModel]()
     var selectedPeriod: TimePeriod = .day
     var timePeriodDatasource: [TimePeriod] = TimePeriod.allCases
-    var children = PagingModel<ChildModel>(results: [ChildModel(dto: ChildDto(id: 0, name: "Emma", grade: 3, restrictionTime: nil, photo: nil, todayAnswers: 20, todayCorrectAnswers: 19, percentageToday: 85, percentageProgress: 95, lastLogin: "Active 14 min ago"))])
+    var children = PagingModel<ChildModel>(results: [ChildModel(dto: ChildDto(id: 0, name: "Emma", grade: 1, restrictionTime: nil, photo: nil, todayAnswers: nil, todayCorrectAnswers: nil, percentageToday: nil, percentageProgress: nil, lastLogin: nil, breakEndDatetime: nil, breakStartDatetime: nil, wrongAnswersTime: nil, deviceToken: nil, restrictions: nil, subjects: []))])
     var coachingChildren = [CoachingChildModel]()
     
     func getChildren() { }
     func pairChild(id: Int, deviceToken: String, compleated: @escaping (Bool)->()) { }
+    func refreshToken(completion: @escaping (Bool) -> Void) { }
 }

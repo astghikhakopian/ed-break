@@ -46,12 +46,18 @@ enum ParentRoute: TargetType, AccessTokenAuthorizable {
     }
     
     var headers: [String: String]? {
-        let token: TokenModel? = UserDefaultsService().getObject(forKey: .User.token)
+        let userDefaultsService = UserDefaultsService()
+        let token: TokenModel?
+        if userDefaultsService.getPrimitive(forKey: .User.isLoggedIn) ?? false {
+            token = userDefaultsService.getObject(forKey: .User.token)
+        } else {
+            token = userDefaultsService.getObject(forKey: .ChildUser.token)
+        }
         let accessToken = token?.access ?? ""
         return [
-        "Content-Type": "application/json",
-        "accept": "application/json",
-        "Authorization": "Bearer \(accessToken)"
-    ]}
+            "Content-Type": "application/json",
+            "accept": "application/json",
+            "Authorization": "Bearer \(accessToken)"
+        ]}
 }
 

@@ -15,14 +15,16 @@ class ChildDetailsModel {
     var interuption: Interuption = .i15
     var childName: String = ""
     var subjects: [BottomsheetCellModel]?
+    var photoStringUrl: String?
     
-    init(childId: Int? = nil, image: UIImage = UIImage(), grade: Grade, childName: String, subjects: [SubjectModel]?) {
+    init(childId: Int? = nil, image: UIImage = UIImage(), grade: Grade, childName: String, photoStringUrl: String? = nil, subjects: [SubjectModel]?) {
         self.id = UUID()
         self.childId = childId
         self.image = image
         self.grade = grade
         self.childName = childName
         self.subjects = subjects
+        self.photoStringUrl = photoStringUrl
     }
     
     init() {
@@ -63,7 +65,7 @@ final class ChildDetailsViewModel: ChildDetailsViewModeling, Identifiable {
         self.getAllSubjectsUseCase = getAllSubjectsUseCase
         
         if let child = child {
-            children = [ChildDetailsModel(childId: child.id, grade: child.grade, childName: child.name, subjects: [])] // TODO: - child subjects
+            children = [ChildDetailsModel(childId: child.id, grade: child.grade, childName: child.name, photoStringUrl: child.photoUrl?.absoluteString, subjects: child.subjects)]
         }
         
         getSubjects()

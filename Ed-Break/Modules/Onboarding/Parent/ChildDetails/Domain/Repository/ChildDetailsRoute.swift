@@ -29,7 +29,7 @@ enum ChildDetailsRoute: TargetType, AccessTokenAuthorizable {
         case .addChild:
             return "/users/child"
         case .updateChild(let id, _):
-            return "/users/child/\(id)/"
+            return "/users/child/\(id)"
         case .deleteChild(let id):
             return "/users/delete-child/\(id)/"
         case .getSubjects:
@@ -59,7 +59,7 @@ enum ChildDetailsRoute: TargetType, AccessTokenAuthorizable {
             if let nameData = payload.name.data(using: .utf8) {
                 formData.append(MultipartFormData(provider: .data(nameData), name: "name"))
             }
-            if let gradeData = "\(payload.grade.rawValue)".data(using: .utf8) { //payload.gradekey.data(using: .utf8) {
+            if let gradeData = "\(payload.grade.rawValue)".data(using: .utf8) {
                 formData.append(MultipartFormData(provider: .data(gradeData), name: "grade"))
             }
             if let photo = payload.photo, let photoData = photo.jpegData(compressionQuality: 1.0) {
@@ -95,8 +95,20 @@ enum ChildDetailsRoute: TargetType, AccessTokenAuthorizable {
             if let photo = payload.photo, let photoData = photo.jpegData(compressionQuality: 1.0) {
                 formData.append(MultipartFormData(provider: .data(photoData), name: "photo", fileName: "file.jpeg", mimeType: "image/jpeg"))
             }
+            if let interruptionTime = payload.interruption, let interruptionTimeData = String(interruptionTime).data(using: .utf8) {
+                formData.append(MultipartFormData(provider: .data(interruptionTimeData), name: "interruption"))
+            }
             if let restrictionTime = payload.restrictionTime, let restrictionTimeData = String(restrictionTime).data(using: .utf8) {
-                formData.append(MultipartFormData(provider: .data(restrictionTimeData), name: "restriction_timeData"))
+                formData.append(MultipartFormData(provider: .data(restrictionTimeData), name: "restrictionTime"))
+            }
+            
+            if let subjects = payload.subjects {
+                for i in subjects {
+                    let valueObj = String(i)
+                    let keyObj = "subjects" + "[" + String(i) + "]"
+                    formData.append(MultipartFormData(provider: .data(valueObj.data(using: .utf8)!), name: keyObj))
+                }
+                
             }
             
             return .uploadMultipart(formData)
