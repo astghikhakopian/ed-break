@@ -91,23 +91,26 @@ final class QuestionsViewModel: QuestionsViewModeling, Identifiable {
     
     func answerQuestion(answer: QuestionAnswerModel, completion: @escaping (AnswerResultType)->()) {
         isLoading = true
-        answerQuestionUseCase.execute(questionId: currentQuestion.id, answerId: answer.id) { result in
-            DispatchQueue.main.async { self.isLoading = false }
+        answerQuestionUseCase.execute(questionId: currentQuestion.id, answerId: answer.id) { [weak self] result in
+            DispatchQueue.main.async { self?.isLoading = false }
             guard result == nil else { return }
             // switch result {
             // case .success:
-            DispatchQueue.main.asyncAfter(deadline: .now() + 1.1) { [weak self] in
+            
+            guard let self = self, let questionsContainer = self.questionsContainer else { return }
+            let answersCount = questionsContainer.answeredCount
+            if answersCount + 1 < questionsContainer.questions.count {
+                DispatchQueue.main.asyncAfter(deadline: .now() + 1.1) { [weak self] in
                     guard let self = self, let questionsContainer = self.questionsContainer else { return }
-                    let answersCount = questionsContainer.answeredCount
-                    if answersCount + 1 < questionsContainer.questions.count {
-                        self.questionsContainer?.answeredCount = answersCount + 1
-                        self.questionsContainer?.questions[answersCount].isCorrect = answer.correct
-                        self.currentQuestion = questionsContainer.questions[answersCount + 1]
-                    } else {
-                        completion(answer.correct ? .success : .failure)
-                    }
-                    self.answerResultType = answer.correct ? .success : .failure
+                    self.questionsContainer?.answeredCount = answersCount + 1
+                    self.questionsContainer?.questions[answersCount].isCorrect = answer.correct
+                    self.currentQuestion = questionsContainer.questions[answersCount + 1]
                 }
+            } else {
+                completion(answer.correct ? .success : .failure)
+            }
+            self.answerResultType = answer.correct ? .success : .failure
+//                }
 //            case .failure(let failure):
 //                print(failure.localizedDescription)
 //            }
@@ -136,9 +139,9 @@ final class QuestionsViewModel: QuestionsViewModeling, Identifiable {
 
 // MARK: - Preview
 
-final class MockQuestionsViewModeling: QuestionsViewModeling, Identifiable {
+final class MockQuestionsViewModel: QuestionsViewModeling, Identifiable {
     
-    var questionsContainer: QuestionsContainerModel?
+    var questionsContainer: QuestionsContainerModel? = nil//QuestionsContainerModel(dto: QuestionsContainerDto(questions: [QusetionDto(id: 0, questionAnswer: [QuestionAnswerDto(id: 0, answer: "ban che", correct: true, question: 1)], questionText: "Inch ka", isCorrect: nil, subject: SubjectDto(id: 0, subject: "Math", photo: "https://ed-break-back-dev.s3.amazonaws.com/media/800px-Stylised_atom_with_three_Bohr_model_orbits_and_stylised_nucleus.svg.png", questionsCount: 1, completedCount: 0, correctAnswersCount: 0, completed: false))], answeredCount: 0))
     var currentQuestion: QusetionModel = QusetionModel()
     var subject: SubjectModel = SubjectModel(dto: SubjectDto(id: 0, subject: "Math", photo: nil, questionsCount: 0, completedCount: 0, correctAnswersCount: 0, completed: true))
     var isLoading = false

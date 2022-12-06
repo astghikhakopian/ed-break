@@ -24,6 +24,7 @@ struct QuestionsView<M: QuestionsViewModeling>: View {
     private let cellHeight: CGFloat = 50
     private let cellCornerRadius: CGFloat = 4
     private let indicatorCornerRadius: CGFloat = 4
+    private let contentCornerRadius = 12.0
     private let indicatorHeight: CGFloat = 5
     private let indicatorSpacing: CGFloat = 8
     private let selectionHeight: CGFloat = 20
@@ -62,9 +63,15 @@ struct QuestionsView<M: QuestionsViewModeling>: View {
                     options
                     confirmButton
                 }
+            } else {
+                ProgressView()
+                    .progressViewStyle(CircularProgressViewStyle(tint: .primaryPurple))
+                    .frame(width: UIScreen.main.bounds.width - 2*padding, height: UIScreen.main.bounds.height - 200)
             }
         }.padding(padding)
             .background(Color.appWhite)
+            .cornerRadius(contentCornerRadius)
+            .frame(width: UIScreen.main.bounds.width - 2*padding, height: UIScreen.main.bounds.height - 200)
             .onReceive(timer) { time in
                 if viewModel.remindingMinutes > 0 {
                     viewModel.remindingMinutes -= 1
@@ -146,8 +153,14 @@ extension QuestionsView {
     }
 }
 
-//struct QuestionsView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        QuestionsView()
-//    }
-//}
+struct QuestionsView_Previews: PreviewProvider {
+    static var previews: some View {
+        NavigationView {
+            NavigationLazyView(
+                MainBackground(title: "Math", withNavbar: true, isSimple: true) {
+                    QuestionsView(
+                        viewModel: MockQuestionsViewModel())
+                    .background(Color.primaryPurple)
+                })}
+    }
+}

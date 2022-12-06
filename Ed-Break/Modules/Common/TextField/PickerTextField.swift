@@ -12,12 +12,24 @@ enum Grade: Int, CaseIterable, PickerItem, BottomsheetCellModel {
     case first  = 1
     case second = 2
     case third  = 3
+    case fourth  = 4
+    case fifth  = 5
+    case sixth  = 6
+    case seventh  = 7
+    case eightth  = 8
+    case nineth  = 9
     
     var name: String {
         switch self {
         case .first:    return "Grade 1"
         case .second:   return "Grade 2"
         case .third:    return "Grade 3"
+        case .fourth:   return "Grade 4"
+        case .fifth:    return "Grade 5"
+        case .sixth:    return "Grade 6"
+        case .seventh:  return "Grade 7"
+        case .eightth:  return "Grade 8"
+        case .nineth:   return "Grade 9"
         }
     }
     
@@ -26,6 +38,12 @@ enum Grade: Int, CaseIterable, PickerItem, BottomsheetCellModel {
         case .first:    return "GRADE_1"
         case .second:   return "GRADE_2"
         case .third:    return "GRADE_3"
+        case .fourth:   return "GRADE_4"
+        case .fifth:    return "GRADE_5"
+        case .sixth:    return "GRADE_6"
+        case .seventh:  return "GRADE_7"
+        case .eightth:  return "GRADE_8"
+        case .nineth:   return "GRADE_9"
         }
     }
     

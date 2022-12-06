@@ -39,7 +39,7 @@ struct ChildDetailsView<M: ChildDetailsViewModeling>: View {
             }
         }
         .bottomsheet(title: "childDetails.subjects", datasource: viewModel.subjects, selectedItems: selectedChildIndex == nil ? .constant([]) : $viewModel.children[selectedChildIndex!].subjects, isPresented: $showSubjects, isMultiselect: true)
-//        .bottomsheet(title: "childDetails.grade", datasource: viewModel.grades, selectedItems: selectedChildIndex == nil ? .constant([]) : $viewModel.children[selectedChildIndex!].grade, isPresented: $showGradeOptions)
+        //.bottomsheet(title: "childDetails.grade", datasource: viewModel.grades, selectedItems: selectedChildIndex == nil ? .constant([]) : $viewModel.children[selectedChildIndex!].grade, isPresented: $showGradeOptions)
         .confirmationDialog("childDetails.grade", isPresented: $showGradeOptions, titleVisibility: .visible) {
             ForEach(viewModel.grades, id: \.rawValue) { grade in
                 Button(grade.name) {
@@ -63,8 +63,8 @@ private extension ChildDetailsView {
                     uploadPhotoView(image: child.image)
                     CommonTextField(title: "childDetails.name", text: child.childName)
                     HStack(spacing: 10) {
-                        WheelPickerField(title: "childDetails.grade", selection: child.grade, datasource: $viewModel.grades)
-                        WheelPickerField(title: "childDetails.interruption", selection: child.interuption, datasource: $viewModel.interuptions)
+                        WheelPickerField(style: .titled(title: "childDetails.grade"), selection: child.grade, datasource: $viewModel.grades)
+                        WheelPickerField(style: .titled(title: "childDetails.interruption"), selection: child.interuption, datasource: $viewModel.interuptions)
                     }
                     dropdown(title: "childDetails.subjects", selectedItems: child.subjects) {
                         selectedChildIndex = viewModel.children.firstIndex(where: {$0.id == child.wrappedValue.id})

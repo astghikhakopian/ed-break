@@ -65,6 +65,7 @@
 // Common
 
 "common.continue" = "Continue";
+"common.confirm" = "Confirm";
 "common.ok" = "OK";
 "common.manage" = "Manage";
 "common.delete" = "Delete";
@@ -85,6 +86,7 @@
 "main.parent.home.questions" = "questions today";
 "main.parent.home.answers" = "correct answers";
 
+"main.parent.childProfile.timePeriod" = "Time period";
 "main.parent.childProfile.education" = "Education";
 "main.parent.childProfile.questions" = "Questions";
 "main.parent.childProfile.correctAnswers" = "Correct answers";

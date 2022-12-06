@@ -15,7 +15,7 @@ protocol ChildrenViewModeling: ObservableObject {
     var isContentValid: Bool { get set }
     var connectedChildren: [ChildModel] { get set }
     var selectedPeriod: TimePeriod { get set }
-    var timePeriodDatasource: [TimePeriod] { get }
+    var timePeriodDatasource: [TimePeriod] { get set }
     
     func getChildren()
     func pairChild(id: Int, deviceToken: String, compleated: @escaping (Bool)->())

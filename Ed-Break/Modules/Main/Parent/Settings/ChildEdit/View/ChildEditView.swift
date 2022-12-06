@@ -81,8 +81,8 @@ private extension ChildEditView {
                     uploadPhotoView(image: child.image)
                     CommonTextField(title: "childDetails.name", text: child.childName)
                     HStack(spacing: 10) {
-                        WheelPickerField(title: "childDetails.grade", selection: child.grade, datasource: $viewModel.grades)
-                        WheelPickerField(title: "childDetails.interruption", selection: $viewModel.children[0].interuption, datasource: $viewModel.interuptions)
+                        WheelPickerField(style: .titled(title: "childDetails.grade"), selection: child.grade, datasource: $viewModel.grades)
+                        WheelPickerField(style: .titled(title: "childDetails.interruption"), selection: $viewModel.children[0].interuption, datasource: $viewModel.interuptions)
                     }
                     dropdown(title: "childDetails.subjects", selectedItems: child.subjects) {
                         UIApplication.shared.endEditing()

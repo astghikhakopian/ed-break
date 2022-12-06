@@ -98,8 +98,12 @@ struct BottomsheetViewModifier {
     private func isSelected(item: BottomsheetCellModel) -> Bool {
         localSelectedItems.contains(where: {$0.id == item.id})
     }
-    
-    @State private var localSelectedItems: [BottomsheetCellModel] = []
+    @State private var isContentValid: Bool = false
+    @State private var localSelectedItems: [BottomsheetCellModel] = []  {
+        didSet {
+            isContentValid = !localSelectedItems.isEmpty
+        }
+    }
     
     private let indicatorCornerRadius: CGFloat = 4
     private let cornerRadius: CGFloat = 12
@@ -154,7 +158,7 @@ extension BottomsheetViewModifier: ViewModifier {
                                         selectedItems = localSelectedItems
                                         isPresented = false
                                     }
-                                }, title: "common.continue", isContentValid: .constant(true), isLoading: .constant(false))
+                                }, title: "common.confirm", isContentValid: $isContentValid, isLoading: .constant(false))
                             }
                             Spacer().frame(height: 20)
                         }.padding(itemSpacing)

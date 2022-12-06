@@ -29,6 +29,8 @@ final class ParentSettingsViewModel: ParentSettingsViewModeling, Identifiable {
             if let error = error { print(error.localizedDescription); return }
             self?.localStorageService.remove(key: .User.token)
             self?.localStorageService.remove(key: .ChildUser.token)
+            self?.localStorageService.remove(key: .User.isLoggedIn)
+            self?.localStorageService.remove(key: .ChildUser.isLoggedIn)
             completion()
         }
     }

@@ -12,7 +12,7 @@ protocol CoachingViewModeling: ObservableObject {
     var children: PagingModel<CoachingChildModel> { get set }
     var isLoading: Bool { get set }
     var selectedPeriod: TimePeriod { get set }
-    var timePeriodDatasource: [TimePeriod] { get }
+    var timePeriodDatasource: [TimePeriod] { get set }
     
     func getCoachingChildren()
 }

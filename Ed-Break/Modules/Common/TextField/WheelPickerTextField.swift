@@ -8,33 +8,33 @@
 import SwiftUI
 
 class WheelPickerTextField<C>: UITextField, UIPickerViewDataSource, UIPickerViewDelegate where C: PickerItem {
-
+    
     let title: String
     @Binding var data: [C]
     @Binding var selection: C
-
+    
     init(title: String, data: Binding<[C]>, selection: Binding<C>) {
         self.title = title
         self._data = data
         self._selection = selection
         super.init(frame: .zero)
-
+        
         self.inputView = pickerView
         self.inputAccessoryView = toolbar
         self.tintColor = .clear
-
+        
         guard let selectionIndex = data.wrappedValue.firstIndex(of: selection.wrappedValue) else {
             return
         }
-
+        
         self.pickerView.selectRow(selectionIndex, inComponent: 0, animated: true)
     }
-
+    
     @available(*, unavailable)
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-
+    
     // MARK: - Private properties
     private lazy var pickerView: UIPickerView = {
         let pickerView = UIPickerView()
@@ -43,7 +43,7 @@ class WheelPickerTextField<C>: UITextField, UIPickerViewDataSource, UIPickerView
         pickerView.backgroundColor = .white
         return pickerView
     }()
-
+    
     private lazy var toolbar: UIToolbar = {
         let toolbar = UIToolbar()
         
@@ -56,11 +56,11 @@ class WheelPickerTextField<C>: UITextField, UIPickerViewDataSource, UIPickerView
         title.setTitleTextAttributes([
             NSAttributedString.Key.font: UIFont(name: "Poppins-Regular", size: 13)!,
             NSAttributedString.Key.foregroundColor: UIColor(Color.appBlack)],
-            for: .normal)
+                                     for: .normal)
         
         
         let flexibleSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
-
+        
         let doneButton = UIBarButtonItem(
             title: "Done",
             primaryAction: UIAction(handler: { [weak self] _ in
@@ -78,41 +78,41 @@ class WheelPickerTextField<C>: UITextField, UIPickerViewDataSource, UIPickerView
         doneButton.setTitleTextAttributes([
             NSAttributedString.Key.font: UIFont(name: "Poppins-Medium", size: 13)!,
             NSAttributedString.Key.foregroundColor: UIColor(Color.primaryPurple)],
-            for: .normal)
-
+                                          for: .normal)
+        
         toolbar.setItems([title, flexibleSpace, doneButton], animated: false)
         toolbar.sizeToFit()
         toolbar.tintColor = .white
         toolbar.backgroundColor = .white
         return toolbar
     }()
-
+    
     // MARK: - Private methods
-//    @objc func donePressed() {
-//        let selectedIndex = self.pickerView.selectedRow(inComponent: 0)
-//        guard data.count > selectedIndex else { return }
-//        self.selection = self.data[selectedIndex]
-//        self.endEditing(true)
-//    }
-
+    //    @objc func donePressed() {
+    //        let selectedIndex = self.pickerView.selectedRow(inComponent: 0)
+    //        guard data.count > selectedIndex else { return }
+    //        self.selection = self.data[selectedIndex]
+    //        self.endEditing(true)
+    //    }
+    
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
     }
-
+    
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         return data.count
     }
-
+    
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         return data[row].name
     }
-
+    
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         let selectedIndex = row
         guard data.count > selectedIndex else { return }
         selection = data[selectedIndex]
     }
-
+    
     func pickerView(_ pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusing view: UIView?) -> UIView {
         let pickerLabel = UILabel()
         let titleData = data[row].name
@@ -123,12 +123,12 @@ class WheelPickerTextField<C>: UITextField, UIPickerViewDataSource, UIPickerView
             ])
         pickerLabel.attributedText = myTitle
         pickerLabel.textAlignment = .center
-       return pickerLabel
+        return pickerLabel
     }
 }
 
 import SwiftUI
-    
+
 struct WheelPickerRepresentableField<C>: UIViewRepresentable where C: PickerItem {
     // MARK: - Public properties
     
@@ -138,34 +138,39 @@ struct WheelPickerRepresentableField<C>: UIViewRepresentable where C: PickerItem
     private let title: String
     private var placeholder: String?
     private let textField: WheelPickerTextField<C>
-
+    
     // MARK: - Initializers
     init(title: String, placeholder: String? = nil, datasource: Binding<[C]>, selection: Binding<C>, color: UIColor) where C: PickerItem {
         self.title = title
         self.placeholder = placeholder
         self._datasource = datasource
         self._selection = selection
-
+        
         textField = WheelPickerTextField(title: title, data: datasource, selection: selection)
         
         textField.font = UIFont(name: "Poppins-Medium", size: 12)
         textField.textColor = color
     }
-
+    
     // MARK: - Public methods
     func makeUIView(context: UIViewRepresentableContext<WheelPickerRepresentableField>) -> UITextField {
         textField.placeholder = placeholder
         return textField
     }
-
+    
     func updateUIView(_ uiView: UITextField, context: UIViewRepresentableContext<WheelPickerRepresentableField>) {
         uiView.text = selection.name
     }
 }
 
+enum WheelPickerStyle {
+    case minimum
+    case titled(title: String)
+    case withImage(image: Image)
+}
+
 struct WheelPickerField<C>: View where C: PickerItem {
-    var minimumStyle: Bool = false
-    let title: String
+    var style: WheelPickerStyle
     @Binding var selection: C
     @Binding var datasource: [C]
     
@@ -175,9 +180,10 @@ struct WheelPickerField<C>: View where C: PickerItem {
     private let spacing = 0.0
     
     var body: some View {
-        if minimumStyle {
-            WheelPickerRepresentableField(title: title, datasource: $datasource, selection: $selection, color: UIColor(Color.primaryPurple))
-        } else {
+        switch style {
+        case .minimum:
+            WheelPickerRepresentableField(title: "", datasource: $datasource, selection: $selection, color: UIColor(Color.primaryPurple))
+        case .titled(let title):
             VStack(alignment: .leading, spacing: spacing) {
                 Text(LocalizedStringKey(title))
                     .font(.appHeadline)
@@ -185,6 +191,20 @@ struct WheelPickerField<C>: View where C: PickerItem {
                 Spacer().frame(height: 4)
                 HStack {
                     WheelPickerRepresentableField(title: title, datasource: $datasource, selection: $selection, color: UIColor(Color.appBlack))
+                    Spacer()
+                    Image.Common.dropdownArrow
+                }.accentColor(.appBlack)
+                    .padding(padding)
+                    .overlay(
+                        RoundedRectangle(cornerRadius: cornerRadius)
+                            .stroke(Color.border, lineWidth: borderWidth)
+                    )
+            }
+        case .withImage(let image):
+            VStack(alignment: .leading, spacing: spacing) {
+                HStack {
+                    image
+                    WheelPickerRepresentableField(title: "", datasource: $datasource, selection: $selection, color: UIColor(Color.appBlack))
                     Spacer()
                     Image.Common.dropdownArrow
                 }.accentColor(.appBlack)

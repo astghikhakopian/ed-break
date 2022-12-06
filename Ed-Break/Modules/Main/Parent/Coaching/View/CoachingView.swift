@@ -42,25 +42,26 @@ private extension CoachingView {
     }
     
     var timeHeader: some View {
-            Menu {
-                Picker(selection: $viewModel.selectedPeriod) {
-                    ForEach(viewModel.timePeriodDatasource, id: \.self) {
-                        Text($0.name)
-                            .font(.appHeadline)
-                    }.font(.appHeadline)
-                } label: { }
-            } label: {
-                HStack {
-                    Image.ChildDetails.calender
-                    Text(viewModel.selectedPeriod.name)
-                        .font(.appHeadline)
-                        .foregroundColor(.black)
-                    Spacer()
-                    Image.Common.dropdownArrow
-                }.padding(EdgeInsets(top: 16, leading: padding, bottom: 16, trailing: padding))
-                .background(Color.appWhite)
-                .cornerRadius(cornerRadius)
-            }.foregroundColor(.primaryPurple)
+        WheelPickerField(style: .withImage(image: .ChildDetails.calender), selection: $viewModel.selectedPeriod, datasource: $viewModel.timePeriodDatasource).background(Color.primaryBackground)
+//            Menu {
+//                Picker(selection: $viewModel.selectedPeriod) {
+//                    ForEach(viewModel.timePeriodDatasource, id: \.self) {
+//                        Text($0.name)
+//                            .font(.appHeadline)
+//                    }.font(.appHeadline)
+//                } label: { }
+//            } label: {
+//                HStack {
+//                    Image.ChildDetails.calender
+//                    Text(viewModel.selectedPeriod.name)
+//                        .font(.appHeadline)
+//                        .foregroundColor(.black)
+//                    Spacer()
+//                    Image.Common.dropdownArrow
+//                }.padding(EdgeInsets(top: 16, leading: padding, bottom: 16, trailing: padding))
+//                .background(Color.appWhite)
+//                .cornerRadius(cornerRadius)
+//            }.foregroundColor(.primaryPurple)
         
     }
 }

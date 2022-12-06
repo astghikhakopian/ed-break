@@ -14,7 +14,7 @@ struct SettingsView<M: ParentSettingsViewModeling>: View {
     
     @EnvironmentObject var appState: AppState
     @Environment(\.openURL) private var openURL
-    private let privacyUrl = URL(string: "https://pillow-talk.com.au/privacy-policy")!
+    private let privacyUrl = URL(string: "https://docs.google.com/document/d/1STmonAdjpiDkjzC4ttS1SrYIJ-v2EAf7Hx8zK-3ACto")!
     
     @State private var showDeleteOptions = false
     @State private var showWebView = false
