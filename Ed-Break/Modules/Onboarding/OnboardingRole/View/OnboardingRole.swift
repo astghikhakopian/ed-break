@@ -61,7 +61,7 @@ struct OnboardingRole: View {
                                 .font(.appHeadline)
                                 .underline()
                         }
-                    }
+                    }.padding(15)
                 }
             }.background(Color.primaryBackground)
         }
