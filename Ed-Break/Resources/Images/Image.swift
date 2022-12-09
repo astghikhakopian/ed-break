@@ -152,6 +152,9 @@ extension Image {
         public static var upArrow: Image {
             return Image("common.upArrow")
         }
+        public static var roundedAppIcon: Image {
+            return Image("common.roundedAppIcon")
+        }
     }
     
     public struct ChildHome {

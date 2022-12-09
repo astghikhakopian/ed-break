@@ -14,7 +14,7 @@ final class ChildrenViewModel: ChildrenViewModeling, Identifiable {
     @Published var isContentValid: Bool = false
     @Published var connectedChildren = [ChildModel]() {
         didSet {
-            isContentValid = connectedChildren.count == children.count
+            isContentValid = !connectedChildren.isEmpty//.count == children.count
         }
     }
     @Published var selectedPeriod: TimePeriod = .week  {

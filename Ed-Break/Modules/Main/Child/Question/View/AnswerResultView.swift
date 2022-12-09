@@ -40,6 +40,9 @@ struct AnswerResultView: View {
     private let width: CGFloat = 130
     
     var body: some View {
+        ZStack {
+            result.color
+            
             VStack(spacing: spacing) {
                 ZStack {
                     RoundedRectangle(cornerRadius: width/2)
@@ -50,8 +53,9 @@ struct AnswerResultView: View {
                 Text(LocalizedStringKey(result.message))
                     .font(.appHeadingH3)
                     .foregroundColor(.appWhite)
-            }.background(result.color.frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height))
-            .ignoresSafeArea()
+            }
+        }
+        .ignoresSafeArea()
     }
 }
 

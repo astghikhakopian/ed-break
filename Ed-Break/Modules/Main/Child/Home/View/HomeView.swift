@@ -11,6 +11,8 @@ struct HomeView<M: HomeViewModeling>: View {
     
     @StateObject var viewModel: M
     
+    @State private var isShieldPresented = false
+    
     private let progressWidth: CGFloat = 180
     private let textSpacing: CGFloat = 4
     private let headerPadding: CGFloat = 35
@@ -50,7 +52,6 @@ struct HomeView<M: HomeViewModeling>: View {
             ForEach(viewModel.contentModel?.subjects ?? [], id: \.id) { subject in
                 NavigationLink {
                     NavigationLazyView(
-                        MainBackground(title: subject.subject, withNavbar: true, isSimple: true) {
                             QuestionsView(
                                 viewModel: QuestionsViewModel(
                                     subject: subject,
@@ -60,11 +61,14 @@ struct HomeView<M: HomeViewModeling>: View {
                                     answerQuestionUseCase: AnswerQuestionUseCase(
                                         questionsRepository: DefaultQuestionsRepository()),
                                     resultOfAdditionalQuestionsUseCase: ResultOfAdditionalQuestionsUseCase(
-                                        questionsRepository: DefaultQuestionsRepository())))
-                        })
+                                        questionsRepository: DefaultQuestionsRepository()))))
                 } label: {
                     LessonCell(model: subject)
-                }
+                }.disabled(viewModel.contentModel?.wrongAnswersTime != nil)
+            }
+        }.onTapGesture {
+            if viewModel.contentModel?.wrongAnswersTime != nil {
+                isShieldPresented = true
             }
         }
         .onReceive(timer) { time in
@@ -77,6 +81,19 @@ struct HomeView<M: HomeViewModeling>: View {
         .onAppear {
             viewModel.getSubjects()
         }
+        .fullScreenCover(isPresented: $isShieldPresented) { ShieldView<QuestionsViewModel>(viewModel: QuestionsViewModel(
+            subject: SubjectModel(),
+            home: viewModel.contentModel,
+            getQuestionsUseCase: GetQuestionsUseCase(
+                questionsRepository: DefaultQuestionsRepository()),
+            answerQuestionUseCase: AnswerQuestionUseCase(
+                questionsRepository: DefaultQuestionsRepository()),
+            resultOfAdditionalQuestionsUseCase: ResultOfAdditionalQuestionsUseCase(
+                questionsRepository: DefaultQuestionsRepository()))) { _ in
+                    isShieldPresented = false
+                }
+        }
+        
 //        .onLoad {
 //            viewModel.getSubjects()
 //        }

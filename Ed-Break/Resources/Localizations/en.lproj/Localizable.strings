@@ -9,6 +9,8 @@
 // Onboarding
 
 "onboarding.role" = "Whose device is this?";
+"onboarding.terms.text" = "By checking this box, you are agreeing to Ed-Break";
+"onboarding.terms.action" = "Terms & Conditions";
 
 "onboarding.parent.title" = "Parent’s Device";
 "onboarding.child.title" = "Child’s Device";
@@ -44,6 +46,7 @@
 "familySharing.cancel" = "Open Settings";
 
 "childDetails.upload" = "Upload photo";
+"childDetails.upload.new" = "Upload new";
 "childDetails.upload.options" = "Photo Options...";
 "childDetails.upload.takePhoto" = "Take a Photo";
 "childDetails.upload.choose" = "Choose Existing";
@@ -129,3 +132,9 @@
 "main.parent.settings.cancel" = "Cancel";
 "main.parent.settings.delete.description" = "Do you want to delete this child’s device?";
 "main.parent.settings.delete.description.details" = "You can’t undo this action";
+
+
+// Child
+
+"child.shield.title" = "Ed-Break";
+"child.shield.description" = "You cannot use this app because you didn’t complete your exercise goal. Wait for 5 minutes to do execrise again";

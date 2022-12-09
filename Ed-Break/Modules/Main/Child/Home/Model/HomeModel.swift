@@ -64,7 +64,7 @@ struct SubjectModel: BottomsheetCellModel, Equatable {
         correctAnswersCount = dto.correctAnswersCount ?? 0
         completed = dto.completed ?? false
     }
-    
+
     init(dto: CoachingSubjectDto) {
         id = dto.id
         subject = dto.title
@@ -73,5 +73,15 @@ struct SubjectModel: BottomsheetCellModel, Equatable {
         completedCount = dto.answersCount ?? 0
         correctAnswersCount = dto.correctAnswersCount ?? 0
         completed = completedCount >= questionsCount
+    }
+    
+    init() {
+        self.id = 0
+        self.subject = nil
+        self.photo = nil
+        self.questionsCount = 0
+        self.completedCount = 0
+        self.correctAnswersCount = 0
+        self.completed = false
     }
 }

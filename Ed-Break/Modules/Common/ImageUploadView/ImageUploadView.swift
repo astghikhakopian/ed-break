@@ -38,7 +38,7 @@ struct ImageUploadView: View {
                     Image.ChildDetails.uploadPlaceholder
                 }
                 
-                Text("childDetails.upload")
+                Text(placeholderImageStringUrl != nil ? "childDetails.upload.new" : "childDetails.upload")
                     .foregroundColor(.primaryPurple)
                     .font(.appHeadline)
             }

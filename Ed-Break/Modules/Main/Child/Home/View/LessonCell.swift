@@ -32,31 +32,17 @@ struct LessonCell: View {
             Spacer()
             if model.completed {
                 Image.Common.roundedCheckmark
+            } else {
+                ZStack(alignment: .leading) {
+                    SegmentedProgressView(segmentsCount: model.questionsCount, filledSegments: model.completedCount)
+                        .frame(width: 48)
+                        .rotationEffect(Angle(degrees: -90))
+                    Text("\(model.completedCount)/\(model.questionsCount)")
+                        .font(.appBody)
+                        .foregroundColor(.primaryDescription)
+                        .padding(7)
+                }
             }
-            /*
-            ZStack {
-                Circle()
-                    .stroke(
-                        Color.divader,
-                        style: //StrokeStyle(
-                        StrokeStyle(lineWidth: 3, lineCap: .round, lineJoin: .miter, dash: [CGFloat(model.questionsCount) * gap*2, CGFloat(model.questionsCount)*2]
-                                   )
-                    ).frame(height: progressHeight)
-                    .rotationEffect(.degrees(-8))
-                
-                Circle()
-                                .trim(from: 0, to: 3/5)
-                    .stroke(
-                        Color.primaryPurple,
-                        style: //StrokeStyle(
-                        StrokeStyle(lineWidth: 3, lineCap: .round, lineJoin: .miter, dash: [CGFloat(model.questionsCount) * gap*2, CGFloat(model.questionsCount)*2]
-                                   )
-                    ).frame(height: progressHeight)
-                    .rotationEffect(.degrees(-90))
-//                .rotationEffect(.degrees(-90))
-                // .animation(.easeOut, value: 8)
-            }
-             */
         }
         .padding(padding)
         .background(Color.appWhite)

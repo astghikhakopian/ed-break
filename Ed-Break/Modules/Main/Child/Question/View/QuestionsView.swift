@@ -17,7 +17,7 @@ struct QuestionsView<M: QuestionsViewModeling>: View {
     
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     
-    private let padding: CGFloat = 20
+    private let padding: CGFloat = 30
     private let spacing: CGFloat = 12
     private let containerSpacing: CGFloat = 32
     private let cell: CGFloat = 50
@@ -33,50 +33,52 @@ struct QuestionsView<M: QuestionsViewModeling>: View {
     
     
     var body: some View {
-        VStack(spacing: containerSpacing) {
-            if let questionsContainer = viewModel.questionsContainer {
-                pageIndicator
-                if questionsContainer.answeredCount >= questionsContainer.questions.count {
-                    if questionsContainer.questions.filter { $0.isCorrect ?? false }.count == questionsContainer.questions.count {
-                        PhoneLockingStateView(state: .unlocked, action: {
-                            if isAdditionalQuestions {
-                                viewModel.didAnswerAdditionalQuestions {
+        MainBackground(title: viewModel.subject.title, withNavbar: true, isSimple: true) {
+            VStack(spacing: containerSpacing) {
+                if let questionsContainer = viewModel.questionsContainer {
+                    pageIndicator
+                    if questionsContainer.answeredCount >= questionsContainer.questions.count {
+                        if questionsContainer.questions.filter { $0.isCorrect ?? false }.count == questionsContainer.questions.count {
+                            PhoneLockingStateView(state: .unlocked, action: {
+                                if isAdditionalQuestions {
+                                    viewModel.didAnswerAdditionalQuestions {
+                                        DispatchQueue.main.async {
+                                            presentationMode.wrappedValue.dismiss()
+                                        }
+                                    }
+                                } else {
                                     DispatchQueue.main.async {
                                         presentationMode.wrappedValue.dismiss()
                                     }
                                 }
-                            } else {
-                                DispatchQueue.main.async {
-                                    presentationMode.wrappedValue.dismiss()
-                                }
-                            }
-                        }, isLoading: $viewModel.isLoading, title: viewModel.buttonTitle)
+                            }, isLoading: $viewModel.isLoading, title: viewModel.buttonTitle)
+                        } else {
+                            PhoneLockingStateView(state: .locked, action: {
+                                guard viewModel.remindingMinutes == 0 else { return }
+                                viewModel.getAdditionalQuestions()
+                                isAdditionalQuestions = true
+                            }, isLoading: $viewModel.isLoading, title: viewModel.buttonTitle)
+                        }
                     } else {
-                        PhoneLockingStateView(state: .locked, action: {
-                            guard viewModel.remindingMinutes == 0 else { return }
-                            viewModel.getAdditionalQuestions()
-                            isAdditionalQuestions = true
-                        }, isLoading: $viewModel.isLoading, title: viewModel.buttonTitle)
+                        questionView
+                        options
+                        confirmButton
                     }
                 } else {
-                    questionView
-                    options
-                    confirmButton
+                    ProgressView()
+                        .progressViewStyle(CircularProgressViewStyle(tint: .primaryPurple))
+                        .frame(width: UIScreen.main.bounds.width - 2*padding, height: UIScreen.main.bounds.height - 200)
                 }
-            } else {
-                ProgressView()
-                    .progressViewStyle(CircularProgressViewStyle(tint: .primaryPurple))
-                    .frame(width: UIScreen.main.bounds.width - 2*padding, height: UIScreen.main.bounds.height - 200)
-            }
-        }.padding(padding)
-            .background(Color.appWhite)
-            .cornerRadius(contentCornerRadius)
-            .frame(width: UIScreen.main.bounds.width - 2*padding, height: UIScreen.main.bounds.height - 200)
-            .onReceive(timer) { time in
-                if viewModel.remindingMinutes > 0 {
-                    viewModel.remindingMinutes -= 1
+            }.padding(padding)
+                .background(Color.appWhite)
+                .cornerRadius(contentCornerRadius)
+                .frame(minWidth: UIScreen.main.bounds.width - 2*padding, minHeight: UIScreen.main.bounds.height - 150)
+                .onReceive(timer) { time in
+                    if viewModel.remindingMinutes > 0 {
+                        viewModel.remindingMinutes -= 1
+                    }
                 }
-            }
+        }
             .onLoad {
                 viewModel.getQuestions()
             }
@@ -147,7 +149,9 @@ extension QuestionsView {
         ConfirmButton(action: {
             guard let selectedAnswer = selectedAnswer else { return }
             viewModel.answerQuestion(answer: selectedAnswer) { _ in
-                presentationMode.wrappedValue.dismiss()
+                DispatchQueue.main.async {
+                    presentationMode.wrappedValue.dismiss()
+                }
             }
         }, title: "common.continue", isContentValid: .constant(true), isLoading: $viewModel.isLoading).disabled(viewModel.remindingMinutes > 0)
     }

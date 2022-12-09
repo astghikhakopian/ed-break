@@ -21,6 +21,7 @@ struct BottomsheetView: View {
     @Binding var isPresented: Bool
     var isMultiselect = false
     
+    @State private var uiTabarController: UITabBarController?
     private func isSelected(item: BottomsheetCellModel) -> Bool {
         selectedItems?.contains(where: {$0.id == item.id}) ?? false
     }
@@ -62,6 +63,12 @@ struct BottomsheetView: View {
         .rotationEffect(Angle(degrees: 180))
         .ignoresSafeArea()
         .background(Color.appBlack.opacity(0.4))
+        .introspectTabBarController { (UITabBarController) in
+            UITabBarController.tabBar.isHidden = true
+            uiTabarController = UITabBarController
+        }.onDisappear{
+            uiTabarController?.tabBar.isHidden = false
+        }
     }
     
     func cell(item: BottomsheetCellModel)-> some View {

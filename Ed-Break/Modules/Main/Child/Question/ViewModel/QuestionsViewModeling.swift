@@ -15,6 +15,8 @@ protocol QuestionsViewModeling: ObservableObject, Identifiable {
     var currentQuestion: QusetionModel { get set }
     var remindingMinutes: Int { get set }
     var buttonTitle: String { get set }
+    var isContentValid: Bool { get set }
+    var subject: SubjectModel { get }
     
     func getQuestions()
     func getAdditionalQuestions()

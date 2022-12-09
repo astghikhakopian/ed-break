@@ -90,6 +90,8 @@
 		1BA9DFB028E7290A006980D1 /* ConfirmButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BA9DFAF28E7290A006980D1 /* ConfirmButton.swift */; };
 		1BA9DFB228E72C73006980D1 /* CancelButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BA9DFB128E72C73006980D1 /* CancelButton.swift */; };
 		1BA9DFB428E73001006980D1 /* NavigationButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BA9DFB328E73001006980D1 /* NavigationButton.swift */; };
+		1BB031432942592C009F47BF /* ShieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BB031422942592B009F47BF /* ShieldView.swift */; };
+		1BB0314529426A81009F47BF /* MultiSegmentProgress.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BB0314429426A81009F47BF /* MultiSegmentProgress.swift */; };
 		1BC5BDE029292590006171A5 /* QuestionsContainerDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BC5BDDF2929258F006171A5 /* QuestionsContainerDto.swift */; };
 		1BC5BDE829294E11006171A5 /* UIKitIntrospectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BC5BDE329294E11006171A5 /* UIKitIntrospectionView.swift */; };
 		1BC5BDE929294E11006171A5 /* AppKitIntrospectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BC5BDE429294E11006171A5 /* AppKitIntrospectionView.swift */; };
@@ -276,6 +278,8 @@
 		1BA9DFAF28E7290A006980D1 /* ConfirmButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmButton.swift; sourceTree = "<group>"; };
 		1BA9DFB128E72C73006980D1 /* CancelButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CancelButton.swift; sourceTree = "<group>"; };
 		1BA9DFB328E73001006980D1 /* NavigationButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationButton.swift; sourceTree = "<group>"; };
+		1BB031422942592B009F47BF /* ShieldView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShieldView.swift; sourceTree = "<group>"; };
+		1BB0314429426A81009F47BF /* MultiSegmentProgress.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultiSegmentProgress.swift; sourceTree = "<group>"; };
 		1BC5BDDF2929258F006171A5 /* QuestionsContainerDto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionsContainerDto.swift; sourceTree = "<group>"; };
 		1BC5BDE329294E11006171A5 /* UIKitIntrospectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIKitIntrospectionView.swift; sourceTree = "<group>"; };
 		1BC5BDE429294E11006171A5 /* AppKitIntrospectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppKitIntrospectionView.swift; sourceTree = "<group>"; };
@@ -784,6 +788,7 @@
 				1B7E649429110ACD0084E6A0 /* TabView */,
 				1B7E649A291121800084E6A0 /* Home */,
 				1B016B242922877800291A9D /* Question */,
+				1BB0314129425906009F47BF /* Shield */,
 			);
 			path = Child;
 			sourceTree = "<group>";
@@ -957,6 +962,7 @@
 			children = (
 				1BA30D6C28E7A34100926820 /* Moya+Extensions.swift */,
 				1B2A4BB6291B90D9008C60D5 /* ViewModifiers.swift */,
+				1BB0314429426A81009F47BF /* MultiSegmentProgress.swift */,
 			);
 			path = Shared;
 			sourceTree = "<group>";
@@ -989,6 +995,14 @@
 				1BE72A2E28E8920300447167 /* View */,
 			);
 			path = ChildDetails;
+			sourceTree = "<group>";
+		};
+		1BB0314129425906009F47BF /* Shield */ = {
+			isa = PBXGroup;
+			children = (
+				1BB031422942592B009F47BF /* ShieldView.swift */,
+			);
+			path = Shield;
 			sourceTree = "<group>";
 		};
 		1BC5BDE129292822006171A5 /* Models */ = {
@@ -1662,6 +1676,7 @@
 				1BEE80FD28EB1D29004F75CA /* QRCodeView.swift in Sources */,
 				EFE6E46328E2206A00B3F83D /* Font.swift in Sources */,
 				1BC5BDEB29294E11006171A5 /* Introspect.swift in Sources */,
+				1BB031432942592C009F47BF /* ShieldView.swift in Sources */,
 				1B687140290D68F000651A33 /* ChildQRViewModel.swift in Sources */,
 				1BE72A3A28E8A20100447167 /* ChildDetailsViewModeling.swift in Sources */,
 				1B02821F29105EBB0094FD2A /* CoachingViewModeling.swift in Sources */,
@@ -1706,6 +1721,7 @@
 				1B76B64428EC266100602003 /* ChildrenRepository.swift in Sources */,
 				EF43B6A628E19F8400DBE6B6 /* Color.swift in Sources */,
 				1B445AEB28EC531B00B0B310 /* ChildModel.swift in Sources */,
+				1BB0314529426A81009F47BF /* MultiSegmentProgress.swift in Sources */,
 				1BA8181B291CE43B00916796 /* RestrictionsRoute.swift in Sources */,
 				1BE72A4128E8D69900447167 /* ImageUploadView.swift in Sources */,
 				1BEC0C40291A963100116FC0 /* DateFormatter.swift in Sources */,
@@ -1805,7 +1821,7 @@
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = ActivityMonitor/ActivityMonitor.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 15;
+				CURRENT_PROJECT_VERSION = 18;
 				DEVELOPMENT_TEAM = 59UY34K59P;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = ActivityMonitor/Info.plist;
@@ -1832,7 +1848,7 @@
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = ActivityMonitor/ActivityMonitor.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 15;
+				CURRENT_PROJECT_VERSION = 18;
 				DEVELOPMENT_TEAM = 59UY34K59P;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = ActivityMonitor/Info.plist;
@@ -1979,7 +1995,7 @@
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_ENTITLEMENTS = "Ed-Break/Ed-Break.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 15;
+				CURRENT_PROJECT_VERSION = 18;
 				DEVELOPMENT_ASSET_PATHS = "Ed-Break/Resources/Preview\\ Content";
 				DEVELOPMENT_TEAM = 59UY34K59P;
 				ENABLE_PREVIEWS = YES;
@@ -2015,7 +2031,7 @@
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_ENTITLEMENTS = "Ed-Break/Ed-Break.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 15;
+				CURRENT_PROJECT_VERSION = 18;
 				DEVELOPMENT_ASSET_PATHS = "Ed-Break/Resources/Preview\\ Content";
 				DEVELOPMENT_TEAM = 59UY34K59P;
 				ENABLE_PREVIEWS = YES;

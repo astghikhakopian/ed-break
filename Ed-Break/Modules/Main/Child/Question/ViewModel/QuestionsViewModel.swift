@@ -15,21 +15,25 @@ final class QuestionsViewModel: QuestionsViewModeling, Identifiable {
     @Published var answerResultType: AnswerResultType? = nil
     @Published var remindingMinutes: Int = 0 {
         didSet {
-            guard let questionsContainer = questionsContainer, remindingMinutes >= 0 else { buttonTitle = "common.ok"; return }
+            guard let questionsContainer = questionsContainer, remindingMinutes >= 0 else { buttonTitle = "common.continue"; return }
             if questionsContainer.answeredCount >= questionsContainer.questions.count {
                 if questionsContainer.questions.filter({ $0.isCorrect ?? false }).count == questionsContainer.questions.count ||
                    remindingMinutes == 0 {
                     buttonTitle = "Additional Questions"
+                    isContentValid = true
                 } else {
                     buttonTitle = "0:\(remindingMinutes <= 9 ? "0\(remindingMinutes)" : "\(remindingMinutes)")"
+                    isContentValid = false
                 }
             } else {
                 buttonTitle = "common.continue"
+                isContentValid = true
             }
         }
     }
     
     @Published var buttonTitle: String = "common.continue"
+    @Published var isContentValid: Bool = false
    
     let subject: SubjectModel
     let home: HomeModel?
@@ -101,7 +105,7 @@ final class QuestionsViewModel: QuestionsViewModeling, Identifiable {
             let answersCount = questionsContainer.answeredCount
             if answersCount + 1 < questionsContainer.questions.count {
                 DispatchQueue.main.asyncAfter(deadline: .now() + 1.1) { [weak self] in
-                    guard let self = self, let questionsContainer = self.questionsContainer else { return }
+                    guard let self = self, let questionsContainer = self.questionsContainer, answersCount + 1 < self.questionsContainer?.questions.count ?? 0 else { return }
                     self.questionsContainer?.answeredCount = answersCount + 1
                     self.questionsContainer?.questions[answersCount].isCorrect = answer.correct
                     self.currentQuestion = questionsContainer.questions[answersCount + 1]
@@ -109,7 +113,9 @@ final class QuestionsViewModel: QuestionsViewModeling, Identifiable {
             } else {
                 completion(answer.correct ? .success : .failure)
             }
-            self.answerResultType = answer.correct ? .success : .failure
+            DispatchQueue.main.async { [weak self] in
+                self?.answerResultType = answer.correct ? .success : .failure
+            }
 //                }
 //            case .failure(let failure):
 //                print(failure.localizedDescription)
@@ -141,13 +147,50 @@ final class QuestionsViewModel: QuestionsViewModeling, Identifiable {
 
 final class MockQuestionsViewModel: QuestionsViewModeling, Identifiable {
     
-    var questionsContainer: QuestionsContainerModel? = nil//QuestionsContainerModel(dto: QuestionsContainerDto(questions: [QusetionDto(id: 0, questionAnswer: [QuestionAnswerDto(id: 0, answer: "ban che", correct: true, question: 1)], questionText: "Inch ka", isCorrect: nil, subject: SubjectDto(id: 0, subject: "Math", photo: "https://ed-break-back-dev.s3.amazonaws.com/media/800px-Stylised_atom_with_three_Bohr_model_orbits_and_stylised_nucleus.svg.png", questionsCount: 1, completedCount: 0, correctAnswersCount: 0, completed: false))], answeredCount: 0))
-    var currentQuestion: QusetionModel = QusetionModel()
+    var questionsContainer: QuestionsContainerModel? = QuestionsContainerModel(
+        dto: QuestionsContainerDto(
+            questions: [
+                QusetionDto(
+                    id: 0,
+                    questionAnswer: [
+                        QuestionAnswerDto(id: 0, answer: "ban che", correct: true, question: 1),
+                        QuestionAnswerDto(id: 1, answer: "ban che 1", correct: false, question: 2)
+                    ],
+                    questionText: "Inch ka",
+                    isCorrect: nil,
+                    subject: SubjectDto(
+                        id: 0,
+                        subject: "Math",
+                        photo: "https://ed-break-back-dev.s3.amazonaws.com/media/800px-Stylised_atom_with_three_Bohr_model_orbits_and_stylised_nucleus.svg.png",
+                        questionsCount: 1,
+                        completedCount: 0,
+                        correctAnswersCount: 0,
+                        completed: false))],
+            answeredCount: 0))
+    var currentQuestion: QusetionModel = QusetionModel(dto: QusetionDto(
+        id: 0,
+        questionAnswer: [
+            QuestionAnswerDto(id: 0, answer: "ban che", correct: true, question: 1),
+            QuestionAnswerDto(id: 1, answer: "ban che 1", correct: false, question: 2),
+            QuestionAnswerDto(id: 2, answer: "ban che 2", correct: false, question: 3),
+            QuestionAnswerDto(id: 3, answer: "ban che 3", correct: false, question: 4)
+        ],
+        questionText: "Inch ka, vonts ek,vonts chek?. Vaghuts cheink tesnvel. u sents yerkar text",
+        isCorrect: nil,
+        subject: SubjectDto(
+            id: 0,
+            subject: "Math",
+            photo: "https://ed-break-back-dev.s3.amazonaws.com/media/800px-Stylised_atom_with_three_Bohr_model_orbits_and_stylised_nucleus.svg.png",
+            questionsCount: 1,
+            completedCount: 0,
+            correctAnswersCount: 0,
+            completed: false)))
     var subject: SubjectModel = SubjectModel(dto: SubjectDto(id: 0, subject: "Math", photo: nil, questionsCount: 0, completedCount: 0, correctAnswersCount: 0, completed: true))
     var isLoading = false
     var answerResultType: AnswerResultType? = nil
     var remindingMinutes = 0
     var buttonTitle: String = ""
+    var isContentValid: Bool = false
     
     func getQuestions() { }
     func getAdditionalQuestions() { }
