@@ -42,4 +42,5 @@ class ScheduleModel {
             print("Error occured while started monitoring: ", error)
         }
     }
+    
 }

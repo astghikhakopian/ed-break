@@ -41,10 +41,35 @@ class AppDelegate: NSObject, UIApplicationDelegate {
 //            }
 //        }
 
-//        ScheduleModel.setSchedule()
+        ScheduleModel.setSchedule()
         
         return true
+    }
+    
+    func applicationDidEnterBackground(_ application: UIApplication) {
+        
+    }
+    func applicationWillEnterForeground(_ application: UIApplication) {
+        
+    }
+    func applicationWillTerminate(_ application: UIApplication) {
+        
     }
 }
 
 
+/// Extension
+
+extension View {
+    func onReceive(
+        _ name: Notification.Name,
+        center: NotificationCenter = .default,
+        object: AnyObject? = nil,
+        perform action: @escaping (Notification) -> Void
+    ) -> some View {
+        onReceive(
+            center.publisher(for: name, object: object),
+            perform: action
+        )
+    }
+}

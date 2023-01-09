@@ -30,7 +30,7 @@ struct LessonCell: View {
                     .foregroundColor(model.completed ? .primaryGreen : .primaryDescription)
             }
             Spacer()
-            if model.completed {
+            if model.completed || model.questionsCount <= 0 {
                 Image.Common.roundedCheckmark
             } else {
                 ZStack(alignment: .leading) {

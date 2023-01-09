@@ -38,6 +38,32 @@ struct QuestionsView<M: QuestionsViewModeling>: View {
                 if let questionsContainer = viewModel.questionsContainer {
                     pageIndicator
                     if questionsContainer.answeredCount >= questionsContainer.questions.count {
+                        if viewModel.remindingMinutes > 0 {
+                            PhoneLockingStateView(state: .unlocked, action: {
+                                if isAdditionalQuestions {
+                                    viewModel.didAnswerAdditionalQuestions {
+                                        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                                            presentationMode.wrappedValue.dismiss()
+                                        }
+                                    }
+                                } else {
+                                    DispatchQueue.main.async {
+                                        presentationMode.wrappedValue.dismiss()
+                                    }
+                                }
+                            }, isLoading: $viewModel.isLoading, title: viewModel.buttonTitle)
+                        } else {
+                            PhoneLockingStateView(state: .locked, action: {
+                                guard viewModel.remindingMinutes <= 0 else {
+                                    DispatchQueue.main.async {
+                                        presentationMode.wrappedValue.dismiss()
+                                    }
+                                    return }
+                                viewModel.getAdditionalQuestions()
+                                isAdditionalQuestions = true
+                            }, isLoading: $viewModel.isLoading, title: viewModel.remindingMinutes <= 0 ? "Additional Questions" : viewModel.buttonTitle)
+                        }
+                        /*
                         if questionsContainer.questions.filter { $0.isCorrect ?? false }.count == questionsContainer.questions.count {
                             PhoneLockingStateView(state: .unlocked, action: {
                                 if isAdditionalQuestions {
@@ -54,11 +80,12 @@ struct QuestionsView<M: QuestionsViewModeling>: View {
                             }, isLoading: $viewModel.isLoading, title: viewModel.buttonTitle)
                         } else {
                             PhoneLockingStateView(state: .locked, action: {
-                                guard viewModel.remindingMinutes == 0 else { return }
+                                guard viewModel.remindingMinutes <= 0 else { return }
                                 viewModel.getAdditionalQuestions()
                                 isAdditionalQuestions = true
                             }, isLoading: $viewModel.isLoading, title: viewModel.buttonTitle)
                         }
+                         */
                     } else {
                         questionView
                         options
@@ -149,8 +176,16 @@ extension QuestionsView {
         ConfirmButton(action: {
             guard let selectedAnswer = selectedAnswer else { return }
             viewModel.answerQuestion(answer: selectedAnswer) { _ in
-                DispatchQueue.main.async {
-                    presentationMode.wrappedValue.dismiss()
+                if isAdditionalQuestions {
+                    viewModel.didAnswerAdditionalQuestions {
+                        DispatchQueue.main.async {
+                            presentationMode.wrappedValue.dismiss()
+                        }
+                    }
+                } else {
+                    DispatchQueue.main.async {
+                        presentationMode.wrappedValue.dismiss()
+                    }
                 }
             }
         }, title: "common.continue", isContentValid: .constant(true), isLoading: $viewModel.isLoading).disabled(viewModel.remindingMinutes > 0)

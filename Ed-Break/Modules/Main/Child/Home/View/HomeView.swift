@@ -74,7 +74,9 @@ struct HomeView<M: HomeViewModeling>: View {
         .onReceive(timer) { time in
             if viewModel.remindingMinutes > 0 {
                 viewModel.remindingMinutes -= 1
+                DataModel.shared.remindingMinutes = viewModel.remindingMinutes
             } else {
+                DataModel.shared.remindingMinutes = 0
                 viewModel.setRestrictions()
             }
         }

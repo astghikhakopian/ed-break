@@ -33,25 +33,25 @@ class DeviceActivityMonitorExtension: DeviceActivityMonitor {
     
     override func eventDidReachThreshold(_ event: DeviceActivityEvent.Name, activity: DeviceActivityName) {
         super.eventDidReachThreshold(event, activity: activity)
-        
-        // Handle the event reaching its threshold.
+        print(event, activity)
+        store.shield.applications = nil
     }
     
     override func intervalWillStartWarning(for activity: DeviceActivityName) {
         super.intervalWillStartWarning(for: activity)
-        
+        print(activity)
         // Handle the warning before the interval starts.
     }
     
     override func intervalWillEndWarning(for activity: DeviceActivityName) {
         super.intervalWillEndWarning(for: activity)
-        
+        print(activity)
         // Handle the warning before the interval ends.
     }
     
     override func eventWillReachThresholdWarning(_ event: DeviceActivityEvent.Name, activity: DeviceActivityName) {
         super.eventWillReachThresholdWarning(event, activity: activity)
-        
+        print(event, activity)
         // Handle the warning before the event reaches its threshold.
     }
 }

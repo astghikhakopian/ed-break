@@ -61,6 +61,8 @@ final class HomeViewModel: HomeViewModeling, Identifiable {
                         self.remindingMinutes = 0
                         DataModel.shared.setShieldRestrictions()
                     }
+                    DataModel.shared.remindingMinutes = self.remindingMinutes
+                    ScheduleModel.setSchedule()
                 }
             case .failure(let failure):
                 self.checkConnection { success in

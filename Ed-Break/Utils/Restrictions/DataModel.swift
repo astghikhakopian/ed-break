@@ -1,6 +1,7 @@
 import Foundation
 import FamilyControls
 import ManagedSettings
+import DeviceActivity
 
 private let _DataModel = DataModel()
 
@@ -10,11 +11,13 @@ class DataModel: ObservableObject {
     @Published var selectionToDiscourage: FamilyActivitySelection
     @Published var selectionToEncourage: FamilyActivitySelection
     var threshold: DateComponents
+    @Published var remindingMinutes: Int
     
     init() {
         selectionToDiscourage = FamilyActivitySelection()
         selectionToEncourage = FamilyActivitySelection()
         threshold = DateComponents()
+        remindingMinutes = 0
     }
     
     class var shared: DataModel {

@@ -19,6 +19,12 @@
 		1B02821D29105EB00094FD2A /* CoachingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B02821C29105EB00094FD2A /* CoachingViewModel.swift */; };
 		1B02821F29105EBB0094FD2A /* CoachingViewModeling.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B02821E29105EBB0094FD2A /* CoachingViewModeling.swift */; };
 		1B0BC1FC28EF425400DBBD65 /* TabBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B0BC1FB28EF425400DBBD65 /* TabBarView.swift */; };
+		1B0DB597295055D10071E75D /* ManagedSettings.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1B0DB596295055D10071E75D /* ManagedSettings.framework */; };
+		1B0DB599295055D10071E75D /* ManagedSettingsUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1B0DB598295055D10071E75D /* ManagedSettingsUI.framework */; };
+		1B0DB59C295055D10071E75D /* ShieldConfigurationExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B0DB59B295055D10071E75D /* ShieldConfigurationExtension.swift */; };
+		1B0DB5A1295055D10071E75D /* ShieldConfigurationExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 1B0DB595295055D10071E75D /* ShieldConfigurationExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		1B0DB5A52950569A0071E75D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EFE9288A28E18C3E00675F28 /* Assets.xcassets */; };
+		1B0DB5A9295057780071E75D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1B0DB5A8295057780071E75D /* Assets.xcassets */; };
 		1B1346342907D54D00943AA5 /* WebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B1346332907D54D00943AA5 /* WebView.swift */; };
 		1B1346362907DA6800943AA5 /* ChildDeiviceCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B1346352907DA6800943AA5 /* ChildDeiviceCell.swift */; };
 		1B13463B290822E900943AA5 /* UpdateChildUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B13463A290822E900943AA5 /* UpdateChildUseCase.swift */; };
@@ -27,6 +33,11 @@
 		1B2A4BB7291B90D9008C60D5 /* ViewModifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B2A4BB6291B90D9008C60D5 /* ViewModifiers.swift */; };
 		1B2EA77E292FCB9A009EA317 /* GetAllSubjectsUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B2EA77D292FCB9A009EA317 /* GetAllSubjectsUseCase.swift */; };
 		1B323B0329116699006BFBF5 /* LessonCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B323B0229116699006BFBF5 /* LessonCell.swift */; };
+		1B331F372950861F0012588F /* ManagedSettings.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1B0DB596295055D10071E75D /* ManagedSettings.framework */; };
+		1B331F3F2950861F0012588F /* ShieldActionExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 1B331F362950861F0012588F /* ShieldActionExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		1B331F442950AC6A0012588F /* ShieldActionExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B331F392950861F0012588F /* ShieldActionExtension.swift */; };
+		1B331F452950BFBE0012588F /* DataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BE2205E2919112F00796FE1 /* DataModel.swift */; };
+		1B331F462950BFBF0012588F /* DataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BE2205E2919112F00796FE1 /* DataModel.swift */; };
 		1B3581A728E621E600612976 /* OnboardingRoleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B3581A628E621E600612976 /* OnboardingRoleCell.swift */; };
 		1B3581AC28E6387000612976 /* FamilySharingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B3581AB28E6387000612976 /* FamilySharingView.swift */; };
 		1B4413A92930FF4900820B55 /* WheelPickerTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B4413A82930FF4900820B55 /* WheelPickerTextField.swift */; };
@@ -37,6 +48,10 @@
 		1B47815C28F8595800AA8BF8 /* ChildProfileModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B47815B28F8595800AA8BF8 /* ChildProfileModel.swift */; };
 		1B4C1E2928F4678300C69FB1 /* ChildProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B4C1E2828F4678300C69FB1 /* ChildProfileView.swift */; };
 		1B4F5719293931D200AE29E3 /* ScheduleModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B4F5718293931D200AE29E3 /* ScheduleModel.swift */; };
+		1B55E81329506BCA0085E147 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF43B6A528E19F8400DBE6B6 /* Color.swift */; };
+		1B55E81429506BCB0085E147 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF43B6A528E19F8400DBE6B6 /* Color.swift */; };
+		1B55E81529506BCE0085E147 /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EF43B69928E1986F00DBE6B6 /* Colors.xcassets */; };
+		1B55E81629506BCF0085E147 /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EF43B69928E1986F00DBE6B6 /* Colors.xcassets */; };
 		1B56107D28F420B700DA3043 /* DashboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B56107C28F420B700DA3043 /* DashboardView.swift */; };
 		1B56107F28F4263E00DA3043 /* HomeChildCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B56107E28F4263E00DA3043 /* HomeChildCell.swift */; };
 		1B5A0352293272B40032BB71 /* AddInterruptionUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B5A0351293272B40032BB71 /* AddInterruptionUseCase.swift */; };
@@ -102,6 +117,7 @@
 		1BC5BDF029296E69006171A5 /* AnswerResultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BC5BDEF29296E69006171A5 /* AnswerResultView.swift */; };
 		1BCD8C7F292A7E9E00CD3D04 /* PhoneLockingStateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BCD8C7E292A7E9E00CD3D04 /* PhoneLockingStateView.swift */; };
 		1BCD8C81292A83BF00CD3D04 /* Image.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFE6E42728E1A67A00B3F83D /* Image.swift */; };
+		1BCF9F382951FDE100356950 /* ScheduleModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B4F5718293931D200AE29E3 /* ScheduleModel.swift */; };
 		1BE2205229190E3B00796FE1 /* DeviceActivity.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1B3DCFBE28FDFB890094F7A1 /* DeviceActivity.framework */; };
 		1BE2205529190E3B00796FE1 /* DeviceActivityMonitorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BE2205429190E3B00796FE1 /* DeviceActivityMonitorExtension.swift */; };
 		1BE2205A29190E3B00796FE1 /* ActivityMonitor.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 1BE2205129190E3B00796FE1 /* ActivityMonitor.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
@@ -171,6 +187,20 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		1B0DB59F295055D10071E75D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = EFE9287B28E18C3A00675F28 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 1B0DB594295055D10071E75D;
+			remoteInfo = ShieldConfigurationExtension;
+		};
+		1B331F3D2950861F0012588F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = EFE9287B28E18C3A00675F28 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 1B331F352950861F0012588F;
+			remoteInfo = ShieldActionExtension;
+		};
 		1BE2205829190E3B00796FE1 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = EFE9287B28E18C3A00675F28 /* Project object */;
@@ -187,7 +217,9 @@
 			dstPath = "";
 			dstSubfolderSpec = 13;
 			files = (
+				1B0DB5A1295055D10071E75D /* ShieldConfigurationExtension.appex in Embed Foundation Extensions */,
 				1BE2205A29190E3B00796FE1 /* ActivityMonitor.appex in Embed Foundation Extensions */,
+				1B331F3F2950861F0012588F /* ShieldActionExtension.appex in Embed Foundation Extensions */,
 			);
 			name = "Embed Foundation Extensions";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -207,6 +239,13 @@
 		1B02821C29105EB00094FD2A /* CoachingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoachingViewModel.swift; sourceTree = "<group>"; };
 		1B02821E29105EBB0094FD2A /* CoachingViewModeling.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoachingViewModeling.swift; sourceTree = "<group>"; };
 		1B0BC1FB28EF425400DBBD65 /* TabBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarView.swift; sourceTree = "<group>"; };
+		1B0DB595295055D10071E75D /* ShieldConfigurationExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = ShieldConfigurationExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		1B0DB596295055D10071E75D /* ManagedSettings.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ManagedSettings.framework; path = System/Library/Frameworks/ManagedSettings.framework; sourceTree = SDKROOT; };
+		1B0DB598295055D10071E75D /* ManagedSettingsUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ManagedSettingsUI.framework; path = System/Library/Frameworks/ManagedSettingsUI.framework; sourceTree = SDKROOT; };
+		1B0DB59B295055D10071E75D /* ShieldConfigurationExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShieldConfigurationExtension.swift; sourceTree = "<group>"; };
+		1B0DB59D295055D10071E75D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		1B0DB59E295055D10071E75D /* ShieldConfigurationExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ShieldConfigurationExtension.entitlements; sourceTree = "<group>"; };
+		1B0DB5A8295057780071E75D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1B1346332907D54D00943AA5 /* WebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebView.swift; sourceTree = "<group>"; };
 		1B1346352907DA6800943AA5 /* ChildDeiviceCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChildDeiviceCell.swift; sourceTree = "<group>"; };
 		1B13463A290822E900943AA5 /* UpdateChildUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateChildUseCase.swift; sourceTree = "<group>"; };
@@ -215,6 +254,11 @@
 		1B2A4BB6291B90D9008C60D5 /* ViewModifiers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModifiers.swift; sourceTree = "<group>"; };
 		1B2EA77D292FCB9A009EA317 /* GetAllSubjectsUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetAllSubjectsUseCase.swift; sourceTree = "<group>"; };
 		1B323B0229116699006BFBF5 /* LessonCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LessonCell.swift; sourceTree = "<group>"; };
+		1B331F21295085E50012588F /* UniformTypeIdentifiers.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UniformTypeIdentifiers.framework; path = System/Library/Frameworks/UniformTypeIdentifiers.framework; sourceTree = SDKROOT; };
+		1B331F362950861F0012588F /* ShieldActionExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = ShieldActionExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		1B331F392950861F0012588F /* ShieldActionExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShieldActionExtension.swift; sourceTree = "<group>"; };
+		1B331F3B2950861F0012588F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		1B331F3C2950861F0012588F /* ShieldActionExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ShieldActionExtension.entitlements; sourceTree = "<group>"; };
 		1B3581A628E621E600612976 /* OnboardingRoleCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingRoleCell.swift; sourceTree = "<group>"; };
 		1B3581AB28E6387000612976 /* FamilySharingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FamilySharingView.swift; sourceTree = "<group>"; };
 		1B3DCFBC28FDF0260094F7A1 /* Ed-Break.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Ed-Break.entitlements"; sourceTree = "<group>"; };
@@ -362,6 +406,23 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		1B0DB592295055D10071E75D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1B0DB597295055D10071E75D /* ManagedSettings.framework in Frameworks */,
+				1B0DB599295055D10071E75D /* ManagedSettingsUI.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1B331F332950861F0012588F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1B331F372950861F0012588F /* ManagedSettings.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		1BE2204E29190E3B00796FE1 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -503,6 +564,17 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		1B0DB59A295055D10071E75D /* ShieldConfigurationExtension */ = {
+			isa = PBXGroup;
+			children = (
+				1B0DB59B295055D10071E75D /* ShieldConfigurationExtension.swift */,
+				1B0DB59D295055D10071E75D /* Info.plist */,
+				1B0DB59E295055D10071E75D /* ShieldConfigurationExtension.entitlements */,
+				1B0DB5A8295057780071E75D /* Assets.xcassets */,
+			);
+			path = ShieldConfigurationExtension;
+			sourceTree = "<group>";
+		};
 		1B1346322907D52F00943AA5 /* WebView */ = {
 			isa = PBXGroup;
 			children = (
@@ -527,6 +599,16 @@
 				1B29CB7729016D7D0036988F /* ChildQRView.swift */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		1B331F382950861F0012588F /* ShieldActionExtension */ = {
+			isa = PBXGroup;
+			children = (
+				1B331F392950861F0012588F /* ShieldActionExtension.swift */,
+				1B331F3B2950861F0012588F /* Info.plist */,
+				1B331F3C2950861F0012588F /* ShieldActionExtension.entitlements */,
+			);
+			path = ShieldActionExtension;
 			sourceTree = "<group>";
 		};
 		1B3581A828E6383B00612976 /* Parent */ = {
@@ -565,6 +647,9 @@
 			isa = PBXGroup;
 			children = (
 				1B3DCFBE28FDFB890094F7A1 /* DeviceActivity.framework */,
+				1B0DB596295055D10071E75D /* ManagedSettings.framework */,
+				1B0DB598295055D10071E75D /* ManagedSettingsUI.framework */,
+				1B331F21295085E50012588F /* UniformTypeIdentifiers.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -1436,6 +1521,8 @@
 			children = (
 				EFE9288528E18C3A00675F28 /* Ed-Break */,
 				1BE2205329190E3B00796FE1 /* ActivityMonitor */,
+				1B0DB59A295055D10071E75D /* ShieldConfigurationExtension */,
+				1B331F382950861F0012588F /* ShieldActionExtension */,
 				EFE9288428E18C3A00675F28 /* Products */,
 				1B3DCFBD28FDFB890094F7A1 /* Frameworks */,
 			);
@@ -1446,6 +1533,8 @@
 			children = (
 				EFE9288328E18C3A00675F28 /* Ed-Break.app */,
 				1BE2205129190E3B00796FE1 /* ActivityMonitor.appex */,
+				1B0DB595295055D10071E75D /* ShieldConfigurationExtension.appex */,
+				1B331F362950861F0012588F /* ShieldActionExtension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -1506,6 +1595,40 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		1B0DB594295055D10071E75D /* ShieldConfigurationExtension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1B0DB5A4295055D10071E75D /* Build configuration list for PBXNativeTarget "ShieldConfigurationExtension" */;
+			buildPhases = (
+				1B0DB591295055D10071E75D /* Sources */,
+				1B0DB592295055D10071E75D /* Frameworks */,
+				1B0DB593295055D10071E75D /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = ShieldConfigurationExtension;
+			productName = ShieldConfigurationExtension;
+			productReference = 1B0DB595295055D10071E75D /* ShieldConfigurationExtension.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
+		1B331F352950861F0012588F /* ShieldActionExtension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1B331F402950861F0012588F /* Build configuration list for PBXNativeTarget "ShieldActionExtension" */;
+			buildPhases = (
+				1B331F322950861F0012588F /* Sources */,
+				1B331F332950861F0012588F /* Frameworks */,
+				1B331F342950861F0012588F /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = ShieldActionExtension;
+			productName = ShieldActionExtension;
+			productReference = 1B331F362950861F0012588F /* ShieldActionExtension.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 		1BE2205029190E3B00796FE1 /* ActivityMonitor */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 1BE2205B29190E3B00796FE1 /* Build configuration list for PBXNativeTarget "ActivityMonitor" */;
@@ -1536,6 +1659,8 @@
 			);
 			dependencies = (
 				1BE2205929190E3B00796FE1 /* PBXTargetDependency */,
+				1B0DB5A0295055D10071E75D /* PBXTargetDependency */,
+				1B331F3E2950861F0012588F /* PBXTargetDependency */,
 			);
 			name = "Ed-Break";
 			packageProductDependencies = (
@@ -1554,9 +1679,15 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
-				LastSwiftUpdateCheck = 1410;
+				LastSwiftUpdateCheck = 1420;
 				LastUpgradeCheck = 1400;
 				TargetAttributes = {
+					1B0DB594295055D10071E75D = {
+						CreatedOnToolsVersion = 14.1;
+					};
+					1B331F352950861F0012588F = {
+						CreatedOnToolsVersion = 14.2;
+					};
 					1BE2205029190E3B00796FE1 = {
 						CreatedOnToolsVersion = 14.1;
 					};
@@ -1584,15 +1715,35 @@
 			targets = (
 				EFE9288228E18C3A00675F28 /* Ed-Break */,
 				1BE2205029190E3B00796FE1 /* ActivityMonitor */,
+				1B0DB594295055D10071E75D /* ShieldConfigurationExtension */,
+				1B331F352950861F0012588F /* ShieldActionExtension */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		1B0DB593295055D10071E75D /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1B55E81629506BCF0085E147 /* Colors.xcassets in Resources */,
+				1B0DB5A9295057780071E75D /* Assets.xcassets in Resources */,
+				1B0DB5A52950569A0071E75D /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1B331F342950861F0012588F /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		1BE2204F29190E3B00796FE1 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1B55E81529506BCE0085E147 /* Colors.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1628,12 +1779,33 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		1B0DB591295055D10071E75D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1B0DB59C295055D10071E75D /* ShieldConfigurationExtension.swift in Sources */,
+				1B55E81329506BCA0085E147 /* Color.swift in Sources */,
+				1B331F452950BFBE0012588F /* DataModel.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1B331F322950861F0012588F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1BCF9F382951FDE100356950 /* ScheduleModel.swift in Sources */,
+				1B331F442950AC6A0012588F /* ShieldActionExtension.swift in Sources */,
+				1B331F462950BFBF0012588F /* DataModel.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		1BE2204D29190E3B00796FE1 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				1BE2205529190E3B00796FE1 /* DeviceActivityMonitorExtension.swift in Sources */,
 				1BE220602919116200796FE1 /* DataModel.swift in Sources */,
+				1B55E81429506BCB0085E147 /* Color.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1779,6 +1951,16 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		1B0DB5A0295055D10071E75D /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 1B0DB594295055D10071E75D /* ShieldConfigurationExtension */;
+			targetProxy = 1B0DB59F295055D10071E75D /* PBXContainerItemProxy */;
+		};
+		1B331F3E2950861F0012588F /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 1B331F352950861F0012588F /* ShieldActionExtension */;
+			targetProxy = 1B331F3D2950861F0012588F /* PBXContainerItemProxy */;
+		};
 		1BE2205929190E3B00796FE1 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 1BE2205029190E3B00796FE1 /* ActivityMonitor */;
@@ -1816,18 +1998,128 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		1B0DB5A2295055D10071E75D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = ShieldConfigurationExtension/ShieldConfigurationExtension.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 20;
+				DEVELOPMENT_TEAM = 59UY34K59P;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = ShieldConfigurationExtension/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = ShieldConfigurationExtension;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.au.edbreak.ShieldConfigurationExtension;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		1B0DB5A3295055D10071E75D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = ShieldConfigurationExtension/ShieldConfigurationExtension.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 20;
+				DEVELOPMENT_TEAM = 59UY34K59P;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = ShieldConfigurationExtension/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = ShieldConfigurationExtension;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.au.edbreak.ShieldConfigurationExtension;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		1B331F412950861F0012588F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				APPLICATION_EXTENSION_API_ONLY = YES;
+				CODE_SIGN_ENTITLEMENTS = ShieldActionExtension/ShieldActionExtension.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 20;
+				DEVELOPMENT_TEAM = 59UY34K59P;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = ShieldActionExtension/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = ShieldActionExtension;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.au.edbreak.ShieldActionExtension;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		1B331F422950861F0012588F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				APPLICATION_EXTENSION_API_ONLY = YES;
+				CODE_SIGN_ENTITLEMENTS = ShieldActionExtension/ShieldActionExtension.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 20;
+				DEVELOPMENT_TEAM = 59UY34K59P;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = ShieldActionExtension/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = ShieldActionExtension;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.au.edbreak.ShieldActionExtension;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
 		1BE2205C29190E3B00796FE1 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = ActivityMonitor/ActivityMonitor.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 18;
+				CURRENT_PROJECT_VERSION = 20;
 				DEVELOPMENT_TEAM = 59UY34K59P;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = ActivityMonitor/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = ActivityMonitor;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 16.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1848,13 +2140,13 @@
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = ActivityMonitor/ActivityMonitor.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 18;
+				CURRENT_PROJECT_VERSION = 20;
 				DEVELOPMENT_TEAM = 59UY34K59P;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = ActivityMonitor/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = ActivityMonitor;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 16.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1995,7 +2287,7 @@
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_ENTITLEMENTS = "Ed-Break/Ed-Break.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 18;
+				CURRENT_PROJECT_VERSION = 20;
 				DEVELOPMENT_ASSET_PATHS = "Ed-Break/Resources/Preview\\ Content";
 				DEVELOPMENT_TEAM = 59UY34K59P;
 				ENABLE_PREVIEWS = YES;
@@ -2031,7 +2323,7 @@
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_ENTITLEMENTS = "Ed-Break/Ed-Break.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 18;
+				CURRENT_PROJECT_VERSION = 20;
 				DEVELOPMENT_ASSET_PATHS = "Ed-Break/Resources/Preview\\ Content";
 				DEVELOPMENT_TEAM = 59UY34K59P;
 				ENABLE_PREVIEWS = YES;
@@ -2061,6 +2353,24 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		1B0DB5A4295055D10071E75D /* Build configuration list for PBXNativeTarget "ShieldConfigurationExtension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1B0DB5A2295055D10071E75D /* Debug */,
+				1B0DB5A3295055D10071E75D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		1B331F402950861F0012588F /* Build configuration list for PBXNativeTarget "ShieldActionExtension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1B331F412950861F0012588F /* Debug */,
+				1B331F422950861F0012588F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		1BE2205B29190E3B00796FE1 /* Build configuration list for PBXNativeTarget "ActivityMonitor" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
