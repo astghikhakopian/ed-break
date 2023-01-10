@@ -45,7 +45,7 @@ struct LessonCell: View {
             }
         }
         .padding(padding)
-        .background(Color.appWhite)
+        .background(Color.primaryCellBackground)
         .cornerRadius(cornerRadius)
     }
 }

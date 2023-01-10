@@ -66,7 +66,7 @@ private extension ChildrenView {
     
     var content: some View {
         ZStack(alignment: .leading) {
-            Color.appWhite
+            Color.primaryCellBackground
                 .cornerRadius(cornerRadius)
                 .shadow(color: .shadow, radius: 40, x: 0, y: 20)
             VStack(alignment: .leading, spacing: spacing) {

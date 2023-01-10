@@ -191,10 +191,11 @@ struct WheelPickerField<C>: View where C: PickerItem {
                 Spacer().frame(height: 4)
                 HStack {
                     WheelPickerRepresentableField(title: title, datasource: $datasource, selection: $selection, color: UIColor(Color.appBlack))
-                    Spacer()
                     Image.Common.dropdownArrow
                 }.accentColor(.appBlack)
                     .padding(padding)
+                    .background(Color.primaryCellBackground)
+                    .cornerRadius(cornerRadius)
                     .overlay(
                         RoundedRectangle(cornerRadius: cornerRadius)
                             .stroke(Color.border, lineWidth: borderWidth)
@@ -209,6 +210,8 @@ struct WheelPickerField<C>: View where C: PickerItem {
                     Image.Common.dropdownArrow
                 }.accentColor(.appBlack)
                     .padding(padding)
+                    .background(Color.primaryCellBackground)
+                    .cornerRadius(cornerRadius)
                     .overlay(
                         RoundedRectangle(cornerRadius: cornerRadius)
                             .stroke(Color.border, lineWidth: borderWidth)

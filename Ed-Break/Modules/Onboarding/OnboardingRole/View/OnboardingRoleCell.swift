@@ -19,7 +19,7 @@ struct OnboardingRoleCell<Content> : View where Content : View {
     
     var body: some View {
         ZStack {
-            Color.appWhite
+            Color.primaryCellBackground
             NavigationLink(destination: content()) {
                 ZStack {
                     Color.appClear

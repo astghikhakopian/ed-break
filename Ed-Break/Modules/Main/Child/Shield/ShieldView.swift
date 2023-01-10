@@ -17,7 +17,7 @@ struct ShieldView<M: QuestionsViewModeling>: View {
     
     var body: some View {
         ZStack {
-            Color.appWhite
+            Color.primaryCellBackground
             
             VStack(spacing: spacing) {
                 Spacer()

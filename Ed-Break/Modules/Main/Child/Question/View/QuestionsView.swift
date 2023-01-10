@@ -37,7 +37,7 @@ struct QuestionsView<M: QuestionsViewModeling>: View {
             VStack(spacing: containerSpacing) {
                 if let questionsContainer = viewModel.questionsContainer {
                     pageIndicator
-                    if questionsContainer.answeredCount >= questionsContainer.questions.count {
+                    if questionsContainer.answeredCount <= questionsContainer.questions.count {
                         if viewModel.remindingMinutes > 0 {
                             PhoneLockingStateView(state: .unlocked, action: {
                                 if isAdditionalQuestions {
@@ -54,7 +54,7 @@ struct QuestionsView<M: QuestionsViewModeling>: View {
                             }, isLoading: $viewModel.isLoading, title: viewModel.buttonTitle)
                         } else {
                             PhoneLockingStateView(state: .locked, action: {
-                                guard viewModel.remindingMinutes <= 0 else {
+                                guard viewModel.remindingMinutes > 0 else {
                                     DispatchQueue.main.async {
                                         presentationMode.wrappedValue.dismiss()
                                     }
@@ -97,7 +97,7 @@ struct QuestionsView<M: QuestionsViewModeling>: View {
                         .frame(width: UIScreen.main.bounds.width - 2*padding, height: UIScreen.main.bounds.height - 200)
                 }
             }.padding(padding)
-                .background(Color.appWhite)
+                .background(Color.primaryCellBackground)
                 .cornerRadius(contentCornerRadius)
                 .frame(minWidth: UIScreen.main.bounds.width - 2*padding, minHeight: UIScreen.main.bounds.height - 150)
                 .onReceive(timer) { time in

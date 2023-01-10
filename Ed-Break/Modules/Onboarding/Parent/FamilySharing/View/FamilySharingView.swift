@@ -52,7 +52,7 @@ private extension FamilySharingView {
     
     var steps: some View {
         ZStack(alignment: .leading) {
-            Color.appWhite
+            Color.primaryCellBackground
                 .cornerRadius(cornerRadius)
                 .shadow(color: .shadow, radius: 40, x: 0, y: 20)
             VStack(alignment: .leading, spacing: spacing) {
@@ -65,7 +65,7 @@ private extension FamilySharingView {
     
     var info: some View {
         ZStack(alignment: .leading) {
-            Color.appWhite
+            Color.primaryCellBackground
                 .cornerRadius(cornerRadius)
                 .shadow(color: .shadow, radius: 40, x: 0, y: 20)
             VStack(alignment: .leading, spacing: spacing) {

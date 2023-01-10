@@ -119,6 +119,8 @@ struct PickerTextField<C>: View where C: PickerItem {
             
             .accentColor(.appBlack)
             .padding(padding)
+            .background(Color.primaryCellBackground)
+            .cornerRadius(cornerRadius)
             .overlay(
                 RoundedRectangle(cornerRadius: cornerRadius)
                     .stroke(Color.border, lineWidth: borderWidth)

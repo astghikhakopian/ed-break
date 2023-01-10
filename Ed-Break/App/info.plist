@@ -40,13 +40,6 @@
 	<string>Our app uses bluetooth to find, connect and transfer data between different devices</string>
 	<key>NSCameraUsageDescription</key>
 	<string>Allow camera access to scan QR code</string>
-	<key>NSExtension</key>
-	<dict>
-		<key>NSExtensionPointIdentifier</key>
-		<string>com.apple.deviceactivity.monitor-extension</string>
-		<key>NSExtensionPrincipalClass</key>
-		<string>$(PRODUCT_MODULE_NAME).DeviceActivityMonitorExtension</string>
-	</dict>
 	<key>UIAppFonts</key>
 	<array>
 		<string>Poppins-Black.ttf</string>

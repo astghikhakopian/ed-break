@@ -40,7 +40,7 @@ struct CoachingCell: View {
             progress
         }
         .padding(padding)
-        .background(Color.appWhite)
+        .background(Color.primaryCellBackground)
         .cornerRadius(cornerRadius)
     }
 }

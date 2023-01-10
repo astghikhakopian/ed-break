@@ -20,7 +20,7 @@ struct ChildSignInView: View {
         
         MainBackground(title: "onboarding.childSignIn.title", withNavbar: true) {
             ZStack(alignment: .leading) {
-                Color.appWhite
+                Color.primaryCellBackground
                     .cornerRadius(cornerRadius)
                     .shadow(color: .shadow, radius: 40, x: 0, y: 20)
                 

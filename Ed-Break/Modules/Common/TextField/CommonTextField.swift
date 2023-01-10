@@ -28,13 +28,13 @@ struct CommonTextField: View {
             HStack {
                 TextField("", text: $text)
                     .font(.appHeadline)
-                    .background(Color.appWhite)
                     .accentColor(.primaryPurple)
-                    .cornerRadius(cornerRadius)
                 if dropdown {
                     Image.Common.dropdownArrow
                 }
             }.padding(padding)
+                .background(Color.primaryCellBackground)
+                .cornerRadius(cornerRadius)
                 .overlay(
                     RoundedRectangle(cornerRadius: cornerRadius)
                         .stroke(Color.border, lineWidth: borderWidth)

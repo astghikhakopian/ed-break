@@ -73,7 +73,7 @@ private extension ChildEditView {
     
     var childView: some View {
         ZStack(alignment: .leading) {
-            Color.appWhite
+            Color.primaryCellBackground
                 .cornerRadius(cornerRadius)
                 .shadow(color: .shadow, radius: 40, x: 0, y: 20)
             VStack(alignment: .leading, spacing: spacing) {
@@ -117,14 +117,14 @@ private extension ChildEditView {
                     if let title = selectedItems.wrappedValue?.map { $0.title }.joined(separator: ", ") {
                         Text(title)
                             .font(.appHeadline)
-                            .background(Color.appWhite)
+                            .background(Color.primaryCellBackground)
                             .accentColor(.primaryPurple)
                             .cornerRadius(cornerRadius)
                             .lineLimit(1)
                     } else {
                         Text(LocalizedStringKey(placeholder))
                             .font(.appHeadline)
-                            .background(Color.appWhite)
+                            .background(Color.primaryCellBackground)
                             .accentColor(.primaryPurple)
                             .cornerRadius(cornerRadius)
                     }

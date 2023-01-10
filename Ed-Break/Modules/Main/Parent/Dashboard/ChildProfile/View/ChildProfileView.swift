@@ -77,7 +77,7 @@ struct ChildProfileView<M: ChildProfileViewModeling>: View {
 private extension ChildProfileView {
     var header: some View {
         VStack(spacing: spacing) {
-            Color.appWhite.frame(height: 1)
+            Color.primaryCellBackground.frame(height: 1)
             if let imageUrl = viewModel.child.photoUrl {
                 AsyncImageView(withURL: imageUrl.absoluteString, width: imageHeight, height: imageHeight)
                     .frame(width: imageHeight, height: imageHeight)
@@ -97,7 +97,7 @@ private extension ChildProfileView {
                     .foregroundColor(.primaryDescription)
             }
         }.padding(padding)
-            .background(Color.appWhite)
+            .background(Color.primaryCellBackground)
             .cornerRadius(cornerRadius)
     }
     
@@ -128,7 +128,7 @@ private extension ChildProfileView {
             educationStatistics(child: viewModel.child)
         }
         .padding(padding)
-        .background(Color.appWhite)
+        .background(Color.primaryCellBackground)
         .cornerRadius(cornerRadius)
     }
     
@@ -185,7 +185,7 @@ private extension ChildProfileView {
             activityStatistics(child: viewModel.child)
         }
         .padding(padding)
-        .background(Color.appWhite)
+        .background(Color.primaryCellBackground)
         .cornerRadius(cornerRadius)
     }
     
@@ -244,7 +244,7 @@ private extension ChildProfileView {
             }
         }
         .padding(padding)
-        .background(Color.appWhite)
+        .background(Color.primaryCellBackground)
         .cornerRadius(cornerRadius)
     }
     

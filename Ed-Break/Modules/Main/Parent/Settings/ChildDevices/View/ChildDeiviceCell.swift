@@ -44,7 +44,7 @@ struct ChildDeiviceCell: View {
             Image.Settings.more
         }
         .padding(padding)
-        .background(Color.appWhite)
+        .background(Color.primaryCellBackground)
         .cornerRadius(cornerRadius)
         .overlay(
             RoundedRectangle(cornerRadius: cornerRadius)

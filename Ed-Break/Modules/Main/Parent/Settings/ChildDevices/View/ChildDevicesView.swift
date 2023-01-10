@@ -20,7 +20,7 @@ struct ChildDevicesView<M: ChildrenViewModeling>: View {
     var body: some View {
         MainBackground(title: "main.parent.settings.childDevices", withNavbar: true) {
             ZStack(alignment: .leading) {
-                Color.appWhite
+                Color.primaryCellBackground
                     .cornerRadius(cornerRadius)
                     .shadow(color: .shadow, radius: 40, x: 0, y: 20)
                 VStack(spacing: gap) {

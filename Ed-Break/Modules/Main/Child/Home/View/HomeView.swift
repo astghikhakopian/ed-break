@@ -47,7 +47,7 @@ struct HomeView<M: HomeViewModeling>: View {
                         .frame(height: progressWidth)
                 }.padding(headerPadding)
                 Spacer()
-            }.background(Color.appWhite)
+            }.background(Color.primaryCellBackground)
                 .cornerRadius(cornerRadius)
             ForEach(viewModel.contentModel?.subjects ?? [], id: \.id) { subject in
                 NavigationLink {

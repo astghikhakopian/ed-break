@@ -46,13 +46,13 @@ struct AnswerResultView: View {
             VStack(spacing: spacing) {
                 ZStack {
                     RoundedRectangle(cornerRadius: width/2)
-                        .foregroundColor(Color.appWhite)
+                        .foregroundColor(Color.primaryCellBackground)
                         .frame(width: width, height: width)
                     result.image
                 }
                 Text(LocalizedStringKey(result.message))
                     .font(.appHeadingH3)
-                    .foregroundColor(.appWhite)
+                    .foregroundColor(.primaryCellBackground)
             }
         }
         .ignoresSafeArea()

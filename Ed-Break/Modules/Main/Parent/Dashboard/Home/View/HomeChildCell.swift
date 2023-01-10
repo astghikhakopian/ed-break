@@ -27,7 +27,7 @@ struct HomeChildCell: View {
             progress(green: CGFloat(child.percentageToday), orange: CGFloat(child.percentageProgress))
         }
         .padding(padding)
-        .background(Color.appWhite)
+        .background(Color.primaryCellBackground)
         .cornerRadius(cornerRadius)
     }
 }

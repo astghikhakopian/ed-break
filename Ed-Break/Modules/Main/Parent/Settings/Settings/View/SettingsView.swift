@@ -71,7 +71,7 @@ extension SettingsView {
                 SKStoreReviewController.requestReview(in: currentScene)
             }
         }.padding(spacing)
-            .background(Color.appWhite)
+            .background(Color.primaryCellBackground)
             .cornerRadius(cornerRadius)
             .shadow(color: .shadow, radius: 40, x: 0, y: 20)
     }
@@ -80,7 +80,7 @@ extension SettingsView {
         settingsCell(type: .deleteAccount, action: {
             showDeleteOptions = true
         }).padding(spacing)
-            .background(Color.appWhite)
+            .background(Color.primaryCellBackground)
             .cornerRadius(cornerRadius)
             .shadow(color: .shadow, radius: 40, x: 0, y: 20)
     }

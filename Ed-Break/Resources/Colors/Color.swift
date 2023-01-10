@@ -17,6 +17,10 @@ extension Color {
         return Color("PrimaryBackground")
     }
     
+    public static var primaryCellBackground: Color {
+        return Color("PrimaryCellBackground")
+    }
+    
     public static var primaryLightBackground: Color {
         return Color("PrimaryLightBackground")
     }

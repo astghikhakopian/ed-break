@@ -33,7 +33,7 @@ private extension ChildQRView {
     
     var content: some View {
         ZStack(alignment: .leading) {
-            Color.appWhite
+            Color.primaryCellBackground
                 .cornerRadius(cornerRadius)
                 .shadow(color: .shadow, radius: 40, x: 0, y: 20)
             VStack(spacing: spacing) {
@@ -60,7 +60,7 @@ private extension ChildQRView {
         VStack(spacing: loadingSpacing) {
             ProgressView()
                 .progressViewStyle(
-                    CircularProgressViewStyle(tint: .primaryPurple))
+                    CircularProgressViewStyle(tint: .primaryCellBackground))
             Text("onboarding.childQRCode.waiting")
                 .font(.appHeadline)
                 .foregroundColor(.primaryDescription)
