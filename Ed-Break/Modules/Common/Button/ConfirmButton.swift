@@ -20,7 +20,7 @@ struct ConfirmButton: View {
     
     var body: some View {
         ZStack {
-            isContentValid ? Color.primaryPurple : Color.border
+            isContentValid ? Color.white : Color.border
             if !isLoading {
                 Button(action: action, label: {
                     HStack {
@@ -30,7 +30,7 @@ struct ConfirmButton: View {
                         Spacer()
                     }
                 })
-                .foregroundColor( isContentValid ? .appWhite : .primaryDescription )
+                .foregroundColor( isContentValid ? .primaryPurple : .primaryDescription )
             } else {
                 ProgressView()
                     .progressViewStyle(CircularProgressViewStyle(tint: .appWhite))

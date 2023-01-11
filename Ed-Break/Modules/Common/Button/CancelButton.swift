@@ -11,7 +11,7 @@ struct CancelButton: View {
     
     let action: () -> Void
     let title: String
-    var color: Color = .primaryPurple
+    var color: Color = .appWhite
     @Binding var isContentValid: Bool
     
     private let height = 54.0
@@ -19,7 +19,7 @@ struct CancelButton: View {
     
     var body: some View {
         ZStack {
-            color.opacity(0.05)
+            //color.opacity(0.05)
             Button(action: action, label: {
                 HStack {
                     Spacer()

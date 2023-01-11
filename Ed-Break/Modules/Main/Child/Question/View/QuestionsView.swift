@@ -37,7 +37,7 @@ struct QuestionsView<M: QuestionsViewModeling>: View {
             VStack(spacing: containerSpacing) {
                 if let questionsContainer = viewModel.questionsContainer {
                     pageIndicator
-                    if questionsContainer.answeredCount <= questionsContainer.questions.count {
+                    if questionsContainer.answeredCount >= questionsContainer.questions.count {
                         if viewModel.remindingMinutes > 0 {
                             PhoneLockingStateView(state: .unlocked, action: {
                                 if isAdditionalQuestions {

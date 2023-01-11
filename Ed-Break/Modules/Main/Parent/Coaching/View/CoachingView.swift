@@ -42,7 +42,7 @@ private extension CoachingView {
     }
     
     var timeHeader: some View {
-        WheelPickerField(style: .withImage(image: .ChildDetails.calender), selection: $viewModel.selectedPeriod, datasource: $viewModel.timePeriodDatasource).background(Color.primaryBackground)
+        WheelPickerField(style: .withImage(image: .ChildDetails.calender, title: "main.parent.childProfile.timePeriod"), selection: $viewModel.selectedPeriod, datasource: $viewModel.timePeriodDatasource).background(Color.primaryBackground)
 //            Menu {
 //                Picker(selection: $viewModel.selectedPeriod) {
 //                    ForEach(viewModel.timePeriodDatasource, id: \.self) {

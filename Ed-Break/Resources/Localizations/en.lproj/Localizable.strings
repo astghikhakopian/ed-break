@@ -16,7 +16,7 @@
 "onboarding.child.title" = "Child’s Device";
 
 "onboarding.familySharing.title" = "Set up Family Sharing \n and invite your child";
-"onboarding.childDetails.title" = "Set child details";
+"onboarding.childDetails.title" = "Set child's details";
 "onboarding.qrCode.title" = "Install Ed-Break \n on the child’s device";
 "onboarding.children.title" = "Connect child’s device";
 
@@ -30,7 +30,7 @@
 
 "familySharing.settings.title" = "Go to Settings";
 "familySharing.settings.description" = "";
-"familySharing.appleId.title" = "Tap on your Apple ID name";
+"familySharing.appleId.title" = "How to create a child's Apple ID";
 "familySharing.appleId.description" = "Sign into your account";
 "familySharing.familySharing.title" = "Tap on Family Sharing";
 "familySharing.familySharing.description" = "You should have an Organizer, Parent, or Guardian role to invite a child";
@@ -52,6 +52,7 @@
 "childDetails.upload.choose" = "Choose Existing";
 "childDetails.upload.clear" = "Clear Photo";
 "childDetails.name" = "Child name";
+"childDetails.name.placeholder" = "Name";
 "childDetails.grade" = "Grade level";
 "childDetails.add" = "Add another child";
 "childDetails.delete" = "Delete child’s device";

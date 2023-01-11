@@ -11,7 +11,8 @@ struct ChildDetailsView<M: ChildDetailsViewModeling>: View {
     
     var simpleAdd: Bool = false
     @ObservedObject var viewModel: M
-    
+    @State private var uiTabarController: UITabBarController?
+
     @State private var selectedChildIndex: Int?
     @State private var showGradeOptions = false
     @State private var showSubjects = false
@@ -48,6 +49,15 @@ struct ChildDetailsView<M: ChildDetailsViewModeling>: View {
                 }
             }
         }
+        .introspectTabBarController { (UITabBarController) in
+            UITabBarController.tabBar.isHidden = true
+            uiTabarController = UITabBarController
+        }.onDisappear{
+            uiTabarController?.tabBar.isHidden = false
+        }
+        .onAppear {
+            uiTabarController?.tabBar.isHidden = true
+        }
     }
 }
 
@@ -61,9 +71,9 @@ private extension ChildDetailsView {
             VStack(alignment: .leading, spacing: spacing) {
                 ForEach($viewModel.children, id: \.id) { child in
                     uploadPhotoView(image: child.image)
-                    CommonTextField(title: "childDetails.name", text: child.childName)
+                    CommonTextField(title: "childDetails.name", placeHolder: "childDetails.name.placeholder", text: child.childName)
                     HStack(spacing: 10) {
-                        WheelPickerField(style: .titled(title: "childDetails.grade"), selection: child.grade, datasource: $viewModel.grades)
+                        WheelPickerField(style: .titled(title: "childDetails.grade"), selection: child.grade, datasource: $viewModel.grades).tint(.primaryPurple)
                         WheelPickerField(style: .titled(title: "childDetails.interruption"), selection: child.interuption, datasource: $viewModel.interuptions)
                     }
                     dropdown(title: "childDetails.subjects", selectedItems: child.subjects) {
@@ -79,10 +89,13 @@ private extension ChildDetailsView {
                     }
                 }
                 if !simpleAdd {
-                    CancelButton(action: {
-                        guard !viewModel.isLoading else { return }
-                        viewModel.addAnotherChild()
-                    }, title: "childDetails.add", isContentValid: $viewModel.isContentValid)
+                    ZStack {
+                        Color.border
+                        CancelButton(action: {
+                            guard !viewModel.isLoading else { return }
+                            viewModel.addAnotherChild()
+                        }, title: "childDetails.add", isContentValid: $viewModel.isContentValid)
+                    }.cornerRadius(cornerRadius)
                 }
             }.padding(spacing)
         }
@@ -108,14 +121,14 @@ private extension ChildDetailsView {
                         Text(title)
                             .font(.appHeadline)
                             .background(Color.primaryCellBackground)
-                            .accentColor(.primaryPurple)
+                            .accentColor(.black)
                             .cornerRadius(cornerRadius)
                             .lineLimit(1)
                     } else {
                         Text(LocalizedStringKey(placeholder))
                             .font(.appHeadline)
                             .background(Color.primaryCellBackground)
-                            .accentColor(.primaryPurple)
+                            .accentColor(.appBlack)
                             .cornerRadius(cornerRadius)
                     }
                     Spacer()

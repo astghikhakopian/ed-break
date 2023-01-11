@@ -12,6 +12,8 @@ struct ChildDevicesView<M: ChildrenViewModeling>: View {
     
     @StateObject var viewModel: M
     
+    @State private var uiTabarController: UITabBarController?
+
     private let cornerRadius = 12.0
     private let spacing = 14.0
     private let padding = 20.0
@@ -40,12 +42,23 @@ struct ChildDevicesView<M: ChildrenViewModeling>: View {
                                 getAllSubjectsUseCase: GetAllSubjectsUseCase(
                                     childDetailsRepository: DefaultChildDetailsRepository())))
                     } label: {
-                        CancelButton(action: { }, title: "childDetails.add", isContentValid: .constant(true)).disabled(true)
+                        ZStack {
+                            Color.primaryPurple.opacity(0.05)
+                            CancelButton(action: { }, title: "childDetails.add",color: .primaryPurple, isContentValid: .constant(true)).disabled(true)
+                        }.cornerRadius(cornerRadius)
                     }
                 }.padding(spacing)
             }
         }.onAppear {
             viewModel.getChildren()
+            uiTabarController?.tabBar.isHidden = true
+
+        }
+        .introspectTabBarController { (UITabBarController) in
+            UITabBarController.tabBar.isHidden = true
+            uiTabarController = UITabBarController
+        }.onDisappear{
+            uiTabarController?.tabBar.isHidden = false
         }
     }
 }
