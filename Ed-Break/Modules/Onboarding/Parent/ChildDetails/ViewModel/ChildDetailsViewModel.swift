@@ -11,7 +11,7 @@ class ChildDetailsModel {
     var id: UUID = UUID()
     var childId: Int? = nil
     @Published var image = UIImage()
-    var grade: Grade = .first
+    var grade: Grade = .notSelected
     var interuption: Interuption = .i15
     var childName: String = ""
     var subjects: [BottomsheetCellModel]?
@@ -31,7 +31,7 @@ class ChildDetailsModel {
         self.id = UUID()
         self.childId = nil
         self.image = UIImage()
-        self.grade = .first
+        self.grade = .notSelected
         self.childName = ""
         self.subjects = nil
     }
@@ -41,8 +41,8 @@ final class ChildDetailsViewModel: ChildDetailsViewModeling, Identifiable {
     
     let child: ChildModel?
     
-    @Published var grades: [Grade] = Grade.allCases
-    @Published var interuptions: [Interuption] = Interuption.allCases
+    @Published var grades: [Grade] = [.first,.second,.third,.fourth, .fifth, .sixth,.seventh,.eightth,.nineth]//Grade.allCases
+    @Published var interuptions: [Interuption] = [.i15,.i20,.i25,.i30]//Interuption.allCases
     @Published var subjects: [BottomsheetCellModel] = [SubjectModel(dto: SubjectDto(id: 0, subject: "", photo: "", questionsCount: 0, completedCount: 0, correctAnswersCount: 0, completed: false))]
     @Published var isContentValid: Bool = false
     @Published var isLoading: Bool = false

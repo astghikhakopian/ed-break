@@ -21,7 +21,7 @@ extension Image {
             return Image("background_ecliipse_3")
         }
         public static var back: Image {
-            return Image("back")
+            return Image("back1")
         }
     }
     

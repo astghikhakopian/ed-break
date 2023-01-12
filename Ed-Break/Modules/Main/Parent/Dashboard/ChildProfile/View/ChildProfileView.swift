@@ -314,10 +314,13 @@ private extension ChildProfileView {
             } else {
                 Spacer()
             }
+            ZStack {
+                Color.primaryPurple.opacity(0.05)
+                CancelButton(action: {
+                    isDiscouragedPresented = true
+                }, title: "common.manage", color: .primaryPurple,isContentValid: .constant(true))
+            }.cornerRadius(cornerRadius)
             
-            CancelButton(action: {
-                isDiscouragedPresented = true
-            }, title: "common.manage", isContentValid: .constant(true))
         } .frame(maxWidth: .infinity, alignment: .leading)
             .font(.appHeadline)
             .foregroundColor(.primaryDescription)
