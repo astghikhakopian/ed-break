@@ -63,7 +63,7 @@ private extension ChildQRView {
                     CircularProgressViewStyle(tint: .primaryCellBackground))
             Text("onboarding.childQRCode.waiting")
                 .font(.appHeadline)
-                .foregroundColor(.primaryDescription)
+                .foregroundColor(.appWhite)
                 .multilineTextAlignment(.center)
         }
     }

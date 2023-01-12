@@ -10,6 +10,7 @@ import SwiftUI
 struct CommonTextField: View {
     
     let title: String
+    let placeHolder: String
     var dropdown: Bool = false
     @Binding var text: String
     
@@ -26,7 +27,7 @@ struct CommonTextField: View {
                 .frame(height: labelHeight)
                 .foregroundColor(.primaryDescription)
             HStack {
-                TextField("", text: $text)
+                TextField(LocalizedStringKey(placeHolder), text: $text)
                     .font(.appHeadline)
                     .accentColor(.primaryPurple)
                 if dropdown {
@@ -48,6 +49,6 @@ struct CommonTextField_Previews: PreviewProvider {
     @State static var text = "Emma"
     
     static var previews: some View {
-        CommonTextField(title: "Child name", text: $text)
+        CommonTextField(title: "Child name", placeHolder: "", text: $text)
     }
 }

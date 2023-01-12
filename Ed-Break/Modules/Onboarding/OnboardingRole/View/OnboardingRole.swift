@@ -40,8 +40,8 @@ struct OnboardingRole: View {
                         Image.Common.checkmark
                             .renderingMode(.template)
                             .frame(width: 24, height: 24)
-                            .foregroundColor(.appWhite)
-                            .background(isTermsSelected ? Color.primaryPurple : Color.appWhite)
+                            .foregroundColor(isTermsSelected ? Color.primaryPurple : .appWhite)
+                            .background(Color.appWhite)
                             .cornerRadius(1)
                             .overlay(
                                 RoundedRectangle(cornerRadius: 1)
@@ -50,14 +50,14 @@ struct OnboardingRole: View {
                     }
                     VStack(alignment: .leading) {
                         Text("onboarding.terms.text")
-                            .foregroundColor(.primaryDescription)
+                            .foregroundColor(.appWhite)
                             .font(.appHeadline)
                             .multilineTextAlignment(.leading)
                         Button {
                             showWebView = true
                         } label: {
                             Text("onboarding.terms.action")
-                                .foregroundColor(.primaryDescription)
+                                .foregroundColor(.appWhite)
                                 .font(.appHeadline)
                                 .underline()
                         }
