@@ -36,9 +36,12 @@ struct ChildEditView<M: ChildDetailsViewModeling>: View {
                         }
                     }
                 }, title: "common.continue", isContentValid: $viewModel.isContentValid, isLoading: $viewModel.isLoading)
-                CancelButton(action: {
-                    showDeletingAlert = true
-                }, title: "childDetails.delete", color: .primaryRed, isContentValid: .constant(true))
+                ZStack {
+                    Color.appWhite
+                    CancelButton(action: {
+                        showDeletingAlert = true
+                    }, title: "childDetails.delete", color: .primaryRed, isContentValid: .constant(true))
+                }.cornerRadius(cornerRadius)
             }
         }.alert("main.parent.settings.delete.description", isPresented: $showDeletingAlert, actions: {
             Button("common.delete", role: .destructive, action: {
@@ -63,7 +66,10 @@ struct ChildEditView<M: ChildDetailsViewModeling>: View {
         .introspectTabBarController { (UITabBarController) in
             UITabBarController.tabBar.isHidden = true
             uiTabarController = UITabBarController
-        }.onDisappear{
+        }.onAppear {
+            uiTabarController?.tabBar.isHidden = true
+        }
+        .onDisappear {
             uiTabarController?.tabBar.isHidden = false
         }
     }
@@ -79,10 +85,14 @@ private extension ChildEditView {
             VStack(alignment: .leading, spacing: spacing) {
                 ForEach($viewModel.children, id: \.id) { child in
                     uploadPhotoView(image: child.image)
-                    CommonTextField(title: "childDetails.name", text: child.childName)
+                    CommonTextField(title: "childDetails.name", placeHolder: "childDetails.name.placeholder", text: child.childName)
                     HStack(spacing: 10) {
-                        WheelPickerField(style: .titled(title: "childDetails.grade"), selection: child.grade, datasource: $viewModel.grades)
-                        WheelPickerField(style: .titled(title: "childDetails.interruption"), selection: $viewModel.children[0].interuption, datasource: $viewModel.interuptions)
+                        WheelPickerField(style: .titled(title: "childDetails.grade"), selection: child.grade, datasource: $viewModel.grades){
+                            UIApplication.shared.endEditing()
+                        }
+                        WheelPickerField(style: .titled(title: "childDetails.interruption"), selection: $viewModel.children[0].interuption, datasource: $viewModel.interuptions){
+                            UIApplication.shared.endEditing()
+                        }
                     }
                     dropdown(title: "childDetails.subjects", selectedItems: child.subjects) {
                         UIApplication.shared.endEditing()
@@ -118,14 +128,14 @@ private extension ChildEditView {
                         Text(title)
                             .font(.appHeadline)
                             .background(Color.primaryCellBackground)
-                            .accentColor(.primaryPurple)
+                            .accentColor(.appBlack)
                             .cornerRadius(cornerRadius)
                             .lineLimit(1)
                     } else {
                         Text(LocalizedStringKey(placeholder))
                             .font(.appHeadline)
                             .background(Color.primaryCellBackground)
-                            .accentColor(.primaryPurple)
+                            .accentColor(.appBlack)
                             .cornerRadius(cornerRadius)
                     }
                     Spacer()

@@ -44,7 +44,7 @@ struct NavigationButton<Content> : View where Content : View {
         VStack {
             NavigationLink("", destination: content(), tag: 1, selection: $selection)
             ZStack {
-                isContentValid ? Color.primaryPurple : Color.border
+                isContentValid ? Color.appWhite : Color.border
                 if !isLoading {
                     Button {
                         // guard shouldTrackAction else { shouldTrackAction = true; return }
@@ -62,10 +62,10 @@ struct NavigationButton<Content> : View where Content : View {
                             Spacer()
                         }
                     }
-                    .foregroundColor(isContentValid ? .appWhite : .primaryDescription)
+                    .foregroundColor(isContentValid ? .primaryPurple : .primaryDescription)
                 } else {
                     ProgressView()
-                        .progressViewStyle(CircularProgressViewStyle(tint: .appWhite))
+                        .progressViewStyle(CircularProgressViewStyle(tint: .primaryPurple))
                 }
             }
             .frame(height: height)

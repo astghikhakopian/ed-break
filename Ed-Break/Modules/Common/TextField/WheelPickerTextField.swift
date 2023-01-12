@@ -166,13 +166,14 @@ struct WheelPickerRepresentableField<C>: UIViewRepresentable where C: PickerItem
 enum WheelPickerStyle {
     case minimum
     case titled(title: String)
-    case withImage(image: Image)
+    case withImage(image: Image,title: String)
 }
 
 struct WheelPickerField<C>: View where C: PickerItem {
     var style: WheelPickerStyle
     @Binding var selection: C
     @Binding var datasource: [C]
+    var action: (()->())? = nil
     
     private let padding = EdgeInsets(top: 16, leading: 20, bottom: 16, trailing: 20)
     private let cornerRadius = 12.0
@@ -201,11 +202,11 @@ struct WheelPickerField<C>: View where C: PickerItem {
                             .stroke(Color.border, lineWidth: borderWidth)
                     )
             }
-        case .withImage(let image):
+        case .withImage(let image, let title):
             VStack(alignment: .leading, spacing: spacing) {
                 HStack {
                     image
-                    WheelPickerRepresentableField(title: "", datasource: $datasource, selection: $selection, color: UIColor(Color.appBlack))
+                    WheelPickerRepresentableField(title: title, datasource: $datasource, selection: $selection, color: UIColor(Color.appBlack))
                     Spacer()
                     Image.Common.dropdownArrow
                 }.accentColor(.appBlack)

@@ -29,19 +29,22 @@ struct ChildSignInView: View {
                         .font(.appHeadline)
                         .foregroundColor(.primaryText)
                         .multilineTextAlignment(.center)
-                    CancelButton(action: {
-                        AuthorizationCenter.shared.requestAuthorization { result in
-                            switch result {
-                            case .success:
-                                DispatchQueue.main.async {
-                                    appState.moveToChildQR = true
+                    ZStack {
+                        Color.primaryPurple.opacity(0.05)
+                        CancelButton(action: {
+                            AuthorizationCenter.shared.requestAuthorization { result in
+                                switch result {
+                                case .success:
+                                    DispatchQueue.main.async {
+                                        appState.moveToChildQR = true
+                                    }
+                                case .failure(let error):
+                                    print("Error for Family Controls: \(error)")
                                 }
-                            case .failure(let error):
-                                print("Error for Family Controls: \(error)")
                             }
-                        }
-
-                    }, title: "onboarding.childSignIn.action", isContentValid: .constant(true))
+                            
+                        }, title: "onboarding.childSignIn.action", color: .primaryPurple, isContentValid: .constant(true))
+                    }.cornerRadius(cornerRadius)
                 }.padding(padding)
             }
         }
