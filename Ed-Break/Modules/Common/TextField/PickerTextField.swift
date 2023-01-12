@@ -8,7 +8,7 @@
 import SwiftUI
 
 enum Grade: Int, CaseIterable, PickerItem, BottomsheetCellModel {
-    
+    case notSelected = 0
     case first  = 1
     case second = 2
     case third  = 3
@@ -21,6 +21,7 @@ enum Grade: Int, CaseIterable, PickerItem, BottomsheetCellModel {
     
     var name: String {
         switch self {
+        case .notSelected: return "Select"
         case .first:    return "Grade 1"
         case .second:   return "Grade 2"
         case .third:    return "Grade 3"
@@ -35,6 +36,7 @@ enum Grade: Int, CaseIterable, PickerItem, BottomsheetCellModel {
     
     var key: String {
         switch self {
+        case .notSelected: return "GRADE_1"
         case .first:    return "GRADE_1"
         case .second:   return "GRADE_2"
         case .third:    return "GRADE_3"
