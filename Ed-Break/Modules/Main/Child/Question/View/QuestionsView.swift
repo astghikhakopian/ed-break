@@ -56,7 +56,8 @@ struct QuestionsView<M: QuestionsViewModeling>: View {
                             PhoneLockingStateView(state: .locked, action: {
                                 guard viewModel.remindingMinutes > 0 else {
                                     DispatchQueue.main.async {
-                                        presentationMode.wrappedValue.dismiss()
+                                        viewModel.getAdditionalQuestions()
+//                                        presentationMode.wrappedValue.dismiss()
                                     }
                                     return }
                                 viewModel.getAdditionalQuestions()
