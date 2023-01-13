@@ -35,7 +35,7 @@ final class ChildProfileViewModel: ChildProfileViewModeling, Identifiable {
     init(child: ChildModel, getChildDetailsUseCase: GetChildDetailsUseCase, addRestrictionUseCase: AddRestrictionUseCase, addInterruptionUseCase: AddInterruptionUseCase) {
         self.child = child
         self.detailsInfo = ChildProfileModel(childId: child.id)
-        self.interuption = Interuption(rawValue: child.interruption ?? 15) ?? .i15
+        self.interuption = Interuption(rawValue: child.interruption ?? 0) ?? .iSelect
         self.getChildDetailsUseCase = getChildDetailsUseCase
         self.addRestrictionUseCase = addRestrictionUseCase
         self.addInterruptionUseCase = addInterruptionUseCase

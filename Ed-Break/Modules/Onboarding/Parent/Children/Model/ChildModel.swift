@@ -33,7 +33,7 @@ struct ChildModel: Equatable {
     init(dto: ChildDto) {
         id = dto.id
         name = dto.name
-        grade = Grade(rawValue: dto.grade) ?? .first
+        grade = Grade(rawValue: dto.grade) ?? .notSelected
         restrictionTime = dto.restrictionTime
         interruption = dto.interruption
         photoUrl = URL(string: dto.photo ?? "")

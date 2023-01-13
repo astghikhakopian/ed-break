@@ -12,16 +12,17 @@ class ChildDetailsModel {
     var childId: Int? = nil
     @Published var image = UIImage()
     var grade: Grade = .notSelected
-    var interuption: Interuption = .i15
+    var interuption: Interuption = .iSelect
     var childName: String = ""
     var subjects: [BottomsheetCellModel]?
     var photoStringUrl: String?
     
-    init(childId: Int? = nil, image: UIImage = UIImage(), grade: Grade, childName: String, photoStringUrl: String? = nil, subjects: [SubjectModel]?) {
+    init(childId: Int? = nil, image: UIImage = UIImage(), grade: Grade,interuption: Interuption, childName: String, photoStringUrl: String? = nil, subjects: [SubjectModel]?) {
         self.id = UUID()
         self.childId = childId
         self.image = image
         self.grade = grade
+        self.interuption = interuption
         self.childName = childName
         self.subjects = subjects
         self.photoStringUrl = photoStringUrl
@@ -32,6 +33,7 @@ class ChildDetailsModel {
         self.childId = nil
         self.image = UIImage()
         self.grade = .notSelected
+        self.interuption = .iSelect
         self.childName = ""
         self.subjects = nil
     }
@@ -48,7 +50,7 @@ final class ChildDetailsViewModel: ChildDetailsViewModeling, Identifiable {
     @Published var isLoading: Bool = false
     @Published var children: [ChildDetailsModel] = [ChildDetailsModel()] {
         didSet {
-            isContentValid = !(children.last?.childName.replacingOccurrences(of: " ", with: "").isEmpty ?? true)
+            isContentValid = !(children.last?.childName.replacingOccurrences(of: " ", with: "").isEmpty ?? true) && children.last?.grade != .notSelected && children.last?.subjects != nil && children.last?.interuption != .iSelect
         }
     }
     
@@ -65,7 +67,7 @@ final class ChildDetailsViewModel: ChildDetailsViewModeling, Identifiable {
         self.getAllSubjectsUseCase = getAllSubjectsUseCase
         
         if let child = child {
-            children = [ChildDetailsModel(childId: child.id, grade: child.grade, childName: child.name, photoStringUrl: child.photoUrl?.absoluteString, subjects: child.subjects)]
+            children = [ChildDetailsModel(childId: child.id, grade: child.grade, interuption: Interuption(rawValue: child.interruption ?? 0) ?? .iSelect, childName: child.name, photoStringUrl: child.photoUrl?.absoluteString, subjects: child.subjects)]
         }
         
         getSubjects()

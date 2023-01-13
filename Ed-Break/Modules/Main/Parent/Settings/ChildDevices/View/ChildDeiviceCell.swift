@@ -26,7 +26,10 @@ struct ChildDeiviceCell: View {
             if let imageUrl = imageUrl {
                 AsyncImageView(withURL: imageUrl.absoluteString, width: imageHeight, height: imageHeight)
                     .frame(width: imageHeight, height: imageHeight)
+                    .aspectRatio(contentMode: .fill)
                     .cornerRadius(imageHeight/2)
+
+                
             } else {
                 Image.ChildDetails.uploadPlaceholder
                     .resizable()

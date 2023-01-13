@@ -14,13 +14,17 @@ struct ConfirmButton: View {
     
     @Binding var isContentValid: Bool
     @Binding var isLoading: Bool
+    @State var colorBackgroundValid: Color = .primaryPurple
+    @State var colorBackgroundInvalid: Color = .border
+    @State var colorTextValid: Color = .appWhite
+    @State var colorTextInvalid: Color = .primaryDescription
     
     private let height = 54.0
     private let cornerRadius = 12.0
     
     var body: some View {
         ZStack {
-            isContentValid ? Color.white : Color.border
+            isContentValid ? colorBackgroundValid : colorBackgroundInvalid
             if !isLoading {
                 Button(action: action, label: {
                     HStack {
@@ -30,7 +34,7 @@ struct ConfirmButton: View {
                         Spacer()
                     }
                 })
-                .foregroundColor( isContentValid ? .primaryPurple : .primaryDescription )
+                .foregroundColor( isContentValid ? colorTextValid  : colorTextInvalid )
             } else {
                 ProgressView()
                     .progressViewStyle(CircularProgressViewStyle(tint: .appWhite))

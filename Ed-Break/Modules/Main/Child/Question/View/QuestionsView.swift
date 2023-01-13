@@ -62,7 +62,7 @@ struct QuestionsView<M: QuestionsViewModeling>: View {
                                     return }
                                 viewModel.getAdditionalQuestions()
                                 isAdditionalQuestions = true
-                            }, isLoading: $viewModel.isLoading, title: viewModel.remindingMinutes <= 0 ? "Additional Questions" : viewModel.buttonTitle)
+                            }, isLoading: $viewModel.isLoading, title: viewModel.remindingMinutes <= 0 ? "common.continue" : viewModel.buttonTitle)
                         }
                         /*
                         if questionsContainer.questions.filter { $0.isCorrect ?? false }.count == questionsContainer.questions.count {

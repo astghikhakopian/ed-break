@@ -28,15 +28,18 @@ struct ChildDetailsView<M: ChildDetailsViewModeling>: View {
         MainBackground(title: "onboarding.childDetails.title", withNavbar: true) {
             VStack(spacing: gap) {
                 childView
-                NavigationButton(
-                    title: "common.continue",
-                    didTap: {
-                        viewModel.appendChildren()
-                    },
-                    isContentValid: $viewModel.isContentValid,
-                    isLoading: $viewModel.isLoading,
-                    shouldNavigateAfterLoading: true,
-                    content: { QRCodeView() })
+//                ZStack {
+//                    Color.appWhite
+                    NavigationButton(
+                        title: "common.continue",
+                        didTap: {
+                            viewModel.appendChildren()
+                        },
+                        isContentValid: $viewModel.isContentValid,
+                        isLoading: $viewModel.isLoading,
+                        shouldNavigateAfterLoading: true,
+                        content: { QRCodeView() })
+               // }.cornerRadius(cornerRadius)
             }
         }
         .bottomsheet(title: "childDetails.subjects", datasource: viewModel.subjects, selectedItems: selectedChildIndex == nil ? .constant([]) : $viewModel.children[selectedChildIndex!].subjects, isPresented: $showSubjects, isMultiselect: true)
@@ -44,7 +47,7 @@ struct ChildDetailsView<M: ChildDetailsViewModeling>: View {
         .confirmationDialog("childDetails.grade", isPresented: $showGradeOptions, titleVisibility: .visible) {
             ForEach(viewModel.grades, id: \.rawValue) { grade in
                 Button(grade.name) {
-                    guard let selectedChildIndex = selectedChildIndex else { return }
+                    guard let selectedChildIndex = selectedChildIndex, viewModel.children.count > selectedChildIndex else { return }
                     viewModel.children[selectedChildIndex].grade = grade
                 }
             }
@@ -82,11 +85,14 @@ private extension ChildDetailsView {
                         showSubjects = true
                     }
                     if $viewModel.children.count > 1 {
+                        ZStack {
+                            Color.primaryRed.opacity(0.05)
                         CancelButton(action: {
                             guard !viewModel.isLoading else { return }
                             viewModel.removeChild(child:  child.wrappedValue)
                         }, title: "childDetails.delete", color: .primaryRed, isContentValid: .constant(true))
-                    }
+                        }.cornerRadius(cornerRadius)
+                }
                 }
                 if !simpleAdd {
                     ZStack {
@@ -94,7 +100,7 @@ private extension ChildDetailsView {
                         CancelButton(action: {
                             guard !viewModel.isLoading else { return }
                             viewModel.addAnotherChild()
-                        }, title: "childDetails.add", isContentValid: $viewModel.isContentValid)
+                        }, title: "childDetails.add", color: viewModel.isContentValid ? Color.primaryPurple : Color.appWhite,isContentValid: $viewModel.isContentValid)
                     }.cornerRadius(cornerRadius)
                 }
             }.padding(spacing)
