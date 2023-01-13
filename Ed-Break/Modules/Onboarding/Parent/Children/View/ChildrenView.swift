@@ -30,7 +30,7 @@ struct ChildrenView<M: ChildrenViewModeling>: View {
                     guard !viewModel.connectedChildren.isEmpty /*.count == viewModel.children.count*/ else { return }
                     appState.moveToDashboard = true
                     UserDefaultsService().setPrimitive(true, forKey: .User.isLoggedIn)
-                }, title: "common.continue", isContentValid: $viewModel.isContentValid, isLoading:  $viewModel.isLoading)
+                }, title: "common.continue", isContentValid: $viewModel.isContentValid, isLoading:  $viewModel.isLoading,colorBackgroundValid: .appWhite,colorBackgroundInvalid: .appWhite,colorTextValid: .primaryPurple,colorTextInvalid: .border)
             }
         }.onAppear {
             viewModel.getChildren()

@@ -63,14 +63,20 @@ enum Grade: Int, CaseIterable, PickerItem, BottomsheetCellModel {
 }
 
 enum Interuption: Int, CaseIterable, PickerItem, BottomsheetCellModel {
-    
+    case iSelect = 0
     case i15 = 15
     case i20 = 20
     case i25 = 25
     case i30 = 30
     
     var name: String {
-        "\(self.rawValue) minutes"
+        switch self {
+        case .iSelect:
+            return "Select"
+        default:
+            return "\(self.rawValue) minutes"
+        }
+//        "\(self.rawValue) minutes"
     }
     
     var key: Int {

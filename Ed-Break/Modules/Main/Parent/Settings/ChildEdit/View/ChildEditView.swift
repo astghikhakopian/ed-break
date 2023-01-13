@@ -35,7 +35,7 @@ struct ChildEditView<M: ChildDetailsViewModeling>: View {
                             presentationMode.wrappedValue.dismiss()
                         }
                     }
-                }, title: "common.continue", isContentValid: $viewModel.isContentValid, isLoading: $viewModel.isLoading)
+                }, title: "common.continue", isContentValid: $viewModel.isContentValid, isLoading: $viewModel.isLoading,colorBackgroundValid: .appWhite,colorBackgroundInvalid: .border,colorTextValid: .primaryPurple,colorTextInvalid: .primaryDescription)
                 ZStack {
                     Color.appWhite
                     CancelButton(action: {
@@ -59,6 +59,7 @@ struct ChildEditView<M: ChildDetailsViewModeling>: View {
         .confirmationDialog("childDetails.grade", isPresented: $showGradeOptions, titleVisibility: .visible) {
             ForEach(viewModel.grades, id: \.rawValue) { grade in
                 Button(grade.name) {
+                    guard !viewModel.children.isEmpty else { return }
                     viewModel.children[0].grade = grade
                 }
             }

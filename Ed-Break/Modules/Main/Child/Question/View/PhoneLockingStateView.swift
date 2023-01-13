@@ -44,12 +44,13 @@ struct PhoneLockingStateView: View {
     private let spacing: CGFloat = 8
     private let padding: CGFloat = 20
     private let width: CGFloat = 110
+    private let cornerreadius:CGFloat = 12
     
     var body: some View {
         VStack(spacing: spacing) {
             ZStack {
                 RoundedRectangle(cornerRadius: width/2)
-                    .foregroundColor(Color.primaryBackground)
+                    .foregroundColor(Color.primaryLightBackground)
                     .frame(width: width, height: width)
                 state.image
             }
@@ -67,12 +68,13 @@ struct PhoneLockingStateView: View {
     }
     
     var confirmButton: some View {
-        ConfirmButton(action: action, title: title, isContentValid: .constant(true), isLoading: $isLoading)
+            ConfirmButton(action: action, title: title, isContentValid: .constant(true), isLoading: $isLoading)
+        }
     }
-}
+
 
 struct PhoneLockingStateView_Previews: PreviewProvider {
     static var previews: some View {
-        PhoneLockingStateView(state: .locked, action: {}, isLoading: .constant(false), title: "common.continue")
+        PhoneLockingStateView(state: .unlocked, action: {}, isLoading: .constant(false), title: "common.continue")
     }
 }
