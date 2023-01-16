@@ -38,31 +38,24 @@ struct QuestionsView<M: QuestionsViewModeling>: View {
                 if let questionsContainer = viewModel.questionsContainer {
                     pageIndicator
                     if questionsContainer.answeredCount >= questionsContainer.questions.count {
-                        if viewModel.remindingMinutes > 0 {
+                        if DataModel.shared.selectionToDiscourage.applicationTokens.isEmpty &&
+                            DataModel.shared.selectionToDiscourage.applications.isEmpty &&
+                            DataModel.shared.selectionToDiscourage.categories.isEmpty &&
+                            DataModel.shared.selectionToDiscourage.categoryTokens.isEmpty {
                             PhoneLockingStateView(state: .unlocked, action: {
-                                if isAdditionalQuestions {
-                                    viewModel.didAnswerAdditionalQuestions {
-                                        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-                                            presentationMode.wrappedValue.dismiss()
-                                        }
-                                    }
-                                } else {
-                                    DispatchQueue.main.async {
-                                        presentationMode.wrappedValue.dismiss()
-                                    }
-                                }
-                            }, isLoading: $viewModel.isLoading, title: viewModel.buttonTitle)
+                                presentationMode.wrappedValue.dismiss()
+                            }, isLoading: $viewModel.isLoading, title: "common.continue")
                         } else {
                             PhoneLockingStateView(state: .locked, action: {
-                                guard viewModel.remindingMinutes > 0 else {
-                                    DispatchQueue.main.async {
-                                        viewModel.getAdditionalQuestions()
-//                                        presentationMode.wrappedValue.dismiss()
-                                    }
-                                    return }
+//                                guard viewModel.remindingMinutes > 0 else {
+//                                    DispatchQueue.main.async {
+//                                        viewModel.getAdditionalQuestions()
+////                                        presentationMode.wrappedValue.dismiss()
+//                                    }
+//                                    return }
                                 viewModel.getAdditionalQuestions()
                                 isAdditionalQuestions = true
-                            }, isLoading: $viewModel.isLoading, title: viewModel.remindingMinutes <= 0 ? "common.continue" : viewModel.buttonTitle)
+                            }, isLoading: $viewModel.isLoading, title: viewModel.remindingMinutes < 0 ? "common.continue" : viewModel.buttonTitle)
                         }
                         /*
                         if questionsContainer.questions.filter { $0.isCorrect ?? false }.count == questionsContainer.questions.count {
@@ -177,6 +170,7 @@ extension QuestionsView {
         ConfirmButton(action: {
             guard let selectedAnswer = selectedAnswer else { return }
             viewModel.answerQuestion(answer: selectedAnswer) { _ in
+                guard viewModel.currentQuestion.id == viewModel.questionsContainer?.questions.last?.id else { return }
                 if isAdditionalQuestions {
                     viewModel.didAnswerAdditionalQuestions {
                         DispatchQueue.main.async {

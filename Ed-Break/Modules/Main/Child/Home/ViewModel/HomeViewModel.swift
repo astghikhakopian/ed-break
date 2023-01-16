@@ -41,28 +41,38 @@ final class HomeViewModel: HomeViewModeling, Identifiable {
                     self.contentModel = model
                     let today = Date()
                     if let restrictions = model.restrictions {
-                        if let startTime = model.breakStartDatetime,
-                           let endTime = model.breakEndDatetime,
-                           startTime.component(.day) == today.component(.day),
-                           startTime.component(.hour) ?? 0 <= today.component(.hour) ?? 0,
-                           startTime.component(.minute) ?? 0 <= today.component(.minute) ?? 0,
-                           endTime > today {
-                            let difference = self.getMinutes(start: endTime) ?? 0
-                            self.remindingMinutes = difference < 0 ? 0-difference : 0
-                            DataModel.shared.threshold = DateComponents(minute: self.remindingMinutes)
-                            DataModel.shared.selectionToEncourage = restrictions
-                        } else {
+//                        if let startTime = model.breakStartDatetime,
+//                           let endTime = model.breakEndDatetime,
+//                           startTime.component(.day) == today.component(.day),
+//                           startTime.component(.hour) ?? 0 <= today.component(.hour) ?? 0,
+//                           startTime.component(.minute) ?? 0 <= today.component(.minute) ?? 0,
+//                           endTime > today {
+//                            let difference = self.getMinutes(start: endTime) ?? 0
+//                            self.remindingMinutes = difference < 0 ? 0-difference : 0
+//                            DataModel.shared.threshold = DateComponents(minute: self.remindingMinutes)
+//                            DataModel.shared.selectionToEncourage = restrictions
+//                            DataModel.shared.selectionToDiscourage = FamilyActivitySelection()
+//                            DataModel.shared.selectionToEncourage = restrictions
+//                            UserDefaultsService().setObject(restrictions, forKey: .ChildUser.restrictedApps)
+//                            DataModel.shared.threshold = DateComponents(minute: self.remindingMinutes)
+//                            ScheduleModel.setSchedule(startTime: model.breakStartDatetime)
+//                        } else {
                             DataModel.shared.selectionToDiscourage = restrictions
+                            DataModel.shared.selectionToEncourage = FamilyActivitySelection()
+                            DataModel.shared.threshold = DateComponents()
                             self.remindingMinutes = 0
-                        }
+                            ScheduleModel.setSchedule()
+//                        }
                         DataModel.shared.setShieldRestrictions()
                     } else {
                         DataModel.shared.selectionToDiscourage = FamilyActivitySelection()
+                        DataModel.shared.threshold = DateComponents()
                         self.remindingMinutes = 0
                         DataModel.shared.setShieldRestrictions()
+                        ScheduleModel.setSchedule()
                     }
                     DataModel.shared.remindingMinutes = self.remindingMinutes
-                    ScheduleModel.setSchedule()
+                    
                 }
             case .failure(let failure):
                 self.checkConnection { success in

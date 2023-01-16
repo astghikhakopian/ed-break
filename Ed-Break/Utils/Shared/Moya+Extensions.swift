@@ -37,13 +37,15 @@ extension MoyaProvider {
     }
 
     @discardableResult func requestDecodable<T: Decodable>(_ target: Target, completion: @escaping (Result<T, Error>) -> Void) -> Cancellable {
-        request(target, callbackQueue: RequestServices.Users.apiQueue) { [weak self] result in
+        print(target)
+        return request(target, callbackQueue: RequestServices.Users.apiQueue) { [weak self] result in
             switch result {
             case .success(let response):
                 do {
                     if let json = try? JSONSerialization.jsonObject(with: response.data) {
                         print(json)
                     }
+                    print(String(data: response.data, encoding: .utf8) ?? "")
                     _ = try response.filterSuccessfulStatusCodes()
 
                     let object = try response.map(T.self)

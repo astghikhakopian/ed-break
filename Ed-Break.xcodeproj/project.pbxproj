@@ -75,6 +75,9 @@
 		1B7E649729110B610084E6A0 /* ChildTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B7E649629110B610084E6A0 /* ChildTabView.swift */; };
 		1B7E64A5291145AE0084E6A0 /* CircularProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B7E64A4291145AE0084E6A0 /* CircularProgressView.swift */; };
 		1B7E64A8291146AF0084E6A0 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B7E64A7291146AF0084E6A0 /* HomeView.swift */; };
+		1B83F4492973EDAC00799654 /* ScheduleModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B4F5718293931D200AE29E3 /* ScheduleModel.swift */; };
+		1B83F44A2973F3B400799654 /* UserDefaultsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BE72A2A28E8901000447167 /* UserDefaultsService.swift */; };
+		1B83F44B2973F40400799654 /* UserDefaultsKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BE72A2C28E8902300447167 /* UserDefaultsKeys.swift */; };
 		1B8C4286290EAA3400FD5598 /* DropdownButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B8C4285290EAA3400FD5598 /* DropdownButton.swift */; };
 		1B99050E29106570001E7303 /* CoachingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B99050D29106570001E7303 /* CoachingCell.swift */; };
 		1B99051029106FEF001E7303 /* GetCoachingUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B99050F29106FEF001E7303 /* GetCoachingUseCase.swift */; };
@@ -1803,8 +1806,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1B83F4492973EDAC00799654 /* ScheduleModel.swift in Sources */,
 				1BE2205529190E3B00796FE1 /* DeviceActivityMonitorExtension.swift in Sources */,
+				1B83F44A2973F3B400799654 /* UserDefaultsService.swift in Sources */,
 				1BE220602919116200796FE1 /* DataModel.swift in Sources */,
+				1B83F44B2973F40400799654 /* UserDefaultsKeys.swift in Sources */,
 				1B55E81429506BCB0085E147 /* Color.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -2003,7 +2009,7 @@
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = ShieldConfigurationExtension/ShieldConfigurationExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 28;
+				CURRENT_PROJECT_VERSION = 30;
 				DEVELOPMENT_TEAM = 59UY34K59P;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = ShieldConfigurationExtension/Info.plist;
@@ -2030,7 +2036,7 @@
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = ShieldConfigurationExtension/ShieldConfigurationExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 28;
+				CURRENT_PROJECT_VERSION = 30;
 				DEVELOPMENT_TEAM = 59UY34K59P;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = ShieldConfigurationExtension/Info.plist;
@@ -2058,7 +2064,7 @@
 				APPLICATION_EXTENSION_API_ONLY = YES;
 				CODE_SIGN_ENTITLEMENTS = ShieldActionExtension/ShieldActionExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 28;
+				CURRENT_PROJECT_VERSION = 30;
 				DEVELOPMENT_TEAM = 59UY34K59P;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = ShieldActionExtension/Info.plist;
@@ -2086,7 +2092,7 @@
 				APPLICATION_EXTENSION_API_ONLY = YES;
 				CODE_SIGN_ENTITLEMENTS = ShieldActionExtension/ShieldActionExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 28;
+				CURRENT_PROJECT_VERSION = 30;
 				DEVELOPMENT_TEAM = 59UY34K59P;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = ShieldActionExtension/Info.plist;
@@ -2113,7 +2119,7 @@
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = ActivityMonitor/ActivityMonitor.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 28;
+				CURRENT_PROJECT_VERSION = 30;
 				DEVELOPMENT_TEAM = 59UY34K59P;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = ActivityMonitor/Info.plist;
@@ -2140,7 +2146,7 @@
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = ActivityMonitor/ActivityMonitor.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 28;
+				CURRENT_PROJECT_VERSION = 30;
 				DEVELOPMENT_TEAM = 59UY34K59P;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = ActivityMonitor/Info.plist;
@@ -2287,7 +2293,7 @@
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_ENTITLEMENTS = "Ed-Break/Ed-Break.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 28;
+				CURRENT_PROJECT_VERSION = 30;
 				DEVELOPMENT_ASSET_PATHS = "Ed-Break/Resources/Preview\\ Content";
 				DEVELOPMENT_TEAM = 59UY34K59P;
 				ENABLE_PREVIEWS = YES;
@@ -2323,7 +2329,7 @@
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_ENTITLEMENTS = "Ed-Break/Ed-Break.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 28;
+				CURRENT_PROJECT_VERSION = 30;
 				DEVELOPMENT_ASSET_PATHS = "Ed-Break/Resources/Preview\\ Content";
 				DEVELOPMENT_TEAM = 59UY34K59P;
 				ENABLE_PREVIEWS = YES;

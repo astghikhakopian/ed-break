@@ -16,7 +16,7 @@ final class QuestionsViewModel: QuestionsViewModeling, Identifiable {
     @Published var remindingMinutes: Int = 0 {
         didSet {
             guard let questionsContainer = questionsContainer, remindingMinutes >= 0 else { buttonTitle = "common.continue"; return }
-            if questionsContainer.answeredCount >= questionsContainer.questions.count {
+//            if questionsContainer.answeredCount >= questionsContainer.questions.count {
                 if questionsContainer.questions.filter({ $0.isCorrect ?? false }).count == questionsContainer.questions.count ||
                    remindingMinutes == 0 {
                     buttonTitle = "Additional Questions"
@@ -25,10 +25,10 @@ final class QuestionsViewModel: QuestionsViewModeling, Identifiable {
                     buttonTitle = "0:\(remindingMinutes <= 9 ? "0\(remindingMinutes)" : "\(remindingMinutes)")"
                     isContentValid = false
                 }
-            } else {
-                buttonTitle = "common.continue"
-                isContentValid = true
-            }
+//            } else {
+//                buttonTitle = "common.continue"
+//                isContentValid = true
+//            }
         }
     }
     
@@ -66,7 +66,7 @@ final class QuestionsViewModel: QuestionsViewModeling, Identifiable {
                     if model.answeredCount < model.questions.count {
                         self.currentQuestion = model.questions[model.answeredCount]
                     } else {
-                        self.remindingMinutes = -1
+                        self.remindingMinutes = 0
                     }
                 }
             case .failure(let failure):

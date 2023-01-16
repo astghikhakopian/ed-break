@@ -15,7 +15,7 @@ struct Ed_BreakApp: App {
     @UIApplicationDelegateAdaptor private var appDelegate: AppDelegate
     
     @StateObject var model = DataModel.shared
-    @StateObject var store = ManagedSettingsStore()
+//    @StateObject var store = ManagedSettingsStore()
     let appState = AppState()
     
     var body: some Scene {
@@ -23,12 +23,12 @@ struct Ed_BreakApp: App {
             ContentView()
                 .environmentObject(appState)
                 .environmentObject(model)
-                .environmentObject(store)
+//                .environmentObject(store)
         }
     }
 }
 
-class AppDelegate: NSObject, UIApplicationDelegate {
+class AppDelegate: NSObject, UIApplicationDelegate, UNUserNotificationCenterDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
 
@@ -40,20 +40,44 @@ class AppDelegate: NSObject, UIApplicationDelegate {
 //                print("Error for Family Controls: \(error)")
 //            }
 //        }
-
-        ScheduleModel.setSchedule()
+        UNUserNotificationCenter.current().delegate = self
+//        ScheduleModel.setSchedule()
         
         return true
     }
     
     func applicationDidEnterBackground(_ application: UIApplication) {
-        
+        // ScheduleModel.setSchedule()
     }
     func applicationWillEnterForeground(_ application: UIApplication) {
-        
+        // NotificationCenter.default.post(name: NSNotification.Name("update"), object: nil)
     }
     func applicationWillTerminate(_ application: UIApplication) {
+        // ScheduleModel.setSchedule()
+    }
+    
+    
+    func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
         
+        let apps: FamilyActivitySelection? = UserDefaultsService().getObject(forKey: .ChildUser.restrictedApps)
+        DataModel.shared.selectionToDiscourage = apps ?? DataModel.shared.selectionToEncourage
+        DataModel.shared.selectionToEncourage = FamilyActivitySelection()
+        DataModel.shared.threshold = DateComponents()
+        DataModel.shared.setShieldRestrictions()
+        
+        completionHandler()
+    }
+    
+
+    func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
+        
+        let apps: FamilyActivitySelection? = UserDefaultsService().getObject(forKey: .ChildUser.restrictedApps)
+        DataModel.shared.selectionToDiscourage = apps ?? DataModel.shared.selectionToEncourage
+        DataModel.shared.selectionToEncourage = FamilyActivitySelection()
+        DataModel.shared.threshold = DateComponents()
+        DataModel.shared.setShieldRestrictions()
+        
+        completionHandler([.alert, .badge, .sound])
     }
 }
 

@@ -39,7 +39,7 @@ private extension DashboardView {
         ForEach(viewModel.children.results, id: \.id) { child in
             NavigationLink(
                 destination:
-                    MainBackground(title: nil, withNavbar: true, hideBackButton: true) {
+                    NavigationLazyView(MainBackground(title: nil, withNavbar: true, hideBackButton: true) {
                         ChildProfileView(
                             viewModel: ChildProfileViewModel(
                                 child: child,
@@ -50,7 +50,7 @@ private extension DashboardView {
                                 addInterruptionUseCase: AddInterruptionUseCase(
                                     restrictionsRepository: DefaultRestrictionsRepository())))
                         .environmentObject(model)
-                    },
+                    }),
                 label: { HomeChildCell(child: child) })
         }
     }

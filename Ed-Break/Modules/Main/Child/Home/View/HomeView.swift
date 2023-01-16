@@ -80,6 +80,9 @@ struct HomeView<M: HomeViewModeling>: View {
                 viewModel.setRestrictions()
             }
         }
+        .onReceive(NotificationCenter.default.publisher(for: UIApplication.didBecomeActiveNotification, object: nil)) { _ in
+            viewModel.getSubjects()
+        }
         .onAppear {
             viewModel.getSubjects()
         }

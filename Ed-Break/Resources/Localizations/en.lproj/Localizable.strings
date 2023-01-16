@@ -120,7 +120,7 @@
 "main.child.lockstate.locked.description" = "You need to answer three or more questions correctly to unlock your phone";
 
 "main.child.lockstate.unlocked" = "Phone unlocked";
-"main.child.lockstate.unlocked.description" = "You get 15 minutes of phone using. Enjoy!";
+"main.child.lockstate.unlocked.description" = "You are free to use your phone. Enjoy!";
 
 
 // Settings
