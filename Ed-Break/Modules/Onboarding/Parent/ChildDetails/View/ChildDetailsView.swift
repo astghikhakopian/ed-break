@@ -73,6 +73,9 @@ private extension ChildDetailsView {
                 .shadow(color: .shadow, radius: 40, x: 0, y: 20)
             VStack(alignment: .leading, spacing: spacing) {
                 ForEach($viewModel.children, id: \.id) { child in
+                    if child.isHidden.wrappedValue {
+                        EmptyView()
+                    } else {
                     uploadPhotoView(image: child.image)
                     CommonTextField(title: "childDetails.name", placeHolder: "childDetails.name.placeholder", text: child.childName)
                     HStack(spacing: 10) {
@@ -84,14 +87,15 @@ private extension ChildDetailsView {
                         UIApplication.shared.endEditing()
                         showSubjects = true
                     }
-                    if $viewModel.children.count > 1 {
-                        ZStack {
-                            Color.primaryRed.opacity(0.05)
-                        CancelButton(action: {
-                            guard !viewModel.isLoading else { return }
-                            viewModel.removeChild(child:  child.wrappedValue)
-                        }, title: "childDetails.delete", color: .primaryRed, isContentValid: .constant(true))
-                        }.cornerRadius(cornerRadius)
+                        if $viewModel.children.filter { !$0.isHidden.wrappedValue }.count > 1 {
+                            ZStack {
+                                Color.primaryRed.opacity(0.05)
+                                CancelButton(action: {
+                                    guard !viewModel.isLoading else { return }
+                                    viewModel.removeChild(child:  child.wrappedValue)
+                                }, title: "childDetails.delete", color: .primaryRed, isContentValid: .constant(true))
+                            }.cornerRadius(cornerRadius)
+                        }
                 }
                 }
                 if !simpleAdd {

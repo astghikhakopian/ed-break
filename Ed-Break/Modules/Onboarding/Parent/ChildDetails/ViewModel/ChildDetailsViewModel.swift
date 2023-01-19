@@ -16,6 +16,7 @@ class ChildDetailsModel {
     var childName: String = ""
     var subjects: [BottomsheetCellModel]?
     var photoStringUrl: String?
+    var isHidden = false
     
     init(childId: Int? = nil, image: UIImage = UIImage(), grade: Grade,interuption: Interuption, childName: String, photoStringUrl: String? = nil, subjects: [SubjectModel]?) {
         self.id = UUID()
@@ -78,14 +79,14 @@ final class ChildDetailsViewModel: ChildDetailsViewModeling, Identifiable {
         children.append(ChildDetailsModel())
     }
     func removeChild(child: ChildDetailsModel) {
-        children.removeAll(where: { child.id == $0.id })
+        children = children.map { if $0.id == child.id { $0.isHidden = true };  return $0 }//.removeAll(where: { child.id == $0.id })
     }
     
     func appendChildren() {
         guard let addChildUseCase = addChildUseCase else { return }
         guard isContentValid else  { return }
         isLoading = true
-        let validChildren = children.filter{ !$0.childName.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty }
+        let validChildren = children.filter{ !$0.childName.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty && !$0.isHidden }
         var waitingChildCount = validChildren.count
         for child in validChildren {
             let payload = CreateChildPayload(name: child.childName, grade: child.grade, restrictionTime: nil, interruption: child.interuption.rawValue, subjects: child.subjects?.map{ $0.id }, photo: child.image == UIImage() ? nil : child.image)
