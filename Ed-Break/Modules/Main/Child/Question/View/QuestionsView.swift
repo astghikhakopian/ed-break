@@ -55,7 +55,7 @@ struct QuestionsView<M: QuestionsViewModeling>: View {
 //                                    return }
                                 viewModel.getAdditionalQuestions()
                                 isAdditionalQuestions = true
-                            }, isLoading: $viewModel.isLoading, title: viewModel.remindingMinutes < 0 ? "common.continue" : viewModel.buttonTitle)
+                            }, isLoading: $viewModel.isLoading, title: viewModel.remindingSeconds < 0 ? "common.continue" : viewModel.buttonTitle)
                         }
                         /*
                         if questionsContainer.questions.filter { $0.isCorrect ?? false }.count == questionsContainer.questions.count {
@@ -95,8 +95,8 @@ struct QuestionsView<M: QuestionsViewModeling>: View {
                 .cornerRadius(contentCornerRadius)
                 .frame(minWidth: UIScreen.main.bounds.width - 2*padding, minHeight: UIScreen.main.bounds.height - 150)
                 .onReceive(timer) { time in
-                    if viewModel.remindingMinutes > 0 {
-                        viewModel.remindingMinutes -= 1
+                    if viewModel.remindingSeconds > 0 {
+                        viewModel.remindingSeconds -= 1
                     }
                 }
         }
@@ -183,7 +183,7 @@ extension QuestionsView {
                     }
                 }
             }
-        }, title: "common.continue", isContentValid: .constant(true), isLoading: $viewModel.isLoading).disabled(viewModel.remindingMinutes > 0)
+        }, title: "common.continue", isContentValid: .constant(true), isLoading: $viewModel.isLoading).disabled(viewModel.remindingSeconds > 0)
     }
 }
 

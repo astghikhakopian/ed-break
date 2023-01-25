@@ -64,10 +64,10 @@ struct HomeView<M: HomeViewModeling>: View {
                                         questionsRepository: DefaultQuestionsRepository()))))
                 } label: {
                     LessonCell(model: subject)
-                }.disabled(viewModel.contentModel?.wrongAnswersTime != nil)
+                }.disabled(viewModel.contentModel?.wrongAnswersTime ?? Date().toLocalTime() > Date().toLocalTime())
             }
         }.onTapGesture {
-            if viewModel.contentModel?.wrongAnswersTime != nil {
+            if viewModel.contentModel?.wrongAnswersTime ?? Date().toLocalTime() > Date().toLocalTime() {
                 isShieldPresented = true
             }
         }

@@ -71,6 +71,13 @@ struct OnboardingRole: View {
         .sheet(isPresented: $showWebView) {
             WebView(url: privacyUrl)
         }
+        .onAppear {
+//            let token = TokenModel(
+//                refresh: "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoicmVmcmVzaCIsImV4cCI6MTY3NzE1MzkxOCwiaWF0IjoxNjc0NTYxOTE4LCJqdGkiOiI1YjhiMDNhMThkZTE0MGY2YWQ0ZjgyYTlmZWQ2YTc0YSIsInVzZXJfaWQiOjcwNH0.9Vhw14Yg6T4Ruf65qr85JEC73myqsEajtgz22CY8hVM",
+//                access: "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjc3MTUzOTE4LCJpYXQiOjE2NzQ1NjE5MTgsImp0aSI6IjQ4YWQ5MDY1MjdiYzQ1NmE5MTY4ZmUwYmU2NTQ1ZDM1IiwidXNlcl9pZCI6NzA0fQ.ftYJG-VoIrP68eXgTKvuDWU8NbLXZZCn4RKynd8uBIw")
+//            UserDefaultsService().setObject(token, forKey: .ChildUser.token)
+//            UserDefaultsService().setPrimitive(true, forKey: .ChildUser.isLoggedIn)
+        }
     }
 }
 

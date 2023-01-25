@@ -14,6 +14,7 @@ struct ShieldView<M: QuestionsViewModeling>: View {
     
     private let spacing: CGFloat = 20
     private let padding: CGFloat = 50
+    private let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
     
     var body: some View {
         ZStack {
@@ -33,8 +34,16 @@ struct ShieldView<M: QuestionsViewModeling>: View {
                     action(viewModel.isContentValid)
                 }, title: viewModel.buttonTitle, isContentValid: $viewModel.isContentValid, isLoading: .constant(false))
             }.padding(padding)
+                .onReceive(timer) { time in
+                    if viewModel.remindingSeconds > 0 {
+                        viewModel.remindingSeconds -= 1
+                    }
+                }
         }
         .ignoresSafeArea()
+        .onAppear {
+            viewModel.getQuestions()
+        }
     }
 }
 

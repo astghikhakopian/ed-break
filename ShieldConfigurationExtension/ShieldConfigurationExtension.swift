@@ -17,9 +17,9 @@ class ShieldConfigurationExtension: ShieldConfigurationDataSource {
         // Customize the shield as needed for applications.
         ShieldConfiguration(
             icon: UIImage(named: "logo"),
-            title: ShieldConfiguration.Label(text: "Ed-Break", color: .black),
+            title: ShieldConfiguration.Label(text: "Ed-Break", color: .label),
             subtitle: ShieldConfiguration.Label(text: "You cannot use this app because you didn’t complete your exercise goal", color: .label),
-            primaryButtonLabel: ShieldConfiguration.Label(text: "Do Exercises", color: UIColor.white),
+            primaryButtonLabel: ShieldConfiguration.Label(text: "Do Exercises", color: .white),
             primaryButtonBackgroundColor: UIColor(Color.primaryPurple)
             // secondaryButtonLabel: ShieldConfiguration.Label(text: "Ask for access", color: UIColor(Color.primaryPurple))
         )
@@ -29,9 +29,9 @@ class ShieldConfigurationExtension: ShieldConfigurationDataSource {
         // Customize the shield as needed for applications shielded because of their category.
         ShieldConfiguration(
             icon: UIImage(named: "logo"),
-            title: ShieldConfiguration.Label(text: "Ed-Break", color: .black),
+            title: ShieldConfiguration.Label(text: "Ed-Break", color: .label),
             subtitle: ShieldConfiguration.Label(text: "You cannot use this app because you didn’t complete your exercise goal", color: .label),
-            primaryButtonLabel: ShieldConfiguration.Label(text: "Do Exercises", color: UIColor.white),
+            primaryButtonLabel: ShieldConfiguration.Label(text: "Do Exercises", color: .white),
             primaryButtonBackgroundColor: UIColor(Color.primaryPurple)
             // secondaryButtonLabel: ShieldConfiguration.Label(text: "Ask for access", color: UIColor(Color.primaryPurple))
         )
@@ -41,7 +41,7 @@ class ShieldConfigurationExtension: ShieldConfigurationDataSource {
         // Customize the shield as needed for web domains.
         ShieldConfiguration(
             icon: UIImage(named: "logo"),
-            title: ShieldConfiguration.Label(text: "Ed-Break", color: .black),
+            title: ShieldConfiguration.Label(text: "Ed-Break", color: .label),
             subtitle: ShieldConfiguration.Label(text: "You cannot use this app because you didn’t complete your exercise goal", color: .label),
             primaryButtonLabel: ShieldConfiguration.Label(text: "Do Exercises", color: .white),
             primaryButtonBackgroundColor: UIColor(Color.primaryPurple)
@@ -53,7 +53,7 @@ class ShieldConfigurationExtension: ShieldConfigurationDataSource {
         // Customize the shield as needed for web domains shielded because of their category.
         ShieldConfiguration(
             icon: UIImage(named: "logo"),
-            title: ShieldConfiguration.Label(text: "Ed-Break", color: .black),
+            title: ShieldConfiguration.Label(text: "Ed-Break", color: .label),
             subtitle: ShieldConfiguration.Label(text: "You cannot use this app because you didn’t complete your exercise goal", color: .label),
             primaryButtonLabel: ShieldConfiguration.Label(text: "Do Exercises", color: .white),
             primaryButtonBackgroundColor: UIColor(Color.primaryPurple)

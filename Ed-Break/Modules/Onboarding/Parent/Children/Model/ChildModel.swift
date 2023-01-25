@@ -44,9 +44,9 @@ struct ChildModel: Equatable {
         percentageProgress = dto.percentageProgress ?? 0
         lastLogin = dto.lastLogin ?? ""
         
-        breakStartDatetime = Date(fromString: dto.breakStartDatetime ?? "", format: .isoDateTimeFull)
-        breakEndDatetime = Date(fromString: dto.breakEndDatetime ?? "", format: .isoDateTimeFull)
-        wrongAnswersTime = Date(fromString: dto.wrongAnswersTime ?? "", format: .isoDateTimeFull)
+        breakStartDatetime = Date(fromString: dto.breakStartDatetime ?? "", format: .isoDateTimeFull)?.toLocalTime()
+        breakEndDatetime = Date(fromString: dto.breakEndDatetime ?? "", format: .isoDateTimeFull)?.toLocalTime()
+        wrongAnswersTime = Date(fromString: dto.wrongAnswersTime ?? "", format: .isoDateTimeFull)?.toLocalTime()
         interruption = dto.interruption
         deviceToken = dto.deviceToken
         subjects = dto.subjects?.map { SubjectModel(dto: $0) } ?? []

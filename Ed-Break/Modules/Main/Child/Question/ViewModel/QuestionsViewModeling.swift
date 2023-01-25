@@ -13,7 +13,7 @@ protocol QuestionsViewModeling: ObservableObject, Identifiable {
     var answerResultType: AnswerResultType? { get set }
     var questionsContainer: QuestionsContainerModel? { get set }
     var currentQuestion: QusetionModel { get set }
-    var remindingMinutes: Int { get set }
+    var remindingSeconds: Int { get set }
     var buttonTitle: String { get set }
     var isContentValid: Bool { get set }
     var subject: SubjectModel { get }

@@ -35,11 +35,12 @@ final class HomeViewModel: HomeViewModeling, Identifiable {
             guard let self = self else { return }
             DispatchQueue.main.async { self.isLoading = false }
             switch result {
-            case .success(let model):
+            case .success(var model):
                 DispatchQueue.main.async { [weak self] in
                     guard let self = self else { return }
+                    model.wrongAnswersTime = (model.wrongAnswersTime ?? Date().toLocalTime()) > Date().toLocalTime() ? model.wrongAnswersTime : nil
                     self.contentModel = model
-                    let today = Date()
+                    let today = Date().toLocalTime()
                     if let restrictions = model.restrictions {
                         if let startTime = model.breakStartDatetime,
                            let endTime = model.breakEndDatetime,
@@ -112,7 +113,7 @@ final class HomeViewModel: HomeViewModeling, Identifiable {
     
     private func getMinutes(start: Date?) -> Int? {
         guard let start = start else { return nil }
-        let diff = Int(Date().timeIntervalSince1970 - start.timeIntervalSince1970)
+        let diff = Int(Date().toLocalTime().timeIntervalSince1970 - start.timeIntervalSince1970)
         
         let hours = diff / 3600
         let minutes = (diff - hours * 3600) / 60

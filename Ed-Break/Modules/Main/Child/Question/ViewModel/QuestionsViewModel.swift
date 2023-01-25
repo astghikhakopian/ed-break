@@ -13,22 +13,21 @@ final class QuestionsViewModel: QuestionsViewModeling, Identifiable {
     @Published var currentQuestion: QusetionModel = QusetionModel()
     @Published var isLoading: Bool = false
     @Published var answerResultType: AnswerResultType? = nil
-    @Published var remindingMinutes: Int = 0 {
+    @Published var remindingSeconds: Int = 0 {
         didSet {
-            guard let questionsContainer = questionsContainer, remindingMinutes >= 0 else { buttonTitle = "common.continue"; return }
-//            if questionsContainer.answeredCount >= questionsContainer.questions.count {
-                if questionsContainer.questions.filter({ $0.isCorrect ?? false }).count == questionsContainer.questions.count ||
-                   remindingMinutes == 0 {
+            guard remindingSeconds >= 0 else { buttonTitle = "common.continue"; return }
+                if remindingSeconds == 0 {
                     buttonTitle = "Additional Questions"
                     isContentValid = true
                 } else {
-                    buttonTitle = "0:\(remindingMinutes <= 9 ? "0\(remindingMinutes)" : "\(remindingMinutes)")"
+                    let seconds = (remindingSeconds % 3600) % 60
+                    let minutes = ((remindingSeconds % 3600) / 60)
+                    let secondsString = seconds <= 9 ? "0\(seconds)" : "\(seconds)"
+                    let minutesString = minutes <= 9 ? "0\(minutes)" : "\(minutes)"
+                    buttonTitle = "\(minutes):\(secondsString)"
+                    //"0:\(remindingSeconds <= 9 ? "0\(remindingSeconds)" : "\(remindingSeconds)")"
                     isContentValid = false
                 }
-//            } else {
-//                buttonTitle = "common.continue"
-//                isContentValid = true
-//            }
         }
     }
     
@@ -59,14 +58,14 @@ final class QuestionsViewModel: QuestionsViewModeling, Identifiable {
                     guard let self = self else { return }
                     self.questionsContainer = model
                     if let wrongAnswersTime = self.home?.wrongAnswersTime,
-                       let difference = self.getMinutes(start: wrongAnswersTime),
+                       let difference = self.getSeconds(start: wrongAnswersTime),
                         difference < 0 {
-                        self.remindingMinutes = -difference
+                        self.remindingSeconds = -difference
                     }
                     if model.answeredCount < model.questions.count {
                         self.currentQuestion = model.questions[model.answeredCount]
                     } else {
-                        self.remindingMinutes = 0
+                        // self.remindingMinutes = 0
                     }
                 }
             case .failure(let failure):
@@ -132,12 +131,12 @@ final class QuestionsViewModel: QuestionsViewModeling, Identifiable {
         }
     }
     
-    private func getMinutes(start: Date?) -> Int? {
+    private func getSeconds(start: Date?) -> Int? {
         guard let start = start else { return nil }
-        let diff = Int(Date().timeIntervalSince1970 - start.timeIntervalSince1970)
+        let diff = Int(Date().toLocalTime().timeIntervalSince1970 - start.timeIntervalSince1970)
         
         let hours = diff / 3600
-        let minutes = (diff - hours * 3600) / 60
+        let minutes = (diff - hours * 3600)
         return minutes
     }
 }
@@ -188,7 +187,7 @@ final class MockQuestionsViewModel: QuestionsViewModeling, Identifiable {
     var subject: SubjectModel = SubjectModel(dto: SubjectDto(id: 0, subject: "Math", photo: nil, questionsCount: 0, completedCount: 0, correctAnswersCount: 0, completed: true))
     var isLoading = false
     var answerResultType: AnswerResultType? = nil
-    var remindingMinutes = 0
+    var remindingSeconds = 0
     var buttonTitle: String = ""
     var isContentValid: Bool = false
     
