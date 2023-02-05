@@ -28,8 +28,6 @@ struct ChildDetailsView<M: ChildDetailsViewModeling>: View {
         MainBackground(title: "onboarding.childDetails.title", withNavbar: true) {
             VStack(spacing: gap) {
                 childView
-//                ZStack {
-//                    Color.appWhite
                     NavigationButton(
                         title: "common.continue",
                         didTap: {
@@ -39,7 +37,6 @@ struct ChildDetailsView<M: ChildDetailsViewModeling>: View {
                         isLoading: $viewModel.isLoading,
                         shouldNavigateAfterLoading: true,
                         content: { QRCodeView() })
-               // }.cornerRadius(cornerRadius)
             }
         }
         .bottomsheet(title: "childDetails.subjects", datasource: viewModel.subjects, selectedItems: selectedChildIndex == nil ? .constant([]) : $viewModel.children[selectedChildIndex!].subjects, isPresented: $showSubjects, isMultiselect: true)

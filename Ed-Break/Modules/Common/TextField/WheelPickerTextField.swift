@@ -164,7 +164,7 @@ struct WheelPickerRepresentableField<C>: UIViewRepresentable where C: PickerItem
 }
 
 enum WheelPickerStyle {
-    case minimum
+    case minimum(title: String)
     case titled(title: String)
     case withImage(image: Image,title: String)
 }
@@ -182,8 +182,8 @@ struct WheelPickerField<C>: View where C: PickerItem {
     
     var body: some View {
         switch style {
-        case .minimum:
-            WheelPickerRepresentableField(title: "", datasource: $datasource, selection: $selection, color: UIColor(Color.primaryPurple))
+        case .minimum(let title):
+            WheelPickerRepresentableField(title: title, datasource: $datasource, selection: $selection, color: UIColor(Color.primaryPurple))
         case .titled(let title):
             VStack(alignment: .leading, spacing: spacing) {
                 Text(LocalizedStringKey(title))

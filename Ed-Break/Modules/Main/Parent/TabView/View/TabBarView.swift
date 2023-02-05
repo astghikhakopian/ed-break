@@ -9,7 +9,7 @@ import SwiftUI
 
 struct TabBarView: View {
     
-    @EnvironmentObject var model: DataModel
+    @StateObject var model = DataModel.shared
     
     @State private var selection = 0
     

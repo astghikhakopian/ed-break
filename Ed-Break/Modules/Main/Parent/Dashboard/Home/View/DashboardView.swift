@@ -10,7 +10,9 @@ import SwiftUI
 struct DashboardView<M: ChildrenViewModeling>: View {
     
     @StateObject var viewModel: M
-    @EnvironmentObject var model: DataModel
+    @StateObject var model = DataModel.shared
+    
+    @State private var isShowing = false
     
     private let cornerRadius = 12.0
     private let spacing = 14.0

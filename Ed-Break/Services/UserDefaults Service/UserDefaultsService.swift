@@ -44,6 +44,22 @@ class UserDefaultsService: LocalStorageService {
         UserDefaults.standard.object(forKey: key.rawValue) as? T
     }
     
+    // MARK: - Set/Get Object
+    
+    func setObjectInSuite<T: Codable>(_ object: T,  forKey key: UserDefaults.Key) {
+        let sharedDefault = UserDefaults(suiteName: "group.com.au.edbreak")!
+        guard let encoded = try? JSONEncoder().encode(object) else { return }
+        sharedDefault.set(encoded, forKey: key.rawValue)
+        sharedDefault.synchronize()
+    }
+    
+    func getObjectFromSuite<T: Codable>(forKey key: UserDefaults.Key) -> T? {
+        let sharedDefault = UserDefaults(suiteName: "group.com.au.edbreak")!
+        guard let data = sharedDefault.object(forKey: key.rawValue) as? Data else { return nil }
+        return try? JSONDecoder().decode(T.self, from: data)
+    }
+
+    
     
     // MARK: - Remove
     

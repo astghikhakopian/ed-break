@@ -11,6 +11,7 @@ class DataModel: ObservableObject {
     @Published var selectionToDiscourage: FamilyActivitySelection
     @Published var selectionToEncourage: FamilyActivitySelection
     var threshold: DateComponents
+    
     @Published var remindingMinutes: Int
     
     init() {
@@ -25,11 +26,11 @@ class DataModel: ObservableObject {
     }
     
     func setShieldRestrictions() {
-        let applications = DataModel.shared.selectionToDiscourage
-        
-        store.shield.applications = applications.applicationTokens.isEmpty ? nil : applications.applicationTokens
-        store.shield.applicationCategories = applications.categoryTokens.isEmpty
-        ? nil
-        : ShieldSettings.ActivityCategoryPolicy.specific(applications.categoryTokens)
+//        let applications = DataModel.shared.selectionToDiscourage
+//        
+//        store.shield.applications = applications.applicationTokens.isEmpty ? nil : applications.applicationTokens
+//        store.shield.applicationCategories = applications.categoryTokens.isEmpty
+//        ? nil
+//        : ShieldSettings.ActivityCategoryPolicy.specific(applications.categoryTokens)
     }
 }

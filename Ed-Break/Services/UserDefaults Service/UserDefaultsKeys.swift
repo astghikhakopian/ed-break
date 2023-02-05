@@ -27,5 +27,8 @@ extension UserDefaults.Key {
         static let token = UserDefaults.Key(rawValue: "ChildUser.token")
         static let isLoggedIn = UserDefaults.Key(rawValue: "ChildUser.isLoggedIn")
         static let restrictedApps = UserDefaults.Key(rawValue: "ChildUser.restrictedApps")
+        static let selectionToEncourage = UserDefaults.Key(rawValue: "ChildUser.selectionToEncourage")
+        static let selectionToDiscourage = UserDefaults.Key(rawValue: "ChildUser.selectionToDiscourage")
+        static let threshold = UserDefaults.Key(rawValue: "ChildUser.threshold")
     }
 }

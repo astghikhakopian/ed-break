@@ -21,7 +21,11 @@ struct ChildModel: Equatable {
     let todayCorrectAnswers: Int
     let percentageToday: Float
     let percentageProgress: Float
-    let lastLogin: String
+    let lastLogin: Date?
+    var lastLoginString: String {
+        NSLocalizedString("main.parent.childProfile.lastActive", comment: "") +
+        (lastLogin?.toStringWithRelativeTime() ?? "")
+    }
     
     var breakEndDatetime: Date?
     var breakStartDatetime: Date?
@@ -42,7 +46,7 @@ struct ChildModel: Equatable {
         todayCorrectAnswers = dto.todayCorrectAnswers ?? 0
         percentageToday = dto.percentageToday ?? 0
         percentageProgress = dto.percentageProgress ?? 0
-        lastLogin = dto.lastLogin ?? ""
+        lastLogin = Date(fromString:  dto.lastLogin ?? "", format: .isoDateTimeFull)//?.toLocalTime()
         
         breakStartDatetime = Date(fromString: dto.breakStartDatetime ?? "", format: .isoDateTimeFull)?.toLocalTime()
         breakEndDatetime = Date(fromString: dto.breakEndDatetime ?? "", format: .isoDateTimeFull)?.toLocalTime()

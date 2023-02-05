@@ -17,6 +17,7 @@ extension MoyaProvider {
                     if let json = try? JSONSerialization.jsonObject(with: response.data) {
                         print(json)
                     }
+                    print(String(data: response.data, encoding: .utf8) ?? "")
                     _ = try response.filterSuccessfulStatusCodes()
                     completion(nil)
                 } catch {

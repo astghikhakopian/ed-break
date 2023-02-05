@@ -49,7 +49,7 @@ private extension HomeChildCell {
             VStack(alignment: .leading) {
                 Text(child.name)
                     .font(.appButton)
-                Text(child.lastLogin)
+                Text(child.lastLoginString)
                     .font(.appBody)
                     .foregroundColor(.primaryDescription)
             }

@@ -16,12 +16,17 @@ struct ChildProfileModel: Equatable {
     let periodAnswers: Int
     let periodCorrectAnswers: Int
     let percentageForPeriod: Float
-    let lastLogin: String
     let periodActivity: Float
     let averageActivity: Float
     let restrictionTime: Int
     let percentProgress: Int?
     let restrictions: FamilyActivitySelection?
+    
+    let lastLogin: Date?
+    var lastLoginString: String {
+        NSLocalizedString("main.parent.childProfile.lastActive", comment: "") +
+        (lastLogin?.toStringWithRelativeTime() ?? "")
+    }
     
     init(dto: ChildRetriveDto) {
         educationPeriod = TimePeriod(rawValue: dto.educationPeriod) ?? .day
@@ -30,7 +35,7 @@ struct ChildProfileModel: Equatable {
         periodAnswers = dto.periodAnswers
         periodCorrectAnswers = dto.periodCorrectAnswers
         percentageForPeriod = dto.percentagesOfCorrectAnswers ?? 0
-        lastLogin = dto.lastLogin ?? ""
+        lastLogin = Date(fromString: dto.lastLogin ?? "", format: .isoDateTimeFull)
         periodActivity = Float(Int(dto.periodActivity*10))/10
         averageActivity = Float(Int(dto.averageActivity*10))/10
         restrictionTime = dto.restrictionTime ?? 0
@@ -52,7 +57,7 @@ struct ChildProfileModel: Equatable {
         periodAnswers = 0
         periodCorrectAnswers = 0
         percentageForPeriod = 0
-        lastLogin = ""
+        lastLogin = Date()
         periodActivity = 0
         averageActivity = 0
         restrictionTime = 0

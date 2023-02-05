@@ -51,7 +51,8 @@ final class ChildDetailsViewModel: ChildDetailsViewModeling, Identifiable {
     @Published var isLoading: Bool = false
     @Published var children: [ChildDetailsModel] = [ChildDetailsModel()] {
         didSet {
-            isContentValid = !(children.last?.childName.replacingOccurrences(of: " ", with: "").isEmpty ?? true) && children.last?.grade != .notSelected && children.last?.subjects != nil && children.last?.interuption != .iSelect
+            let lastNoneHiddenChild = children.last(where: { !$0.isHidden })
+            isContentValid = !(lastNoneHiddenChild?.childName.replacingOccurrences(of: " ", with: "").isEmpty ?? true) && lastNoneHiddenChild?.grade != .notSelected && lastNoneHiddenChild?.subjects != nil && lastNoneHiddenChild?.interuption != .iSelect
         }
     }
     

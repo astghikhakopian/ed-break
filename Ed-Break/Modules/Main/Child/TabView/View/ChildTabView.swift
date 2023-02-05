@@ -9,7 +9,8 @@ import SwiftUI
 
 struct ChildTabView: View {
     
-    @EnvironmentObject var model: DataModel
+    @StateObject var model = DataModel.shared
+//    @EnvironmentObject var model: DataModel
     
     @State private var selection = 0
     

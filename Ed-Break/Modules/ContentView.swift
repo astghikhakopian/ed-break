@@ -15,71 +15,10 @@ class AppState: ObservableObject {
     @Published var moveToChildQR: Bool = false
 }
 
-//import SwiftUI
-//import FamilyControls
-//
-//struct ContentView: View {
-//    @State private var isDiscouragedPresented = false
-//    @State private var isEncouragedPresented = false
-//
-//    @EnvironmentObject var model: DataModel
-//
-//    var body: some View {
-//
-//        VStack {
-//            Button("Select Apps to Discourage") {
-//                isDiscouragedPresented = true
-//            }
-//            .familyActivityPicker(isPresented: $isDiscouragedPresented, selection: $model.selectionToDiscourage)
-//
-//            Button("Select Apps to Encourage") {
-//                isEncouragedPresented = true
-//            }
-//            .familyActivityPicker(isPresented: $isEncouragedPresented, selection: $model.selectionToEncourage)
-//            Button("ewdsc") {
-//                ScheduleModel.setSchedule()
-//            }
-//        }
-//        .onChange(of: model.selectionToDiscourage) { newSelection in
-//            DataModel.shared.setShieldRestrictions()
-//        }
-//    }
-//}
-//
-//struct ContentView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        ContentView()
-//            .environmentObject(DataModel())
-//    }
-//}
-
-
-//struct ContentView: View {
-//    @StateObject var model = MyModel.shared
-//    @State var isPresented = false
-//
-//    var body: some View {
-//        Button("Select Apps to Discourage") {
-//            isPresented = true
-//        }
-//        .familyActivityPicker(isPresented: $isPresented, selection: $model.selectionToDiscourage)
-//        Button("Start Monitoring") {
-//            model.initiateMonitoring()
-//        }
-//    }
-//}
-//
-//struct ContentView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        ContentView()
-//    }
-//}
-
-
 struct ContentView: View {
     
     @EnvironmentObject var appState: AppState
-    @EnvironmentObject var model: DataModel
+    @StateObject var model = DataModel.shared
     @State var isLoggedIn: Bool
     @State var isChildLoggedIn: Bool
     @State var waitingChild = false
@@ -131,40 +70,6 @@ struct ContentView: View {
             guard moveToChildQR else { return }
             appState.moveToChildQR = false
             waitingChild = true
-        }
-        .onAppear {
-            // Allow2.shared.deviceToken = UIDevice.current.identifierForVendor?.uuidString ?? ""
-            // Allow2.shared.env = .sandbox
-//            AuthorizationCenter.shared.requestAuthorization { result in
-//                switch result {
-//                case .success:
-//                    print("Success")
-//                case .failure(let error):
-//                    print("error for screentime is \(error)")
-//                }
-//            }
-//
-//            _ = AuthorizationCenter.shared.$authorizationStatus
-//                .sink() {_ in
-//                    switch AuthorizationCenter.shared.authorizationStatus {
-//                    case .notDetermined:
-//                        print("not determined")
-//                        AuthorizationCenter.shared.requestAuthorization { result in
-//                            switch result {
-//                            case .success:
-//                                print("Success")
-//                            case .failure(let error):
-//                                print("error for screentime is \(error)")
-//                            }
-//                        }
-//                    case .denied:
-//                        print("denied")
-//                    case .approved:
-//                        print("approved")
-//                    @unknown default:
-//                        break
-//                    }
-//                }
         }
     }
 }

@@ -90,6 +90,7 @@
 "main.parent.home.questions" = "questions today";
 "main.parent.home.answers" = "correct answers";
 
+"main.parent.childProfile.lastActive" = "Active ";
 "main.parent.childProfile.timePeriod" = "Time period";
 "main.parent.childProfile.education" = "Education";
 "main.parent.childProfile.questions" = "Questions";

@@ -7,7 +7,6 @@
 
 import SwiftUI
 import FamilyControls
-import ManagedSettings
 
 enum TimePeriod: String, CaseIterable, PickerItem {
     case day = "DAY"
@@ -36,7 +35,8 @@ struct ChildProfileView<M: ChildProfileViewModeling>: View {
     @StateObject var viewModel: M
     
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
-    @EnvironmentObject var model: DataModel
+//    @EnvironmentObject var model: DataModel
+    @StateObject var model = DataModel.shared
     @State private var isDiscouragedPresented = false
     
     private let imageHeight = 90.0
@@ -92,7 +92,7 @@ private extension ChildProfileView {
             VStack() {
                 Text(viewModel.child.name)
                     .font(.appLargeTitle)
-                Text(viewModel.detailsInfo.lastLogin)
+                Text(viewModel.detailsInfo.lastLoginString)
                     .font(.appHeadline)
                     .foregroundColor(.primaryDescription)
             }
@@ -264,7 +264,7 @@ private extension ChildProfileView {
                     Text("main.parent.childProfile.restrictionPeriod")
                         .font(.appHeadline)
                         .foregroundColor(.primaryDescription)
-                    WheelPickerField(style: .minimum, selection: $viewModel.interuption, datasource: $viewModel.interuptions)
+                    WheelPickerField(style: .minimum(title: "Interruption period"), selection: $viewModel.interuption, datasource: $viewModel.interuptions)
                 }
                 Spacer()
                 Image.Common.dropdownArrow
