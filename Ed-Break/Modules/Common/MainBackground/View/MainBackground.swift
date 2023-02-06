@@ -49,11 +49,14 @@ struct MainBackground<Content> : View where Content : View {
                     }
                 }
                 ScrollView(showsIndicators: false) {
+                    PullToRefresh(coordinateSpaceName: "pullToRefresh") {
+                        NotificationCenter.default.post(name: .Refresh.update, object: nil)
+                    }
                     content().cornerRadius(contentCornerRadius)
                     if !isSimple {
                         Spacer()
                     }
-                }
+                }.coordinateSpace(name: "pullToRefresh")
             }
             .padding(EdgeInsets(
                 top: hideBackButton ? -74 : withNavbar ? 0 : 10,
@@ -85,6 +88,11 @@ extension MainBackground {
                 Spacer().frame(width: 18)
             }
         }.background(Color.primaryPurple)
+    }
+}
+extension NSNotification.Name {
+    struct Refresh {
+        static let update = Notification.Name.init("Refresh.update")
     }
 }
 

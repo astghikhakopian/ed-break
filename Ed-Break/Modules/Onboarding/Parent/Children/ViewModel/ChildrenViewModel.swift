@@ -121,6 +121,7 @@ final class MockChildrenViewModeling: ChildrenViewModeling, Identifiable {
     var coachingChildren = [CoachingChildModel]()
     
     func getChildren() { }
+    func getCoachingChildren() { }
     func pairChild(id: Int, deviceToken: String, compleated: @escaping (Bool)->()) { }
     func refreshToken(completion: @escaping (Bool) -> Void) { }
 }
