@@ -17,11 +17,6 @@ final class HomeViewModel: HomeViewModeling, Identifiable {
     @Published var remindingMinutes: Int = 0 {
         didSet {
             progress = Double(self.remindingMinutes)/Double(contentModel?.interruption ?? 1)
-            
-//            let threshold = DateComponents(minute: remindingMinutes > 1 ? remindingMinutes-1 : 0)
-//            self.userDefaultsService.setObjectInSuite(threshold, forKey: .ChildUser.threshold)
-            
-//            ScheduleModel.setSchedule()
         }
     }
     @Published var progress: Double = 0
@@ -85,15 +80,6 @@ final class HomeViewModel: HomeViewModeling, Identifiable {
         }
     }
     
-    private func getMinutes(start: Date?) -> Int? {
-        guard let start = start else { return nil }
-        let diff = Int(Date().toLocalTime().timeIntervalSince1970 - start.timeIntervalSince1970)
-        
-        let hours = diff / 3600
-        let minutes = (diff - hours * 3600) / 60
-        return minutes
-    }
-    
     private func processModel(model: HomeModel) {
         var model = model
         model.wrongAnswersTime = (model.wrongAnswersTime ?? Date().toLocalTime()) > Date().toLocalTime()
@@ -101,59 +87,42 @@ final class HomeViewModel: HomeViewModeling, Identifiable {
         : nil
         self.contentModel = model
         let today = Date().toLocalTime()
-        if let restrictions = model.restrictions {
-            if let startTime = model.breakStartDatetime,
-               let endTime = model.breakEndDatetime,
-               startTime.component(.day) == today.component(.day),
-               startTime.component(.hour) ?? 0 <= today.component(.hour) ?? 0,
-               startTime.component(.minute) ?? 0 <= today.component(.minute) ?? 0,
-               endTime > today {
-                let allremindingMinutes: Int? = self.userDefaultsService.getPrimitiveFromSuite(forKey: .ChildUser.remindingMinutes) //self.getMinutes(start: endTime) ?? 0
-                let difference = allremindingMinutes ?? model.interruption ?? 0
-                self.remindingMinutes = difference //difference < 0 ? (0-difference)+1 : 0
-                
-                DataModel.shared.threshold = DateComponents(minute: self.remindingMinutes-1)
-                DataModel.shared.selectionToEncourage = restrictions
-                DataModel.shared.selectionToDiscourage = FamilyActivitySelection()
-                DataModel.shared.setShieldRestrictions()
-                
-                let threshold = DateComponents(minute: self.remindingMinutes > 1 ? self.remindingMinutes-1 : 0)
-                self.userDefaultsService.setObjectInSuite(threshold, forKey: .ChildUser.threshold)
-                self.userDefaultsService.setObjectInSuite(restrictions, forKey: .ChildUser.selectionToEncourage)
-                self.userDefaultsService.setObjectInSuite(FamilyActivitySelection(), forKey: .ChildUser.selectionToDiscourage)
-                self.userDefaultsService.setPrimitiveInSuite(model.interruption ?? 0, forKey: .ChildUser.remindingMinutes)
-                
-                ScheduleModel.setSchedule()
-                // ScheduleModel.setSchedule(startTime: model.breakStartDatetime)
+        let allremindingMinutes: Int? = self.userDefaultsService.getPrimitiveFromSuite(forKey: .ChildUser.remindingMinutes)
+        let restrictions = model.restrictions ?? FamilyActivitySelection()
+        
+        if let startTime = model.breakStartDatetime,
+           startTime.component(.day) == today.component(.day),
+           startTime.component(.hour) ?? 0 <= today.component(.hour) ?? 0 {
+            
+            let startTimeMinute = startTime.component(.minute) ?? 0
+            let todayMinute = today.component(.minute) ?? 0
+            
+            if startTimeMinute == todayMinute {
+                self.remindingMinutes = model.interruption ?? 0
+            } else if
+                startTimeMinute < todayMinute,
+                let allremindingMinutes = allremindingMinutes,
+                allremindingMinutes > 0 {
+                self.remindingMinutes = allremindingMinutes
             } else {
-                DataModel.shared.selectionToDiscourage = restrictions
-                DataModel.shared.selectionToEncourage = FamilyActivitySelection()
-                DataModel.shared.threshold = DateComponents()
-                DataModel.shared.setShieldRestrictions()
-
                 self.remindingMinutes = 0
-                
-                self.userDefaultsService.setObjectInSuite(DateComponents(), forKey: .ChildUser.threshold)
-                self.userDefaultsService.setObjectInSuite(FamilyActivitySelection(), forKey: .ChildUser.selectionToEncourage)
-                self.userDefaultsService.setObjectInSuite(restrictions, forKey: .ChildUser.selectionToDiscourage)
-                
-                ScheduleModel.setSchedule()
             }
         } else {
-            DataModel.shared.selectionToDiscourage = FamilyActivitySelection()
-            DataModel.shared.selectionToEncourage = FamilyActivitySelection()
-            DataModel.shared.threshold = DateComponents()
-            DataModel.shared.setShieldRestrictions()
-            
             self.remindingMinutes = 0
-            
-            self.userDefaultsService.setObjectInSuite(DateComponents(), forKey: .ChildUser.threshold)
-            self.userDefaultsService.setObjectInSuite(FamilyActivitySelection(), forKey: .ChildUser.selectionToEncourage)
-            self.userDefaultsService.setObjectInSuite(FamilyActivitySelection(), forKey: .ChildUser.selectionToDiscourage)
-            
-            ScheduleModel.setSchedule()
         }
+        
+        let shouldRestrict = self.remindingMinutes <= 0
+        DataModel.shared.threshold = shouldRestrict ? DateComponents() : DateComponents(minute: 1)
+        DataModel.shared.selectionToEncourage = shouldRestrict ? FamilyActivitySelection() : restrictions
+        DataModel.shared.selectionToDiscourage = shouldRestrict ? restrictions : FamilyActivitySelection()
         DataModel.shared.remindingMinutes = self.remindingMinutes
+        DataModel.shared.setShieldRestrictions()
+        
+        self.userDefaultsService.setPrimitiveInSuite(self.remindingMinutes, forKey: .ChildUser.remindingMinutes)
+        self.userDefaultsService.setObjectInSuite(DataModel.shared.threshold, forKey: .ChildUser.threshold)
+        self.userDefaultsService.setObjectInSuite(DataModel.shared.selectionToEncourage, forKey: .ChildUser.selectionToEncourage)
+        self.userDefaultsService.setObjectInSuite(DataModel.shared.selectionToDiscourage, forKey: .ChildUser.selectionToDiscourage)
+        ScheduleModel.setSchedule()
     }
 }
 

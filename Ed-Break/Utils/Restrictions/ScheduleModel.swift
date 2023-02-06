@@ -28,23 +28,25 @@ class ScheduleModel {
     static public func setSchedule(startTime: Date? = nil) {
         
         print("Setting up the schedule")
+        
         let selectionToEncourage: FamilyActivitySelection? = UserDefaultsService().getObjectFromSuite(forKey: .ChildUser.selectionToEncourage)
         let encouraged = selectionToEncourage ?? FamilyActivitySelection()
         
-        let threshold: DateComponents? = UserDefaultsService().getObjectFromSuite(forKey: .ChildUser.threshold)
+        let localThreshold: DateComponents? = UserDefaultsService().getObjectFromSuite(forKey: .ChildUser.threshold)
+        let threshold = localThreshold ?? DateComponents()
         
         let events: [DeviceActivityEvent.Name: DeviceActivityEvent] = [
             .encouraged: DeviceActivityEvent(
                 applications: encouraged.applicationTokens,
                 categories: encouraged.categoryTokens,
                 webDomains: encouraged.webDomainTokens,
-                threshold: threshold ?? DateComponents()
+                threshold: threshold
             )
         ]
         
         let store = ManagedSettingsStore()
         let schedule = DeviceActivitySchedule(
-            intervalStart: Calendar.current.dateComponents([.hour, .minute], from: Date()),//startTime == nil ? DateComponents(hour: 0, minute: 0) : Calendar.current.dateComponents([.hour, .minute], from: max(startTime!.toGMTTime(), Date().toLocal())),
+            intervalStart: Calendar.current.dateComponents([.hour, .minute], from: Date()),
             intervalEnd: DateComponents(hour: 23, minute: 59),
             repeats: true
         )

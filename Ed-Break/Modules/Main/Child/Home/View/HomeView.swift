@@ -19,8 +19,6 @@ struct HomeView<M: HomeViewModeling>: View {
     private let headerHeight: CGFloat = 30
     private let cornerRadius = 12.0
     
-    private let timer = Timer.publish(every: 60, on: .main, in: .common).autoconnect()
-    
     var body: some View {
         VStack(spacing: 12) {
             HStack {
@@ -71,15 +69,6 @@ struct HomeView<M: HomeViewModeling>: View {
                 isShieldPresented = true
             }
         }
-        .onReceive(timer) { time in
-            if viewModel.remindingMinutes > 0 {
-                viewModel.remindingMinutes -= 1
-                DataModel.shared.remindingMinutes = viewModel.remindingMinutes
-            } else {
-                DataModel.shared.remindingMinutes = 0
-                viewModel.setRestrictions()
-            }
-        }
         .onReceive(NotificationCenter.default.publisher(for: UIApplication.didBecomeActiveNotification, object: nil)) { _ in
             viewModel.getSubjects()
         }
@@ -98,11 +87,6 @@ struct HomeView<M: HomeViewModeling>: View {
                     isShieldPresented = false
                 }
         }
-        
-//        .onLoad {
-//            viewModel.getSubjects()
-//        }
-        
     }
 }
 

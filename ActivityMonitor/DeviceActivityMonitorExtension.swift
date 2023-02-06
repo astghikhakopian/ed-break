@@ -33,26 +33,37 @@ class DeviceActivityMonitorExtension: DeviceActivityMonitor {
     override func eventDidReachThreshold(_ event: DeviceActivityEvent.Name, activity: DeviceActivityName) {
         super.eventDidReachThreshold(event, activity: activity)
         
-        let savedApplications: FamilyActivitySelection? = userDefaultsService.getObjectFromSuite(forKey: .ChildUser.selectionToEncourage)
-        let restrictions = savedApplications ?? FamilyActivitySelection()
-        self.userDefaultsService.setObjectInSuite(DateComponents(), forKey: .ChildUser.threshold)
-        self.userDefaultsService.setObjectInSuite(FamilyActivitySelection(), forKey: .ChildUser.selectionToEncourage)
-      if !restrictions.categories.isEmpty ||
-        !restrictions.categoryTokens.isEmpty ||
-          !restrictions.applications.isEmpty ||
-          !restrictions.applicationTokens.isEmpty ||
-          !restrictions.webDomains.isEmpty ||
-          !restrictions.webDomainTokens.isEmpty {
-        self.userDefaultsService.setObjectInSuite(restrictions, forKey: .ChildUser.selectionToDiscourage)
-      }
+        let remindingLocalMinutes: Int? = self.userDefaultsService.getPrimitiveFromSuite(forKey: .ChildUser.remindingMinutes)
         
-        DataModel.shared.selectionToDiscourage = restrictions
-        DataModel.shared.selectionToEncourage = FamilyActivitySelection()
-        DataModel.shared.threshold = DateComponents()
+        let remindingMinutes = remindingLocalMinutes ?? 0
         
-        setShieldRestrictions()
+        if remindingMinutes > 1 {
+            self.userDefaultsService.setPrimitiveInSuite(remindingMinutes-1, forKey: .ChildUser.remindingMinutes)
+            ScheduleModel.setSchedule()
+            sendNotification(title: "Ed-Break Reminder", body: "Reminding minute(s): \(remindingMinutes-1)")
+        } else {
+            self.userDefaultsService.setPrimitiveInSuite(0, forKey: .ChildUser.remindingMinutes)
+            let savedApplications: FamilyActivitySelection? = userDefaultsService.getObjectFromSuite(forKey: .ChildUser.selectionToEncourage)
+            let restrictions = savedApplications ?? FamilyActivitySelection()
+            self.userDefaultsService.setObjectInSuite(DateComponents(), forKey: .ChildUser.threshold)
+            self.userDefaultsService.setObjectInSuite(FamilyActivitySelection(), forKey: .ChildUser.selectionToEncourage)
+            if !restrictions.categories.isEmpty ||
+                !restrictions.categoryTokens.isEmpty ||
+                !restrictions.applications.isEmpty ||
+                !restrictions.applicationTokens.isEmpty ||
+                !restrictions.webDomains.isEmpty ||
+                !restrictions.webDomainTokens.isEmpty {
+                self.userDefaultsService.setObjectInSuite(restrictions, forKey: .ChildUser.selectionToDiscourage)
+            }
+            
+            DataModel.shared.selectionToDiscourage = restrictions
+            DataModel.shared.selectionToEncourage = FamilyActivitySelection()
+            DataModel.shared.threshold = DateComponents()
+            
+            setShieldRestrictions()
+            sendNotification(title: "Ed-Break Shield", body: "Your time is over.")
+        }
         
-        // sendNotification(title: "did reach threshold \(restrictions)", body: "\(restrictions)")
     }
     
     override func intervalWillStartWarning(for activity: DeviceActivityName) {

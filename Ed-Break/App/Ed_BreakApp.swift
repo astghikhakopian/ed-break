@@ -41,7 +41,7 @@ class AppDelegate: NSObject, UIApplicationDelegate, UNUserNotificationCenterDele
 //            }
 //        }
         UNUserNotificationCenter.current().delegate = self
-        ScheduleModel.setSchedule()
+//        ScheduleModel.setSchedule()
         
         return true
     }
