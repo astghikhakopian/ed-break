@@ -18,6 +18,7 @@ protocol ChildrenViewModeling: ObservableObject {
     var timePeriodDatasource: [TimePeriod] { get set }
     
     func getChildren()
+    func getCoachingChildren()
     func pairChild(id: Int, deviceToken: String, compleated: @escaping (Bool)->())
     func refreshToken(completion: @escaping (Bool) -> Void)
 }

@@ -187,6 +187,7 @@
 		EFE9288928E18C3A00675F28 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFE9288828E18C3A00675F28 /* ContentView.swift */; };
 		EFE9288B28E18C3E00675F28 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EFE9288A28E18C3E00675F28 /* Assets.xcassets */; };
 		EFEAAAA32906961600FE0A39 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFEAAAA22906961600FE0A39 /* SettingsView.swift */; };
+		F3DC109829912C8200D0EA70 /* PullToRefresh.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3DC109729912C8200D0EA70 /* PullToRefresh.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -406,6 +407,7 @@
 		EFE9288828E18C3A00675F28 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		EFE9288A28E18C3E00675F28 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		EFEAAAA22906961600FE0A39 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		F3DC109729912C8200D0EA70 /* PullToRefresh.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PullToRefresh.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1388,6 +1390,7 @@
 		EF43B69F28E19E5500DBE6B6 /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				F3DC109629912C0000D0EA70 /* PullToRefresh */,
 				1B776ACD292CBEA60047FEBA /* Bottomsheet */,
 				1B7E64A3291145940084E6A0 /* CircularProgress */,
 				1B1346322907D52F00943AA5 /* WebView */,
@@ -1593,6 +1596,14 @@
 				EFEAAAA22906961600FE0A39 /* SettingsView.swift */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		F3DC109629912C0000D0EA70 /* PullToRefresh */ = {
+			isa = PBXGroup;
+			children = (
+				F3DC109729912C8200D0EA70 /* PullToRefresh.swift */,
+			);
+			path = PullToRefresh;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -1918,6 +1929,7 @@
 				1B47815C28F8595800AA8BF8 /* ChildProfileModel.swift in Sources */,
 				1BA30D5D28E79E5700926820 /* FamilySharingRoute.swift in Sources */,
 				EF52D84C2907F1DD00C6ACF9 /* ChildEditView.swift in Sources */,
+				F3DC109829912C8200D0EA70 /* PullToRefresh.swift in Sources */,
 				1B016B552922D67F00291A9D /* GetQuestionsUseCase.swift in Sources */,
 				1BCD8C81292A83BF00CD3D04 /* Image.swift in Sources */,
 				1BEE80F328EACA33004F75CA /* ChildDetailsRepository.swift in Sources */,
@@ -2293,7 +2305,7 @@
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_ENTITLEMENTS = "Ed-Break/Ed-Break.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 32;
+				CURRENT_PROJECT_VERSION = 39;
 				DEVELOPMENT_ASSET_PATHS = "Ed-Break/Resources/Preview\\ Content";
 				DEVELOPMENT_TEAM = 59UY34K59P;
 				ENABLE_PREVIEWS = YES;
@@ -2329,7 +2341,7 @@
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_ENTITLEMENTS = "Ed-Break/Ed-Break.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 32;
+				CURRENT_PROJECT_VERSION = 39;
 				DEVELOPMENT_ASSET_PATHS = "Ed-Break/Resources/Preview\\ Content";
 				DEVELOPMENT_TEAM = 59UY34K59P;
 				ENABLE_PREVIEWS = YES;

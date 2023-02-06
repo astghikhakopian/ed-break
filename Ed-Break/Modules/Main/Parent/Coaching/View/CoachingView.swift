@@ -28,7 +28,11 @@ struct CoachingView<M: CoachingViewModeling>: View {
                     content
                 }
             }
-        }.onLoad {
+        }
+        .onReceive(.Refresh.update) { _ in
+            viewModel.getCoachingChildren()
+        }
+        .onLoad {
             viewModel.getCoachingChildren()
         }
     }
