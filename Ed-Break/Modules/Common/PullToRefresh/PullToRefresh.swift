@@ -25,7 +25,6 @@ struct PullToRefresh: View {
                 Spacer()
                     .onAppear {
                         if needRefresh {
-                            print("tdgjygkuhlkiugyfddzxfghjk")
                             needRefresh = false
                             onRefresh()
                         }

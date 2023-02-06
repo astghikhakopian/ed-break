@@ -40,6 +40,7 @@
 		1B331F462950BFBF0012588F /* DataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BE2205E2919112F00796FE1 /* DataModel.swift */; };
 		1B3581A728E621E600612976 /* OnboardingRoleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B3581A628E621E600612976 /* OnboardingRoleCell.swift */; };
 		1B3581AC28E6387000612976 /* FamilySharingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B3581AB28E6387000612976 /* FamilySharingView.swift */; };
+		1B38E18C2991792D0060A28E /* PullToRefresh.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3DC109729912C8200D0EA70 /* PullToRefresh.swift */; };
 		1B4413A92930FF4900820B55 /* WheelPickerTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B4413A82930FF4900820B55 /* WheelPickerTextField.swift */; };
 		1B445AE928EC3DA700B0B310 /* PagingDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B445AE828EC3DA700B0B310 /* PagingDto.swift */; };
 		1B445AEB28EC531B00B0B310 /* ChildModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B445AEA28EC531B00B0B310 /* ChildModel.swift */; };
@@ -121,7 +122,6 @@
 		1BCD8C7F292A7E9E00CD3D04 /* PhoneLockingStateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BCD8C7E292A7E9E00CD3D04 /* PhoneLockingStateView.swift */; };
 		1BCD8C81292A83BF00CD3D04 /* Image.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFE6E42728E1A67A00B3F83D /* Image.swift */; };
 		1BCF9F382951FDE100356950 /* ScheduleModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B4F5718293931D200AE29E3 /* ScheduleModel.swift */; };
-		1BD37D112987101600690C9E /* PullToRefresh.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BD37D102987101600690C9E /* PullToRefresh.swift */; };
 		1BE0F24829886F2B00869BE0 /* DateFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BEC0C3F291A963100116FC0 /* DateFormatter.swift */; };
 		1BE0F249298879AF00869BE0 /* UserDefaultsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BE72A2A28E8901000447167 /* UserDefaultsService.swift */; };
 		1BE0F24A298879B000869BE0 /* UserDefaultsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BE72A2A28E8901000447167 /* UserDefaultsService.swift */; };
@@ -194,7 +194,6 @@
 		EFE9288928E18C3A00675F28 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFE9288828E18C3A00675F28 /* ContentView.swift */; };
 		EFE9288B28E18C3E00675F28 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EFE9288A28E18C3E00675F28 /* Assets.xcassets */; };
 		EFEAAAA32906961600FE0A39 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFEAAAA22906961600FE0A39 /* SettingsView.swift */; };
-		F3DC109829912C8200D0EA70 /* PullToRefresh.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3DC109729912C8200D0EA70 /* PullToRefresh.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -344,7 +343,6 @@
 		1BC5BDED29295C8E006171A5 /* AnswerQuestionUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnswerQuestionUseCase.swift; sourceTree = "<group>"; };
 		1BC5BDEF29296E69006171A5 /* AnswerResultView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnswerResultView.swift; sourceTree = "<group>"; };
 		1BCD8C7E292A7E9E00CD3D04 /* PhoneLockingStateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneLockingStateView.swift; sourceTree = "<group>"; };
-		1BD37D102987101600690C9E /* PullToRefresh.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PullToRefresh.swift; sourceTree = "<group>"; };
 		1BE2205129190E3B00796FE1 /* ActivityMonitor.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = ActivityMonitor.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		1BE2205429190E3B00796FE1 /* DeviceActivityMonitorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceActivityMonitorExtension.swift; sourceTree = "<group>"; };
 		1BE2205629190E3B00796FE1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -1119,7 +1117,6 @@
 				1BC5BDE329294E11006171A5 /* UIKitIntrospectionView.swift */,
 				1BC5BDE529294E11006171A5 /* UIKitIntrospectionViewController.swift */,
 				1BC5BDE729294E11006171A5 /* ViewExtensions.swift */,
-				1BD37D102987101600690C9E /* PullToRefresh.swift */,
 			);
 			path = Introspect;
 			sourceTree = "<group>";
@@ -1944,7 +1941,7 @@
 				1B47815C28F8595800AA8BF8 /* ChildProfileModel.swift in Sources */,
 				1BA30D5D28E79E5700926820 /* FamilySharingRoute.swift in Sources */,
 				EF52D84C2907F1DD00C6ACF9 /* ChildEditView.swift in Sources */,
-				1BD37D112987101600690C9E /* PullToRefresh.swift in Sources */,
+				1B38E18C2991792D0060A28E /* PullToRefresh.swift in Sources */,
 				1B016B552922D67F00291A9D /* GetQuestionsUseCase.swift in Sources */,
 				1BCD8C81292A83BF00CD3D04 /* Image.swift in Sources */,
 				1BEE80F328EACA33004F75CA /* ChildDetailsRepository.swift in Sources */,
@@ -2036,7 +2033,7 @@
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = ShieldConfigurationExtension/ShieldConfigurationExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 36;
+				CURRENT_PROJECT_VERSION = 40;
 				DEVELOPMENT_TEAM = 59UY34K59P;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = ShieldConfigurationExtension/Info.plist;
@@ -2063,7 +2060,7 @@
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = ShieldConfigurationExtension/ShieldConfigurationExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 36;
+				CURRENT_PROJECT_VERSION = 40;
 				DEVELOPMENT_TEAM = 59UY34K59P;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = ShieldConfigurationExtension/Info.plist;
@@ -2091,7 +2088,7 @@
 				APPLICATION_EXTENSION_API_ONLY = YES;
 				CODE_SIGN_ENTITLEMENTS = ShieldActionExtension/ShieldActionExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 36;
+				CURRENT_PROJECT_VERSION = 40;
 				DEVELOPMENT_TEAM = 59UY34K59P;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = ShieldActionExtension/Info.plist;
@@ -2119,7 +2116,7 @@
 				APPLICATION_EXTENSION_API_ONLY = YES;
 				CODE_SIGN_ENTITLEMENTS = ShieldActionExtension/ShieldActionExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 36;
+				CURRENT_PROJECT_VERSION = 40;
 				DEVELOPMENT_TEAM = 59UY34K59P;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = ShieldActionExtension/Info.plist;
@@ -2146,7 +2143,7 @@
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = ActivityMonitor/ActivityMonitor.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 36;
+				CURRENT_PROJECT_VERSION = 40;
 				DEVELOPMENT_TEAM = 59UY34K59P;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = ActivityMonitor/Info.plist;
@@ -2173,7 +2170,7 @@
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = ActivityMonitor/ActivityMonitor.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 36;
+				CURRENT_PROJECT_VERSION = 40;
 				DEVELOPMENT_TEAM = 59UY34K59P;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = ActivityMonitor/Info.plist;
@@ -2320,7 +2317,7 @@
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_ENTITLEMENTS = "Ed-Break/Ed-Break.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 39;
+				CURRENT_PROJECT_VERSION = 40;
 				DEVELOPMENT_ASSET_PATHS = "Ed-Break/Resources/Preview\\ Content";
 				DEVELOPMENT_TEAM = 59UY34K59P;
 				ENABLE_PREVIEWS = YES;
@@ -2356,7 +2353,7 @@
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_ENTITLEMENTS = "Ed-Break/Ed-Break.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 39;
+				CURRENT_PROJECT_VERSION = 40;
 				DEVELOPMENT_ASSET_PATHS = "Ed-Break/Resources/Preview\\ Content";
 				DEVELOPMENT_TEAM = 59UY34K59P;
 				ENABLE_PREVIEWS = YES;

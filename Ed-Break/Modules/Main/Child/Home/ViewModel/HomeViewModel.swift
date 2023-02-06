@@ -18,10 +18,10 @@ final class HomeViewModel: HomeViewModeling, Identifiable {
         didSet {
             progress = Double(self.remindingMinutes)/Double(contentModel?.interruption ?? 1)
             
-            let threshold = DateComponents(minute: remindingMinutes > 1 ? remindingMinutes-1 : 0)
-            self.userDefaultsService.setObjectInSuite(threshold, forKey: .ChildUser.threshold)
+//            let threshold = DateComponents(minute: remindingMinutes > 1 ? remindingMinutes-1 : 0)
+//            self.userDefaultsService.setObjectInSuite(threshold, forKey: .ChildUser.threshold)
             
-            ScheduleModel.setSchedule()
+//            ScheduleModel.setSchedule()
         }
     }
     @Published var progress: Double = 0
@@ -108,8 +108,9 @@ final class HomeViewModel: HomeViewModeling, Identifiable {
                startTime.component(.hour) ?? 0 <= today.component(.hour) ?? 0,
                startTime.component(.minute) ?? 0 <= today.component(.minute) ?? 0,
                endTime > today {
-                let difference = self.getMinutes(start: endTime) ?? 0
-                self.remindingMinutes = difference < 0 ? (0-difference)+1 : 0
+                let allremindingMinutes: Int? = self.userDefaultsService.getPrimitiveFromSuite(forKey: .ChildUser.remindingMinutes) //self.getMinutes(start: endTime) ?? 0
+                let difference = allremindingMinutes ?? model.interruption ?? 0
+                self.remindingMinutes = difference //difference < 0 ? (0-difference)+1 : 0
                 
                 DataModel.shared.threshold = DateComponents(minute: self.remindingMinutes-1)
                 DataModel.shared.selectionToEncourage = restrictions
@@ -120,6 +121,7 @@ final class HomeViewModel: HomeViewModeling, Identifiable {
                 self.userDefaultsService.setObjectInSuite(threshold, forKey: .ChildUser.threshold)
                 self.userDefaultsService.setObjectInSuite(restrictions, forKey: .ChildUser.selectionToEncourage)
                 self.userDefaultsService.setObjectInSuite(FamilyActivitySelection(), forKey: .ChildUser.selectionToDiscourage)
+                self.userDefaultsService.setPrimitiveInSuite(model.interruption ?? 0, forKey: .ChildUser.remindingMinutes)
                 
                 ScheduleModel.setSchedule()
                 // ScheduleModel.setSchedule(startTime: model.breakStartDatetime)

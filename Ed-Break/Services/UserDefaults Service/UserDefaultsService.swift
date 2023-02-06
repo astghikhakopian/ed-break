@@ -59,6 +59,16 @@ class UserDefaultsService: LocalStorageService {
         return try? JSONDecoder().decode(T.self, from: data)
     }
 
+    func setPrimitiveInSuite(_ object: Any?,  forKey key: UserDefaults.Key) {
+        let sharedDefault = UserDefaults(suiteName: "group.com.au.edbreak")!
+        sharedDefault.set(object, forKey: key.rawValue)
+        sharedDefault.synchronize()
+    }
+    
+    func getPrimitiveFromSuite<T: Codable>(forKey key: UserDefaults.Key) -> T? {
+        let sharedDefault = UserDefaults(suiteName: "group.com.au.edbreak")!
+        return sharedDefault.object(forKey: key.rawValue) as? T
+    }
     
     
     // MARK: - Remove

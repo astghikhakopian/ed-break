@@ -30,5 +30,7 @@ extension UserDefaults.Key {
         static let selectionToEncourage = UserDefaults.Key(rawValue: "ChildUser.selectionToEncourage")
         static let selectionToDiscourage = UserDefaults.Key(rawValue: "ChildUser.selectionToDiscourage")
         static let threshold = UserDefaults.Key(rawValue: "ChildUser.threshold")
+        static let remindingMinutes = UserDefaults.Key(rawValue: "ChildUser.remindingMinutes")
+        static let lastIncreaseTime = UserDefaults.Key(rawValue: "ChildUser.lastIncreaseTime")
     }
 }
