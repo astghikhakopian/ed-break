@@ -37,7 +37,14 @@ class DeviceActivityMonitorExtension: DeviceActivityMonitor {
         let restrictions = savedApplications ?? FamilyActivitySelection()
         self.userDefaultsService.setObjectInSuite(DateComponents(), forKey: .ChildUser.threshold)
         self.userDefaultsService.setObjectInSuite(FamilyActivitySelection(), forKey: .ChildUser.selectionToEncourage)
+      if !restrictions.categories.isEmpty ||
+        !restrictions.categoryTokens.isEmpty ||
+          !restrictions.applications.isEmpty ||
+          !restrictions.applicationTokens.isEmpty ||
+          !restrictions.webDomains.isEmpty ||
+          !restrictions.webDomainTokens.isEmpty {
         self.userDefaultsService.setObjectInSuite(restrictions, forKey: .ChildUser.selectionToDiscourage)
+      }
         
         DataModel.shared.selectionToDiscourage = restrictions
         DataModel.shared.selectionToEncourage = FamilyActivitySelection()
@@ -68,6 +75,7 @@ class DeviceActivityMonitorExtension: DeviceActivityMonitor {
         let savedApplications: FamilyActivitySelection? = UserDefaultsService().getObjectFromSuite(forKey: .ChildUser.selectionToDiscourage)
         let selection = savedApplications ?? FamilyActivitySelection()
         DataModel.shared.selectionToDiscourage = selection
+        DataModel.shared.setShieldRestrictions()
         
         let applications = selection.applicationTokens
         let categories = selection.categoryTokens
