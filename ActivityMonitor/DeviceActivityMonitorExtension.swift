@@ -40,7 +40,7 @@ class DeviceActivityMonitorExtension: DeviceActivityMonitor {
         if remindingMinutes > 1 {
             self.userDefaultsService.setPrimitiveInSuite(remindingMinutes-1, forKey: .ChildUser.remindingMinutes)
             ScheduleModel.setSchedule()
-            sendNotification(title: "Ed-Break Reminder", body: "Reminding minute(s): \(remindingMinutes-1)")
+            // sendNotification(title: "Ed-Break Reminder", body: "Reminding minute(s): \(remindingMinutes-1)")
         } else {
             self.userDefaultsService.setPrimitiveInSuite(0, forKey: .ChildUser.remindingMinutes)
             let savedApplications: FamilyActivitySelection? = userDefaultsService.getObjectFromSuite(forKey: .ChildUser.selectionToEncourage)
@@ -61,7 +61,7 @@ class DeviceActivityMonitorExtension: DeviceActivityMonitor {
             DataModel.shared.threshold = DateComponents()
             
             setShieldRestrictions()
-            sendNotification(title: "Ed-Break Shield", body: "Your time is over.")
+            // sendNotification(title: "Ed-Break Shield", body: "Your time is over.")
         }
         
     }
