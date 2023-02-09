@@ -106,7 +106,7 @@ struct BottomsheetViewModifier {
         localSelectedItems.contains(where: {$0.id == item.id})
     }
     @State private var isContentValid: Bool = false
-    @State private var localSelectedItems: [BottomsheetCellModel] = []  {
+    @State var localSelectedItems: [BottomsheetCellModel] {
         didSet {
             isContentValid = !localSelectedItems.isEmpty
         }
@@ -163,6 +163,7 @@ extension BottomsheetViewModifier: ViewModifier {
                                 ConfirmButton(action: {
                                     DispatchQueue.main.async {
                                         selectedItems = localSelectedItems
+                                        localSelectedItems = []
                                         isPresented = false
                                     }
                                 }, title: "common.confirm", isContentValid: $isContentValid, isLoading: .constant(false))
@@ -193,19 +194,22 @@ extension BottomsheetViewModifier: ViewModifier {
             Spacer()
             if isMultiselect {
                 RoundedRectangle(cornerRadius: selectionHeight/2)
-                    .stroke(isSelected(item: item) ? Color.primaryPurple : Color.border, lineWidth: isSelected(item: item) ? 7 : 1)
-                    .frame(width: selectionHeight - (isSelected(item: item) ? 7 : 1), height: selectionHeight - (isSelected(item: item) ? 7 : 1))
-                    .padding(.leading, (isSelected(item: item) ? 3.5 : 0))
-                    .padding(.trailing, (isSelected(item: item) ? 2.5 : 0))
+                    .stroke(isSelectedd(item: item) ? Color.primaryPurple : Color.border, lineWidth: isSelectedd(item: item) ? 7 : 1)
+                    .frame(width: selectionHeight - (isSelectedd(item: item) ? 7 : 1), height: selectionHeight - (isSelectedd(item: item) ? 7 : 1))
+                    .padding(.leading, (isSelectedd(item: item) ? 3.5 : 0))
+                    .padding(.trailing, (isSelectedd(item: item) ? 2.5 : 0))
             }
         }
+    }
+    func isSelectedd(item: BottomsheetCellModel)->Bool {
+        return localSelectedItems.contains(where: {$0.id == item.id})
     }
 }
 
 extension View {
     
     func bottomsheet(title: String, datasource: [BottomsheetCellModel], selectedItems: Binding<[BottomsheetCellModel]?>, isPresented: Binding<Bool>, isMultiselect: Bool = false) -> some View {
-        return modifier(BottomsheetViewModifier(title: title, datasource: datasource, selectedItems: selectedItems, isPresented: isPresented, isMultiselect: isMultiselect))
+        return modifier(BottomsheetViewModifier(title: title, datasource: datasource, selectedItems: selectedItems, isPresented: isPresented, isMultiselect: isMultiselect,localSelectedItems: selectedItems.wrappedValue ?? []))
     }
 }
 

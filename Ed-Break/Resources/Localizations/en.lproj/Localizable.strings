@@ -16,9 +16,10 @@
 "onboarding.child.title" = "Child’s Device";
 
 "onboarding.familySharing.title" = "Set up Family Sharing \n and invite your child";
-"onboarding.childDetails.title" = "Set child's details";
+"onboarding.childDetails.title" = "Set child details";
 "onboarding.qrCode.title" = "Install Ed-Break \n on the child’s device";
 "onboarding.children.title" = "Connect child’s device";
+"onboarding.childsDetails.title" = "Set child's details";
 
 "onboarding.childSignIn.title" = "Sign in to allow \n parental control";
 "onboarding.childSignIn.description" = "Sign in with your parent Apple account to pair devices and enable parental control";
@@ -58,6 +59,7 @@
 "childDetails.delete" = "Delete child’s device";
 "childDetails.subjects" = "Subjects";
 "childDetails.interruption" = "Interruption";
+"childDetails.interruption.period" = "Interruption Period";
 
 "qrCode.description" = "Get Ed-Break app from the App Store or scan the QR-code on the child’s Device";
 
@@ -121,7 +123,7 @@
 "main.child.lockstate.locked.description" = "You need to answer three or more questions correctly to unlock your phone";
 
 "main.child.lockstate.unlocked" = "Phone unlocked";
-"main.child.lockstate.unlocked.description" = "You are free to use your phone. Enjoy!";
+"main.child.lockstate.unlocked.description" = "You get 15 minutes of phone using. Enjoy!";
 
 
 // Settings

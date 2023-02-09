@@ -8,7 +8,7 @@
 import Foundation
 import FamilyControls
 
-struct ChildModel: Equatable {
+struct ChildModel: Equatable,Identifiable {
     static func == (lhs: ChildModel, rhs: ChildModel) -> Bool { lhs.id == rhs.id }
     
     var id: Int

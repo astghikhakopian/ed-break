@@ -44,21 +44,23 @@ private extension DashboardView {
     var content: some View {
         
         ForEach(viewModel.children.results, id: \.id) { child in
-            NavigationLink(
-                destination:
-                    NavigationLazyView(MainBackground(title: nil, withNavbar: true, hideBackButton: true) {
-                        ChildProfileView(
-                            viewModel: ChildProfileViewModel(
-                                child: child,
-                                getChildDetailsUseCase: GetChildDetailsUseCase(
-                                    childrenRepository: DefaultChildrenRepository()),
-                                addRestrictionUseCase: AddRestrictionUseCase(
-                                    restrictionsRepository: DefaultRestrictionsRepository()),
-                                addInterruptionUseCase: AddInterruptionUseCase(
-                                    restrictionsRepository: DefaultRestrictionsRepository())))
-                        .environmentObject(model)
-                    }),
-                label: { HomeChildCell(child: child) })
+            if child.deviceToken != nil {
+                NavigationLink(
+                    destination:
+                        NavigationLazyView(MainBackground(title: nil, withNavbar: true, hideBackButton: true) {
+                            ChildProfileView(
+                                viewModel: ChildProfileViewModel(
+                                    child: child,
+                                    getChildDetailsUseCase: GetChildDetailsUseCase(
+                                        childrenRepository: DefaultChildrenRepository()),
+                                    addRestrictionUseCase: AddRestrictionUseCase(
+                                        restrictionsRepository: DefaultRestrictionsRepository()),
+                                    addInterruptionUseCase: AddInterruptionUseCase(
+                                        restrictionsRepository: DefaultRestrictionsRepository())))
+                            .environmentObject(model)
+                        }),
+                    label: { HomeChildCell(child: child) })
+            }
         }
     }
 }
