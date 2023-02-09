@@ -12,6 +12,8 @@ struct TabBarView: View {
     @StateObject var model = DataModel.shared
     
     @State private var selection = 0
+    @State private var uiTabarController: UITabBarController?
+
     
     var body: some View {
         
@@ -86,7 +88,18 @@ struct TabBarView: View {
             
         }
         .accentColor(.primaryPurple)
-        .onAppear { UITabBar.appearance().backgroundColor = UIColor.white }
+        .introspectTabBarController { (UITabBarController) in
+            uiTabarController = UITabBarController
+            UITabBarController.tabBar.layer.maskedCorners = [.layerMinXMinYCorner,.layerMaxXMinYCorner]
+            UITabBarController.tabBar.layer.cornerRadius = 30
+        }
+        .onAppear {
+            UITabBar.appearance().backgroundColor = UIColor.white
+            UITabBar.appearance().layer.maskedCorners = [.layerMinXMinYCorner,.layerMaxXMinYCorner]
+            UITabBar.appearance().layer.cornerRadius = 30
+            UITabBar.appearance().clipsToBounds = true
+            
+        }
     }
 }
 

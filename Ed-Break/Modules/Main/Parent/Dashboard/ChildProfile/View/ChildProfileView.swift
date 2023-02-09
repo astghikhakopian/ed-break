@@ -15,7 +15,7 @@ enum TimePeriod: String, CaseIterable, PickerItem {
     
     var name: String {
         switch self {
-        case .day:    return "Today"
+        case .day:    return "This day"
         case .week:   return "This week"
         case .month:    return "This month"
         }
@@ -38,7 +38,10 @@ struct ChildProfileView<M: ChildProfileViewModeling>: View {
 //    @EnvironmentObject var model: DataModel
     @StateObject var model = DataModel.shared
     @State private var isDiscouragedPresented = false
-    
+    @State private var uiTabarController: UITabBarController?
+    @State private var offset = CGFloat.zero
+    @State private var navTitle: String = ""
+
     private let imageHeight = 90.0
     private let restrictionImageHeight = 25.0
     private let cornerRadius = 12.0
@@ -56,7 +59,25 @@ struct ChildProfileView<M: ChildProfileViewModeling>: View {
                 activityView
                 restrictionsView
             }
-        }.background(Color.primaryBackground)
+        }
+        .background(GeometryReader {
+                        Color.clear.preference(key: ViewOffsetKey.self,
+                            value: -$0.frame(in: .named("scroll")).origin.y)
+                    })
+        .onPreferenceChange(ViewOffsetKey.self) {
+            if $0>60 {
+                navTitle = viewModel.child.name
+            } else {
+                navTitle = ""
+            }
+            
+        }
+        .toolbar {
+            ToolbarItem(placement: .principal){
+                Text($navTitle.wrappedValue)
+            }
+        }
+        .background(Color.primaryBackground)
             .navigationBarBackButtonHidden(true)
             .navigationBarItems(leading: backItem/*, trailing: moreItem*/)
             .familyActivityPicker(isPresented: $isDiscouragedPresented, selection: $model.selectionToDiscourage)
@@ -69,6 +90,15 @@ struct ChildProfileView<M: ChildProfileViewModeling>: View {
             .onChange(of: viewModel.detailsInfo) { newValue in
                 guard let restrictions = newValue.restrictions else { return }
                 model.selectionToDiscourage = restrictions
+            }
+            .introspectTabBarController { (UITabBarController) in
+                UITabBarController.tabBar.isHidden = true
+                uiTabarController = UITabBarController
+            }.onDisappear{
+                uiTabarController?.tabBar.isHidden = false
+            }
+            .onAppear {
+                uiTabarController?.tabBar.isHidden = true
             }
     }
 }
@@ -264,7 +294,7 @@ private extension ChildProfileView {
                     Text("main.parent.childProfile.restrictionPeriod")
                         .font(.appHeadline)
                         .foregroundColor(.primaryDescription)
-                    WheelPickerField(style: .minimum(title: "Interruption period"), selection: $viewModel.interuption, datasource: $viewModel.interuptions)
+                    WheelPickerField(style: .minimum(title: "childDetails.interruption.period"), selection: $viewModel.interuption, datasource: $viewModel.interuptions)
                 }
                 Spacer()
                 Image.Common.dropdownArrow
@@ -362,6 +392,13 @@ private extension ChildProfileView {
                 .font(.appHeadline)
                 .foregroundColor(.primaryDescription)
         }
+    }
+}
+struct ViewOffsetKey: PreferenceKey {
+    typealias Value = CGFloat
+    static var defaultValue = CGFloat.zero
+    static func reduce(value: inout Value, nextValue: () -> Value) {
+        value += nextValue()
     }
 }
 

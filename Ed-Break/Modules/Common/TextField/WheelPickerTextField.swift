@@ -10,13 +10,15 @@ import SwiftUI
 class WheelPickerTextField<C>: UITextField, UIPickerViewDataSource, UIPickerViewDelegate where C: PickerItem {
     
     let title: String
+    var titleToShow: String?
     @Binding var data: [C]
     @Binding var selection: C
     
-    init(title: String, data: Binding<[C]>, selection: Binding<C>) {
+    init(title: String, data: Binding<[C]>, selection: Binding<C>, titleToShow: String? = nil) {
         self.title = title
         self._data = data
         self._selection = selection
+        self.titleToShow = titleToShow
         super.init(frame: .zero)
         
         self.inputView = pickerView
@@ -48,7 +50,7 @@ class WheelPickerTextField<C>: UITextField, UIPickerViewDataSource, UIPickerView
         let toolbar = UIToolbar()
         
         let title = UIBarButtonItem(
-            title: NSLocalizedString(self.title, comment: ""),
+            title: NSLocalizedString(self.titleToShow ?? self.title, comment: ""),
             style: .done,
             target: self,
             action: nil
@@ -111,6 +113,7 @@ class WheelPickerTextField<C>: UITextField, UIPickerViewDataSource, UIPickerView
         let selectedIndex = row
         guard data.count > selectedIndex else { return }
         selection = data[selectedIndex]
+        pickerView.reloadAllComponents()
     }
     
     func pickerView(_ pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusing view: UIView?) -> UIView {
@@ -120,6 +123,7 @@ class WheelPickerTextField<C>: UITextField, UIPickerViewDataSource, UIPickerView
             string: titleData,
             attributes: [
                 NSAttributedString.Key.font: UIFont(name: "Poppins-Regular", size: 15)!,
+                NSAttributedString.Key.foregroundColor: row == data.firstIndex(of: $selection.wrappedValue) ? UIColor(.purple) : UIColor(Color.black),
             ])
         pickerLabel.attributedText = myTitle
         pickerLabel.textAlignment = .center
@@ -136,17 +140,19 @@ struct WheelPickerRepresentableField<C>: UIViewRepresentable where C: PickerItem
     @Binding var datasource: [C]
     
     private let title: String
+    private var titleToShow: String? = nil
     private var placeholder: String?
     private let textField: WheelPickerTextField<C>
     
     // MARK: - Initializers
-    init(title: String, placeholder: String? = nil, datasource: Binding<[C]>, selection: Binding<C>, color: UIColor) where C: PickerItem {
+    init(title: String, placeholder: String? = nil, datasource: Binding<[C]>, selection: Binding<C>, color: UIColor, titleToShow: String? = nil) where C: PickerItem {
         self.title = title
         self.placeholder = placeholder
         self._datasource = datasource
         self._selection = selection
+        self.titleToShow = titleToShow
         
-        textField = WheelPickerTextField(title: title, data: datasource, selection: selection)
+        textField = WheelPickerTextField(title: title, data: datasource, selection: selection,titleToShow: titleToShow)
         
         textField.font = UIFont(name: "Poppins-Medium", size: 12)
         textField.textColor = color
@@ -165,7 +171,7 @@ struct WheelPickerRepresentableField<C>: UIViewRepresentable where C: PickerItem
 
 enum WheelPickerStyle {
     case minimum(title: String)
-    case titled(title: String)
+    case titled(title: String, titleToShow: String? = nil)
     case withImage(image: Image,title: String)
 }
 
@@ -184,14 +190,14 @@ struct WheelPickerField<C>: View where C: PickerItem {
         switch style {
         case .minimum(let title):
             WheelPickerRepresentableField(title: title, datasource: $datasource, selection: $selection, color: UIColor(Color.primaryPurple))
-        case .titled(let title):
+        case .titled(let title,let titleToShow):
             VStack(alignment: .leading, spacing: spacing) {
                 Text(LocalizedStringKey(title))
                     .font(.appHeadline)
                     .foregroundColor(.primaryDescription)
                 Spacer().frame(height: 4)
                 HStack {
-                    WheelPickerRepresentableField(title: title, datasource: $datasource, selection: $selection, color: UIColor(Color.appBlack))
+                    WheelPickerRepresentableField(title: title, datasource: $datasource, selection: $selection, color: UIColor(Color.appBlack),titleToShow: titleToShow)
                     Image.Common.dropdownArrow
                 }.accentColor(.appBlack)
                     .padding(padding)

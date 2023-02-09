@@ -77,7 +77,7 @@ private extension ChildDetailsView {
                     CommonTextField(title: "childDetails.name", placeHolder: "childDetails.name.placeholder", text: child.childName)
                     HStack(spacing: 10) {
                         WheelPickerField(style: .titled(title: "childDetails.grade"), selection: child.grade, datasource: $viewModel.grades).tint(.primaryPurple)
-                        WheelPickerField(style: .titled(title: "childDetails.interruption"), selection: child.interuption, datasource: $viewModel.interuptions)
+                        WheelPickerField(style: .titled(title: "childDetails.interruption",titleToShow: "childDetails.interruption.period"), selection: child.interuption, datasource: $viewModel.interuptions)
                     }
                     dropdown(title: "childDetails.subjects", selectedItems: child.subjects) {
                         selectedChildIndex = viewModel.children.firstIndex(where: {$0.id == child.wrappedValue.id})

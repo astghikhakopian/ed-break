@@ -26,7 +26,7 @@ struct ChildEditView<M: ChildDetailsViewModeling>: View {
     private let padding = EdgeInsets(top: 16, leading: 20, bottom: 16, trailing: 20)
     
     var body: some View {
-        MainBackground(title: "onboarding.childDetails.title", withNavbar: true) {
+        MainBackground(title: "onboarding.childsDetails.title", withNavbar: true) {
             VStack(spacing: gap) {
                 childView
                 ConfirmButton(action: {
@@ -91,7 +91,7 @@ private extension ChildEditView {
                         WheelPickerField(style: .titled(title: "childDetails.grade"), selection: child.grade, datasource: $viewModel.grades){
                             UIApplication.shared.endEditing()
                         }
-                        WheelPickerField(style: .titled(title: "childDetails.interruption"), selection: $viewModel.children[0].interuption, datasource: $viewModel.interuptions){
+                        WheelPickerField(style: .titled(title: "childDetails.interruption",titleToShow: "childDetails.interruption.period"), selection: $viewModel.children[0].interuption, datasource: $viewModel.interuptions){
                             UIApplication.shared.endEditing()
                         }
                     }
