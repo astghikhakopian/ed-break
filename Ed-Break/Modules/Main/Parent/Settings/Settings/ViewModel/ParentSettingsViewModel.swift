@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import FamilyControls
 
 final class ParentSettingsViewModel: ParentSettingsViewModeling, Identifiable {
     
@@ -31,6 +32,15 @@ final class ParentSettingsViewModel: ParentSettingsViewModeling, Identifiable {
             self?.localStorageService.remove(key: .ChildUser.token)
             self?.localStorageService.remove(key: .User.isLoggedIn)
             self?.localStorageService.remove(key: .ChildUser.isLoggedIn)
+            self?.localStorageService.remove(key: .ChildUser.selectionToDiscourage)
+            self?.localStorageService.remove(key: .ChildUser.selectionToEncourage)
+            self?.localStorageService.remove(key: .ChildUser.lastIncreaseTime)
+            self?.localStorageService.remove(key: .ChildUser.restrictedApps)
+            self?.localStorageService.remove(key: .ChildUser.remindingMinutes)
+            self?.localStorageService.remove(key: .ChildUser.threshold)
+            DataModel.shared.selectionToDiscourage = FamilyActivitySelection()
+            DataModel.shared.selectionToEncourage = FamilyActivitySelection()
+            DataModel.shared.threshold = DateComponents()
             completion()
         }
     }
