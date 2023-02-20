@@ -27,8 +27,8 @@ struct ImageUploadView: View {
                     Image(uiImage: selectedImage)
                         .resizable()
                         .cornerRadius(uploadPlaceholderHeight/2)
-                        .frame(width: uploadPlaceholderHeight, height: uploadPlaceholderHeight)
                         .aspectRatio(contentMode: .fill)
+                        .frame(width: uploadPlaceholderHeight, height: uploadPlaceholderHeight)
                         .clipShape(Circle())
                 } else if let placeholderImageStringUrl = placeholderImageStringUrl {
                     AsyncImageView(withURL: placeholderImageStringUrl, width: uploadPlaceholderHeight, height: uploadPlaceholderHeight)
