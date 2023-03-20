@@ -17,6 +17,7 @@ class AppState: ObservableObject {
 
 struct ContentView: View {
     
+    private let notificationManager = NotificationManager()
     @EnvironmentObject var appState: AppState
     @StateObject var model = DataModel.shared
     @State var isLoggedIn: Bool
@@ -24,6 +25,7 @@ struct ContentView: View {
     @State var waitingChild = false
     
     init() {
+        UNUserNotificationCenter.current().delegate = notificationManager
         let isLoggedIn: Bool? = UserDefaultsService().getPrimitive(forKey: .User.isLoggedIn)
         self.isLoggedIn = isLoggedIn ?? false
         
@@ -39,6 +41,7 @@ struct ContentView: View {
                 if isChildLoggedIn {
                     ChildTabView()
                         .environmentObject(model)
+                        .environmentObject(notificationManager)
                 } else if isLoggedIn {
                     TabBarView()
                         .environmentObject(model)
@@ -47,6 +50,8 @@ struct ContentView: View {
                 }
             }
         }
+      
+     
         .onReceive(appState.$moveToDashboard) { moveToDashboard in
             guard moveToDashboard else { return }
             appState.moveToDashboard = false

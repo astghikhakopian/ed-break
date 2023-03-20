@@ -12,7 +12,9 @@ struct HomeView<M: HomeViewModeling>: View {
     @StateObject var viewModel: M
     
     @State private var isShieldPresented = false
-    
+    @EnvironmentObject var notificationManager: NotificationManager
+    @State var isNot: Bool = false
+
     private let progressWidth: CGFloat = 180
     private let textSpacing: CGFloat = 4
     private let headerPadding: CGFloat = 35
@@ -64,11 +66,20 @@ struct HomeView<M: HomeViewModeling>: View {
                     LessonCell(model: subject)
                 }.disabled(viewModel.contentModel?.wrongAnswersTime ?? Date().toLocalTime() > Date().toLocalTime())
             }
-        }.onTapGesture {
+        }
+        .onTapGesture {
             if viewModel.contentModel?.wrongAnswersTime ?? Date().toLocalTime() > Date().toLocalTime() {
                 isShieldPresented = true
             }
         }
+//        .onChange(of: notificationManager.currentViewId) { viewId in
+//               guard let id = viewId else {
+//                   return
+//               }
+//               let viewToShow = notificationManager.currentView(for: id)
+//                isNot = true
+////               navStack.push(viewToShow)
+//           }
         .onReceive(NotificationCenter.default.publisher(for: UIApplication.didBecomeActiveNotification, object: nil)) { _ in
             viewModel.getSubjects()
         }

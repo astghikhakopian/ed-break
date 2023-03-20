@@ -56,7 +56,7 @@ struct SubjectModel: BottomsheetCellModel, Equatable {
     let subject: String?
     let photo: String?
     let questionsCount: Int
-    let completedCount: Int
+    var completedCount: Int
     let correctAnswersCount: Int
     let completed: Bool
     
