@@ -64,7 +64,7 @@ class ScheduleModel {
         store.passcode.lockPasscode = true
         store.siri.denySiri = true
         store.appStore.denyInAppPurchases = true
-        store.appStore.maximumRating = 200
+        store.appStore.maximumRating = 1000
         store.appStore.requirePasswordForPurchases = true
         store.media.denyExplicitContent = true
         store.gameCenter.denyMultiplayerGaming = true

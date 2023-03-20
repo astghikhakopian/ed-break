@@ -194,6 +194,8 @@
 		EFE9288928E18C3A00675F28 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFE9288828E18C3A00675F28 /* ContentView.swift */; };
 		EFE9288B28E18C3E00675F28 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EFE9288A28E18C3E00675F28 /* Assets.xcassets */; };
 		EFEAAAA32906961600FE0A39 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFEAAAA22906961600FE0A39 /* SettingsView.swift */; };
+		F3A1B51329C85FEB00D74934 /* QuestionsFromNotif.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3A1B51229C85FEB00D74934 /* QuestionsFromNotif.swift */; };
+		F3A1B51529C86D4800D74934 /* NotView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3A1B51429C86D4800D74934 /* NotView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -413,6 +415,8 @@
 		EFE9288828E18C3A00675F28 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		EFE9288A28E18C3E00675F28 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		EFEAAAA22906961600FE0A39 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		F3A1B51229C85FEB00D74934 /* QuestionsFromNotif.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionsFromNotif.swift; sourceTree = "<group>"; };
+		F3A1B51429C86D4800D74934 /* NotView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotView.swift; sourceTree = "<group>"; };
 		F3DC109729912C8200D0EA70 /* PullToRefresh.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PullToRefresh.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -472,6 +476,8 @@
 				1B016B262922879700291A9D /* QuestionsView.swift */,
 				1BCD8C7E292A7E9E00CD3D04 /* PhoneLockingStateView.swift */,
 				1BC5BDEF29296E69006171A5 /* AnswerResultView.swift */,
+				F3A1B51229C85FEB00D74934 /* QuestionsFromNotif.swift */,
+				F3A1B51429C86D4800D74934 /* NotView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1868,6 +1874,7 @@
 				1B76B64C28EC289300602003 /* ChildrenViewModel.swift in Sources */,
 				1BE5191C28E8E24A0067E8B1 /* PickerTextField.swift in Sources */,
 				1B13463B290822E900943AA5 /* UpdateChildUseCase.swift in Sources */,
+				F3A1B51329C85FEB00D74934 /* QuestionsFromNotif.swift in Sources */,
 				1BE2206B291951DC00796FE1 /* HomeViewModel.swift in Sources */,
 				1BA30D6528E79FF400926820 /* BasicAuthenticationPlugin.swift in Sources */,
 				1B4413A92930FF4900820B55 /* WheelPickerTextField.swift in Sources */,
@@ -1944,6 +1951,7 @@
 				1B38E18C2991792D0060A28E /* PullToRefresh.swift in Sources */,
 				1B016B552922D67F00291A9D /* GetQuestionsUseCase.swift in Sources */,
 				1BCD8C81292A83BF00CD3D04 /* Image.swift in Sources */,
+				F3A1B51529C86D4800D74934 /* NotView.swift in Sources */,
 				1BEE80F328EACA33004F75CA /* ChildDetailsRepository.swift in Sources */,
 				1B76B64828EC26EC00602003 /* GetChildrenUseCase.swift in Sources */,
 				1BC5BDF029296E69006171A5 /* AnswerResultView.swift in Sources */,

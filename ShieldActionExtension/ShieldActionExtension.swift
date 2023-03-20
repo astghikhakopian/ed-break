@@ -49,14 +49,15 @@ class ShieldActionExtension: ShieldActionDelegate {
 //            }
 //            ScheduleModel.
 //            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "qqq"), object: nil)
+            sendNotification(title: "Do Exercises", body: "Tap on me to do exerccises")
             let myAppUrl = URL(string: UIApplication.openSettingsURLString)!// URL(string: "edbreak://some-context")!
             
              NSExtensionContext().open(myAppUrl, completionHandler: { (success) in
                 if success {
-                    completionHandler(.close)
+                   // completionHandler(.close)
                     // let the user know it failed
                 } else {
-                    completionHandler(.defer)
+                   // completionHandler(.defer)
                 }
             })
             completionHandler(.close)
@@ -105,3 +106,44 @@ class ShieldActionExtension: ShieldActionDelegate {
 //}
 //
 //
+
+let userNotificationCenter = UNUserNotificationCenter.current()
+
+func sendNotification(title: String, body: String?) {
+    requestNotificationAuthorization()
+    let notificationContent = UNMutableNotificationContent()
+    notificationContent.title = title
+    notificationContent.body = body ?? title
+    notificationContent.badge = NSNumber(value: 0)
+    
+    if let url = Bundle.main.url(forResource: "dune",
+                                withExtension: "png") {
+        if let attachment = try? UNNotificationAttachment(identifier: "dune",
+                                                        url: url,
+                                                        options: nil) {
+            notificationContent.attachments = [attachment]
+        }
+    }
+    
+    let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 1,
+                                                    repeats: false)
+    let request = UNNotificationRequest(identifier: "testNotification",
+                                        content: notificationContent,
+                                        trigger: trigger)
+    
+    userNotificationCenter.add(request) { (error) in
+        if let error = error {
+            print("Notification Error: ", error)
+        }
+    }
+}
+
+func requestNotificationAuthorization() {
+    let authOptions = UNAuthorizationOptions.init(arrayLiteral: .alert, .badge, .sound)
+    
+    userNotificationCenter.requestAuthorization(options: authOptions) { (success, error) in
+        if let error = error {
+            print("Error: ", error)
+        }
+    }
+}
