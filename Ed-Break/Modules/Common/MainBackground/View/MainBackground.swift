@@ -94,6 +94,9 @@ extension NSNotification.Name {
     struct Refresh {
         static let update = Notification.Name.init("Refresh.update")
     }
+    struct Push {
+        static let doExercises = Notification.Name.init("Push.doEx")
+    }
 }
 
 // MARK: - Priview
