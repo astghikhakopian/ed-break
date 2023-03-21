@@ -2041,7 +2041,7 @@
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = ShieldConfigurationExtension/ShieldConfigurationExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 45;
+				CURRENT_PROJECT_VERSION = 46;
 				DEVELOPMENT_TEAM = 59UY34K59P;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = ShieldConfigurationExtension/Info.plist;
@@ -2068,7 +2068,7 @@
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = ShieldConfigurationExtension/ShieldConfigurationExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 45;
+				CURRENT_PROJECT_VERSION = 46;
 				DEVELOPMENT_TEAM = 59UY34K59P;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = ShieldConfigurationExtension/Info.plist;
@@ -2151,7 +2151,7 @@
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = ActivityMonitor/ActivityMonitor.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 45;
+				CURRENT_PROJECT_VERSION = 46;
 				DEVELOPMENT_TEAM = 59UY34K59P;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = ActivityMonitor/Info.plist;
@@ -2178,7 +2178,7 @@
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = ActivityMonitor/ActivityMonitor.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 45;
+				CURRENT_PROJECT_VERSION = 46;
 				DEVELOPMENT_TEAM = 59UY34K59P;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = ActivityMonitor/Info.plist;
