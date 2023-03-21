@@ -21,6 +21,8 @@ struct HomeView<M: HomeViewModeling>: View {
     private let headerHeight: CGFloat = 30
     private let cornerRadius = 12.0
     
+    @State var isQuestns: Binding<Bool> = .constant(false)
+    
     var body: some View {
         VStack(spacing: 12) {
             HStack {
@@ -64,6 +66,16 @@ struct HomeView<M: HomeViewModeling>: View {
                                         questionsRepository: DefaultQuestionsRepository()))))
                 } label: {
                     LessonCell(model: subject)
+                    NavigationLink("", destination: NavigationLazyView(  QuestionsView(
+                        viewModel: QuestionsViewModel(
+                            subject: subject,
+                            home: viewModel.contentModel,
+                            getQuestionsUseCase: GetQuestionsUseCase(
+                                questionsRepository: DefaultQuestionsRepository()),
+                            answerQuestionUseCase: AnswerQuestionUseCase(
+                                questionsRepository: DefaultQuestionsRepository()),
+                            resultOfAdditionalQuestionsUseCase: ResultOfAdditionalQuestionsUseCase(
+                                questionsRepository: DefaultQuestionsRepository())))),isActive: isQuestns)
                 }.disabled(viewModel.contentModel?.wrongAnswersTime ?? Date().toLocalTime() > Date().toLocalTime())
             }
         }
@@ -72,14 +84,6 @@ struct HomeView<M: HomeViewModeling>: View {
                 isShieldPresented = true
             }
         }
-//        .onChange(of: notificationManager.currentViewId) { viewId in
-//               guard let id = viewId else {
-//                   return
-//               }
-//               let viewToShow = notificationManager.currentView(for: id)
-//                isNot = true
-////               navStack.push(viewToShow)
-//           }
         .onReceive(NotificationCenter.default.publisher(for: UIApplication.didBecomeActiveNotification, object: nil)) { _ in
             viewModel.getSubjects()
         }

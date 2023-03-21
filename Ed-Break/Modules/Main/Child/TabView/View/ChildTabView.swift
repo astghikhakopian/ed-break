@@ -14,11 +14,6 @@ struct ChildTabView: View {
     @State private var uiTabarController: UITabBarController?
     @EnvironmentObject var notificationManager: NotificationManager
     @State var isQuestions = false
-    @StateObject var homeViewModel = HomeViewModel(
-        getSubjectsUseCase: GetSubjectsUseCase(
-            childrenRepository: DefaultChildrenRepository()),
-        checkConnectionUseCase: CheckConnectionUseCase(childrenRepository: DefaultChildrenRepository()))
-    @State var subjectt: SubjectModel?
     
 
     @State private var selection = 0
@@ -32,7 +27,7 @@ struct ChildTabView: View {
                     HomeView(viewModel: HomeViewModel(
                         getSubjectsUseCase: GetSubjectsUseCase(
                             childrenRepository: DefaultChildrenRepository()),
-                        checkConnectionUseCase: CheckConnectionUseCase(childrenRepository: DefaultChildrenRepository())))
+                        checkConnectionUseCase: CheckConnectionUseCase(childrenRepository: DefaultChildrenRepository())),isQuestns: $isQuestions)
                     .environmentObject(model)
                     .environmentObject(notificationManager)
                 }
@@ -73,17 +68,6 @@ struct ChildTabView: View {
             .tag(1)
             
         }
-        .fullScreenCover(isPresented: $isQuestions.animation(.linear), content: {
-                if let subject = subjectt {
-                    NavigationLazyView(
-                        QuestionsView(viewModel: QuestionsViewModel(subject: subject, home: homeViewModel.contentModel, getQuestionsUseCase: GetQuestionsUseCase(questionsRepository: DefaultQuestionsRepository()), answerQuestionUseCase: AnswerQuestionUseCase(questionsRepository: DefaultQuestionsRepository()), resultOfAdditionalQuestionsUseCase: ResultOfAdditionalQuestionsUseCase(questionsRepository: DefaultQuestionsRepository()))))
-                }
-            
-            
-    
-           
-
-        })
         .accentColor(.primaryPurple)
         .introspectTabBarController { (UITabBarController) in
             uiTabarController = UITabBarController
@@ -94,22 +78,13 @@ struct ChildTabView: View {
                guard let id = viewId else {
                    return
                }
-            homeViewModel.getSubjects()
-            
-            let subjects = homeViewModel.contentModel?.subjects
-            subjectt = SubjectModel()
-            subjectt?.completedCount = Int.max
-            for i in 0..<(subjects?.count ?? 0) {
-                if !(subjects?[i].completed ?? false) {
-                    if subjects![i].completedCount <= subjectt?.completedCount ?? Int.max {
-                        self.subjectt = subjects?[i] ?? SubjectModel()
-                    }
-                }
-            }
-               let viewToShow = notificationManager.currentView(for: id)
-                isQuestions = true
-//               navStack.push(viewToShow)
+              self.isQuestions = true
+              selection = 0
            }
+        .onReceive(.Push.doExercises, perform: { _ in
+            self.isQuestions = true
+            selection = 1
+        })
         .onAppear {
             UITabBar.appearance().backgroundColor = UIColor.white
             UITabBar.appearance().layer.maskedCorners = [.layerMinXMinYCorner,.layerMaxXMinYCorner]
