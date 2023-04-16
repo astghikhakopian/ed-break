@@ -13,7 +13,9 @@ struct MainBackground<Content> : View where Content : View {
     let withNavbar: Bool
     var isSimple: Bool = false
     var hideBackButton: Bool = false
+    var stickyView: (any View)? = nil
     @ViewBuilder let  content: (() -> Content)
+    
     
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     
@@ -57,6 +59,8 @@ struct MainBackground<Content> : View where Content : View {
                         Spacer()
                     }
                 }.coordinateSpace(name: "pullToRefresh")
+                    sticky
+                    .padding(.bottom,15)
             }
             .padding(EdgeInsets(
                 top: hideBackButton ? -74 : withNavbar ? 0 : 10,
@@ -71,6 +75,13 @@ struct MainBackground<Content> : View where Content : View {
 // MARK: - Private Components
 
 extension MainBackground {
+    private var sticky: some View {
+        if let stickyView = stickyView {
+            return AnyView(stickyView)
+        }else {
+            return AnyView(EmptyView())
+        }
+    }
     
     private var navigationBackground: some View {
         VStack {

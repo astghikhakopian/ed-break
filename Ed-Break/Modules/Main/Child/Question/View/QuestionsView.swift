@@ -33,7 +33,7 @@ struct QuestionsView<M: QuestionsViewModeling>: View {
     
     
     var body: some View {
-        MainBackground(title: viewModel.subject.title, withNavbar: true, isSimple: true) {
+        MainBackground(title: viewModel.subject.title, withNavbar: true, isSimple: true,stickyView: confirmButton ) {
             VStack(spacing: containerSpacing) {
                 if let questionsContainer = viewModel.questionsContainer {
                     pageIndicator
@@ -83,7 +83,7 @@ struct QuestionsView<M: QuestionsViewModeling>: View {
                     } else {
                         questionView
                         options
-                        confirmButton
+                       // confirmButton
                     }
                 } else {
                     ProgressView()
@@ -93,7 +93,7 @@ struct QuestionsView<M: QuestionsViewModeling>: View {
             }.padding(padding)
                 .background(Color.primaryCellBackground)
                 .cornerRadius(contentCornerRadius)
-                .frame(minWidth: UIScreen.main.bounds.width - 2*padding, minHeight: UIScreen.main.bounds.height - 150)
+                //.frame(minWidth: UIScreen.main.bounds.width - 2*padding, minHeight: UIScreen.main.bounds.height - 150)
                 .onReceive(timer) { time in
                     if viewModel.remindingSeconds > 0 {
                         viewModel.remindingSeconds -= 1
@@ -183,7 +183,7 @@ extension QuestionsView {
                     }
                 }
             }
-        }, title: "common.continue", isContentValid: .constant(true), isLoading: $viewModel.isLoading).disabled(viewModel.remindingSeconds > 0)
+        }, title: "common.continue", isContentValid: .constant(true), isLoading: $viewModel.isLoading,colorBackgroundValid: .white,colorTextValid: .primaryPurple).disabled(viewModel.remindingSeconds > 0)
     }
 }
 
