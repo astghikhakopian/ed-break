@@ -109,7 +109,8 @@ struct QuestionsView<M: QuestionsViewModeling>: View {
             }.onDisappear{
                 uiTabarController?.tabBar.isHidden = false
             }
-            .answerResult(type: $viewModel.answerResultType)
+            .answerResult(type: $viewModel.answerResultType,isFeedbackGiven: $viewModel.isFeedbackGiven)
+            .disabled(viewModel.isFeedbackGiven ?? false)
             
     }
 }
@@ -150,18 +151,21 @@ extension QuestionsView {
             selectedAnswer = model
         }, label: {
             HStack(spacing: spacing) {
-                RoundedRectangle(cornerRadius: selectionHeight/2)
-                    .stroke(isSelected ? Color.primaryPurple : Color.border, lineWidth: isSelected ? 7 : 1)
-                    .frame(width: selectionHeight - (isSelected ? 7 : 1), height: selectionHeight - (isSelected ? 7 : 1))
-                    .padding(.leading, (isSelected ? 3.5 : 0))
-                    .padding(.trailing, (isSelected ? 2.5 : 0))
+                if !(viewModel.isFeedbackGiven ?? false) {
+                    RoundedRectangle(cornerRadius: selectionHeight/2)
+                        .stroke(isSelected ? Color.primaryPurple : Color.border, lineWidth: isSelected ? 7 : 1)
+                        .frame(width: selectionHeight - (isSelected ? 7 : 1), height: selectionHeight - (isSelected ? 7 : 1))
+                        .padding(.leading, (isSelected ? 3.5 : 0))
+                        .padding(.trailing, (isSelected ? 2.5 : 0))
+                }
                 Text(model.answer ?? "")
                     .font(.appButton)
-                    .foregroundColor(isSelected ? Color.primaryPurple : Color.primaryText)
+                    .foregroundColor(viewModel.isFeedbackGiven ?? false ? textColor(isSelected: isSelected, model: model)  : (isSelected ? Color.primaryPurple : Color.primaryText))
                 Spacer()
             }
             .padding()
-            .background(Color.primaryLightBackground)
+            .background(viewModel.isFeedbackGiven ?? false ?  cellColor(isSelected: isSelected, model: model) : .primaryLightBackground)
+            //.background(isSelected ? ( model.correct ? Color.green : Color.red) : .primaryLightBackground)
             .cornerRadius(cellCornerRadius)
         })
     }
@@ -175,26 +179,63 @@ extension QuestionsView {
                     viewModel.didAnswerAdditionalQuestions {
                         DispatchQueue.main.async {
                             presentationMode.wrappedValue.dismiss()
+                            self.selectedAnswer = nil
                         }
                     }
                 } else {
                     DispatchQueue.main.async {
                         presentationMode.wrappedValue.dismiss()
+                        self.selectedAnswer = nil
                     }
                 }
             }
+          
         }, title: "common.continue", isContentValid: .constant(true), isLoading: $viewModel.isLoading,colorBackgroundValid: .white,colorTextValid: .primaryPurple).disabled(viewModel.remindingSeconds > 0)
     }
+    
+    private func cellColor(isSelected: Bool, model: QuestionAnswerModel) -> Color {
+        if isSelected {
+            if model.correct {
+                    return Color.rightAnswer
+            } else {
+                return Color.wrongAnswer
+            }
+        } else {
+            if model.correct && (selectedAnswer != nil) {
+                return Color.rightAnswer
+            } else {
+                return Color.primaryLightBackground
+            }
+          //  return Color.primaryLightBackground
+        }
+    }
+    
+    private func textColor(isSelected: Bool, model: QuestionAnswerModel) -> Color {
+        if isSelected {
+            if model.correct {
+                    return Color.primaryGreen
+            } else {
+                return Color.primaryRed
+            }
+        } else {
+            if model.correct && (selectedAnswer != nil) {
+                return Color.primaryGreen
+            } else {
+                return Color.primaryLightBackground
+            }
+          //  return Color.primaryLightBackground
+        }
+    }
+    
 }
 
 struct QuestionsView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationView {
             NavigationLazyView(
-                MainBackground(title: "Math", withNavbar: true, isSimple: true) {
                     QuestionsView(
                         viewModel: MockQuestionsViewModel())
                     .background(Color.primaryPurple)
-                })}
+                )}
     }
 }

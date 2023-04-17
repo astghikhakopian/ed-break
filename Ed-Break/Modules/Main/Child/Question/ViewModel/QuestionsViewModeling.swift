@@ -17,6 +17,7 @@ protocol QuestionsViewModeling: ObservableObject, Identifiable {
     var buttonTitle: String { get set }
     var isContentValid: Bool { get set }
     var subject: SubjectModel { get }
+    var isFeedbackGiven: Bool? { get set }
     
     func getQuestions()
     func getAdditionalQuestions()
