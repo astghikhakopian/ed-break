@@ -80,4 +80,11 @@ extension Color {
     public static var appClear: Color {
         return Color.clear
     }
+    public static var wrongAnswer: Color {
+        return Color("WrongAnswerRed")
+    }
+    public static var rightAnswer: Color {
+        return Color("RightAnswerGreen")
+    }
+    
 }

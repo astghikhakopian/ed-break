@@ -47,7 +47,7 @@ class ScheduleModel {
         let store = ManagedSettingsStore()
         let schedule = DeviceActivitySchedule(
             intervalStart: Calendar.current.dateComponents([.hour, .minute], from: Date()),
-            intervalEnd: DateComponents(hour: 23, minute: 59),
+            intervalEnd: Calendar.current.dateComponents([.year,.month,.day,.hour,.minute], from: Date().oneYear),
             repeats: true
         )
         
@@ -85,5 +85,12 @@ private extension Date {
         let timezoneEpochOffset = (epochDate + Double(timezoneOffset))
         return Date(timeIntervalSince1970: timezoneEpochOffset)
     }
+    var oneYear: Date {
+        if let date = Calendar.current.date(byAdding: .day, value: 365, to: Date()) {
+            return date
+        }
+        return Date()
+    }
+
 }
 

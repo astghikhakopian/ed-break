@@ -13,6 +13,7 @@ final class QuestionsViewModel: QuestionsViewModeling, Identifiable {
     @Published var currentQuestion: QusetionModel = QusetionModel()
     @Published var isLoading: Bool = false
     @Published var answerResultType: AnswerResultType? = nil
+    @Published var isFeedbackGiven: Bool? = false
     @Published var remindingSeconds: Int = 0 {
         didSet {
             guard remindingSeconds >= 0 else { buttonTitle = "common.continue"; return }
@@ -103,18 +104,25 @@ final class QuestionsViewModel: QuestionsViewModeling, Identifiable {
             guard let self = self, let questionsContainer = self.questionsContainer else { return }
             let answersCount = questionsContainer.answeredCount
             if answersCount + 1 < questionsContainer.questions.count {
-                DispatchQueue.main.asyncAfter(deadline: .now() + 1.1) { [weak self] in
+                DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) { [weak self] in
                     guard let self = self, let questionsContainer = self.questionsContainer, answersCount + 1 < self.questionsContainer?.questions.count ?? 0 else { return }
                     self.questionsContainer?.answeredCount = answersCount + 1
                     self.questionsContainer?.questions[answersCount].isCorrect = answer.correct
                     self.currentQuestion = questionsContainer.questions[answersCount + 1]
+                    self.isFeedbackGiven = false
                 }
             } else {
-                completion(answer.correct ? .success : .failure)
+                DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
+                    self.isFeedbackGiven = false
+                    completion(answer.correct ? .success : .failure)
+                }
             }
             DispatchQueue.main.async { [weak self] in
                 self?.answerResultType = answer.correct ? .success : .failure
             }
+            
+                
+            
 //                }
 //            case .failure(let failure):
 //                print(failure.localizedDescription)
@@ -145,6 +153,8 @@ final class QuestionsViewModel: QuestionsViewModeling, Identifiable {
 // MARK: - Preview
 
 final class MockQuestionsViewModel: QuestionsViewModeling, Identifiable {
+    var isFeedbackGiven: Bool? = false
+    
     
     var questionsContainer: QuestionsContainerModel? = QuestionsContainerModel(
         dto: QuestionsContainerDto(

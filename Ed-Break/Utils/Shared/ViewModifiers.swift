@@ -46,13 +46,14 @@ struct NavigationLazyView<Content: View>: View {
 
 extension View {
 
-    func answerResult(type: Binding<AnswerResultType?>) -> some View {
-        return modifier(AnswerResultAlertModifier(type: type))
+    func answerResult(type: Binding<AnswerResultType?>, isFeedbackGiven: Binding<Bool?>) -> some View {
+        return modifier(AnswerResultAlertModifier(type: type, isFeegbackGiven: isFeedbackGiven))
     }
 }
 
 struct AnswerResultAlertModifier {
     @Binding var type: AnswerResultType?
+    @Binding var isFeegbackGiven: Bool?
 }
 
 extension AnswerResultAlertModifier: ViewModifier {
@@ -65,6 +66,7 @@ extension AnswerResultAlertModifier: ViewModifier {
                     .onAppear {
                         DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
                             self.type = nil
+                            self.isFeegbackGiven = true
                         }
                     }
             }
