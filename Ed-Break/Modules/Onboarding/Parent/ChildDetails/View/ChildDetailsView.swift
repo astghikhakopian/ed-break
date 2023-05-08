@@ -11,7 +11,6 @@ struct ChildDetailsView<M: ChildDetailsViewModeling>: View {
     
     var simpleAdd: Bool = false
     @ObservedObject var viewModel: M
-    @State private var uiTabarController: UITabBarController?
 
     @State private var selectedChildIndex: Int?
     @State private var showGradeOptions = false
@@ -49,15 +48,7 @@ struct ChildDetailsView<M: ChildDetailsViewModeling>: View {
                 }
             }
         }
-        .introspectTabBarController { (UITabBarController) in
-            UITabBarController.tabBar.isHidden = true
-            uiTabarController = UITabBarController
-        }.onDisappear{
-            uiTabarController?.tabBar.isHidden = false
-        }
-        .onAppear {
-            uiTabarController?.tabBar.isHidden = true
-        }
+        .hiddenTabBar()
     }
 }
 
@@ -124,7 +115,7 @@ private extension ChildDetailsView {
                 .foregroundColor(.primaryDescription)
             Button(action: action, label: {
                 HStack {
-                    if let title = selectedItems.wrappedValue?.map { $0.title }.joined(separator: ", ") {
+                    if let title = selectedItems.wrappedValue?.map({ $0.title }).joined(separator: ", ") {
                         Text(title)
                             .font(.appHeadline)
                             .background(Color.primaryCellBackground)

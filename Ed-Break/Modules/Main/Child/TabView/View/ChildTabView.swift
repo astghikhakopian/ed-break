@@ -10,8 +10,6 @@ import SwiftUI
 struct ChildTabView: View {
     
     @StateObject var model = DataModel.shared
-//    @EnvironmentObject var model: DataModel
-    @State private var uiTabarController: UITabBarController?
     @EnvironmentObject var notificationManager: NotificationManager
     @State var isQuestions = false
     
@@ -44,6 +42,7 @@ struct ChildTabView: View {
                 Text("tabbar.home.title")
                     .font(.appBody)
             }
+            .showTabBar()
             .tag(0)
             
             NavigationView {
@@ -65,19 +64,17 @@ struct ChildTabView: View {
                 Text("tabbar.settings.title")
                     .font(.appBody)
             }
+            .showTabBar()
             .tag(1)
             
         }
         .accentColor(.primaryPurple)
         .introspectTabBarController { (UITabBarController) in
-            uiTabarController = UITabBarController
             UITabBarController.tabBar.layer.maskedCorners = [.layerMinXMinYCorner,.layerMaxXMinYCorner]
             UITabBarController.tabBar.layer.cornerRadius = 30
         }
         .onChange(of: notificationManager.currentViewId) { viewId in
-               guard let id = viewId else {
-                   return
-               }
+               guard let _ = viewId else { return }
               self.isQuestions = true
               selection = 0
            }

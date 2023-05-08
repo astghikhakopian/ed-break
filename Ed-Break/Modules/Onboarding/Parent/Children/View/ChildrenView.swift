@@ -38,6 +38,7 @@ struct ChildrenView<M: ChildrenViewModeling>: View {
         .sheet(isPresented: $isShowingScanner) {
             CodeScannerView(codeTypes: [.qr], completion: handleScan)
         }
+        .hiddenTabBar()
     }
     
     func handleScan(result: Result<ScanResult, ScanError>) {

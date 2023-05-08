@@ -47,6 +47,7 @@ struct SettingsView<M: ParentSettingsViewModeling>: View {
             .sheet(isPresented: $showWebView) {
                 WebView(url: privacyUrl)
             }
+            .showTabBar()
     }
 }
 

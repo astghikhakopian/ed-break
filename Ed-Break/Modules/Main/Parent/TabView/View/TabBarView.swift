@@ -12,8 +12,6 @@ struct TabBarView: View {
     @StateObject var model = DataModel.shared
     
     @State private var selection = 0
-    @State private var uiTabarController: UITabBarController?
-
     
     var body: some View {
         
@@ -43,6 +41,7 @@ struct TabBarView: View {
                 Text("tabbar.dashboard.title")
                     .font(.appBody)
             }
+            .showTabBar()
             .tag(0)
             
             
@@ -63,6 +62,7 @@ struct TabBarView: View {
                     Text("tabbar.coaching.title")
                         .font(.appBody)
                 }
+                .showTabBar()
                 .tag(1)
             
             NavigationView {
@@ -84,12 +84,12 @@ struct TabBarView: View {
                 Text("tabbar.settings.title")
                     .font(.appBody)
             }
+            .showTabBar()
             .tag(2)
             
         }
         .accentColor(.primaryPurple)
         .introspectTabBarController { (UITabBarController) in
-            uiTabarController = UITabBarController
             UITabBarController.tabBar.layer.maskedCorners = [.layerMinXMinYCorner,.layerMaxXMinYCorner]
             UITabBarController.tabBar.layer.cornerRadius = 30
         }

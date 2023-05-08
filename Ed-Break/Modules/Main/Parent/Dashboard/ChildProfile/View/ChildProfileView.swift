@@ -38,7 +38,6 @@ struct ChildProfileView<M: ChildProfileViewModeling>: View {
 //    @EnvironmentObject var model: DataModel
     @StateObject var model = DataModel.shared
     @State private var isDiscouragedPresented = false
-    @State private var uiTabarController: UITabBarController?
     @State private var offset = CGFloat.zero
     @State private var navTitle: String = ""
 
@@ -91,15 +90,7 @@ struct ChildProfileView<M: ChildProfileViewModeling>: View {
                 guard let restrictions = newValue.restrictions else { return }
                 model.selectionToDiscourage = restrictions
             }
-            .introspectTabBarController { (UITabBarController) in
-                UITabBarController.tabBar.isHidden = true
-                uiTabarController = UITabBarController
-            }.onDisappear{
-                uiTabarController?.tabBar.isHidden = false
-            }
-            .onAppear {
-                uiTabarController?.tabBar.isHidden = true
-            }
+            .hiddenTabBar()
     }
 }
 
@@ -269,9 +260,7 @@ private extension ChildProfileView {
         VStack(spacing: contentSpacing) {
             restrictionsHeader
             restrictionsPeriod(minutes: viewModel.child.interruption ?? 0)
-            if let restrictions = model.selectionToDiscourage {
-                restretedAppsView(restrictions: restrictions)
-            }
+                restretedAppsView(restrictions: model.selectionToDiscourage)
         }
         .padding(padding)
         .background(Color.primaryCellBackground)

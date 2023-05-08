@@ -12,8 +12,8 @@ struct QuestionsView<M: QuestionsViewModeling>: View {
     @StateObject var viewModel: M
     
     @State private var selectedAnswer: QuestionAnswerModel?
-    @State private var uiTabarController: UITabBarController?
     @State private var isAdditionalQuestions = false
+    @State private var shouldShowContinueButton = false
     
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     
@@ -33,7 +33,14 @@ struct QuestionsView<M: QuestionsViewModeling>: View {
     
     
     var body: some View {
-        MainBackground(title: viewModel.subject.title, withNavbar: true, isSimple: true,stickyView: confirmButton ) {
+        MainBackground(
+            title: viewModel.subject.title,
+            withNavbar: true,
+            isSimple: true,
+            stickyView:
+                (viewModel.questionsContainer?.answeredCount ?? 0) < (viewModel.questionsContainer?.questions.count ?? 0)
+            ? confirmButton : nil
+        ) {
             VStack(spacing: containerSpacing) {
                 if let questionsContainer = viewModel.questionsContainer {
                     pageIndicator
@@ -103,12 +110,7 @@ struct QuestionsView<M: QuestionsViewModeling>: View {
             .onLoad {
                 viewModel.getQuestions()
             }
-            .introspectTabBarController { (UITabBarController) in
-                UITabBarController.tabBar.isHidden = true
-                uiTabarController = UITabBarController
-            }.onDisappear{
-                uiTabarController?.tabBar.isHidden = false
-            }
+            .hiddenTabBar()
             .answerResult(type: $viewModel.answerResultType,isFeedbackGiven: $viewModel.isFeedbackGiven)
             .disabled(viewModel.isFeedbackGiven ?? false)
             

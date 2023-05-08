@@ -12,8 +12,6 @@ struct ChildEditView<M: ChildDetailsViewModeling>: View {
     @ObservedObject var viewModel: M
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     
-    @State private var uiTabarController: UITabBarController?
-    
     @State private var showDeletingAlert: Bool = false
     @State private var showGradeOptions = false
     @State private var showSubjects = false
@@ -64,15 +62,7 @@ struct ChildEditView<M: ChildDetailsViewModeling>: View {
                 }
             }
         }
-        .introspectTabBarController { (UITabBarController) in
-            UITabBarController.tabBar.isHidden = true
-            uiTabarController = UITabBarController
-        }.onAppear {
-            uiTabarController?.tabBar.isHidden = true
-        }
-        .onDisappear {
-            uiTabarController?.tabBar.isHidden = false
-        }
+        .hiddenTabBar()
     }
 }
 

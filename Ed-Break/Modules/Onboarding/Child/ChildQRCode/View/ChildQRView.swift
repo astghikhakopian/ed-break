@@ -32,7 +32,7 @@ struct ChildQRView<M: ChildQRViewModeling>: View {
 private extension ChildQRView {
     
     var content: some View {
-        ZStack(alignment: .leading) {
+        ZStack {
             Color.primaryCellBackground
                 .cornerRadius(cornerRadius)
                 .shadow(color: .shadow, radius: 40, x: 0, y: 20)
