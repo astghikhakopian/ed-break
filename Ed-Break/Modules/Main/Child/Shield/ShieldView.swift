@@ -36,8 +36,15 @@ struct ShieldView<M: QuestionsViewModeling>: View {
             }.padding(padding)
                 .onReceive(timer) { time in
                     if viewModel.remindingSeconds > 0 {
-                        viewModel.remindingSeconds -= 1
+//                        viewModel.remindingSeconds -= 1
+                        var dt: Date = UserDefaultsService().getObject(forKey: .Time.last) ?? Date()
+                        var passedSec = Date().timeIntervalSince(dt)
+                        viewModel.remindingSeconds -= Int(round(passedSec))
+                        UserDefaultsService().setObject(Date(), forKey: .Time.last)
                     }
+                }
+                .onAppear {
+                    UserDefaultsService().remove(key: .Time.last)
                 }
         }
         .ignoresSafeArea()
