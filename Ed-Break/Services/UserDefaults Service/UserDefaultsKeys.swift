@@ -16,6 +16,10 @@ extension UserDefaults {
 
 extension UserDefaults.Key {
     
+    struct Time {
+        static let last = UserDefaults.Key(rawValue: "Time.last")
+    }
+    
     struct User {
         
         static let token = UserDefaults.Key(rawValue: "User.token")
