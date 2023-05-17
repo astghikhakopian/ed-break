@@ -63,7 +63,7 @@ struct HomeView<M: HomeViewModeling>: View {
                                     answerQuestionUseCase: AnswerQuestionUseCase(
                                         questionsRepository: DefaultQuestionsRepository()),
                                     resultOfAdditionalQuestionsUseCase: ResultOfAdditionalQuestionsUseCase(
-                                        questionsRepository: DefaultQuestionsRepository()))))
+                                        questionsRepository: DefaultQuestionsRepository()), textToSpeachManager: DefaultTextToSpeachManager())))
                 } label: {
                     LessonCell(model: subject)
                     NavigationLink("", destination: NavigationLazyView(  QuestionsView(
@@ -75,7 +75,7 @@ struct HomeView<M: HomeViewModeling>: View {
                             answerQuestionUseCase: AnswerQuestionUseCase(
                                 questionsRepository: DefaultQuestionsRepository()),
                             resultOfAdditionalQuestionsUseCase: ResultOfAdditionalQuestionsUseCase(
-                                questionsRepository: DefaultQuestionsRepository())))),isActive: isQuestns)
+                                questionsRepository: DefaultQuestionsRepository()), textToSpeachManager: DefaultTextToSpeachManager()))),isActive: isQuestns)
                 }.disabled(viewModel.contentModel?.wrongAnswersTime ?? Date().toLocalTime() > Date().toLocalTime())
             }
         }
@@ -98,7 +98,7 @@ struct HomeView<M: HomeViewModeling>: View {
             answerQuestionUseCase: AnswerQuestionUseCase(
                 questionsRepository: DefaultQuestionsRepository()),
             resultOfAdditionalQuestionsUseCase: ResultOfAdditionalQuestionsUseCase(
-                questionsRepository: DefaultQuestionsRepository()))) { _ in
+                questionsRepository: DefaultQuestionsRepository()), textToSpeachManager: DefaultTextToSpeachManager())) { _ in
                     isShieldPresented = false
                 }
         }

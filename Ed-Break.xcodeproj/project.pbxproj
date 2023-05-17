@@ -194,6 +194,8 @@
 		EFE9288928E18C3A00675F28 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFE9288828E18C3A00675F28 /* ContentView.swift */; };
 		EFE9288B28E18C3E00675F28 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EFE9288A28E18C3E00675F28 /* Assets.xcassets */; };
 		EFEAAAA32906961600FE0A39 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFEAAAA22906961600FE0A39 /* SettingsView.swift */; };
+		F3379EC52A14CD3B003EA977 /* TextToSpeachManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3379EC42A14CD3B003EA977 /* TextToSpeachManager.swift */; };
+		F3379EC72A14CD53003EA977 /* DefaultTextToSpeachManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3379EC62A14CD53003EA977 /* DefaultTextToSpeachManager.swift */; };
 		F3A1B51329C85FEB00D74934 /* QuestionsFromNotif.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3A1B51229C85FEB00D74934 /* QuestionsFromNotif.swift */; };
 		F3A1B51529C86D4800D74934 /* NotView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3A1B51429C86D4800D74934 /* NotView.swift */; };
 /* End PBXBuildFile section */
@@ -415,6 +417,8 @@
 		EFE9288828E18C3A00675F28 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		EFE9288A28E18C3E00675F28 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		EFEAAAA22906961600FE0A39 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		F3379EC42A14CD3B003EA977 /* TextToSpeachManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextToSpeachManager.swift; sourceTree = "<group>"; };
+		F3379EC62A14CD53003EA977 /* DefaultTextToSpeachManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultTextToSpeachManager.swift; sourceTree = "<group>"; };
 		F3A1B51229C85FEB00D74934 /* QuestionsFromNotif.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionsFromNotif.swift; sourceTree = "<group>"; };
 		F3A1B51429C86D4800D74934 /* NotView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotView.swift; sourceTree = "<group>"; };
 		F3DC109729912C8200D0EA70 /* PullToRefresh.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PullToRefresh.swift; sourceTree = "<group>"; };
@@ -1035,6 +1039,7 @@
 		1BA30D5E28E79E9000926820 /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				F3379EC32A14CD1B003EA977 /* Text To Speach */,
 				1BE72A2928E88FF600447167 /* UserDefaults Service */,
 				1BA30D5F28E79EA200926820 /* RequestManager */,
 			);
@@ -1610,6 +1615,15 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		F3379EC32A14CD1B003EA977 /* Text To Speach */ = {
+			isa = PBXGroup;
+			children = (
+				F3379EC42A14CD3B003EA977 /* TextToSpeachManager.swift */,
+				F3379EC62A14CD53003EA977 /* DefaultTextToSpeachManager.swift */,
+			);
+			path = "Text To Speach";
+			sourceTree = "<group>";
+		};
 		F3DC109629912C0000D0EA70 /* PullToRefresh */ = {
 			isa = PBXGroup;
 			children = (
@@ -1875,6 +1889,7 @@
 				1BE5191C28E8E24A0067E8B1 /* PickerTextField.swift in Sources */,
 				1B13463B290822E900943AA5 /* UpdateChildUseCase.swift in Sources */,
 				F3A1B51329C85FEB00D74934 /* QuestionsFromNotif.swift in Sources */,
+				F3379EC72A14CD53003EA977 /* DefaultTextToSpeachManager.swift in Sources */,
 				1BE2206B291951DC00796FE1 /* HomeViewModel.swift in Sources */,
 				1BA30D6528E79FF400926820 /* BasicAuthenticationPlugin.swift in Sources */,
 				1B4413A92930FF4900820B55 /* WheelPickerTextField.swift in Sources */,
@@ -1939,6 +1954,7 @@
 				1B776ACF292CBEC30047FEBA /* BottomsheetView.swift in Sources */,
 				1BA9DFB028E7290A006980D1 /* ConfirmButton.swift in Sources */,
 				1BE72A3828E8A1F400447167 /* ChildDetailsViewModel.swift in Sources */,
+				F3379EC52A14CD3B003EA977 /* TextToSpeachManager.swift in Sources */,
 				EFE9288728E18C3A00675F28 /* Ed_BreakApp.swift in Sources */,
 				1BF1E1512906C837008A08D4 /* ChildDevicesView.swift in Sources */,
 				1BEE810128EB5B2E004F75CA /* ChildrenView.swift in Sources */,

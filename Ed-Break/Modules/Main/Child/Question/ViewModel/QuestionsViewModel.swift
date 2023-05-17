@@ -8,6 +8,8 @@
 import UIKit
 
 final class QuestionsViewModel: QuestionsViewModeling, Identifiable {
+   
+    
     
     @Published var questionsContainer: QuestionsContainerModel?
     @Published var currentQuestion: QusetionModel = QusetionModel()
@@ -41,12 +43,15 @@ final class QuestionsViewModel: QuestionsViewModeling, Identifiable {
     private let answerQuestionUseCase: AnswerQuestionUseCase
     private let resultOfAdditionalQuestionsUseCase: ResultOfAdditionalQuestionsUseCase
     
-    init(subject: SubjectModel, home: HomeModel?, getQuestionsUseCase: GetQuestionsUseCase, answerQuestionUseCase: AnswerQuestionUseCase, resultOfAdditionalQuestionsUseCase: ResultOfAdditionalQuestionsUseCase) {
+    var textToSpeachManager: TextToSpeachManager
+    
+    init(subject: SubjectModel, home: HomeModel?, getQuestionsUseCase: GetQuestionsUseCase, answerQuestionUseCase: AnswerQuestionUseCase, resultOfAdditionalQuestionsUseCase: ResultOfAdditionalQuestionsUseCase, textToSpeachManager: TextToSpeachManager) {
         self.subject = subject
         self.home = home
         self.getQuestionsUseCase = getQuestionsUseCase
         self.answerQuestionUseCase = answerQuestionUseCase
         self.resultOfAdditionalQuestionsUseCase = resultOfAdditionalQuestionsUseCase
+        self.textToSpeachManager = textToSpeachManager
     }
     
     func getQuestions() {
@@ -153,6 +158,8 @@ final class QuestionsViewModel: QuestionsViewModeling, Identifiable {
 // MARK: - Preview
 
 final class MockQuestionsViewModel: QuestionsViewModeling, Identifiable {
+    var textToSpeachManager: TextToSpeachManager = DefaultTextToSpeachManager()
+    
     var isFeedbackGiven: Bool? = false
     
     

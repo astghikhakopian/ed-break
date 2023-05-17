@@ -18,7 +18,7 @@ struct QuestionsContainerModel {
     }
 }
 
-struct QusetionModel {
+struct QusetionModel: Equatable {
     
     let id: Int
     var isCorrect: Bool?
@@ -39,6 +39,9 @@ struct QusetionModel {
         questionAnswer = []
         questionText = nil
         subject = nil
+    }
+    static func == (lhs: QusetionModel, rhs: QusetionModel) -> Bool {
+        return lhs.id == rhs.id
     }
 }
 

@@ -110,6 +110,13 @@ struct QuestionsView<M: QuestionsViewModeling>: View {
             .onLoad {
                 viewModel.getQuestions()
             }
+            .onChange(of: viewModel.currentQuestion, perform: { newValue in
+                viewModel.textToSpeachManager.stop(at: .immediate)
+                viewModel.textToSpeachManager.read(question: newValue, after: 0.3)
+            })
+            .onDisappear{
+                viewModel.textToSpeachManager.stop(at: .immediate)
+            }
             .hiddenTabBar()
             .answerResult(type: $viewModel.answerResultType,isFeedbackGiven: $viewModel.isFeedbackGiven)
             .disabled(viewModel.isFeedbackGiven ?? false)
@@ -174,6 +181,7 @@ extension QuestionsView {
     
     var confirmButton: some View {
         ConfirmButton(action: {
+            viewModel.textToSpeachManager.stop(at: .immediate)
             guard let selectedAnswer = selectedAnswer else { return }
             viewModel.answerQuestion(answer: selectedAnswer) { _ in
                 guard viewModel.currentQuestion.id == viewModel.questionsContainer?.questions.last?.id else { return }
