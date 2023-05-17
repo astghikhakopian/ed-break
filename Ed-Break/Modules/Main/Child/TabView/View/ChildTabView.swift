@@ -24,8 +24,13 @@ struct ChildTabView: View {
                 MainBackground(title: "main.parent.home", withNavbar: false) {
                     HomeView(viewModel: HomeViewModel(
                         getSubjectsUseCase: GetSubjectsUseCase(
-                            childrenRepository: DefaultChildrenRepository()),
-                        checkConnectionUseCase: CheckConnectionUseCase(childrenRepository: DefaultChildrenRepository())),isQuestns: $isQuestions)
+                            childrenRepository: DefaultChildrenRepository()
+                        ),
+                        checkConnectionUseCase: CheckConnectionUseCase(
+                            childrenRepository: DefaultChildrenRepository()
+                        )
+                    ), isQuestns: $isQuestions)
+                    .showTabBar()
                     .environmentObject(model)
                     .environmentObject(notificationManager)
                 }
@@ -42,7 +47,6 @@ struct ChildTabView: View {
                 Text("tabbar.home.title")
                     .font(.appBody)
             }
-            .showTabBar()
             .tag(0)
             
             NavigationView {
@@ -50,8 +54,14 @@ struct ChildTabView: View {
                     SettingsView(
                         viewModel: ParentSettingsViewModel(
                             deleteParentUseCase: DeleteParentUseCase(
-                                parentRepository: DefaultParentRepository(plugins: [BasicAuthenticationPlugin()])),
-                            localStorageService: UserDefaultsService()))
+                                parentRepository: DefaultParentRepository(
+                                    plugins: [BasicAuthenticationPlugin()]
+                                )
+                            ),
+                            localStorageService: UserDefaultsService()
+                        )
+                    )
+                    .showTabBar()
                 }
             }
             .navigationViewStyle(StackNavigationViewStyle())
@@ -64,7 +74,6 @@ struct ChildTabView: View {
                 Text("tabbar.settings.title")
                     .font(.appBody)
             }
-            .showTabBar()
             .tag(1)
             
         }

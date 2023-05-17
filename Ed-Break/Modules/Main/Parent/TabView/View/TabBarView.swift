@@ -28,6 +28,7 @@ struct TabBarView: View {
                             refreshTokenUseCase: RefreshTokenUseCase(
                                 familySharingRepository: DefaultFamilySharingRepository()), addRestrictionUseCase: AddRestrictionUseCase(restrictionsRepository: DefaultRestrictionsRepository())))
                     .environmentObject(model)
+                    .showTabBar()
                 }
             }.navigationViewStyle(StackNavigationViewStyle())
             .foregroundColor(.appBlack)
@@ -41,13 +42,19 @@ struct TabBarView: View {
                 Text("tabbar.dashboard.title")
                     .font(.appBody)
             }
-            .showTabBar()
             .tag(0)
             
             
             NavigationView {
                 MainBackground(title: "main.parent.coaching", withNavbar: false) {
-                    CoachingView(viewModel: CoachingViewModel(getCoachingUseCase: GetCoachingUseCase(childrenRepository: DefaultChildrenRepository())))
+                    CoachingView(
+                        viewModel: CoachingViewModel(
+                            getCoachingUseCase: GetCoachingUseCase(
+                                childrenRepository: DefaultChildrenRepository()
+                            )
+                        )
+                    )
+                    .showTabBar()
                 }
             }
             .navigationViewStyle(StackNavigationViewStyle())
@@ -62,7 +69,6 @@ struct TabBarView: View {
                     Text("tabbar.coaching.title")
                         .font(.appBody)
                 }
-                .showTabBar()
                 .tag(1)
             
             NavigationView {
@@ -70,8 +76,13 @@ struct TabBarView: View {
                     SettingsView(
                         viewModel: ParentSettingsViewModel(
                             deleteParentUseCase: DeleteParentUseCase(
-                                parentRepository: DefaultParentRepository(plugins: [BasicAuthenticationPlugin()])),
-                            localStorageService: UserDefaultsService()))
+                                parentRepository: DefaultParentRepository(
+                                    plugins: [BasicAuthenticationPlugin()]
+                                )
+                            ),
+                            localStorageService: UserDefaultsService()
+                        )
+                    ).showTabBar()
                 }
             }
             .navigationViewStyle(StackNavigationViewStyle())
@@ -84,7 +95,6 @@ struct TabBarView: View {
                 Text("tabbar.settings.title")
                     .font(.appBody)
             }
-            .showTabBar()
             .tag(2)
             
         }
