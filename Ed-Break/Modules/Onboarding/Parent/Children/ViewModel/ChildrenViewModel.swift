@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import FamilyControls
 
 final class ChildrenViewModel: ChildrenViewModeling, Identifiable {
     @Published var children = PagingModel<ChildModel>(results: [])
@@ -29,12 +30,14 @@ final class ChildrenViewModel: ChildrenViewModeling, Identifiable {
     private var pairChildUseCase: PairChildUseCase
     private var getCoachingUseCase: GetCoachingUseCase?
     private let refreshTokenUseCase: RefreshTokenUseCase
+    private var addRestrictionUseCase: AddRestrictionUseCase
     
-    init(getChildrenUseCase: GetChildrenUseCase, pairChildUseCase: PairChildUseCase, getCoachingUseCase: GetCoachingUseCase? = nil, refreshTokenUseCase: RefreshTokenUseCase) {
+    init(getChildrenUseCase: GetChildrenUseCase, pairChildUseCase: PairChildUseCase, getCoachingUseCase: GetCoachingUseCase? = nil, refreshTokenUseCase: RefreshTokenUseCase,addRestrictionUseCase: AddRestrictionUseCase) {
         self.getChildrenUseCase = getChildrenUseCase
         self.pairChildUseCase = pairChildUseCase
         self.getCoachingUseCase = getCoachingUseCase
         self.refreshTokenUseCase = refreshTokenUseCase
+        self.addRestrictionUseCase = addRestrictionUseCase
         
         getChildren()
         getCoachingChildren()
@@ -90,6 +93,17 @@ final class ChildrenViewModel: ChildrenViewModeling, Identifiable {
             compleated(true)
         }
     }
+    func addRestrictions(childId: Int,selection: FamilyActivitySelection) {
+//        let selectionToDiscourage = DataModel.shared.selectionToDiscourage
+        guard let data = try? JSONEncoder().encode(selection),
+              let json = try? JSONSerialization.jsonObject(with: data, options: []) as? [String : Any],
+              let jsonData = try? JSONSerialization.data(withJSONObject: json, options: .withoutEscapingSlashes),
+              let convertedString = String(data: jsonData, encoding: String.Encoding.utf8)?.replacingOccurrences(of: "\"", with: "\\\"")
+        else { return }
+        addRestrictionUseCase.execute(childId: childId, restrictions: convertedString) { error in
+            print(error?.localizedDescription ?? "")
+        }
+    }
     
     func refreshToken(completion: @escaping (Bool) -> Void) {
         let localStorageService = UserDefaultsService()
@@ -111,6 +125,10 @@ final class ChildrenViewModel: ChildrenViewModeling, Identifiable {
 // MARK: - Preview
 
 final class MockChildrenViewModeling: ChildrenViewModeling, Identifiable {
+    func addRestrictions(childId: Int,selection: FamilyActivitySelection) {
+        //
+    }
+    
     
     var isLoading = false
     var isContentValid = false

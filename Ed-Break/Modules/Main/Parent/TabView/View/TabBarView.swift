@@ -26,7 +26,7 @@ struct TabBarView: View {
                             pairChildUseCase: PairChildUseCase(
                                 childrenRepository: DefaultChildrenRepository()),
                             refreshTokenUseCase: RefreshTokenUseCase(
-                                familySharingRepository: DefaultFamilySharingRepository())))
+                                familySharingRepository: DefaultFamilySharingRepository()), addRestrictionUseCase: AddRestrictionUseCase(restrictionsRepository: DefaultRestrictionsRepository())))
                     .environmentObject(model)
                 }
             }.navigationViewStyle(StackNavigationViewStyle())

@@ -7,14 +7,19 @@
 
 import SwiftUI
 import CodeScanner
+import FamilyControls
 
 struct ChildrenView<M: ChildrenViewModeling>: View {
     
     @StateObject var viewModel: M
     @EnvironmentObject var appState: AppState
     
-    @State private var isShowingScanner = false
+    @State private var isShowingScanner: Bool = false
+    @State private var isDiscouragedPresented: Bool = false
     
+    @State var selectionToDiscourage: FamilyActivitySelection = FamilyActivitySelection()
+    @State var uuid: String = ""
+
     @State private var scanningChild: ChildModel?
     
     private let cornerRadius = 12.0
@@ -38,7 +43,18 @@ struct ChildrenView<M: ChildrenViewModeling>: View {
         .sheet(isPresented: $isShowingScanner) {
             CodeScannerView(codeTypes: [.qr], completion: handleScan)
         }
+        .familyActivityPicker(isPresented: $isDiscouragedPresented, selection: $selectionToDiscourage)
         .hiddenTabBar()
+        .onChange(of: isDiscouragedPresented) { newValue in
+            if newValue == false {
+                
+                guard let scanningChild = scanningChild else { return }
+                pairChild(scanningChild: scanningChild, deviceToken: uuid) {
+                    viewModel.addRestrictions(childId: $0, selection: selectionToDiscourage)
+                }
+                    
+            }
+        }
     }
     
     func handleScan(result: Result<ScanResult, ScanError>) {
@@ -50,16 +66,31 @@ struct ChildrenView<M: ChildrenViewModeling>: View {
                 let data = string.data(using: .utf8),
                 let json = try? JSONSerialization.jsonObject(with: data, options: .mutableContainers) as? [String: Any],
                 let uuid = json["uuid"] as? String
+                    
             else { return }
-            guard let scanningChild = scanningChild else { return }
-            viewModel.pairChild(id: scanningChild.id, deviceToken: uuid) { success in
-                guard success else { return }
-                viewModel.connectedChildren.append(scanningChild)
+            self.uuid = uuid
+            guard let _ = scanningChild else { return }
+            
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                isDiscouragedPresented = true
             }
+            
+//            viewModel.pairChild(id: scanningChild.id, deviceToken: uuid) { success in
+//                guard success else { return }
+//                viewModel.connectedChildren.append(scanningChild)
+//            }
         case .failure(let error):
             print("Scanning failed: \(error.localizedDescription)")
         }
-        scanningChild = nil
+       // scanningChild = nil
+    }
+    func pairChild(scanningChild: ChildModel, deviceToken: String, complition: @escaping (Int)->()) {
+        viewModel.pairChild(id: scanningChild.id, deviceToken: deviceToken) { success in
+            guard success else { return }
+            viewModel.connectedChildren.append(scanningChild)
+            complition(scanningChild.id)
+        }
+        self.scanningChild = nil
     }
 }
 

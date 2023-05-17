@@ -15,9 +15,9 @@ enum TimePeriod: String, CaseIterable, PickerItem {
     
     var name: String {
         switch self {
-        case .day:    return "This day"
-        case .week:   return "This week"
-        case .month:    return "This month"
+        case .day:    return "Today"
+        case .week:   return "Last 7 days"
+        case .month:    return "This 30 days"
         }
     }
     

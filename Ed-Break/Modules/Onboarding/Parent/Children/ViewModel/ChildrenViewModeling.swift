@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import FamilyControls
 
 protocol ChildrenViewModeling: ObservableObject {
     
@@ -18,6 +19,7 @@ protocol ChildrenViewModeling: ObservableObject {
     var timePeriodDatasource: [TimePeriod] { get set }
     
     func getChildren()
+    func addRestrictions(childId: Int, selection: FamilyActivitySelection)
     func getCoachingChildren()
     func pairChild(id: Int, deviceToken: String, compleated: @escaping (Bool)->())
     func refreshToken(completion: @escaping (Bool) -> Void)
