@@ -59,7 +59,7 @@ extension SettingsView {
         VStack(alignment: .leading, spacing: 0) {
             if viewModel.isUserLoggedIn {
                 NavigationLink {
-                    ChildDevicesView(viewModel: ChildrenViewModel(getChildrenUseCase: GetChildrenUseCase(childrenRepository: DefaultChildrenRepository()), pairChildUseCase: PairChildUseCase(childrenRepository: DefaultChildrenRepository()), refreshTokenUseCase: RefreshTokenUseCase(familySharingRepository: DefaultFamilySharingRepository())))
+                    ChildDevicesView(viewModel: ChildrenViewModel(getChildrenUseCase: GetChildrenUseCase(childrenRepository: DefaultChildrenRepository()), pairChildUseCase: PairChildUseCase(childrenRepository: DefaultChildrenRepository()), refreshTokenUseCase: RefreshTokenUseCase(familySharingRepository: DefaultFamilySharingRepository()), addRestrictionUseCase: AddRestrictionUseCase(restrictionsRepository: DefaultRestrictionsRepository())))
                 } label: {
                     settingsCell(type: .childDevices).disabled(true)
                 }

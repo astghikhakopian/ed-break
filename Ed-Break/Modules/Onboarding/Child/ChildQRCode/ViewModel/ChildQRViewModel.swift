@@ -38,6 +38,7 @@ final class ChildQRViewModel: ChildQRViewModeling, Identifiable {
             case .success(let token):
                 self?.localStorageService.setObject(token, forKey: .ChildUser.token)
                 self?.localStorageService.setPrimitive(true, forKey: .ChildUser.isLoggedIn)
+                
                 compleated(true)
                 DispatchQueue.main.async { self?.isLoading = false }
             case .failure(let failure):

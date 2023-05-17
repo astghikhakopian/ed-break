@@ -31,7 +31,7 @@ struct QRCodeView: View {
                                     childrenRepository: DefaultChildrenRepository(
                                         plugins: [BasicAuthenticationPlugin()])),
                                 pairChildUseCase: PairChildUseCase(childrenRepository: DefaultChildrenRepository(
-                                    plugins: [BasicAuthenticationPlugin()])), refreshTokenUseCase: RefreshTokenUseCase(familySharingRepository: DefaultFamilySharingRepository())
+                                    plugins: [BasicAuthenticationPlugin()])), refreshTokenUseCase: RefreshTokenUseCase(familySharingRepository: DefaultFamilySharingRepository()), addRestrictionUseCase: AddRestrictionUseCase(restrictionsRepository: DefaultRestrictionsRepository())
                             ))})
             }
         }
