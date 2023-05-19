@@ -21,7 +21,7 @@ protocol QuestionsViewModeling: ObservableObject, Identifiable {
     var textToSpeachManager: TextToSpeachManager { get set }
     
     func getQuestions()
-    func getAdditionalQuestions()
+    func getAdditionalQuestions(complition: @escaping ()->())
     func answerQuestion(answer: QuestionAnswerModel, completion: @escaping (AnswerResultType)->())
     func didAnswerAdditionalQuestions(completion: @escaping ()->())
 }

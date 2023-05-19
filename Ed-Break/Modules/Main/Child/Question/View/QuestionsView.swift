@@ -49,7 +49,7 @@ struct QuestionsView<M: QuestionsViewModeling>: View {
                             DataModel.shared.selectionToDiscourage.applications.isEmpty &&
                             DataModel.shared.selectionToDiscourage.categories.isEmpty &&
                             DataModel.shared.selectionToDiscourage.categoryTokens.isEmpty {
-                            PhoneLockingStateView(state: .unlocked, action: {
+                            PhoneLockingStateView(state: .unlocked(time: DataModel.shared.remindingMinutes), action: {
                                 presentationMode.wrappedValue.dismiss()
                             }, isLoading: $viewModel.isLoading, title: "common.continue")
                         } else {
@@ -60,8 +60,10 @@ struct QuestionsView<M: QuestionsViewModeling>: View {
 ////                                        presentationMode.wrappedValue.dismiss()
 //                                    }
 //                                    return }
-                                viewModel.getAdditionalQuestions()
-                                isAdditionalQuestions = true
+                                viewModel.getAdditionalQuestions {
+                                    presentationMode.wrappedValue.dismiss()
+                                }
+                               
                             }, isLoading: $viewModel.isLoading, title: viewModel.remindingSeconds < 0 ? "common.continue" : viewModel.buttonTitle)
                         }
                         /*
@@ -110,13 +112,13 @@ struct QuestionsView<M: QuestionsViewModeling>: View {
             .onLoad {
                 viewModel.getQuestions()
             }
-            .onChange(of: viewModel.currentQuestion, perform: { newValue in
-                viewModel.textToSpeachManager.stop(at: .immediate)
-                viewModel.textToSpeachManager.read(question: newValue, after: 0.3)
-            })
-            .onDisappear{
-                viewModel.textToSpeachManager.stop(at: .immediate)
-            }
+//            .onChange(of: viewModel.currentQuestion, perform: { newValue in
+//                viewModel.textToSpeachManager.stop(at: .immediate)
+//                viewModel.textToSpeachManager.read(question: newValue, after: 0.3)
+//            })
+//            .onDisappear{
+//                viewModel.textToSpeachManager.stop(at: .immediate)
+//            }
             .hiddenTabBar()
             .answerResult(type: $viewModel.answerResultType,isFeedbackGiven: $viewModel.isFeedbackGiven)
             .disabled(viewModel.isFeedbackGiven ?? false)
