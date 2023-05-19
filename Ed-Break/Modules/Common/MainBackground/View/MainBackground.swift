@@ -38,7 +38,9 @@ struct MainBackground<Content> : View where Content : View {
                         Button {
                             presentationMode.wrappedValue.dismiss()
                         } label: {
-                            Image.Background.back
+                            ZStack {
+                                Image.Background.back
+                            }.frame(width: 25,height: 50)
                         }
                     }
                     if let title = title {
@@ -46,7 +48,7 @@ struct MainBackground<Content> : View where Content : View {
                         Text(LocalizedStringKey(title))
                             .font(.appLargeTitle)
                             .foregroundColor(Color.appWhite)
-                            .multilineTextAlignment(.center)
+                           
                         Spacer()
                     }
                 }
@@ -114,7 +116,7 @@ extension NSNotification.Name {
 
 struct MainBackground_Previews: PreviewProvider {
     static var previews: some View {
-        MainBackground(title: "onboarding.role", withNavbar: false) {
+        MainBackground(title: "onboarding.role", withNavbar: true) {
             Spacer()
         }
     }

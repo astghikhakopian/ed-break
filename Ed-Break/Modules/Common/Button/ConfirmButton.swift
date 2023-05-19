@@ -37,7 +37,7 @@ struct ConfirmButton: View {
                 .foregroundColor( isContentValid ? colorTextValid  : colorTextInvalid )
             } else {
                 ProgressView()
-                    .progressViewStyle(CircularProgressViewStyle(tint: .appWhite))
+                    .progressViewStyle(CircularProgressViewStyle(tint: colorTextValid))
             }
         }
         .frame(height: height)

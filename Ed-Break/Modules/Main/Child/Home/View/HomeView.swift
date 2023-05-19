@@ -14,6 +14,7 @@ struct HomeView<M: HomeViewModeling>: View {
     @State private var isShieldPresented = false
     @EnvironmentObject var notificationManager: NotificationManager
     @State var isNot: Bool = false
+    @State var isQuestions = false
 
     private let progressWidth: CGFloat = 180
     private let textSpacing: CGFloat = 4
@@ -52,31 +53,64 @@ struct HomeView<M: HomeViewModeling>: View {
             }.background(Color.primaryCellBackground)
                 .cornerRadius(cornerRadius)
             ForEach(viewModel.contentModel?.subjects ?? [], id: \.id) { subject in
-                NavigationLink {
-                    NavigationLazyView(
-                            QuestionsView(
-                                viewModel: QuestionsViewModel(
-                                    subject: subject,
-                                    home: viewModel.contentModel,
-                                    getQuestionsUseCase: GetQuestionsUseCase(
-                                        questionsRepository: DefaultQuestionsRepository()),
-                                    answerQuestionUseCase: AnswerQuestionUseCase(
-                                        questionsRepository: DefaultQuestionsRepository()),
-                                    resultOfAdditionalQuestionsUseCase: ResultOfAdditionalQuestionsUseCase(
-                                        questionsRepository: DefaultQuestionsRepository()), textToSpeachManager: DefaultTextToSpeachManager())))
-                } label: {
-                    LessonCell(model: subject)
-                    NavigationLink("", destination: NavigationLazyView(  QuestionsView(
-                        viewModel: QuestionsViewModel(
-                            subject: subject,
-                            home: viewModel.contentModel,
-                            getQuestionsUseCase: GetQuestionsUseCase(
-                                questionsRepository: DefaultQuestionsRepository()),
-                            answerQuestionUseCase: AnswerQuestionUseCase(
-                                questionsRepository: DefaultQuestionsRepository()),
-                            resultOfAdditionalQuestionsUseCase: ResultOfAdditionalQuestionsUseCase(
-                                questionsRepository: DefaultQuestionsRepository()), textToSpeachManager: DefaultTextToSpeachManager()))),isActive: isQuestns)
-                }.disabled(viewModel.contentModel?.wrongAnswersTime ?? Date().toLocalTime() > Date().toLocalTime())
+                
+                NavigationLink(destination:  QuestionsView(
+                    viewModel: QuestionsViewModel(
+                        subject: subject,
+                        home: viewModel.contentModel,
+                        getQuestionsUseCase: GetQuestionsUseCase(
+                            questionsRepository: DefaultQuestionsRepository()),
+                        answerQuestionUseCase: AnswerQuestionUseCase(
+                            questionsRepository: DefaultQuestionsRepository()),
+                        resultOfAdditionalQuestionsUseCase: ResultOfAdditionalQuestionsUseCase(
+                            questionsRepository: DefaultQuestionsRepository()), textToSpeachManager: DefaultTextToSpeachManager())), isActive: $isQuestions) {
+                                Button {
+                                    if !(viewModel.contentModel?.wrongAnswersTime ?? Date().toLocalTime() > Date().toLocalTime()) {
+                                        isQuestions = true
+                                    } else {
+                                        isShieldPresented = true
+                                    }
+                                        
+                                }label: {
+                                    
+                                    LessonCell(model: subject)
+                                    
+                                    NavigationLink("", destination: NavigationLazyView(  QuestionsView(
+                                        viewModel: QuestionsViewModel(
+                                            subject: subject,
+                                            home: viewModel.contentModel,
+                                            getQuestionsUseCase: GetQuestionsUseCase(
+                                                questionsRepository: DefaultQuestionsRepository()),
+                                            answerQuestionUseCase: AnswerQuestionUseCase(
+                                                questionsRepository: DefaultQuestionsRepository()),
+                                            resultOfAdditionalQuestionsUseCase: ResultOfAdditionalQuestionsUseCase(
+                                                questionsRepository: DefaultQuestionsRepository()), textToSpeachManager: DefaultTextToSpeachManager()))),isActive: isQuestns)
+                                }
+                            }
+//                NavigationLink {
+//                            QuestionsView(
+//                                viewModel: QuestionsViewModel(
+//                                    subject: subject,
+//                                    home: viewModel.contentModel,
+//                                    getQuestionsUseCase: GetQuestionsUseCase(
+//                                        questionsRepository: DefaultQuestionsRepository()),
+//                                    answerQuestionUseCase: AnswerQuestionUseCase(
+//                                        questionsRepository: DefaultQuestionsRepository()),
+//                                    resultOfAdditionalQuestionsUseCase: ResultOfAdditionalQuestionsUseCase(
+//                                        questionsRepository: DefaultQuestionsRepository()), textToSpeachManager: DefaultTextToSpeachManager()))
+//                } label: {
+//                    LessonCell(model: subject)
+//                    NavigationLink("", destination: NavigationLazyView(  QuestionsView(
+//                        viewModel: QuestionsViewModel(
+//                            subject: subject,
+//                            home: viewModel.contentModel,
+//                            getQuestionsUseCase: GetQuestionsUseCase(
+//                                questionsRepository: DefaultQuestionsRepository()),
+//                            answerQuestionUseCase: AnswerQuestionUseCase(
+//                                questionsRepository: DefaultQuestionsRepository()),
+//                            resultOfAdditionalQuestionsUseCase: ResultOfAdditionalQuestionsUseCase(
+//                                questionsRepository: DefaultQuestionsRepository()), textToSpeachManager: DefaultTextToSpeachManager()))),isActive: isQuestns)
+//                }.disabled(viewModel.isNavigationAllowed)
             }
         }
         .onTapGesture {

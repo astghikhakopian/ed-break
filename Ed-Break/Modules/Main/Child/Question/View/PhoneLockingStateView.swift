@@ -6,10 +6,11 @@
 //
 
 import SwiftUI
+import Foundation
 
 enum PhoneLockingState {
     case locked
-    case unlocked
+    case unlocked(time: Int)
     
     var message: String {
         switch self {
@@ -20,7 +21,8 @@ enum PhoneLockingState {
     var description: String {
         switch self {
         case .locked: return "main.child.lockstate.locked.description"
-        case .unlocked: return "main.child.lockstate.unlocked.description"
+        case .unlocked:
+            return "main.child.lockstate.unlocked.description %@"
         }
     }
     
@@ -57,11 +59,24 @@ struct PhoneLockingStateView: View {
             Text(LocalizedStringKey(state.message))
                 .font(.appHeadingH3)
                 .foregroundColor(.primaryText)
-            Text(LocalizedStringKey(state.description))
+            switch state {
+            case .locked:
+                Text(LocalizedStringKey(state.description))
+                    .font(.appHeadline)
+                    .foregroundColor(.primaryDescription)
+                    .padding(padding)
+                    .multilineTextAlignment(.center)
+            case .unlocked(time: let time):
+                Text(String(
+                    format: NSLocalizedString(state.description, comment: ""),
+                    arguments: [String(time)]
+                ))
                 .font(.appHeadline)
                 .foregroundColor(.primaryDescription)
                 .padding(padding)
                 .multilineTextAlignment(.center)
+            }
+             
             Spacer()
             confirmButton
         }
@@ -75,6 +90,6 @@ struct PhoneLockingStateView: View {
 
 struct PhoneLockingStateView_Previews: PreviewProvider {
     static var previews: some View {
-        PhoneLockingStateView(state: .unlocked, action: {}, isLoading: .constant(false), title: "common.continue")
+        PhoneLockingStateView(state: .unlocked(time: 15), action: {}, isLoading: .constant(false), title: "common.continue")
     }
 }

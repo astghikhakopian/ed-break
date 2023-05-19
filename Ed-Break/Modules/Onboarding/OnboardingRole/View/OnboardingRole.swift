@@ -42,9 +42,9 @@ struct OnboardingRole: View {
                             .frame(width: 24, height: 24)
                             .foregroundColor(isTermsSelected ? Color.primaryPurple : .appWhite)
                             .background(Color.appWhite)
-                            .cornerRadius(1)
+                            .cornerRadius(8)
                             .overlay(
-                                RoundedRectangle(cornerRadius: 1)
+                                RoundedRectangle(cornerRadius: 8)
                                     .stroke(isTermsSelected ? Color.primaryPurple : Color.primaryDescription, lineWidth: 1)
                             )
                     }

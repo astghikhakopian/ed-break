@@ -20,7 +20,7 @@ final class QuestionsViewModel: QuestionsViewModeling, Identifiable {
         didSet {
             guard remindingSeconds >= 0 else { buttonTitle = "common.continue"; return }
                 if remindingSeconds == 0 {
-                    buttonTitle = "Additional Questions"
+                    buttonTitle = "Back to subjects"
                     isContentValid = true
                 } else {
                     let seconds = (remindingSeconds % 3600) % 60
@@ -80,7 +80,7 @@ final class QuestionsViewModel: QuestionsViewModeling, Identifiable {
         }
     }
     
-    func getAdditionalQuestions() {
+    func getAdditionalQuestions(complition: @escaping ()->()) {
         isLoading = true
         getQuestionsUseCase.execute { result in
             DispatchQueue.main.async { self.isLoading = false }
@@ -91,6 +91,7 @@ final class QuestionsViewModel: QuestionsViewModeling, Identifiable {
                     if model.answeredCount < model.questions.count {
                         self?.currentQuestion = model.questions[model.answeredCount]
                     }
+                    complition()
                 }
             case .failure(let failure):
                 print(failure.localizedDescription)
@@ -158,6 +159,10 @@ final class QuestionsViewModel: QuestionsViewModeling, Identifiable {
 // MARK: - Preview
 
 final class MockQuestionsViewModel: QuestionsViewModeling, Identifiable {
+    func getAdditionalQuestions(complition: @escaping () -> ()) {
+        //
+    }
+    
     var textToSpeachManager: TextToSpeachManager = DefaultTextToSpeachManager()
     
     var isFeedbackGiven: Bool? = false

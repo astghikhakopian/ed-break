@@ -8,11 +8,14 @@
 import UIKit
 import FamilyControls
 import SwiftUI
+import Combine
 
 final class HomeViewModel: HomeViewModeling, Identifiable {
     
     @Published var isLoading: Bool = false
     @Published var contentModel: HomeModel? = nil
+    
+    @Published var isNavigationAllowed: Bool = false
     
     @Published var remindingMinutes: Int = 0 {
         didSet {
@@ -26,10 +29,22 @@ final class HomeViewModel: HomeViewModeling, Identifiable {
     private var getSubjectsUseCase: GetSubjectsUseCase
     private let checkConnectionUseCase: CheckConnectionUseCase
     
+    private var cancelables = Set<AnyCancellable>()
+    private var isRecoverModelVaid: AnyPublisher<Bool, Never> {
+        Publishers.CombineLatest($contentModel,$isLoading)
+            .map { [weak self] contentModel, isLoading in
+                self?.contentModel?.wrongAnswersTime ?? Date().toLocalTime() > Date().toLocalTime()
+            }.eraseToAnyPublisher()
+    }
+    
     
     init(getSubjectsUseCase: GetSubjectsUseCase, checkConnectionUseCase: CheckConnectionUseCase) {
         self.getSubjectsUseCase = getSubjectsUseCase
         self.checkConnectionUseCase = checkConnectionUseCase
+        isRecoverModelVaid
+            .receive(on: RunLoop.main)
+            .assign(to: \.isNavigationAllowed, on: self)
+            .store(in: &cancelables)
     }
     
     func getSubjects() {
@@ -130,6 +145,8 @@ final class HomeViewModel: HomeViewModeling, Identifiable {
 // MARK: - Preview
 
 final class MockHomeViewModel: HomeViewModeling, Identifiable {
+    var isNavigationAllowed: Bool = false
+    
     var isLoading = false
     var remindingMinutes: Int = 0
     var progress: Double = 0
