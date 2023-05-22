@@ -16,6 +16,7 @@ final class HomeViewModel: HomeViewModeling, Identifiable {
     @Published var contentModel: HomeModel? = nil
     
     @Published var isNavigationAllowed: Bool = false
+    @Published var isShield: Bool = false
     
     @Published var remindingMinutes: Int = 0 {
         didSet {
@@ -33,9 +34,16 @@ final class HomeViewModel: HomeViewModeling, Identifiable {
     private var isRecoverModelVaid: AnyPublisher<Bool, Never> {
         Publishers.CombineLatest($contentModel,$isLoading)
             .map { [weak self] contentModel, isLoading in
-                self?.contentModel?.wrongAnswersTime ?? Date().toLocalTime() > Date().toLocalTime()
+                self?.contentModel?.wrongAnswersTime ?? Date().toLocalTime() > Date().toLocalTime() && (UserDefaultsService().getObject(forKey: .Notif.isFromNotif) ?? false)
             }.eraseToAnyPublisher()
     }
+    private var isShieldModelVaid: AnyPublisher<Bool, Never> {
+        Publishers.CombineLatest($contentModel,$isLoading)
+            .map { [weak self] contentModel, isLoading in
+                self?.contentModel?.wrongAnswersTime ?? Date().toLocalTime() < Date().toLocalTime() && (UserDefaultsService().getObject(forKey: .Notif.isFromNotif) ?? false)
+            }.eraseToAnyPublisher()
+    }
+    
     
     
     init(getSubjectsUseCase: GetSubjectsUseCase, checkConnectionUseCase: CheckConnectionUseCase) {
@@ -45,6 +53,11 @@ final class HomeViewModel: HomeViewModeling, Identifiable {
             .receive(on: RunLoop.main)
             .assign(to: \.isNavigationAllowed, on: self)
             .store(in: &cancelables)
+        isShieldModelVaid
+            .receive(on: RunLoop.main)
+            .assign(to: \.isShield, on: self)
+            .store(in: &cancelables)
+
     }
     
     func getSubjects() {
@@ -145,6 +158,8 @@ final class HomeViewModel: HomeViewModeling, Identifiable {
 // MARK: - Preview
 
 final class MockHomeViewModel: HomeViewModeling, Identifiable {
+    var isShield: Bool = false
+    
     var isNavigationAllowed: Bool = false
     
     var isLoading = false

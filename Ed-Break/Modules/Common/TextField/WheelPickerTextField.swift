@@ -173,6 +173,7 @@ enum WheelPickerStyle {
     case minimum(title: String)
     case titled(title: String, titleToShow: String? = nil)
     case withImage(image: Image,title: String)
+    case custom(title: String)
 }
 
 struct WheelPickerField<C>: View where C: PickerItem {
@@ -223,6 +224,16 @@ struct WheelPickerField<C>: View where C: PickerItem {
                         RoundedRectangle(cornerRadius: cornerRadius)
                             .stroke(Color.border, lineWidth: borderWidth)
                     )
+            }
+        case .custom(let title):
+            ZStack {
+                HStack(alignment: .top) {
+                    Spacer()
+                    Image.Common.dropdownArrow
+                }
+                HStack(alignment: .center) {
+                    WheelPickerRepresentableField(title: title, datasource: $datasource, selection: $selection, color: UIColor(Color.appBlack))
+                }
             }
         }
     }

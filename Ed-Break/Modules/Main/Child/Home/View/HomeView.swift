@@ -23,6 +23,7 @@ struct HomeView<M: HomeViewModeling>: View {
     private let cornerRadius = 12.0
     
     @State var isQuestns: Binding<Bool> = .constant(false)
+    @State var isFromNotif: Binding<Bool> = .constant(false)
     
     var body: some View {
         VStack(spacing: 12) {
@@ -69,6 +70,7 @@ struct HomeView<M: HomeViewModeling>: View {
                                         isQuestions = true
                                     } else {
                                         isShieldPresented = true
+                                        viewModel.isShield = true
                                     }
                                         
                                 }label: {
@@ -113,6 +115,13 @@ struct HomeView<M: HomeViewModeling>: View {
 //                }.disabled(viewModel.isNavigationAllowed)
             }
         }
+//        .onReceive(.Push.notif, perform: { _ in
+//            if !(viewModel.contentModel?.wrongAnswersTime ?? Date().toLocalTime() > Date().toLocalTime()) {
+//                isQuestions = true
+//            } else {
+//                isShieldPresented = true
+//            }
+//        })
         .onTapGesture {
             if viewModel.contentModel?.wrongAnswersTime ?? Date().toLocalTime() > Date().toLocalTime() {
                 isShieldPresented = true

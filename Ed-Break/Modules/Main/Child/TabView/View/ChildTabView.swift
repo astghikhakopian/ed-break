@@ -85,10 +85,12 @@ struct ChildTabView: View {
         .onChange(of: notificationManager.currentViewId) { viewId in
                guard let _ = viewId else { return }
               self.isQuestions = true
+            NotificationCenter.default.post(name: .Push.notif, object: true)
               selection = 0
            }
         .onReceive(.Push.doExercises, perform: { _ in
             self.isQuestions = true
+            NotificationCenter.default.post(name: .Push.notif, object: true)
             selection = 1
         })
         .onAppear {

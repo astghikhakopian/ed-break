@@ -40,7 +40,7 @@ struct MainBackground<Content> : View where Content : View {
                         } label: {
                             ZStack {
                                 Image.Background.back
-                            }.frame(width: 25,height: 50)
+                            }.frame(width: 50)
                         }
                     }
                     if let title = title {
@@ -48,6 +48,7 @@ struct MainBackground<Content> : View where Content : View {
                         Text(LocalizedStringKey(title))
                             .font(.appLargeTitle)
                             .foregroundColor(Color.appWhite)
+                            .padding(.leading,-25)
                            
                         Spacer()
                     }
@@ -109,6 +110,7 @@ extension NSNotification.Name {
     }
     struct Push {
         static let doExercises = Notification.Name.init("Push.doEx")
+        static let notif = Notification.Name.init("Push.notif")
     }
 }
 
