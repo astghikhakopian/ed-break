@@ -16,6 +16,10 @@ extension UserDefaults {
 
 extension UserDefaults.Key {
     
+    struct Notif {
+        static let isFromNotif = UserDefaults.Key(rawValue: "Notif.isFromNotif")
+    }
+    
     struct Time {
         static let last = UserDefaults.Key(rawValue: "Time.last")
     }

@@ -54,15 +54,17 @@ struct QuestionsView<M: QuestionsViewModeling>: View {
                             }, isLoading: $viewModel.isLoading, title: "common.continue")
                         } else {
                             PhoneLockingStateView(state: .locked, action: {
-//                                guard viewModel.remindingMinutes > 0 else {
-//                                    DispatchQueue.main.async {
-//                                        viewModel.getAdditionalQuestions()
-////                                        presentationMode.wrappedValue.dismiss()
-//                                    }
-//                                    return }
-                                viewModel.getAdditionalQuestions {
-                                    presentationMode.wrappedValue.dismiss()
+                                if !(viewModel.remindingSeconds > 0)  {
+                                    DispatchQueue.main.async {
+                                        viewModel.getAdditionalQuestions() {
+                                            presentationMode.wrappedValue.dismiss()
+                                        }
+                                    }
+                                    return
                                 }
+//                                viewModel.getAdditionalQuestions {
+//                                    presentationMode.wrappedValue.dismiss()
+//                                }
                                
                             }, isLoading: $viewModel.isLoading, title: viewModel.remindingSeconds < 0 ? "common.continue" : viewModel.buttonTitle)
                         }

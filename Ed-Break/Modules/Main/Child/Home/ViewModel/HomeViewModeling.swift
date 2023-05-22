@@ -14,6 +14,7 @@ protocol HomeViewModeling: ObservableObject, Identifiable {
     var remindingMinutes: Int { get set }
     var progress: Double { get set }
     var isNavigationAllowed: Bool { get set }
+    var isShield: Bool { get set } 
     
     func getSubjects()
     func checkConnection(compleated: @escaping (Bool)->())
