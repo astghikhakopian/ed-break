@@ -10,10 +10,18 @@ class DataModel: ObservableObject {
     
     @Published var selectionToDiscourage: FamilyActivitySelection
     @Published var selectionToEncourage: FamilyActivitySelection
-    var threshold: DateComponents
-    
     @Published var remindingMinutes: Int
     
+    var threshold: DateComponents
+    
+    var isDiscourageEmpty: Bool {
+        selectionToDiscourage.applicationTokens.isEmpty &&
+        selectionToDiscourage.applications.isEmpty &&
+        selectionToDiscourage.categories.isEmpty &&
+        selectionToDiscourage.categoryTokens.isEmpty
+    }
+    
+   
     init() {
         selectionToDiscourage = FamilyActivitySelection()
         selectionToEncourage = FamilyActivitySelection()

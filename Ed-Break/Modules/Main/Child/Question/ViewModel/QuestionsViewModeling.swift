@@ -19,6 +19,8 @@ protocol QuestionsViewModeling: ObservableObject, Identifiable {
     var subject: SubjectModel { get }
     var isFeedbackGiven: Bool? { get set }
     var textToSpeachManager: TextToSpeachManager { get set }
+    var areSubjectQustionsAnswered: Bool { get }
+    var isPhoneUnlocked: Bool { get }
     
     func getQuestions()
     func getAdditionalQuestions(complition: @escaping ()->())

@@ -12,136 +12,148 @@ struct HomeView<M: HomeViewModeling>: View {
     @StateObject var viewModel: M
     
     @State private var isShieldPresented = false
-    @EnvironmentObject var notificationManager: NotificationManager
-    @State var isNot: Bool = false
-    @State var isQuestions = false
+    @State private var isQuestions = false
 
     private let progressWidth: CGFloat = 180
     private let textSpacing: CGFloat = 4
+    private let spacing: CGFloat = 12
     private let headerPadding: CGFloat = 35
     private let headerHeight: CGFloat = 30
     private let cornerRadius = 12.0
     
-    @State var isQuestns: Binding<Bool> = .constant(false)
-    @State var isFromNotif: Binding<Bool> = .constant(false)
     
     var body: some View {
-        VStack(spacing: 12) {
-            HStack {
-                Spacer()
-                
-                ZStack {
-                    VStack(spacing: textSpacing) {
-                        HStack(alignment: .bottom, spacing: textSpacing) {
-                            Text(String(viewModel.remindingMinutes))
-                                .font(.appHeadingH2)
-                                .foregroundColor(.primaryPurple)
-                            Text("main.child.home.min")
-                                .font(.appHeadline)
-                                .foregroundColor(.primaryPurple)
-                                .frame(height: headerHeight)
-                        }
-                        Text("main.child.home.usage")
-                            .font(.appBody)
-                            .foregroundColor(.primaryDescription)
-                            .multilineTextAlignment(.center)
-                    }
-                    
-                    CircularProgressView(progress: viewModel.progress)
-                        .frame(height: progressWidth)
-                }.padding(headerPadding)
-                Spacer()
-            }.background(Color.primaryCellBackground)
-                .cornerRadius(cornerRadius)
-            ForEach(viewModel.contentModel?.subjects ?? [], id: \.id) { subject in
-                
-                NavigationLink(destination: NavigationLazyView(QuestionsView(
-                    viewModel: QuestionsViewModel(
-                        subject: subject,
-                        home: viewModel.contentModel,
-                        getQuestionsUseCase: GetQuestionsUseCase(
-                            questionsRepository: DefaultQuestionsRepository()),
-                        answerQuestionUseCase: AnswerQuestionUseCase(
-                            questionsRepository: DefaultQuestionsRepository()),
-                        resultOfAdditionalQuestionsUseCase: ResultOfAdditionalQuestionsUseCase(
-                            questionsRepository: DefaultQuestionsRepository()), textToSpeachManager: DefaultTextToSpeachManager()))), isActive: $isQuestions) {
-                                Button {
-                                    if !(viewModel.contentModel?.wrongAnswersTime ?? Date().toLocalTime() > Date().toLocalTime()) {
-                                        isQuestions = true
-                                    } else {
-                                        isShieldPresented = true
-                                    }
-                                } label: {
-                                    LessonCell(model: subject)
-//                                    NavigationLink("", destination: NavigationLazyView(  QuestionsView(
-//                                        viewModel: QuestionsViewModel(
-//                                            subject: subject,
-//                                            home: viewModel.contentModel,
-//                                            getQuestionsUseCase: GetQuestionsUseCase(
-//                                                questionsRepository: DefaultQuestionsRepository()),
-//                                            answerQuestionUseCase: AnswerQuestionUseCase(
-//                                                questionsRepository: DefaultQuestionsRepository()),
-//                                            resultOfAdditionalQuestionsUseCase: ResultOfAdditionalQuestionsUseCase(
-//                                                questionsRepository: DefaultQuestionsRepository()), textToSpeachManager: DefaultTextToSpeachManager()))),isActive: $isQuestions)
-                                }
-                            }
-//                NavigationLink {
-//                            QuestionsView(
-//                                viewModel: QuestionsViewModel(
-//                                    subject: subject,
-//                                    home: viewModel.contentModel,
-//                                    getQuestionsUseCase: GetQuestionsUseCase(
-//                                        questionsRepository: DefaultQuestionsRepository()),
-//                                    answerQuestionUseCase: AnswerQuestionUseCase(
-//                                        questionsRepository: DefaultQuestionsRepository()),
-//                                    resultOfAdditionalQuestionsUseCase: ResultOfAdditionalQuestionsUseCase(
-//                                        questionsRepository: DefaultQuestionsRepository()), textToSpeachManager: DefaultTextToSpeachManager()))
-//                } label: {
-//                    LessonCell(model: subject)
-//                    NavigationLink("", destination: NavigationLazyView(  QuestionsView(
-//                        viewModel: QuestionsViewModel(
-//                            subject: subject,
-//                            home: viewModel.contentModel,
-//                            getQuestionsUseCase: GetQuestionsUseCase(
-//                                questionsRepository: DefaultQuestionsRepository()),
-//                            answerQuestionUseCase: AnswerQuestionUseCase(
-//                                questionsRepository: DefaultQuestionsRepository()),
-//                            resultOfAdditionalQuestionsUseCase: ResultOfAdditionalQuestionsUseCase(
-//                                questionsRepository: DefaultQuestionsRepository()), textToSpeachManager: DefaultTextToSpeachManager()))),isActive: isQuestns)
-//                }.disabled(viewModel.isNavigationAllowed)
-            }
+        VStack(spacing: spacing) {
+            progressView
+            subjects
         }
         .onReceive(.Push.notif, perform: { _ in
+            // TODO: - Mekhak - viewmodel-i mej // vontsvor nuin bann a grats. kara function lini
             if !(viewModel.contentModel?.wrongAnswersTime ?? Date().toLocalTime() > Date().toLocalTime()) {
-//                isQuestns = .constant(true)
                 isQuestions = true
             } else {
                 isShieldPresented = true
             }
         })
         .onTapGesture {
+            // TODO: - Mekhak - viewmodel-i mej // vontsvor nuin bann a grats. kara function lini
             if viewModel.contentModel?.wrongAnswersTime ?? Date().toLocalTime() > Date().toLocalTime() {
                 isShieldPresented = true
             }
         }
-        .onReceive(NotificationCenter.default.publisher(for: UIApplication.didBecomeActiveNotification, object: nil)) { _ in
-            viewModel.getSubjects()
+        .onReceive(
+            NotificationCenter.default.publisher(
+                for: UIApplication.didBecomeActiveNotification,
+                object: nil
+            ), perform: { _ in
+                viewModel.getSubjects()
+            }
+        )
+        .fullScreenCover(
+            isPresented: $isShieldPresented,
+            content: { shield }
+        )
+    }
+    
+    // MARK: - Components
+    
+    private var subjects: some View {
+        ForEach(viewModel.contentModel?.subjects ?? [], id: \.id) { subject in
+            NavigationLink(
+                isActive: $isQuestions,
+                destination: { subjectDestination(subject: subject) },
+                label: { subjectItemView(subject: subject) }
+            )
         }
-        .onAppear {
-            viewModel.getSubjects()
-        }
-        .fullScreenCover(isPresented: $isShieldPresented) { ShieldView<QuestionsViewModel>(viewModel: QuestionsViewModel(
-            subject: SubjectModel(),
-            home: viewModel.contentModel,
-            getQuestionsUseCase: GetQuestionsUseCase(
-                questionsRepository: DefaultQuestionsRepository()),
-            answerQuestionUseCase: AnswerQuestionUseCase(
-                questionsRepository: DefaultQuestionsRepository()),
-            resultOfAdditionalQuestionsUseCase: ResultOfAdditionalQuestionsUseCase(
-                questionsRepository: DefaultQuestionsRepository()), textToSpeachManager: DefaultTextToSpeachManager())) { _ in
-                    isShieldPresented = false
+    }
+    
+    private func subjectDestination(subject: SubjectModel) -> some View {
+        NavigationLazyView(
+            QuestionsView(
+                viewModel: QuestionsViewModel(
+                    subject: subject,
+                    home: viewModel.contentModel,
+                    getQuestionsUseCase: GetQuestionsUseCase(
+                        questionsRepository: DefaultQuestionsRepository()
+                    ),
+                    answerQuestionUseCase: AnswerQuestionUseCase(
+                        questionsRepository: DefaultQuestionsRepository()
+                    ),
+                    resultOfAdditionalQuestionsUseCase: ResultOfAdditionalQuestionsUseCase(
+                        questionsRepository: DefaultQuestionsRepository()
+                    ),
+                    textToSpeachManager: DefaultTextToSpeachManager()
+                )
+            )
+        )
+    }
+    
+    private func subjectItemView(subject: SubjectModel) -> some View {
+        Button(
+            action: {
+                // TODO: - Mekhak - viewmodel-i mej
+                if !(viewModel.contentModel?.wrongAnswersTime ?? Date().toLocalTime() > Date().toLocalTime()) {
+                    isQuestions = true
+                } else {
+                    isShieldPresented = true
                 }
+            },
+            label: {
+                LessonCell(model: subject)
+            }
+        )
+    }
+    
+    private var progressView: some View {
+        HStack {
+            Spacer()
+            progressViewContent
+            Spacer()
         }
+        .background(Color.primaryCellBackground)
+            .cornerRadius(cornerRadius)
+    }
+    
+    private var progressViewContent: some View {
+        ZStack {
+            progressViewContentText
+            CircularProgressView(progress: viewModel.progress)
+                .frame(height: progressWidth)
+        }.padding(headerPadding)
+    }
+    
+    private var progressViewContentText: some View {
+        VStack(spacing: textSpacing) {
+            HStack(alignment: .bottom, spacing: textSpacing) {
+                Text(String(viewModel.remindingMinutes))
+                    .font(.appHeadingH2)
+                    .foregroundColor(.primaryPurple)
+                Text("main.child.home.min")
+                    .font(.appHeadline)
+                    .foregroundColor(.primaryPurple)
+                    .frame(height: headerHeight)
+            }
+            Text("main.child.home.usage")
+                .font(.appBody)
+                .foregroundColor(.primaryDescription)
+                .multilineTextAlignment(.center)
+        }
+    }
+    
+    private var shield: some View {
+        ShieldView<QuestionsViewModel>(
+            viewModel: QuestionsViewModel(
+                subject: SubjectModel(),
+                home: viewModel.contentModel,
+                getQuestionsUseCase: GetQuestionsUseCase(
+                    questionsRepository: DefaultQuestionsRepository()),
+                answerQuestionUseCase: AnswerQuestionUseCase(
+                    questionsRepository: DefaultQuestionsRepository()),
+                resultOfAdditionalQuestionsUseCase: ResultOfAdditionalQuestionsUseCase(
+                    questionsRepository: DefaultQuestionsRepository()),
+                textToSpeachManager: DefaultTextToSpeachManager()
+            )
+        ) { _ in isShieldPresented = false }
     }
 }
 

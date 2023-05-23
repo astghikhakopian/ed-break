@@ -8,8 +8,6 @@
 import UIKit
 
 final class QuestionsViewModel: QuestionsViewModeling, Identifiable {
-   
-    
     
     @Published var questionsContainer: QuestionsContainerModel?
     @Published var currentQuestion: QusetionModel = QusetionModel()
@@ -20,13 +18,13 @@ final class QuestionsViewModel: QuestionsViewModeling, Identifiable {
         didSet {
             guard remindingSeconds >= 0 else { buttonTitle = "common.continue"; return }
                 if remindingSeconds == 0 {
-                    buttonTitle = "Back to subjects"
+                    buttonTitle = "Back to subjects" // TODO: - Mekhak - localized
                     isContentValid = true
                 } else {
                     let seconds = (remindingSeconds % 3600) % 60
                     let minutes = ((remindingSeconds % 3600) / 60)
                     let secondsString = seconds <= 9 ? "0\(seconds)" : "\(seconds)"
-                    let minutesString = minutes <= 9 ? "0\(minutes)" : "\(minutes)"
+                    // let minutesString = minutes <= 9 ? "0\(minutes)" : "\(minutes)"
                     buttonTitle = "\(minutes):\(secondsString)"
                     //"0:\(remindingSeconds <= 9 ? "0\(remindingSeconds)" : "\(remindingSeconds)")"
                     isContentValid = false
@@ -36,6 +34,14 @@ final class QuestionsViewModel: QuestionsViewModeling, Identifiable {
     
     @Published var buttonTitle: String = "common.continue"
     @Published var isContentValid: Bool = false
+    
+    var areSubjectQustionsAnswered: Bool {
+        guard let questionsContainer = questionsContainer else { return false }
+        return questionsContainer.answeredCount >= questionsContainer.questions.count
+    }
+    var isPhoneUnlocked: Bool {
+        DataModel.shared.isDiscourageEmpty
+    }
    
     let subject: SubjectModel
     let home: HomeModel?
@@ -159,9 +165,9 @@ final class QuestionsViewModel: QuestionsViewModeling, Identifiable {
 // MARK: - Preview
 
 final class MockQuestionsViewModel: QuestionsViewModeling, Identifiable {
-    func getAdditionalQuestions(complition: @escaping () -> ()) {
-        //
-    }
+    
+    var areSubjectQustionsAnswered: Bool = false
+    var isPhoneUnlocked: Bool = true
     
     var textToSpeachManager: TextToSpeachManager = DefaultTextToSpeachManager()
     
@@ -217,4 +223,5 @@ final class MockQuestionsViewModel: QuestionsViewModeling, Identifiable {
     func getAdditionalQuestions() { }
     func answerQuestion(answer: QuestionAnswerModel, completion: @escaping (AnswerResultType)->()) { }
     func didAnswerAdditionalQuestions(completion: @escaping ()->()) { }
+    func getAdditionalQuestions(complition: @escaping () -> ()) { }
 }
