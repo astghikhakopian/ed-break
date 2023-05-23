@@ -48,7 +48,7 @@ struct MainBackground<Content> : View where Content : View {
                         Text(LocalizedStringKey(title))
                             .font(.appLargeTitle)
                             .foregroundColor(Color.appWhite)
-                            .padding(.leading,-25)
+                            .padding(.leading,hideBackButton ? 0 : -25)
                            
                         Spacer()
                     }
