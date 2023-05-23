@@ -29,7 +29,7 @@ struct ChildTabView: View {
                         checkConnectionUseCase: CheckConnectionUseCase(
                             childrenRepository: DefaultChildrenRepository()
                         )
-                    ), isQuestns: $isQuestions)
+                    ))
                     .showTabBar()
                     .environmentObject(model)
                     .environmentObject(notificationManager)

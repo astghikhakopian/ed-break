@@ -55,7 +55,7 @@ struct HomeView<M: HomeViewModeling>: View {
                 .cornerRadius(cornerRadius)
             ForEach(viewModel.contentModel?.subjects ?? [], id: \.id) { subject in
                 
-                NavigationLink(destination:  QuestionsView(
+                NavigationLink(destination: NavigationLazyView(QuestionsView(
                     viewModel: QuestionsViewModel(
                         subject: subject,
                         home: viewModel.contentModel,
@@ -64,29 +64,25 @@ struct HomeView<M: HomeViewModeling>: View {
                         answerQuestionUseCase: AnswerQuestionUseCase(
                             questionsRepository: DefaultQuestionsRepository()),
                         resultOfAdditionalQuestionsUseCase: ResultOfAdditionalQuestionsUseCase(
-                            questionsRepository: DefaultQuestionsRepository()), textToSpeachManager: DefaultTextToSpeachManager())), isActive: $isQuestions) {
+                            questionsRepository: DefaultQuestionsRepository()), textToSpeachManager: DefaultTextToSpeachManager()))), isActive: $isQuestions) {
                                 Button {
                                     if !(viewModel.contentModel?.wrongAnswersTime ?? Date().toLocalTime() > Date().toLocalTime()) {
                                         isQuestions = true
                                     } else {
                                         isShieldPresented = true
-                                        viewModel.isShield = true
                                     }
-                                        
-                                }label: {
-                                    
+                                } label: {
                                     LessonCell(model: subject)
-                                    
-                                    NavigationLink("", destination: NavigationLazyView(  QuestionsView(
-                                        viewModel: QuestionsViewModel(
-                                            subject: subject,
-                                            home: viewModel.contentModel,
-                                            getQuestionsUseCase: GetQuestionsUseCase(
-                                                questionsRepository: DefaultQuestionsRepository()),
-                                            answerQuestionUseCase: AnswerQuestionUseCase(
-                                                questionsRepository: DefaultQuestionsRepository()),
-                                            resultOfAdditionalQuestionsUseCase: ResultOfAdditionalQuestionsUseCase(
-                                                questionsRepository: DefaultQuestionsRepository()), textToSpeachManager: DefaultTextToSpeachManager()))),isActive: isQuestns)
+//                                    NavigationLink("", destination: NavigationLazyView(  QuestionsView(
+//                                        viewModel: QuestionsViewModel(
+//                                            subject: subject,
+//                                            home: viewModel.contentModel,
+//                                            getQuestionsUseCase: GetQuestionsUseCase(
+//                                                questionsRepository: DefaultQuestionsRepository()),
+//                                            answerQuestionUseCase: AnswerQuestionUseCase(
+//                                                questionsRepository: DefaultQuestionsRepository()),
+//                                            resultOfAdditionalQuestionsUseCase: ResultOfAdditionalQuestionsUseCase(
+//                                                questionsRepository: DefaultQuestionsRepository()), textToSpeachManager: DefaultTextToSpeachManager()))),isActive: $isQuestions)
                                 }
                             }
 //                NavigationLink {
@@ -115,13 +111,14 @@ struct HomeView<M: HomeViewModeling>: View {
 //                }.disabled(viewModel.isNavigationAllowed)
             }
         }
-//        .onReceive(.Push.notif, perform: { _ in
-//            if !(viewModel.contentModel?.wrongAnswersTime ?? Date().toLocalTime() > Date().toLocalTime()) {
-//                isQuestions = true
-//            } else {
-//                isShieldPresented = true
-//            }
-//        })
+        .onReceive(.Push.notif, perform: { _ in
+            if !(viewModel.contentModel?.wrongAnswersTime ?? Date().toLocalTime() > Date().toLocalTime()) {
+//                isQuestns = .constant(true)
+                isQuestions = true
+            } else {
+                isShieldPresented = true
+            }
+        })
         .onTapGesture {
             if viewModel.contentModel?.wrongAnswersTime ?? Date().toLocalTime() > Date().toLocalTime() {
                 isShieldPresented = true
