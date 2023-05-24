@@ -47,7 +47,7 @@ class ScheduleModel {
         let store = ManagedSettingsStore()
         let schedule = DeviceActivitySchedule(
             intervalStart: Calendar.current.dateComponents([.hour, .minute], from: Date()),
-            intervalEnd: Calendar.current.dateComponents([.year,.month,.day,.hour,.minute], from: Date().oneYear),
+            intervalEnd: Calendar.current.dateComponents([.year,.month,.day,.hour,.minute], from: Date().oneWeek),
             repeats: true
         )
         
@@ -87,6 +87,12 @@ private extension Date {
     }
     var oneYear: Date {
         if let date = Calendar.current.date(byAdding: .day, value: 365, to: Date()) {
+            return date
+        }
+        return Date()
+    }
+    var oneWeek: Date {
+        if let date = Calendar.current.date(byAdding: .day, value: 7, to: Date()) {
             return date
         }
         return Date()

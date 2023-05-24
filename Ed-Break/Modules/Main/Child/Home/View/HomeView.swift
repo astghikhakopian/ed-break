@@ -27,6 +27,9 @@ struct HomeView<M: HomeViewModeling>: View {
             progressView
             subjects
         }
+        .onAppear {
+          viewModel.getSubjects()
+        }
         .onReceive(.Push.notif, perform: { _ in
             // TODO: - Mekhak - viewmodel-i mej // vontsvor nuin bann a grats. kara function lini
             if !(viewModel.contentModel?.wrongAnswersTime ?? Date().toLocalTime() > Date().toLocalTime()) {
@@ -60,10 +63,10 @@ struct HomeView<M: HomeViewModeling>: View {
     private var subjects: some View {
         ForEach(viewModel.contentModel?.subjects ?? [], id: \.id) { subject in
             NavigationLink(
-                isActive: $isQuestions,
                 destination: { subjectDestination(subject: subject) },
-                label: { subjectItemView(subject: subject) }
+                label: { LessonCell(model: subject) }
             )
+            .disabled(viewModel.contentModel?.wrongAnswersTime ?? Date().toLocalTime() > Date().toLocalTime())
         }
     }
     
