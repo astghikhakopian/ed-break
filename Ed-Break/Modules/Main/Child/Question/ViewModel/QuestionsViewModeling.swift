@@ -24,6 +24,6 @@ protocol QuestionsViewModeling: ObservableObject, Identifiable {
     
     func getQuestions()
     func getAdditionalQuestions(complition: @escaping ()->())
-    func answerQuestion(answer: QuestionAnswerModel, completion: @escaping (AnswerResultType)->())
+    func answerQuestion(answer: QuestionAnswerModel, isAdditionalQuestions: Bool, completion: @escaping (AnswerResultType)->())
     func didAnswerAdditionalQuestions(completion: @escaping ()->())
 }

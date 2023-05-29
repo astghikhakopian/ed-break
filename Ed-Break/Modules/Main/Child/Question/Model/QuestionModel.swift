@@ -5,6 +5,8 @@
 //  Created by Astghik Hakopian on 14.11.22.
 //
 
+import UIKit
+
 struct QuestionsContainerModel {
     
     var questions: [QusetionModel]
@@ -20,6 +22,7 @@ struct QuestionsContainerModel {
 
 struct QusetionModel: Equatable {
     
+    let uuid = UUID()
     let id: Int
     var isCorrect: Bool?
     let questionAnswer: [QuestionAnswerModel]

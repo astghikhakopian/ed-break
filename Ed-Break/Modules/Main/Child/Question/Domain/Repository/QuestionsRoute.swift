@@ -8,11 +8,16 @@
 import Foundation
 import Moya
 
+enum QuestionType: String {
+    case additional = "additional"
+    case main = "main"
+}
+
 enum QuestionsRoute: TargetType {
     
     case getQuestions(subjectId: Int)
     case getAdditionalQuestions
-    case answerQuestion(questionId: Int, answerId: Int)
+    case answerQuestion(questionId: Int, answerId: Int, index: Int, questionType: QuestionType, subjectId: Int)
     case resultOfAdditionalQuestions
     
     var baseURL: URL {
@@ -59,11 +64,14 @@ enum QuestionsRoute: TargetType {
                 parameters: [:],
                 encoding: URLEncoding.queryString
             )
-        case .answerQuestion(let questionId, let answerId):
+        case .answerQuestion(let questionId, let answerId, let index, let questionType, let subjectId):
             return .requestParameters(
                 parameters: [
                     "question": questionId,
-                    "answer": answerId
+                    "answer": answerId,
+                    "index": index+1,
+                    "question_type": questionType.rawValue,
+                    "subject": subjectId
                 ],
                 encoding: URLEncoding.queryString
             )
@@ -84,4 +92,3 @@ enum QuestionsRoute: TargetType {
             "Authorization": "Bearer \(accessToken)"
         ]}
 }
-

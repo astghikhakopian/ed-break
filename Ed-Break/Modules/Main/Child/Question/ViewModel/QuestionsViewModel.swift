@@ -105,9 +105,16 @@ final class QuestionsViewModel: QuestionsViewModeling, Identifiable {
         }
     }
     
-    func answerQuestion(answer: QuestionAnswerModel, completion: @escaping (AnswerResultType)->()) {
+    func answerQuestion(answer: QuestionAnswerModel, isAdditionalQuestions: Bool, completion: @escaping (AnswerResultType)->()) {
         isLoading = true
-        answerQuestionUseCase.execute(questionId: currentQuestion.id, answerId: answer.id) { [weak self] result in
+        let index = questionsContainer?.questions.firstIndex(of: currentQuestion) ?? 0
+        answerQuestionUseCase.execute(
+            questionId: currentQuestion.id,
+            answerId: answer.id,
+            index: index,
+            questionType: isAdditionalQuestions ? .additional : .main,
+            subjectId: subject.id
+        ) { [weak self] result in
             DispatchQueue.main.async { self?.isLoading = false }
             guard result == nil else { return }
             // switch result {
@@ -221,7 +228,7 @@ final class MockQuestionsViewModel: QuestionsViewModeling, Identifiable {
     
     func getQuestions() { }
     func getAdditionalQuestions() { }
-    func answerQuestion(answer: QuestionAnswerModel, completion: @escaping (AnswerResultType)->()) { }
+    func answerQuestion(answer: QuestionAnswerModel, isAdditionalQuestions: Bool, completion: @escaping (AnswerResultType)->()) { }
     func didAnswerAdditionalQuestions(completion: @escaping ()->()) { }
     func getAdditionalQuestions(complition: @escaping () -> ()) { }
 }

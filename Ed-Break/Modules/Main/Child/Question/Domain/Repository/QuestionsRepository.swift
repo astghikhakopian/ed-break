@@ -13,7 +13,7 @@ protocol QuestionsRepository {
     
     func getQuestions(subjectId: Int, completion: @escaping(Result<QuestionsContainerDto, Error>) -> Void)
     func getAdditionalQuestions(completion: @escaping(Result<QuestionsContainerDto, Error>) -> Void)
-    func answerQuestions(questionId: Int, answerId: Int, completion: @escaping(Error?) -> Void)
+    func answerQuestions(questionId: Int, answerId: Int, index: Int, questionType: QuestionType, subjectId: Int, completion: @escaping (Error?) -> Void)
     func resultOfAdditionalQuestions(completion: @escaping(Error?) -> Void)
 }
 
@@ -27,8 +27,8 @@ final class DefaultQuestionsRepository: MoyaProvider<QuestionsRoute>, QuestionsR
         requestDecodable(.getAdditionalQuestions, completion: completion)
     }
     
-    func answerQuestions(questionId: Int, answerId: Int, completion: @escaping (Error?) -> Void) {
-        requestSimple(.answerQuestion(questionId: questionId, answerId: answerId), completion: completion)
+    func answerQuestions(questionId: Int, answerId: Int, index: Int, questionType: QuestionType, subjectId: Int, completion: @escaping (Error?) -> Void) {
+        requestSimple(.answerQuestion(questionId: questionId, answerId: answerId, index: index, questionType: questionType, subjectId: subjectId), completion: completion)
     }
     func resultOfAdditionalQuestions(completion: @escaping(Error?) -> Void) {
         requestSimple(.resultOfAdditionalQuestions, completion: completion)

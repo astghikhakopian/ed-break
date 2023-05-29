@@ -9,7 +9,7 @@ import Foundation
 
 class AnswerQuestionUseCase: QuestionsUseCase {
     
-    func execute(questionId: Int, answerId: Int, completion: @escaping (Error?) -> Void) {
-        questionsRepository.answerQuestions(questionId: questionId, answerId: answerId, completion: completion)
+    func execute(questionId: Int, answerId: Int, index: Int, questionType: QuestionType, subjectId: Int, completion: @escaping (Error?) -> Void) {
+        questionsRepository.answerQuestions(questionId: questionId, answerId: answerId, index: index, questionType: questionType, subjectId: subjectId, completion: completion)
     }
 }

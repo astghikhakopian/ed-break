@@ -71,6 +71,7 @@ struct QuestionsView<M: QuestionsViewModeling>: View {
         }
         .onLoad {
             viewModel.getQuestions()
+            isAdditionalQuestions = false
         }
         /*
          .onChange(of: viewModel.currentQuestion, perform: { newValue in
@@ -95,6 +96,7 @@ extension QuestionsView {
             state: .locked,
             action: {
                 guard viewModel.remindingSeconds <= 0 else { return }
+                isAdditionalQuestions = true
                 viewModel.getAdditionalQuestions() {
 //                     presentationMode.wrappedValue.dismiss()
                 }
@@ -130,7 +132,7 @@ extension QuestionsView {
     
     var pageIndicator: some View {
         HStack(spacing: indicatorSpacing) {
-            ForEach(Array((viewModel.questionsContainer?.questions ?? []).enumerated()), id: \.1.id) { index, answer in
+            ForEach(Array((viewModel.questionsContainer?.questions ?? []).enumerated()), id: \.1.uuid) { index, answer in
                 Rectangle()
                     .foregroundColor(index < (viewModel.questionsContainer?.answeredCount ?? 0) ? answer.isCorrect == true ? Color.primaryGreen : Color.primaryRed : Color.divader)
                     .frame(height: indicatorHeight)
@@ -197,7 +199,7 @@ extension QuestionsView {
     
     private func confirmSelectedAnswer() {
         guard let selectedAnswer = selectedAnswer else { return }
-        viewModel.answerQuestion(answer: selectedAnswer) { _ in
+        viewModel.answerQuestion(answer: selectedAnswer, isAdditionalQuestions: isAdditionalQuestions) { _ in
             guard viewModel.currentQuestion.id == viewModel.questionsContainer?.questions.last?.id else { return }
             if isAdditionalQuestions {
                 viewModel.didAnswerAdditionalQuestions {
