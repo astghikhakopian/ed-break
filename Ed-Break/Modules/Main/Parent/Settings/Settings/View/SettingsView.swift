@@ -28,9 +28,9 @@ struct SettingsView<M: ParentSettingsViewModeling>: View {
     var body: some View {
         VStack(alignment: .leading, spacing: gap) {
             mainContent
-            if viewModel.isUserLoggedIn {
+//            if viewModel.isUserLoggedIn {
                 deleteSection
-            }
+//            }
         }.confirmationDialog(
             "main.parent.settings.delete",
             isPresented: $showDeleteOptions,
@@ -61,7 +61,8 @@ extension SettingsView {
         VStack(alignment: .leading, spacing: 0) {
             if viewModel.isUserLoggedIn {
                 NavigationLink {
-                    ChildDevicesView(viewModel: ChildrenViewModel(getChildrenUseCase: GetChildrenUseCase(childrenRepository: DefaultChildrenRepository()), pairChildUseCase: PairChildUseCase(childrenRepository: DefaultChildrenRepository()), refreshTokenUseCase: RefreshTokenUseCase(familySharingRepository: DefaultFamilySharingRepository()), addRestrictionUseCase: AddRestrictionUseCase(restrictionsRepository: DefaultRestrictionsRepository())))
+                    ChildDevicesView(viewModel: ChildrenViewModel(
+                        filtered: false, getChildrenUseCase: GetChildrenUseCase(childrenRepository: DefaultChildrenRepository()), pairChildUseCase: PairChildUseCase(childrenRepository: DefaultChildrenRepository()), refreshTokenUseCase: RefreshTokenUseCase(familySharingRepository: DefaultFamilySharingRepository()), addRestrictionUseCase: AddRestrictionUseCase(restrictionsRepository: DefaultRestrictionsRepository())))
                 } label: {
                     settingsCell(type: .childDevices).disabled(true)
                 }

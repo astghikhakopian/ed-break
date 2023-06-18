@@ -27,6 +27,7 @@ struct QRCodeView: View {
                     content: {
                         ChildrenView(
                             viewModel: ChildrenViewModel(
+                                filtered: false,
                                 getChildrenUseCase: GetChildrenUseCase(
                                     childrenRepository: DefaultChildrenRepository(
                                         plugins: [BasicAuthenticationPlugin()])),

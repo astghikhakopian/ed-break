@@ -73,6 +73,7 @@
 "common.continue" = "Continue";
 "common.confirm" = "Confirm";
 "common.ok" = "OK";
+"common.done" = "Done";
 "common.manage" = "Manage";
 "common.delete" = "Delete";
 "common.select" = "Select";

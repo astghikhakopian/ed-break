@@ -39,7 +39,6 @@ struct HomeModel {
         
         if let restrictions = dto.restrictions?.replacingOccurrences(of: "\\\"", with: "\""),
            let stringData = restrictions.data(using: .utf8),
-           // let json = try? JSONSerialization.jsonObject(with: stringData),
            let selectionObject = try? JSONDecoder().decode(FamilyActivitySelection.self, from: stringData) {
             self.restrictions = selectionObject
         } else {
@@ -56,7 +55,7 @@ struct SubjectModel: BottomsheetCellModel, Equatable {
     let subject: String?
     let photo: String?
     let questionsCount: Int
-    var completedCount: Int
+    var answeredQuestionsCount: Int
     let correctAnswersCount: Int
     let completed: Bool
     
@@ -65,19 +64,19 @@ struct SubjectModel: BottomsheetCellModel, Equatable {
         subject = dto.subject
         photo = dto.photo
         questionsCount = dto.questionsCount ?? 0
-        completedCount = dto.completedCount ?? 0
+        answeredQuestionsCount = dto.answeredQuestionsCount ?? 0
         correctAnswersCount = dto.correctAnswersCount ?? 0
         completed = dto.completed ?? false
     }
-
+    
     init(dto: CoachingSubjectDto) {
         id = dto.id
         subject = dto.title
         photo = dto.photo
         questionsCount = dto.questionsCount ?? 0
-        completedCount = dto.answersCount ?? 0
+        answeredQuestionsCount = dto.answersCount ?? 0
         correctAnswersCount = dto.correctAnswersCount ?? 0
-        completed = completedCount >= questionsCount
+        completed = answeredQuestionsCount >= questionsCount
     }
     
     init() {
@@ -85,7 +84,7 @@ struct SubjectModel: BottomsheetCellModel, Equatable {
         self.subject = nil
         self.photo = nil
         self.questionsCount = 0
-        self.completedCount = 0
+        self.answeredQuestionsCount = 0
         self.correctAnswersCount = 0
         self.completed = false
     }

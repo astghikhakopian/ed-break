@@ -10,7 +10,6 @@ import SwiftUI
 struct ChildTabView: View {
     
     @StateObject var model = DataModel.shared
-    @EnvironmentObject var notificationManager: NotificationManager
     @State var isQuestions = false
     
 
@@ -20,19 +19,11 @@ struct ChildTabView: View {
         
         TabView(selection: $selection) {
             
-            NavigationView {
+            NavigationStackWrapper { 
                 MainBackground(title: "main.parent.home", withNavbar: false) {
-                    HomeView(viewModel: HomeViewModel(
-                        getSubjectsUseCase: GetSubjectsUseCase(
-                            childrenRepository: DefaultChildrenRepository()
-                        ),
-                        checkConnectionUseCase: CheckConnectionUseCase(
-                            childrenRepository: DefaultChildrenRepository()
-                        )
-                    ))
-                    .showTabBar()
-                    .environmentObject(model)
-                    .environmentObject(notificationManager)
+                    HomeView<HomeViewModel>()
+                        .showTabBar()
+                        .environmentObject(model)
                 }
             }
             .navigationViewStyle(StackNavigationViewStyle())
@@ -82,17 +73,6 @@ struct ChildTabView: View {
             UITabBarController.tabBar.layer.maskedCorners = [.layerMinXMinYCorner,.layerMaxXMinYCorner]
             UITabBarController.tabBar.layer.cornerRadius = 30
         }
-        .onChange(of: notificationManager.currentViewId) { viewId in
-               guard let _ = viewId else { return }
-              self.isQuestions = true
-            NotificationCenter.default.post(name: .Push.notif, object: true)
-              selection = 0
-           }
-        .onReceive(.Push.doExercises, perform: { _ in
-            self.isQuestions = true
-            NotificationCenter.default.post(name: .Push.notif, object: true)
-            selection = 1
-        })
         .onAppear {
             UITabBar.appearance().backgroundColor = UIColor.white
             UITabBar.appearance().layer.maskedCorners = [.layerMinXMinYCorner,.layerMaxXMinYCorner]

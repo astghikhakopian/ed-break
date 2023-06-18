@@ -25,7 +25,7 @@ struct SubjectDto: Codable {
     let subject: String?
     let photo: String?
     let questionsCount: Int?
-    let completedCount: Int?
+    let answeredQuestionsCount: Int?
     let correctAnswersCount: Int?
     let completed: Bool?
 }

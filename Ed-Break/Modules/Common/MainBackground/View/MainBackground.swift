@@ -7,16 +7,30 @@
 
 import SwiftUI
 
-struct MainBackground<Content> : View where Content : View {
+struct MainBackgroundCore<Content: View, Q: View> : View {
     
     let title: String?
     let withNavbar: Bool
-    var isSimple: Bool = false
-    var hideBackButton: Bool = false
-    var stickyView: (any View)? = nil
-    @ViewBuilder let  content: (() -> Content)
+    var isSimple: Bool
+    var hideBackButton: Bool
+    let stickyView: () -> Q?
+    let content: (() -> Content)
     
-    
+    init(
+        title: String?,
+        withNavbar: Bool,
+        isSimple: Bool = false,
+        hideBackButton: Bool = false,
+        @ViewBuilder content: @escaping () -> Content,
+        @ViewBuilder stickyView: @escaping () -> Q? = { nil }
+    ) {
+        self.title = title
+        self.withNavbar = withNavbar
+        self.isSimple = isSimple
+        self.hideBackButton = hideBackButton
+        self.content = content
+        self.stickyView = stickyView
+    }
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     
     private let contentCornerRadius = 12.0
@@ -48,8 +62,7 @@ struct MainBackground<Content> : View where Content : View {
                         Text(LocalizedStringKey(title))
                             .font(.appLargeTitle)
                             .foregroundColor(Color.appWhite)
-                            .padding(.leading,hideBackButton ? 0 : -25)
-                           
+                            .padding(.leading, withNavbar && !hideBackButton ? -50 : 0)
                         Spacer()
                     }
                 }
@@ -57,35 +70,31 @@ struct MainBackground<Content> : View where Content : View {
                     PullToRefresh(coordinateSpaceName: "pullToRefresh") {
                         NotificationCenter.default.post(name: .Refresh.update, object: nil)
                     }
-                    content().cornerRadius(contentCornerRadius)
+                    content()
+                        .cornerRadius(contentCornerRadius)
                     if !isSimple {
                         Spacer()
                     }
-                }.coordinateSpace(name: "pullToRefresh")
-                    sticky
-                    .padding(.bottom,15)
+                }
+                .coordinateSpace(name: "pullToRefresh")
+                    stickyView()
+                        .padding(.bottom, 15)
             }
             .padding(EdgeInsets(
                 top: hideBackButton ? -74 : withNavbar ? 0 : 10,
                 leading: 15,
                 bottom: 0,
                 trailing: 15))
-        }.navigationBarTitleDisplayMode(.inline)//.navigationTitle(title ?? "")// .ignoresSafeArea()
+        }
+        .navigationBarTitleDisplayMode(.inline)
             .navigationViewStyle(StackNavigationViewStyle())
     }
 }
 
+
 // MARK: - Private Components
 
 extension MainBackground {
-    private var sticky: some View {
-        if let stickyView = stickyView {
-            return AnyView(stickyView)
-        }else {
-            return AnyView(EmptyView())
-        }
-    }
-    
     private var navigationBackground: some View {
         VStack {
             HStack {
@@ -104,22 +113,15 @@ extension MainBackground {
         }.background(Color.primaryPurple)
     }
 }
-extension NSNotification.Name {
-    struct Refresh {
-        static let update = Notification.Name.init("Refresh.update")
-    }
-    struct Push {
-        static let doExercises = Notification.Name.init("Push.doEx")
-        static let notif = Notification.Name.init("Push.notif")
-    }
-}
+
+typealias MainBackground<Content: View> = MainBackgroundCore<Content, AnyView>
 
 // MARK: - Priview
 
 struct MainBackground_Previews: PreviewProvider {
     static var previews: some View {
         MainBackground(title: "onboarding.role", withNavbar: true) {
-            Spacer()
+            EmptyView()
         }
     }
 }

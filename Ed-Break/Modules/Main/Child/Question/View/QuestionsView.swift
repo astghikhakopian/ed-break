@@ -29,46 +29,41 @@ struct QuestionsView<M: QuestionsViewModeling>: View {
     private let indicatorSpacing: CGFloat = 8
     private let selectionHeight: CGFloat = 20
     
-    private let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
-    
-    
     var body: some View {
         MainBackground(
             title: viewModel.subject.title,
             withNavbar: true,
             isSimple: true,
-            stickyView: viewModel.areSubjectQustionsAnswered ? nil : confirmButton
-        ) {
-            VStack(spacing: containerSpacing) {
-                if viewModel.questionsContainer != nil {
-                    pageIndicator
-                    if viewModel.areSubjectQustionsAnswered {
+            content: {
+                VStack(spacing: containerSpacing) {
+                    if viewModel.questionsContainer != nil {
+                        pageIndicator
                         if viewModel.isPhoneUnlocked {
                             unlockedView
                         } else {
-                            lockedView
+                            questionView
+                            options
                         }
                     } else {
-                        questionView
-                        options
+                        progressView
                     }
-                } else {
-                    progressView
                 }
-            }
             .padding(padding)
             .background(Color.primaryCellBackground)
             .cornerRadius(contentCornerRadius)
             .frame(
                 minWidth: UIScreen.main.bounds.width - 2*padding,
-                minHeight: UIScreen.main.bounds.height - 150
+                minHeight: UIScreen.main.bounds.height - 280
             )
-            .onReceive(timer) { _ in
-                if viewModel.remindingSeconds > 0 {
-                    viewModel.remindingSeconds -= 1
+            },
+            stickyView: {
+                if viewModel.isPhoneUnlocked {
+                    return nil
+                } else {
+                    return AnyView(confirmButton)
                 }
             }
-        }
+        )
         .onLoad {
             viewModel.getQuestions()
             isAdditionalQuestions = false
@@ -83,28 +78,16 @@ struct QuestionsView<M: QuestionsViewModeling>: View {
          }
          */
         .hiddenTabBar()
-        .answerResult(type: $viewModel.answerResultType,isFeedbackGiven: $viewModel.isFeedbackGiven)
-        .disabled(viewModel.isFeedbackGiven ?? false)
+        .answerResult(
+            type: $viewModel.answerResultType,
+            isFeedbackGiven: $viewModel.isFeedbackGiven
+        )
+        .disabled(viewModel.isFeedbackGiven)
         
     }
 }
 
 extension QuestionsView {
-    
-    var lockedView: some View {
-        PhoneLockingStateView(
-            state: .locked,
-            action: {
-                guard viewModel.remindingSeconds <= 0 else { return }
-                isAdditionalQuestions = true
-                viewModel.getAdditionalQuestions() {
-//                     presentationMode.wrappedValue.dismiss()
-                }
-            },
-            isLoading: $viewModel.isLoading,
-            title: viewModel.remindingSeconds < 0 ? "common.continue" : viewModel.buttonTitle
-        )
-    }
     
     var unlockedView: some View {
         PhoneLockingStateView(
@@ -134,7 +117,7 @@ extension QuestionsView {
         HStack(spacing: indicatorSpacing) {
             ForEach(Array((viewModel.questionsContainer?.questions ?? []).enumerated()), id: \.1.uuid) { index, answer in
                 Rectangle()
-                    .foregroundColor(index < (viewModel.questionsContainer?.answeredCount ?? 0) ? answer.isCorrect == true ? Color.primaryGreen : Color.primaryRed : Color.divader)
+                    .foregroundColor(index < (viewModel.questionsContainer?.answeredQuestionsCount ?? 0) ? answer.isCorrect == true ? Color.primaryGreen : Color.primaryRed : Color.divader)
                     .frame(height: indicatorHeight)
                     .cornerRadius(indicatorCornerRadius)
             }
@@ -161,10 +144,13 @@ extension QuestionsView {
     
     func answerCell(model: QuestionAnswerModel, isSelected: Bool) -> some View {
         Button(
-            action: { selectedAnswer = model},
+            action: {
+                selectedAnswer = model
+                viewModel.isContentValid = true
+            },
             label: {
                 HStack(spacing: spacing) {
-                    if !(viewModel.isFeedbackGiven ?? false) {
+                    if !(viewModel.isFeedbackGiven) {
                         RoundedRectangle(cornerRadius: selectionHeight/2)
                             .stroke(isSelected ? Color.primaryPurple : Color.border, lineWidth: isSelected ? 7 : 1)
                             .frame(width: selectionHeight - (isSelected ? 7 : 1), height: selectionHeight - (isSelected ? 7 : 1))
@@ -173,11 +159,11 @@ extension QuestionsView {
                     }
                     Text(model.answer ?? "")
                         .font(.appButton)
-                        .foregroundColor(viewModel.isFeedbackGiven ?? false ? textColor(isSelected: isSelected, model: model)  : (isSelected ? Color.primaryPurple : Color.primaryText))
+                        .foregroundColor(viewModel.isFeedbackGiven ? textColor(isSelected: isSelected, model: model)  : (isSelected ? Color.primaryPurple : Color.primaryText))
                     Spacer()
                 }
                 .padding()
-                .background(viewModel.isFeedbackGiven ?? false ?  cellColor(isSelected: isSelected, model: model) : .primaryLightBackground)
+                .background(viewModel.isFeedbackGiven ?  cellColor(isSelected: isSelected, model: model) : .primaryLightBackground)
                 .cornerRadius(cellCornerRadius)
             })
     }
@@ -188,35 +174,27 @@ extension QuestionsView {
                 viewModel.textToSpeachManager.stop(at: .immediate)
                 confirmSelectedAnswer()
             },
-            title: "common.continue",
-            isContentValid: .constant(true),
+            title: viewModel.isLastQuestion ? "common.done" : "common.continue",
+            isContentValid: $viewModel.isContentValid,
             isLoading: $viewModel.isLoading,
-            colorBackgroundValid: .white,
+            colorBackgroundValid: .appWhite,
             colorTextValid: .primaryPurple
         )
-        .disabled(viewModel.remindingSeconds > 0)
+        .disabled(!viewModel.isContentValid)
     }
     
     private func confirmSelectedAnswer() {
         guard let selectedAnswer = selectedAnswer else { return }
         viewModel.answerQuestion(answer: selectedAnswer, isAdditionalQuestions: isAdditionalQuestions) { _ in
             guard viewModel.currentQuestion.id == viewModel.questionsContainer?.questions.last?.id else { return }
-            if isAdditionalQuestions {
-                viewModel.didAnswerAdditionalQuestions {
-                    DispatchQueue.main.async {
-                        presentationMode.wrappedValue.dismiss()
-                        self.selectedAnswer = nil
-                    }
-                }
-            } else {
-                DispatchQueue.main.async {
-                    presentationMode.wrappedValue.dismiss()
-                    self.selectedAnswer = nil
-                }
+            
+            DispatchQueue.main.async {
+                presentationMode.wrappedValue.dismiss()
+                self.selectedAnswer = nil
             }
         }
     }
-    
+  
     private func cellColor(isSelected: Bool, model: QuestionAnswerModel) -> Color {
         isSelected ?
         model.correct ?

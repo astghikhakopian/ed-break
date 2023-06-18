@@ -46,14 +46,14 @@ struct NavigationLazyView<Content: View>: View {
 
 extension View {
 
-    func answerResult(type: Binding<AnswerResultType?>, isFeedbackGiven: Binding<Bool?>) -> some View {
+    func answerResult(type: Binding<AnswerResultType?>, isFeedbackGiven: Binding<Bool>) -> some View {
         return modifier(AnswerResultAlertModifier(type: type, isFeegbackGiven: isFeedbackGiven))
     }
 }
 
 struct AnswerResultAlertModifier {
     @Binding var type: AnswerResultType?
-    @Binding var isFeegbackGiven: Bool?
+    @Binding var isFeegbackGiven: Bool
 }
 
 extension AnswerResultAlertModifier: ViewModifier {

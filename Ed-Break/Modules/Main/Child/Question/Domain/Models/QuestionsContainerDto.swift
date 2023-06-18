@@ -9,8 +9,12 @@ import Foundation
 
 struct QuestionsContainerDto: Codable {
 
+    let questionGroupType: String?
     let questions: [QusetionDto]?
-    let answeredCount: Int?
+    let questionsCount: Int?
+    let wrongAnswersTime: String?
+    let answeredQuestionsCount: Int?
+    let correctAnswersCount: Int?
     var isCorrect: Bool?
 }
 
@@ -29,4 +33,9 @@ struct QuestionAnswerDto: Codable {
     let answer: String?
     let correct: Bool?
     let question: Int?
+}
+
+struct QuestionResultDto: Codable {
+    
+    let correct: Bool
 }

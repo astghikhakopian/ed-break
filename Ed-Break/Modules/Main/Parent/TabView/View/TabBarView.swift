@@ -21,6 +21,7 @@ struct TabBarView: View {
                 MainBackground(title: "main.parent.home", withNavbar: false) {
                     DashboardView(
                         viewModel: ChildrenViewModel(
+                            filtered: true,
                             getChildrenUseCase: GetChildrenUseCase(
                                 childrenRepository: DefaultChildrenRepository()),
                             pairChildUseCase: PairChildUseCase(

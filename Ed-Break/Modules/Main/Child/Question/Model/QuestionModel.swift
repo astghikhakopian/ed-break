@@ -5,17 +5,25 @@
 //  Created by Astghik Hakopian on 14.11.22.
 //
 
-import UIKit
+import Foundation
 
 struct QuestionsContainerModel {
     
+    var questionGroupType: QuestionType
     var questions: [QusetionModel]
-    var answeredCount: Int
+    var questionsCount: Int
+    var answeredQuestionsCount: Int
+    let correctAnswersCount: Int
+    var wrongAnswersTime: Date?
     var isCorrect: Bool?
     
     init(dto: QuestionsContainerDto) {
+        questionGroupType = QuestionType(rawValue: dto.questionGroupType ?? "") ?? .main
         questions = dto.questions?.map { QusetionModel(dto: $0) } ?? []
-        answeredCount = dto.answeredCount ?? 0
+        questionsCount = dto.questionsCount ?? 0
+        answeredQuestionsCount = dto.answeredQuestionsCount ?? 0
+        correctAnswersCount = dto.correctAnswersCount ?? 0
+        wrongAnswersTime = Date(fromString: dto.wrongAnswersTime ?? "", format: .isoDateTimeFull)?.toLocalTime()
         isCorrect = dto.isCorrect
     }
 }
@@ -60,5 +68,14 @@ struct QuestionAnswerModel {
         answer = dto.answer
         correct = dto.correct ?? false
         question = dto.question
+    }
+}
+
+struct QuestionResultModel: Codable {
+    
+    let correct: Bool
+    
+    init(dto: QuestionResultDto) {
+        correct = dto.correct
     }
 }

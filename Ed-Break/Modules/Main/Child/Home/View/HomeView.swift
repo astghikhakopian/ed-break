@@ -9,11 +9,18 @@ import SwiftUI
 
 struct HomeView<M: HomeViewModeling>: View {
     
-    @StateObject var viewModel: M
+    @StateObject private var viewModel = HomeViewModel(
+        getSubjectsUseCase: GetSubjectsUseCase(
+            childrenRepository: DefaultChildrenRepository()
+        ),
+        checkConnectionUseCase: CheckConnectionUseCase(
+            childrenRepository: DefaultChildrenRepository()
+        )
+    )
     
     @State private var isShieldPresented = false
-    @State private var isQuestions = false
-
+    @State private var isQuestionsActive = false
+    
     private let progressWidth: CGFloat = 180
     private let textSpacing: CGFloat = 4
     private let spacing: CGFloat = 12
@@ -28,21 +35,7 @@ struct HomeView<M: HomeViewModeling>: View {
             subjects
         }
         .onAppear {
-          viewModel.getSubjects()
-        }
-        .onReceive(.Push.notif, perform: { _ in
-            // TODO: - Mekhak - viewmodel-i mej // vontsvor nuin bann a grats. kara function lini
-            if !(viewModel.contentModel?.wrongAnswersTime ?? Date().toLocalTime() > Date().toLocalTime()) {
-                isQuestions = true
-            } else {
-                isShieldPresented = true
-            }
-        })
-        .onTapGesture {
-            // TODO: - Mekhak - viewmodel-i mej // vontsvor nuin bann a grats. kara function lini
-            if viewModel.contentModel?.wrongAnswersTime ?? Date().toLocalTime() > Date().toLocalTime() {
-                isShieldPresented = true
-            }
+            viewModel.getSubjects()
         }
         .onReceive(
             NotificationCenter.default.publisher(
@@ -51,6 +44,17 @@ struct HomeView<M: HomeViewModeling>: View {
             ), perform: { _ in
                 viewModel.getSubjects()
             }
+        )
+        .onChange(of: viewModel.shouldShowExercises) { shouldShowExercises in
+            guard shouldShowExercises, !viewModel.isActiveWrongAnswersBlock else { return }
+            isQuestionsActive = true
+        }
+        .overlay(
+            NavigationLink(
+                destination: subjectDestination(subject: viewModel.contentModel?.subjects.first ?? SubjectModel()),
+                isActive: $isQuestionsActive) {
+                    EmptyView()
+                }
         )
         .fullScreenCover(
             isPresented: $isShieldPresented,
@@ -62,11 +66,17 @@ struct HomeView<M: HomeViewModeling>: View {
     
     private var subjects: some View {
         ForEach(viewModel.contentModel?.subjects ?? [], id: \.id) { subject in
-            NavigationLink(
-                destination: { subjectDestination(subject: subject) },
-                label: { LessonCell(model: subject) }
-            )
-            .disabled(viewModel.contentModel?.wrongAnswersTime ?? Date().toLocalTime() > Date().toLocalTime())
+            if viewModel.isActiveWrongAnswersBlock {
+                Button(
+                    action: { isShieldPresented = true },
+                    label: { LessonCell(model: subject) }
+                )
+            } else {
+                NavigationLink(
+                    destination: { subjectDestination(subject: subject) },
+                    label: {  LessonCell(model: subject) }
+                )
+            }
         }
     }
     
@@ -82,28 +92,9 @@ struct HomeView<M: HomeViewModeling>: View {
                     answerQuestionUseCase: AnswerQuestionUseCase(
                         questionsRepository: DefaultQuestionsRepository()
                     ),
-                    resultOfAdditionalQuestionsUseCase: ResultOfAdditionalQuestionsUseCase(
-                        questionsRepository: DefaultQuestionsRepository()
-                    ),
                     textToSpeachManager: DefaultTextToSpeachManager()
                 )
             )
-        )
-    }
-    
-    private func subjectItemView(subject: SubjectModel) -> some View {
-        Button(
-            action: {
-                // TODO: - Mekhak - viewmodel-i mej
-                if !(viewModel.contentModel?.wrongAnswersTime ?? Date().toLocalTime() > Date().toLocalTime()) {
-                    isQuestions = true
-                } else {
-                    isShieldPresented = true
-                }
-            },
-            label: {
-                LessonCell(model: subject)
-            }
         )
     }
     
@@ -114,7 +105,7 @@ struct HomeView<M: HomeViewModeling>: View {
             Spacer()
         }
         .background(Color.primaryCellBackground)
-            .cornerRadius(cornerRadius)
+        .cornerRadius(cornerRadius)
     }
     
     private var progressViewContent: some View {
@@ -144,24 +135,12 @@ struct HomeView<M: HomeViewModeling>: View {
     }
     
     private var shield: some View {
-        ShieldView<QuestionsViewModel>(
-            viewModel: QuestionsViewModel(
-                subject: SubjectModel(),
-                home: viewModel.contentModel,
-                getQuestionsUseCase: GetQuestionsUseCase(
-                    questionsRepository: DefaultQuestionsRepository()),
-                answerQuestionUseCase: AnswerQuestionUseCase(
-                    questionsRepository: DefaultQuestionsRepository()),
-                resultOfAdditionalQuestionsUseCase: ResultOfAdditionalQuestionsUseCase(
-                    questionsRepository: DefaultQuestionsRepository()),
-                textToSpeachManager: DefaultTextToSpeachManager()
-            )
-        ) { _ in isShieldPresented = false }
+        ShieldView(remindingSeconds: $viewModel.shieldSeconds)
     }
 }
 
 struct HomeView_Previews: PreviewProvider {
     static var previews: some View {
-        HomeView(viewModel: MockHomeViewModel())
+        HomeView<HomeViewModel>()
     }
 }

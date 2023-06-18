@@ -19,14 +19,4 @@ class GetQuestionsUseCase: QuestionsUseCase {
             }
         }
     }
-    func execute(completion: @escaping (Result<QuestionsContainerModel, Error>) -> Void) {
-        questionsRepository.getAdditionalQuestions { result in
-            switch result {
-            case .success(let dto):
-                completion(.success(QuestionsContainerModel(dto: dto)))
-            case .failure(let failure):
-                completion(.failure(failure))
-            }
-        }
-    }
 }

@@ -15,9 +15,6 @@ final class HomeViewModel: HomeViewModeling, Identifiable {
     @Published var isLoading: Bool = false
     @Published var contentModel: HomeModel? = nil
     
-    @Published var isNavigationAllowed: Bool = false
-    @Published var isShield: Bool = false
-    
     @Published var remindingMinutes: Int = 0 {
         didSet {
             progress = Double(self.remindingMinutes)/Double(contentModel?.interruption ?? 1)
@@ -25,39 +22,25 @@ final class HomeViewModel: HomeViewModeling, Identifiable {
     }
     @Published var progress: Double = 0
     
+    @Published var shieldSeconds: Int = 0
+    @Published var shouldShowExercises: Bool = false
+    
+    var isActiveWrongAnswersBlock: Bool {
+        shieldSeconds > 0
+    }
+    
+    private var timer: Timer?
     private var didUpdateToken = false
     private let userDefaultsService = UserDefaultsService()
     private var getSubjectsUseCase: GetSubjectsUseCase
     private let checkConnectionUseCase: CheckConnectionUseCase
     
     private var cancelables = Set<AnyCancellable>()
-    private var isRecoverModelVaid: AnyPublisher<Bool, Never> {
-        Publishers.CombineLatest($contentModel,$isLoading)
-            .map { [weak self] contentModel, isLoading in
-                self?.contentModel?.wrongAnswersTime ?? Date().toLocalTime() > Date().toLocalTime() && (UserDefaultsService().getObject(forKey: .Notif.isFromNotif) ?? false)
-            }.eraseToAnyPublisher()
-    }
-    private var isShieldModelVaid: AnyPublisher<Bool, Never> {
-        Publishers.CombineLatest($contentModel,$isLoading)
-            .map { [weak self] contentModel, isLoading in
-                self?.contentModel?.wrongAnswersTime ?? Date().toLocalTime() < Date().toLocalTime() && (UserDefaultsService().getObject(forKey: .Notif.isFromNotif) ?? false)
-            }.eraseToAnyPublisher()
-    }
-    
     
     
     init(getSubjectsUseCase: GetSubjectsUseCase, checkConnectionUseCase: CheckConnectionUseCase) {
         self.getSubjectsUseCase = getSubjectsUseCase
         self.checkConnectionUseCase = checkConnectionUseCase
-        isRecoverModelVaid
-            .receive(on: RunLoop.main)
-            .assign(to: \.isNavigationAllowed, on: self)
-            .store(in: &cancelables)
-        isShieldModelVaid
-            .receive(on: RunLoop.main)
-            .assign(to: \.isShield, on: self)
-            .store(in: &cancelables)
-
     }
     
     func getSubjects() {
@@ -118,9 +101,17 @@ final class HomeViewModel: HomeViewModeling, Identifiable {
         let allremindingMinutes: Int? = self.userDefaultsService.getPrimitiveFromSuite(forKey: .ChildUser.remindingMinutes)
         let restrictions = model.restrictions ?? FamilyActivitySelection()
         
-        if let startTime = model.breakStartDatetime,
+        if let wrongAnswersTime = contentModel?.wrongAnswersTime {
+            if let difference = getSeconds(start: wrongAnswersTime),
+               difference < 0 {
+                shieldSeconds = -difference
+                startShieldTimer()
+            }
+        }
+        
+        if let startTime = model.breakStartDatetime /*,
            startTime.component(.day) == today.component(.day),
-           startTime.component(.hour) ?? 0 <= today.component(.hour) ?? 0 {
+           startTime.component(.hour) ?? 0 <= today.component(.hour) ?? 0*/ {
             
             let startTimeMinute = startTime.component(.minute) ?? 0
             let todayMinute = today.component(.minute) ?? 0
@@ -133,10 +124,10 @@ final class HomeViewModel: HomeViewModeling, Identifiable {
                 allremindingMinutes > 0 {
                 self.remindingMinutes = allremindingMinutes
             } else {
-                self.remindingMinutes = 0
+                self.remindingMinutes = allremindingMinutes ?? 0
             }
         } else {
-            self.remindingMinutes = 0
+            self.remindingMinutes = allremindingMinutes ?? 0
         }
         
         let shouldRestrict = self.remindingMinutes <= 0
@@ -151,6 +142,34 @@ final class HomeViewModel: HomeViewModeling, Identifiable {
         self.userDefaultsService.setObjectInSuite(DataModel.shared.selectionToEncourage, forKey: .ChildUser.selectionToEncourage)
         self.userDefaultsService.setObjectInSuite(DataModel.shared.selectionToDiscourage, forKey: .ChildUser.selectionToDiscourage)
         ScheduleModel.setSchedule()
+        
+        let shouldShowExercises: Bool? = self.userDefaultsService.getPrimitive(forKey: .ChildUser.shouldShowExercises)
+        self.shouldShowExercises = shouldShowExercises ?? false
+        userDefaultsService.setPrimitive(false, forKey: .ChildUser.shouldShowExercises)
+    }
+    
+    private func getSeconds(start: Date?) -> Int? {
+        guard let start = start else { return nil }
+        let diff = Int(Date().toLocalTime().timeIntervalSince1970 - start.timeIntervalSince1970)
+        
+        let hours = diff / 3600
+        let minutes = (diff - hours * 3600)
+        return minutes
+    }
+    
+    private func startShieldTimer() {
+        timer?.invalidate()
+        timer = nil
+        timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { [weak self] _ in
+            guard let self = self else { return }
+                  guard self.shieldSeconds > 0 else {
+                self.timer?.invalidate();
+                self.timer = nil
+                return
+                
+            }
+            self.shieldSeconds -= 1
+        }
     }
 }
 
@@ -158,9 +177,10 @@ final class HomeViewModel: HomeViewModeling, Identifiable {
 // MARK: - Preview
 
 final class MockHomeViewModel: HomeViewModeling, Identifiable {
-    var isShield: Bool = false
     
-    var isNavigationAllowed: Bool = false
+    var isActiveWrongAnswersBlock: Bool = false
+    var shieldSeconds: Int = 0
+    var shouldShowExercises = false
     
     var isLoading = false
     var remindingMinutes: Int = 0

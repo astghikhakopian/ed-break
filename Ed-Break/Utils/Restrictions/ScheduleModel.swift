@@ -47,7 +47,7 @@ class ScheduleModel {
         let store = ManagedSettingsStore()
         let schedule = DeviceActivitySchedule(
             intervalStart: Calendar.current.dateComponents([.hour, .minute], from: Date()),
-            intervalEnd: DateComponents(hour: 23, minute: 59),
+            intervalEnd: Calendar.current.dateComponents([.day, .hour, .minute], from: Date().oneDay),
             repeats: true
         )
         
@@ -72,7 +72,7 @@ class ScheduleModel {
     }
 }
 
-private extension Date {
+extension Date {
     func toGMTTime() -> Date {
         let timezone = TimeZone.current
         let seconds = -TimeInterval(timezone.secondsFromGMT(for: self))
@@ -92,11 +92,17 @@ private extension Date {
         return Date()
     }
     var oneWeek: Date {
-        if let date = Calendar.current.date(byAdding: .day, value: 7, to: Date()) {
+        if let date = Calendar.current.date(byAdding: DateComponents(hour: 4, second: 10), to: Date()) {
             return date
         }
         return Date()
     }
-
+    var oneDay: Date {
+        if let date = Calendar.current.date(byAdding: .day, value: 1, to: Date()) {
+            return date
+        }
+        return Date()
+    }
+    
 }
 

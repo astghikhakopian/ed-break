@@ -46,7 +46,7 @@ final class ChildDetailsViewModel: ChildDetailsViewModeling, Identifiable {
     
     @Published var grades: [Grade] = [.first,.second,.third,.fourth, .fifth, .sixth,.seventh,.eightth,.nineth]//Grade.allCases
     @Published var interuptions: [Interuption] = [.i15,.i20,.i25,.i30]//Interuption.allCases
-    @Published var subjects: [BottomsheetCellModel] = [SubjectModel(dto: SubjectDto(id: 0, subject: "", photo: "", questionsCount: 0, completedCount: 0, correctAnswersCount: 0, completed: false))]
+    @Published var subjects: [BottomsheetCellModel] = [SubjectModel(dto: SubjectDto(id: 0, subject: "", photo: "", questionsCount: 0, answeredQuestionsCount: 0, correctAnswersCount: 0, completed: false))]
     @Published var isContentValid: Bool = false
     @Published var isLoading: Bool = false
     @Published var children: [ChildDetailsModel] = [ChildDetailsModel()] {

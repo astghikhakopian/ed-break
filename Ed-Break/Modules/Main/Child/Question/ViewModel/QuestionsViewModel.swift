@@ -13,31 +13,14 @@ final class QuestionsViewModel: QuestionsViewModeling, Identifiable {
     @Published var currentQuestion: QusetionModel = QusetionModel()
     @Published var isLoading: Bool = false
     @Published var answerResultType: AnswerResultType? = nil
-    @Published var isFeedbackGiven: Bool? = false
-    @Published var remindingSeconds: Int = 0 {
-        didSet {
-            guard remindingSeconds >= 0 else { buttonTitle = "common.continue"; return }
-                if remindingSeconds == 0 {
-                    buttonTitle = "Back to subjects" // TODO: - Mekhak - localized
-                    isContentValid = true
-                } else {
-                    let seconds = (remindingSeconds % 3600) % 60
-                    let minutes = ((remindingSeconds % 3600) / 60)
-                    let secondsString = seconds <= 9 ? "0\(seconds)" : "\(seconds)"
-                    // let minutesString = minutes <= 9 ? "0\(minutes)" : "\(minutes)"
-                    buttonTitle = "\(minutes):\(secondsString)"
-                    //"0:\(remindingSeconds <= 9 ? "0\(remindingSeconds)" : "\(remindingSeconds)")"
-                    isContentValid = false
-                }
-        }
-    }
-    
-    @Published var buttonTitle: String = "common.continue"
+    @Published var isFeedbackGiven: Bool = false
+    @Published var isLastQuestion: Bool = false
     @Published var isContentValid: Bool = false
+    
     
     var areSubjectQustionsAnswered: Bool {
         guard let questionsContainer = questionsContainer else { return false }
-        return questionsContainer.answeredCount >= questionsContainer.questions.count
+        return questionsContainer.answeredQuestionsCount >= questionsContainer.questions.count
     }
     var isPhoneUnlocked: Bool {
         DataModel.shared.isDiscourageEmpty
@@ -47,16 +30,14 @@ final class QuestionsViewModel: QuestionsViewModeling, Identifiable {
     let home: HomeModel?
     private let getQuestionsUseCase: GetQuestionsUseCase
     private let answerQuestionUseCase: AnswerQuestionUseCase
-    private let resultOfAdditionalQuestionsUseCase: ResultOfAdditionalQuestionsUseCase
     
     var textToSpeachManager: TextToSpeachManager
     
-    init(subject: SubjectModel, home: HomeModel?, getQuestionsUseCase: GetQuestionsUseCase, answerQuestionUseCase: AnswerQuestionUseCase, resultOfAdditionalQuestionsUseCase: ResultOfAdditionalQuestionsUseCase, textToSpeachManager: TextToSpeachManager) {
+    init(subject: SubjectModel, home: HomeModel?, getQuestionsUseCase: GetQuestionsUseCase, answerQuestionUseCase: AnswerQuestionUseCase, textToSpeachManager: TextToSpeachManager) {
         self.subject = subject
         self.home = home
         self.getQuestionsUseCase = getQuestionsUseCase
         self.answerQuestionUseCase = answerQuestionUseCase
-        self.resultOfAdditionalQuestionsUseCase = resultOfAdditionalQuestionsUseCase
         self.textToSpeachManager = textToSpeachManager
     }
     
@@ -69,35 +50,15 @@ final class QuestionsViewModel: QuestionsViewModeling, Identifiable {
                 DispatchQueue.main.async { [weak self] in
                     guard let self = self else { return }
                     self.questionsContainer = model
-                    if let wrongAnswersTime = self.home?.wrongAnswersTime,
-                       let difference = self.getSeconds(start: wrongAnswersTime),
-                        difference < 0 {
-                        self.remindingSeconds = -difference
-                    }
-                    if model.answeredCount < model.questions.count {
-                        self.currentQuestion = model.questions[model.answeredCount]
+                   
+                    guard !model.questions.isEmpty else { return }
+                    if model.answeredQuestionsCount < model.questions.count {
+                        self.currentQuestion = model.questions[model.answeredQuestionsCount]
+                        self.isLastQuestion = isTheLastQuestion
                     } else {
-                        // self.remindingMinutes = 0
+                        self.currentQuestion = model.questions[0]
+                        self.isLastQuestion = isTheLastQuestion
                     }
-                }
-            case .failure(let failure):
-                print(failure.localizedDescription)
-            }
-        }
-    }
-    
-    func getAdditionalQuestions(complition: @escaping ()->()) {
-        isLoading = true
-        getQuestionsUseCase.execute { result in
-            DispatchQueue.main.async { self.isLoading = false }
-            switch result {
-            case .success(let model):
-                DispatchQueue.main.async { [weak self] in
-                    self?.questionsContainer = model
-                    if model.answeredCount < model.questions.count {
-                        self?.currentQuestion = model.questions[model.answeredCount]
-                    }
-                    complition()
                 }
             case .failure(let failure):
                 print(failure.localizedDescription)
@@ -107,64 +68,51 @@ final class QuestionsViewModel: QuestionsViewModeling, Identifiable {
     
     func answerQuestion(answer: QuestionAnswerModel, isAdditionalQuestions: Bool, completion: @escaping (AnswerResultType)->()) {
         isLoading = true
+        
         let index = questionsContainer?.questions.firstIndex(of: currentQuestion) ?? 0
         answerQuestionUseCase.execute(
-            questionId: currentQuestion.id,
             answerId: answer.id,
             index: index,
-            questionType: isAdditionalQuestions ? .additional : .main,
-            subjectId: subject.id
+            questionType: questionsContainer?.questionGroupType ?? .main
         ) { [weak self] result in
             DispatchQueue.main.async { self?.isLoading = false }
-            guard result == nil else { return }
-            // switch result {
-            // case .success:
-            
-            guard let self = self, let questionsContainer = self.questionsContainer else { return }
-            let answersCount = questionsContainer.answeredCount
-            if answersCount + 1 < questionsContainer.questions.count {
-                DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) { [weak self] in
-                    guard let self = self, let questionsContainer = self.questionsContainer, answersCount + 1 < self.questionsContainer?.questions.count ?? 0 else { return }
-                    self.questionsContainer?.answeredCount = answersCount + 1
-                    self.questionsContainer?.questions[answersCount].isCorrect = answer.correct
-                    self.currentQuestion = questionsContainer.questions[answersCount + 1]
-                    self.isFeedbackGiven = false
+            switch result {
+            case .success(let result):
+                guard let self = self, let questionsContainer = self.questionsContainer else { return }
+                let answersCount = questionsContainer.answeredQuestionsCount
+                if answersCount + 1 < questionsContainer.questions.count {
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) { [weak self] in
+                        guard
+                            let self = self,
+                            let questionsContainer = self.questionsContainer,
+                                answersCount + 1 < self.questionsContainer?.questions.count ?? 0
+                        else { return }
+                        self.questionsContainer?.answeredQuestionsCount = answersCount + 1
+                        self.questionsContainer?.questions[answersCount].isCorrect = result.correct
+                        self.currentQuestion = questionsContainer.questions[answersCount + 1]
+                        self.isLastQuestion = isTheLastQuestion
+                        self.isFeedbackGiven = false
+                        self.isContentValid = false
+                    }
+                } else {
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
+                        self.isFeedbackGiven = false
+                        completion(answer.correct ? .success : .failure)
+                    }
                 }
-            } else {
-                DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
-                    self.isFeedbackGiven = false
-                    completion(answer.correct ? .success : .failure)
+                DispatchQueue.main.async { [weak self] in
+                    self?.answerResultType = answer.correct ? .success : .failure
                 }
+                completion(.success)
+            case .failure(let failure):
+                print(failure.localizedDescription)
             }
-            DispatchQueue.main.async { [weak self] in
-                self?.answerResultType = answer.correct ? .success : .failure
-            }
-            
-                
-            
-//                }
-//            case .failure(let failure):
-//                print(failure.localizedDescription)
-//            }
         }
     }
-    
-    func didAnswerAdditionalQuestions(completion: @escaping ()->()) {
-        isLoading = true
-        resultOfAdditionalQuestionsUseCase.execute { result in
-            DispatchQueue.main.async { self.isLoading = false }
-            guard result == nil else { return }
-            completion()
-        }
-    }
-    
-    private func getSeconds(start: Date?) -> Int? {
-        guard let start = start else { return nil }
-        let diff = Int(Date().toLocalTime().timeIntervalSince1970 - start.timeIntervalSince1970)
-        
-        let hours = diff / 3600
-        let minutes = (diff - hours * 3600)
-        return minutes
+  
+  private var isTheLastQuestion: Bool {
+        let currentQuestionIndex = questionsContainer?.questions.firstIndex(of: currentQuestion) ?? 0
+        return (questionsContainer?.questions.count ?? 1) - 1 == currentQuestionIndex
     }
 }
 
@@ -174,15 +122,15 @@ final class QuestionsViewModel: QuestionsViewModeling, Identifiable {
 final class MockQuestionsViewModel: QuestionsViewModeling, Identifiable {
     
     var areSubjectQustionsAnswered: Bool = false
-    var isPhoneUnlocked: Bool = true
+    var isPhoneUnlocked: Bool = false
     
     var textToSpeachManager: TextToSpeachManager = DefaultTextToSpeachManager()
     
-    var isFeedbackGiven: Bool? = false
-    
+    var isFeedbackGiven: Bool = false
     
     var questionsContainer: QuestionsContainerModel? = QuestionsContainerModel(
         dto: QuestionsContainerDto(
+            questionGroupType: "main",
             questions: [
                 QusetionDto(
                     id: 0,
@@ -197,10 +145,15 @@ final class MockQuestionsViewModel: QuestionsViewModeling, Identifiable {
                         subject: "Math",
                         photo: "https://ed-break-back-dev.s3.amazonaws.com/media/800px-Stylised_atom_with_three_Bohr_model_orbits_and_stylised_nucleus.svg.png",
                         questionsCount: 1,
-                        completedCount: 0,
+                        answeredQuestionsCount: 0,
                         correctAnswersCount: 0,
                         completed: false))],
-            answeredCount: 0))
+            questionsCount: 1,
+            wrongAnswersTime: nil,
+            answeredQuestionsCount: 9,
+            correctAnswersCount: 0
+        )
+    )
     var currentQuestion: QusetionModel = QusetionModel(dto: QusetionDto(
         id: 0,
         questionAnswer: [
@@ -216,15 +169,16 @@ final class MockQuestionsViewModel: QuestionsViewModeling, Identifiable {
             subject: "Math",
             photo: "https://ed-break-back-dev.s3.amazonaws.com/media/800px-Stylised_atom_with_three_Bohr_model_orbits_and_stylised_nucleus.svg.png",
             questionsCount: 1,
-            completedCount: 0,
+            answeredQuestionsCount: 0,
             correctAnswersCount: 0,
             completed: false)))
-    var subject: SubjectModel = SubjectModel(dto: SubjectDto(id: 0, subject: "Math", photo: nil, questionsCount: 0, completedCount: 0, correctAnswersCount: 0, completed: true))
+    var subject: SubjectModel = SubjectModel(dto: SubjectDto(id: 0, subject: "Math", photo: nil, questionsCount: 0, answeredQuestionsCount: 0, correctAnswersCount: 0, completed: true))
     var isLoading = false
     var answerResultType: AnswerResultType? = nil
     var remindingSeconds = 0
     var buttonTitle: String = ""
     var isContentValid: Bool = false
+    var isLastQuestion: Bool = false 
     
     func getQuestions() { }
     func getAdditionalQuestions() { }

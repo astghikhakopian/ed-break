@@ -40,5 +40,6 @@ extension UserDefaults.Key {
         static let threshold = UserDefaults.Key(rawValue: "ChildUser.threshold")
         static let remindingMinutes = UserDefaults.Key(rawValue: "ChildUser.remindingMinutes")
         static let lastIncreaseTime = UserDefaults.Key(rawValue: "ChildUser.lastIncreaseTime")
+        static let shouldShowExercises = UserDefaults.Key(rawValue: "ChildUser.shouldShowExercises")
     }
 }

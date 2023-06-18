@@ -34,10 +34,10 @@ struct LessonCell: View {
                 Image.Common.roundedCheckmark
             } else {
                 ZStack(alignment: .leading) {
-                    SegmentedProgressView(segmentsCount: model.questionsCount, filledSegments: model.completedCount)
+                    SegmentedProgressView(segmentsCount: model.questionsCount, filledSegments: model.answeredQuestionsCount)
                         .frame(width: 48)
                         .rotationEffect(Angle(degrees: -90))
-                    Text("\(model.completedCount)/\(model.questionsCount)")
+                    Text("\(model.answeredQuestionsCount)/\(model.questionsCount)")
                         .font(.appBody)
                         .foregroundColor(.primaryDescription)
                         .padding(7)
@@ -52,6 +52,6 @@ struct LessonCell: View {
 
 struct LessonCell_Previews: PreviewProvider {
     static var previews: some View {
-        LessonCell(model: SubjectModel(dto: SubjectDto(id: 0, subject: "Math", photo: "English", questionsCount: 5, completedCount: 5, correctAnswersCount: 3, completed: false)))
+        LessonCell(model: SubjectModel(dto: SubjectDto(id: 0, subject: "Math", photo: "English", questionsCount: 5, answeredQuestionsCount: 5, correctAnswersCount: 3, completed: false)))
     }
 }

@@ -32,7 +32,7 @@ struct DashboardView<M: ChildrenViewModeling>: View {
                     }
                 }
             }.onReceive(.Refresh.update) { _ in
-                viewModel.getChildren()
+                viewModel.getChildren(filtered: true)
                 viewModel.getCoachingChildren()
             }
         }
@@ -43,7 +43,7 @@ private extension DashboardView {
     
     var content: some View {
         
-        ForEach(viewModel.children.results, id: \.id) { child in
+        ForEach(viewModel.children.results , id: \.id) { child in
             if child.deviceToken != nil {
                 NavigationLink(
                     destination:

@@ -38,7 +38,7 @@ struct ChildrenView<M: ChildrenViewModeling>: View {
                 }, title: "common.continue", isContentValid: $viewModel.isContentValid, isLoading:  $viewModel.isLoading,colorBackgroundValid: .appWhite,colorBackgroundInvalid: .appWhite,colorTextValid: .primaryPurple,colorTextInvalid: .border)
             }
         }.onAppear {
-            viewModel.getChildren()
+            viewModel.getChildren(filtered: false)
         }
         .sheet(isPresented: $isShowingScanner) {
             CodeScannerView(codeTypes: [.qr], completion: handleScan)

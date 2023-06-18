@@ -18,7 +18,7 @@ protocol ChildrenViewModeling: ObservableObject {
     var selectedPeriod: TimePeriod { get set }
     var timePeriodDatasource: [TimePeriod] { get set }
     
-    func getChildren()
+    func getChildren(filtered: Bool)
     func addRestrictions(childId: Int, selection: FamilyActivitySelection)
     func getCoachingChildren()
     func pairChild(id: Int, deviceToken: String, compleated: @escaping (Bool)->())

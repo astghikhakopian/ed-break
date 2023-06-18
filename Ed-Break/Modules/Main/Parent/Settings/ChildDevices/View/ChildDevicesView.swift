@@ -49,7 +49,7 @@ struct ChildDevicesView<M: ChildrenViewModeling>: View {
             }
         }
         .onAppear {
-            viewModel.getChildren()
+            viewModel.getChildren(filtered: false)
         }
         .hiddenTabBar()
     }

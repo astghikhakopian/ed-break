@@ -16,9 +16,7 @@ enum QuestionType: String {
 enum QuestionsRoute: TargetType {
     
     case getQuestions(subjectId: Int)
-    case getAdditionalQuestions
-    case answerQuestion(questionId: Int, answerId: Int, index: Int, questionType: QuestionType, subjectId: Int)
-    case resultOfAdditionalQuestions
+    case answerQuestion(answerId: Int, index: Int, questionType: QuestionType)
     
     var baseURL: URL {
         return RequestServices.Users.baseUrl
@@ -28,12 +26,8 @@ enum QuestionsRoute: TargetType {
         switch self {
         case .getQuestions:
             return "/questions/subject-questions/"
-        case .getAdditionalQuestions:
-            return "/exercise/additional-questions/"
         case .answerQuestion:
             return "/questions/question-answer/"
-        case .resultOfAdditionalQuestions:
-            return "/exercise/additional-results/"
         }
     }
     
@@ -41,12 +35,8 @@ enum QuestionsRoute: TargetType {
         switch self {
         case .getQuestions:
             return .get
-        case .getAdditionalQuestions:
-            return .get
         case .answerQuestion:
             return .post
-        case .resultOfAdditionalQuestions:
-            return .get
         }
     }
     
@@ -59,26 +49,14 @@ enum QuestionsRoute: TargetType {
                 ],
                 encoding: URLEncoding.queryString
             )
-        case .getAdditionalQuestions:
-            return .requestParameters(
-                parameters: [:],
-                encoding: URLEncoding.queryString
-            )
-        case .answerQuestion(let questionId, let answerId, let index, let questionType, let subjectId):
+        case .answerQuestion(let answerId, let index, let questionType):
             return .requestParameters(
                 parameters: [
-                    "question": questionId,
-                    "answer": answerId,
+                    "answerId": answerId,
                     "index": index+1,
-                    "question_type": questionType.rawValue,
-                    "subject": subjectId
+                    "questionType": questionType.rawValue
                 ],
-                encoding: URLEncoding.queryString
-            )
-        case .resultOfAdditionalQuestions:
-            return .requestParameters(
-                parameters: [:],
-                encoding: URLEncoding.queryString
+                encoding: JSONEncoding.default
             )
         }
     }

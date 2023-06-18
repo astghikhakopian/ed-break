@@ -32,18 +32,18 @@ final class ChildrenViewModel: ChildrenViewModeling, Identifiable {
     private let refreshTokenUseCase: RefreshTokenUseCase
     private var addRestrictionUseCase: AddRestrictionUseCase
     
-    init(getChildrenUseCase: GetChildrenUseCase, pairChildUseCase: PairChildUseCase, getCoachingUseCase: GetCoachingUseCase? = nil, refreshTokenUseCase: RefreshTokenUseCase,addRestrictionUseCase: AddRestrictionUseCase) {
+    init(filtered: Bool, getChildrenUseCase: GetChildrenUseCase, pairChildUseCase: PairChildUseCase, getCoachingUseCase: GetCoachingUseCase? = nil, refreshTokenUseCase: RefreshTokenUseCase,addRestrictionUseCase: AddRestrictionUseCase) {
         self.getChildrenUseCase = getChildrenUseCase
         self.pairChildUseCase = pairChildUseCase
         self.getCoachingUseCase = getCoachingUseCase
         self.refreshTokenUseCase = refreshTokenUseCase
         self.addRestrictionUseCase = addRestrictionUseCase
         
-        getChildren()
+        getChildren(filtered: filtered)
         getCoachingChildren()
     }
     
-    func getChildren() {
+    func getChildren(filtered: Bool) {
         DispatchQueue.main.async { self.isLoading = true }
         getChildrenUseCase.execute { [weak self] result in
             guard let self = self else { return }
@@ -51,7 +51,12 @@ final class ChildrenViewModel: ChildrenViewModeling, Identifiable {
             switch result {
             case .success(let models):
                 DispatchQueue.main.async { [weak self] in
-                    self?.children = PagingModel(results: models)
+                    self?.children = PagingModel(
+                        results: filtered ?
+                        models.filter { $0.deviceToken != nil } :
+                            models
+                        
+                    )
                 }
             case .failure(let failure):
                 print(failure.localizedDescription)
@@ -59,7 +64,7 @@ final class ChildrenViewModel: ChildrenViewModeling, Identifiable {
                 self.updatedRefreshToken = true
                 self.refreshToken { [weak self] success in
                     guard success else { return }
-                    self?.getChildren()
+                    self?.getChildren(filtered: filtered)
                 }
             }
         }
@@ -138,7 +143,7 @@ final class MockChildrenViewModeling: ChildrenViewModeling, Identifiable {
     var children = PagingModel<ChildModel>(results: [ChildModel(dto: ChildDto(id: 0, name: "Emma", grade: 1, restrictionTime: nil, photo: nil, todayAnswers: nil, todayCorrectAnswers: nil, percentageToday: nil, percentageProgress: nil, lastLogin: nil, breakEndDatetime: nil, breakStartDatetime: nil, wrongAnswersTime: nil, deviceToken: nil, restrictions: nil, subjects: []))])
     var coachingChildren = [CoachingChildModel]()
     
-    func getChildren() { }
+    func getChildren(filtered: Bool) { }
     func getCoachingChildren() { }
     func pairChild(id: Int, deviceToken: String, compleated: @escaping (Bool)->()) { }
     func refreshToken(completion: @escaping (Bool) -> Void) { }

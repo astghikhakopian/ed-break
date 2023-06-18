@@ -31,52 +31,17 @@ struct Ed_BreakApp: App {
 class AppDelegate: NSObject, UIApplicationDelegate, UNUserNotificationCenterDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
-
-//        AuthorizationCenter.shared.requestAuthorization { result in
-//            switch result {
-//            case .success():
-//                break
-//            case .failure(let error):
-//                print("Error for Family Controls: \(error)")
-//            }
-//        }
         UNUserNotificationCenter.current().delegate = self
-//        ScheduleModel.setSchedule()
-        
         return true
     }
     
-    func applicationDidEnterBackground(_ application: UIApplication) {
-        // ScheduleModel.setSchedule()
-    }
-    func applicationWillEnterForeground(_ application: UIApplication) {
-        // NotificationCenter.default.post(name: NSNotification.Name("update"), object: nil)
-    }
-    func applicationWillTerminate(_ application: UIApplication) {
-        // ScheduleModel.setSchedule()
-    }
-    
-    
     func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
-        
-//        let apps: FamilyActivitySelection? = UserDefaultsService().getObject(forKey: .ChildUser.restrictedApps)
-//        DataModel.shared.selectionToDiscourage = apps ?? DataModel.shared.selectionToEncourage
-//        DataModel.shared.selectionToEncourage = FamilyActivitySelection()
-//        DataModel.shared.threshold = DateComponents()
-//        DataModel.shared.setShieldRestrictions()
-//
-//        completionHandler()
+        UserDefaultsService().setPrimitive(true, forKey: .ChildUser.shouldShowExercises)
     }
     
 
     func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
-        
-//        let apps: FamilyActivitySelection? = UserDefaultsService().getObject(forKey: .ChildUser.restrictedApps)
-//        DataModel.shared.selectionToDiscourage = apps ?? DataModel.shared.selectionToEncourage
-//        DataModel.shared.selectionToEncourage = FamilyActivitySelection()
-//        DataModel.shared.threshold = DateComponents()
-//        DataModel.shared.setShieldRestrictions()
-//
+        UserDefaultsService().setPrimitive(true, forKey: .ChildUser.shouldShowExercises)
         completionHandler([.alert, .badge, .sound])
     }
 }
