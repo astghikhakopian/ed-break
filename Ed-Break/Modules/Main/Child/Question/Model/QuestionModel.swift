@@ -56,7 +56,7 @@ struct QusetionModel: Equatable {
     }
 }
 
-struct QuestionAnswerModel {
+struct QuestionAnswerModel: Equatable {
     
     let id: Int
     let answer: String?

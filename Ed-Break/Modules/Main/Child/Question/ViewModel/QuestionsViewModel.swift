@@ -9,14 +9,19 @@ import UIKit
 
 final class QuestionsViewModel: QuestionsViewModeling, Identifiable {
     
+    enum CurrentReadingItem: Equatable {
+        case question
+        case option(Int)
+    }
+    
     @Published var questionsContainer: QuestionsContainerModel?
+    @Published var currentReadingItem: CurrentReadingItem?
     @Published var currentQuestion: QusetionModel = QusetionModel()
     @Published var isLoading: Bool = false
     @Published var answerResultType: AnswerResultType? = nil
     @Published var isFeedbackGiven: Bool = false
     @Published var isLastQuestion: Bool = false
     @Published var isContentValid: Bool = false
-    
     
     var areSubjectQustionsAnswered: Bool {
         guard let questionsContainer = questionsContainer else { return false }
@@ -25,13 +30,13 @@ final class QuestionsViewModel: QuestionsViewModeling, Identifiable {
     var isPhoneUnlocked: Bool {
         DataModel.shared.isDiscourageEmpty
     }
-   
+    
     let subject: SubjectModel
     let home: HomeModel?
     private let getQuestionsUseCase: GetQuestionsUseCase
     private let answerQuestionUseCase: AnswerQuestionUseCase
     
-    var textToSpeachManager: TextToSpeachManager
+    private let textToSpeachManager: TextToSpeachManager
     
     init(subject: SubjectModel, home: HomeModel?, getQuestionsUseCase: GetQuestionsUseCase, answerQuestionUseCase: AnswerQuestionUseCase, textToSpeachManager: TextToSpeachManager) {
         self.subject = subject
@@ -50,7 +55,7 @@ final class QuestionsViewModel: QuestionsViewModeling, Identifiable {
                 DispatchQueue.main.async { [weak self] in
                     guard let self = self else { return }
                     self.questionsContainer = model
-                   
+                    
                     guard !model.questions.isEmpty else { return }
                     if model.answeredQuestionsCount < model.questions.count {
                         self.currentQuestion = model.questions[model.answeredQuestionsCount]
@@ -85,7 +90,7 @@ final class QuestionsViewModel: QuestionsViewModeling, Identifiable {
                         guard
                             let self = self,
                             let questionsContainer = self.questionsContainer,
-                                answersCount + 1 < self.questionsContainer?.questions.count ?? 0
+                            answersCount + 1 < self.questionsContainer?.questions.count ?? 0
                         else { return }
                         self.questionsContainer?.answeredQuestionsCount = answersCount + 1
                         self.questionsContainer?.questions[answersCount].isCorrect = result.correct
@@ -109,10 +114,26 @@ final class QuestionsViewModel: QuestionsViewModeling, Identifiable {
             }
         }
     }
-  
-  private var isTheLastQuestion: Bool {
+    
+    func startPlayingQuestion() {
+        guard !(currentQuestion.questionText ?? "").isEmpty else { return }
+        stopPlayingQuestion()
+        textToSpeachManager.read(question: currentQuestion, after: 0) { [weak self] in
+            self?.currentReadingItem = $0
+        }
+    }
+    
+    func stopPlayingQuestion() {
+        textToSpeachManager.stop(at: .immediate)
+    }
+    
+    private var isTheLastQuestion: Bool {
         let currentQuestionIndex = questionsContainer?.questions.firstIndex(of: currentQuestion) ?? 0
         return (questionsContainer?.questions.count ?? 1) - 1 == currentQuestionIndex
+    }
+    
+    deinit {
+        stopPlayingQuestion()
     }
 }
 
@@ -123,9 +144,6 @@ final class MockQuestionsViewModel: QuestionsViewModeling, Identifiable {
     
     var areSubjectQustionsAnswered: Bool = false
     var isPhoneUnlocked: Bool = false
-    
-    var textToSpeachManager: TextToSpeachManager = DefaultTextToSpeachManager()
-    
     var isFeedbackGiven: Bool = false
     
     var questionsContainer: QuestionsContainerModel? = QuestionsContainerModel(
@@ -172,17 +190,28 @@ final class MockQuestionsViewModel: QuestionsViewModeling, Identifiable {
             answeredQuestionsCount: 0,
             correctAnswersCount: 0,
             completed: false)))
-    var subject: SubjectModel = SubjectModel(dto: SubjectDto(id: 0, subject: "Math", photo: nil, questionsCount: 0, answeredQuestionsCount: 0, correctAnswersCount: 0, completed: true))
+    var subject: SubjectModel = SubjectModel(
+        dto: SubjectDto(
+            id: 0,
+            subject: "Math",
+            photo: nil,
+            questionsCount: 0,
+            answeredQuestionsCount: 0,
+            correctAnswersCount: 0,
+            completed: true
+        )
+    )
+    var currentReadingItem: QuestionsViewModel.CurrentReadingItem? = nil
     var isLoading = false
     var answerResultType: AnswerResultType? = nil
     var remindingSeconds = 0
     var buttonTitle: String = ""
     var isContentValid: Bool = false
-    var isLastQuestion: Bool = false 
+    var isLastQuestion: Bool = false
     
     func getQuestions() { }
-    func getAdditionalQuestions() { }
     func answerQuestion(answer: QuestionAnswerModel, isAdditionalQuestions: Bool, completion: @escaping (AnswerResultType)->()) { }
-    func didAnswerAdditionalQuestions(completion: @escaping ()->()) { }
-    func getAdditionalQuestions(complition: @escaping () -> ()) { }
+    
+    func startPlayingQuestion() { }
+    func stopPlayingQuestion() { }
 }

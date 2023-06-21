@@ -6,7 +6,7 @@
 //
 
 import Foundation
-
+import SwiftUI
 import AVKit
 
 typealias SpeechUtterance = AVSpeechUtterance
@@ -17,7 +17,7 @@ class DefaultTextToSpeachManager: NSObject, ObservableObject {
     // MARK: - Public Properties
     
     @Published var isSpeaking = false
-    
+    var completion: ((QuestionsViewModel.CurrentReadingItem?) -> Void)?
     
     // MARK: - Private Properties
     
@@ -49,13 +49,14 @@ class DefaultTextToSpeachManager: NSObject, ObservableObject {
 
 extension DefaultTextToSpeachManager: TextToSpeachManager {
     
-    func read(question: QusetionModel, after timeInterval: TimeInterval) {
+    func read(question: QusetionModel, after timeInterval: TimeInterval, completion: @escaping (QuestionsViewModel.CurrentReadingItem?) -> Void) {
+        self.completion = completion
         DispatchQueue.global().asyncAfter(deadline: .now() + timeInterval) { [weak self] in
-            let utterance = AVSpeechUtterance(string: ("The question is" + (question.questionText ?? "")  + ". "))
+            let utterance = AVSpeechUtteranceExtended(string: ("The question is: " + (question.questionText ?? "")  + ". "), teadingItemType: .question)
             self?.speak(utterance)
             self?.stop(at: .immediate)
             for i in 0..<question.questionAnswer.count {
-                let utterance = AVSpeechUtterance(string: "The" + (i+1).convertToOrdinal() + " answer is " + (question.questionAnswer[i].answer ?? ""))
+                let utterance = AVSpeechUtteranceExtended(string: "The" + (i+1).convertToOrdinal() + " answer is " + (question.questionAnswer[i].answer ?? ""), teadingItemType: .option(i))
                 self?.speak(utterance)
             }
         }
@@ -78,22 +79,31 @@ extension DefaultTextToSpeachManager: TextToSpeachManager {
 extension DefaultTextToSpeachManager: AVSpeechSynthesizerDelegate {
     func speechSynthesizer(_ synthesizer: AVSpeechSynthesizer, didStart utterance: AVSpeechUtterance) {
         isSpeaking = true
+        guard let utterance = utterance as? AVSpeechUtteranceExtended else { return }
+        completion?(utterance.teadingItemType)
     }
     
     func speechSynthesizer(_ synthesizer: AVSpeechSynthesizer, didFinish utterance: AVSpeechUtterance) {
         isSpeaking = false
+        guard let utterance = utterance as? AVSpeechUtteranceExtended else { return }
+        completion?(nil)
     }
     
     func speechSynthesizer(_ synthesizer: AVSpeechSynthesizer, didPause utterance: AVSpeechUtterance) {
         isSpeaking = false
+        guard let utterance = utterance as? AVSpeechUtteranceExtended else { return }
+        completion?(nil)
     }
     
     func speechSynthesizer(_ synthesizer: AVSpeechSynthesizer, didCancel utterance: AVSpeechUtterance) {
         isSpeaking = false
+        guard let utterance = utterance as? AVSpeechUtteranceExtended else { return }
+        completion?(nil)
     }
     
     func speechSynthesizer(_ synthesizer: AVSpeechSynthesizer, didContinue utterance: AVSpeechUtterance) {
-        isSpeaking = true
+        guard let utterance = utterance as? AVSpeechUtteranceExtended else { return }
+        completion?(utterance.teadingItemType)
     }
 }
 
@@ -108,5 +118,20 @@ extension Int {
         }
         
         return ordinalString
+    }
+}
+
+
+class AVSpeechUtteranceExtended: AVSpeechUtterance {
+    let teadingItemType: QuestionsViewModel.CurrentReadingItem?
+    
+    init(string: String, teadingItemType: QuestionsViewModel.CurrentReadingItem) {
+        self.teadingItemType = teadingItemType
+        super.init(string: string)
+    }
+    
+    required init?(coder: NSCoder) {
+        self.teadingItemType = nil
+        super.init(coder: coder)
     }
 }

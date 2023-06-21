@@ -62,21 +62,15 @@ struct QuestionsView<M: QuestionsViewModeling>: View {
                 } else {
                     return AnyView(confirmButton)
                 }
+            },
+            leftBarButtonItem: {
+                return AnyView(voiceButton)
             }
         )
         .onLoad {
             viewModel.getQuestions()
             isAdditionalQuestions = false
         }
-        /*
-         .onChange(of: viewModel.currentQuestion, perform: { newValue in
-         viewModel.textToSpeachManager.stop(at: .immediate)
-         viewModel.textToSpeachManager.read(question: newValue, after: 0.3)
-         })
-         .onDisappear{
-         viewModel.textToSpeachManager.stop(at: .immediate)
-         }
-         */
         .hiddenTabBar()
         .answerResult(
             type: $viewModel.answerResultType,
@@ -130,19 +124,29 @@ extension QuestionsView {
             Text(viewModel.currentQuestion.questionText ?? "")
                 .font(.appHeadingH3)
                 .foregroundColor(Color.primaryText)
+                .padding(.horizontal, 8)
             Spacer()
         }
+        .frame(maxWidth: .infinity)
+        .overlay(
+            RoundedRectangle(cornerRadius: 8)
+                .stroke(viewModel.currentReadingItem == .question ? .blue : .clear, lineWidth: 1)
+        )
     }
     
     var options: some View {
         VStack(spacing: spacing) {
-            ForEach(viewModel.currentQuestion.questionAnswer, id: \.id) {
-                answerCell(model: $0, isSelected: selectedAnswer?.id == $0.id)
+            ForEach(viewModel.currentQuestion.questionAnswer, id: \.id) { answer in
+                answerCell(
+                    model: answer,
+                    isSelected: selectedAnswer?.id == answer.id,
+                    isCurrentReading: isCurrentReading(answer: answer)
+                )
             }
         }
     }
     
-    func answerCell(model: QuestionAnswerModel, isSelected: Bool) -> some View {
+    func answerCell(model: QuestionAnswerModel, isSelected: Bool, isCurrentReading: Bool) -> some View {
         Button(
             action: {
                 selectedAnswer = model
@@ -165,13 +169,17 @@ extension QuestionsView {
                 .padding()
                 .background(viewModel.isFeedbackGiven ?  cellColor(isSelected: isSelected, model: model) : .primaryLightBackground)
                 .cornerRadius(cellCornerRadius)
+                .overlay(
+                    RoundedRectangle(cornerRadius: 8)
+                        .stroke(isCurrentReading ? .blue : .clear, lineWidth: 1)
+                )
             })
     }
     
     var confirmButton: some View {
         ConfirmButton(
             action: {
-                viewModel.textToSpeachManager.stop(at: .immediate)
+                viewModel.stopPlayingQuestion()
                 confirmSelectedAnswer()
             },
             title: viewModel.isLastQuestion ? "common.done" : "common.continue",
@@ -181,6 +189,12 @@ extension QuestionsView {
             colorTextValid: .primaryPurple
         )
         .disabled(!viewModel.isContentValid)
+    }
+    
+    var voiceButton: some View {
+        Button {
+            viewModel.startPlayingQuestion()
+        } label: { Image.ChildHome.volume }
     }
     
     private func confirmSelectedAnswer() {
@@ -215,6 +229,14 @@ extension QuestionsView {
         model.correct && selectedAnswer != nil ?
             .primaryGreen :
             .primaryLightBackground
+    }
+    
+    func isCurrentReading(answer: QuestionAnswerModel) -> Bool {
+        if case let .option(i) = viewModel.currentReadingItem,
+           let index = viewModel.currentQuestion.questionAnswer.firstIndex(of: answer) {
+            return i == index
+        }
+        return false
     }
 }
 

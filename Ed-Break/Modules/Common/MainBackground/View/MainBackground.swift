@@ -7,13 +7,14 @@
 
 import SwiftUI
 
-struct MainBackgroundCore<Content: View, Q: View> : View {
+struct MainBackgroundCore<Content: View, Q: View, BarButtonItem: View> : View {
     
     let title: String?
     let withNavbar: Bool
     var isSimple: Bool
     var hideBackButton: Bool
     let stickyView: () -> Q?
+    let leftBarButtonItem: () -> BarButtonItem?
     let content: (() -> Content)
     
     init(
@@ -22,7 +23,8 @@ struct MainBackgroundCore<Content: View, Q: View> : View {
         isSimple: Bool = false,
         hideBackButton: Bool = false,
         @ViewBuilder content: @escaping () -> Content,
-        @ViewBuilder stickyView: @escaping () -> Q? = { nil }
+        @ViewBuilder stickyView: @escaping () -> Q? = { nil },
+        @ViewBuilder leftBarButtonItem: @escaping () -> BarButtonItem? = { nil }
     ) {
         self.title = title
         self.withNavbar = withNavbar
@@ -30,7 +32,9 @@ struct MainBackgroundCore<Content: View, Q: View> : View {
         self.hideBackButton = hideBackButton
         self.content = content
         self.stickyView = stickyView
+        self.leftBarButtonItem = leftBarButtonItem
     }
+    
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     
     private let contentCornerRadius = 12.0
@@ -63,8 +67,10 @@ struct MainBackgroundCore<Content: View, Q: View> : View {
                             .font(.appLargeTitle)
                             .foregroundColor(Color.appWhite)
                             .padding(.leading, withNavbar && !hideBackButton ? -50 : 0)
+                            .padding(.trailing, withNavbar && leftBarButtonItem() != nil ? -30 : 0)
                         Spacer()
                     }
+                    leftBarButtonItem()
                 }
                 ScrollView(showsIndicators: false) {
                     PullToRefresh(coordinateSpaceName: "pullToRefresh") {
@@ -114,14 +120,16 @@ extension MainBackground {
     }
 }
 
-typealias MainBackground<Content: View> = MainBackgroundCore<Content, AnyView>
+typealias MainBackground<Content: View> = MainBackgroundCore<Content, AnyView, AnyView>
 
 // MARK: - Priview
 
 struct MainBackground_Previews: PreviewProvider {
     static var previews: some View {
-        MainBackground(title: "onboarding.role", withNavbar: true) {
+        MainBackground(title: "onboarding.role", withNavbar: true, content: {
             EmptyView()
-        }
+        }, leftBarButtonItem: {
+            return AnyView(Image.ChildHome.volume)
+        })
     }
 }

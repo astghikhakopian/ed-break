@@ -158,6 +158,7 @@ extension Image {
     }
     
     public struct ChildHome {
+        
         public struct LockState {
             public static var locked: Image {
                 return Image("childHome.lockState.locked")
@@ -165,6 +166,9 @@ extension Image {
             public static var unlocked: Image {
                 return Image("childHome.lockState.unlocked")
             }
+        }
+        public static var volume: Image {
+            return Image("childHome.volume")
         }
     }
 }
