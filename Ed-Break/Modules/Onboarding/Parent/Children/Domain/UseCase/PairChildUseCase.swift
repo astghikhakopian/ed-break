@@ -12,4 +12,9 @@ class PairChildUseCase: ChildrenUseCase {
     func execute(payload: PairChildPayload, completion: @escaping (Error?) -> Void) {
         childrenRepository.pairChild(payload: payload, completion: completion)
     }
+    
+    func delete(payload: PairChildPayload, completion: @escaping (Error?) -> Void) {
+        childrenRepository.removeDevice(payload: payload, completion: completion)
+    }
+
 }

@@ -6,12 +6,14 @@
 //
 
 import SwiftUI
+import CodeScanner
 
 struct ChildEditView<M: ChildDetailsViewModeling>: View {
     
     @ObservedObject var viewModel: M
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     
+    @State private var isShowingScanner: Bool = false
     @State private var showDeletingAlert: Bool = false
     @State private var showGradeOptions = false
     @State private var showSubjects = false
@@ -25,36 +27,36 @@ struct ChildEditView<M: ChildDetailsViewModeling>: View {
     
     var body: some View {
         MainBackground(title: "onboarding.childsDetails.title", withNavbar: true) {
-            VStack(spacing: gap) {
-                childView
-                ConfirmButton(action: {
-                    viewModel.updateChild {
-                        DispatchQueue.main.async {
-                            presentationMode.wrappedValue.dismiss()
-                        }
-                    }
-                }, title: "common.continue", isContentValid: $viewModel.isContentValid, isLoading: $viewModel.isLoading,colorBackgroundValid: .appWhite,colorBackgroundInvalid: .border,colorTextValid: .primaryPurple,colorTextInvalid: .primaryDescription)
-                ZStack {
-                    Color.appWhite
-                    CancelButton(action: {
-                        showDeletingAlert = true
-                    }, title: "childDetails.delete", color: .primaryRed, isContentValid: .constant(true))
-                }.cornerRadius(cornerRadius)
-            }
-        }.alert("main.parent.settings.delete.description", isPresented: $showDeletingAlert, actions: {
-            Button("common.delete", role: .destructive, action: {
-                guard !viewModel.isLoading else { return }
-                viewModel.deleteChild {
-                    DispatchQueue.main.async {
-                        presentationMode.wrappedValue.dismiss()
-                    }
+            
+            if viewModel.children.isEmpty {
+                EmptyView()
+            } else {
+                VStack(spacing: gap) {
+                    childView(child: $viewModel.children[0])
+                    childDevicesView(child: viewModel.children[0])
+                    confirmButton
+                    deleteButton
                 }
-            })
-        }, message: {
-            Text("main.parent.settings.delete.description.details")
-        })
-        .bottomsheet(title: "childDetails.subjects", datasource: viewModel.subjects, selectedItems: $viewModel.children[0].subjects, isPresented: $showSubjects, isMultiselect: true)
-        .confirmationDialog("childDetails.grade", isPresented: $showGradeOptions, titleVisibility: .visible) {
+            }
+        }
+        .alert(
+            "main.parent.settings.delete.description",
+            isPresented: $showDeletingAlert,
+            actions: { alertDeleteButton },
+            message: { Text("main.parent.settings.delete.description.details") }
+        )
+        .bottomsheet(
+            title: "childDetails.subjects",
+            datasource: viewModel.subjects,
+            selectedItems: $viewModel.children[0].subjects,
+            isPresented: $showSubjects,
+            isMultiselect: true
+        )
+        .confirmationDialog(
+            "childDetails.grade",
+            isPresented: $showGradeOptions,
+            titleVisibility: .visible
+        ) {
             ForEach(viewModel.grades, id: \.rawValue) { grade in
                 Button(grade.name) {
                     guard !viewModel.children.isEmpty else { return }
@@ -62,42 +64,133 @@ struct ChildEditView<M: ChildDetailsViewModeling>: View {
                 }
             }
         }
+        .sheet(isPresented: $isShowingScanner) {
+            CodeScannerView(codeTypes: [.qr], completion: handleScan)
+        }
         .hiddenTabBar()
     }
 }
 
 private extension ChildEditView {
     
-    var childView: some View {
+    func childView(child: Binding<ChildDetailsModel>) -> some View {
         ZStack(alignment: .leading) {
             Color.primaryCellBackground
                 .cornerRadius(cornerRadius)
                 .shadow(color: .shadow, radius: 40, x: 0, y: 20)
             VStack(alignment: .leading, spacing: spacing) {
-                ForEach($viewModel.children, id: \.id) { child in
-                    uploadPhotoView(image: child.image)
-                    CommonTextField(title: "childDetails.name", placeHolder: "childDetails.name.placeholder", text: child.childName)
-                    HStack(spacing: 10) {
-                        WheelPickerField(style: .titled(title: "childDetails.grade"), selection: child.grade, datasource: $viewModel.grades){
-                            UIApplication.shared.endEditing()
-                        }
-                        WheelPickerField(style: .titled(title: "childDetails.interruption",titleToShow: "childDetails.interruption.period"), selection: $viewModel.children[0].interuption, datasource: $viewModel.interuptions){
-                            UIApplication.shared.endEditing()
-                        }
-                    }
-                    dropdown(title: "childDetails.subjects", selectedItems: child.subjects) {
+                uploadPhotoView(image: child.image)
+                CommonTextField(title: "childDetails.name", placeHolder: "childDetails.name.placeholder", text: child.childName)
+                HStack(spacing: 10) {
+                    WheelPickerField(style: .titled(title: "childDetails.grade"), selection: child.grade, datasource: $viewModel.grades){
                         UIApplication.shared.endEditing()
-                        showSubjects = true
                     }
-                    if $viewModel.children.count > 1 {
-                        CancelButton(action: {
-                            guard !viewModel.isLoading else { return }
-                            viewModel.removeChild(child:  child.wrappedValue)
-                        }, title: "childDetails.delete", color: .primaryRed, isContentValid: .constant(true))
+                    WheelPickerField(style: .titled(title: "childDetails.interruption",titleToShow: "childDetails.interruption.period"), selection: $viewModel.children[0].interuption, datasource: $viewModel.interuptions){
+                        UIApplication.shared.endEditing()
                     }
+                }
+                dropdown(title: "childDetails.subjects", selectedItems: child.subjects) {
+                    UIApplication.shared.endEditing()
+                    showSubjects = true
+                }
+                if $viewModel.children.count > 1 {
+                    CancelButton(action: {
+                        guard !viewModel.isLoading else { return }
+                        viewModel.removeChild(child:  child.wrappedValue)
+                    }, title: "childDetails.delete", color: .primaryRed, isContentValid: .constant(true))
                 }
             }.padding(spacing)
         }
+    }
+    
+    func childDevicesView(child: ChildDetailsModel) -> some View {
+        ZStack(alignment: .leading) {
+            Color.primaryCellBackground
+                .cornerRadius(cornerRadius)
+                .shadow(color: .shadow, radius: 40, x: 0, y: 20)
+            VStack(alignment: .leading, spacing: spacing) {
+                ForEach(child.devices, id: \.id) { device in
+                    NavigationLink {
+                        NavigationLazyView(
+                            DeviceDetailsView(
+                                device: device,
+                                deleteAction: {
+                                    viewModel.removeDevice(device: $0) { success in
+                                        guard success else { return }
+                                        DispatchQueue.main.async {
+                                            presentationMode.wrappedValue.dismiss()
+                                        }
+                                    }
+                                }
+                            )
+                        )
+                    } label: {
+                        ChildDeviceCell(device: device)
+                    }
+                }
+                addChildDeviceButton
+            }.padding(spacing)
+        }
+    }
+    
+    var confirmButton: some View {
+        ConfirmButton(
+            action: {
+                viewModel.updateChild {
+                    DispatchQueue.main.async {
+                        presentationMode.wrappedValue.dismiss()
+                    }
+                }
+            },
+            title: "childDetails.save",
+            isContentValid: $viewModel.isContentValid,
+            isLoading: $viewModel.isLoading,
+            colorBackgroundValid: .appWhite,
+            colorBackgroundInvalid: .border,
+            colorTextValid: .primaryPurple,
+            colorTextInvalid: .primaryDescription
+        )
+    }
+    
+    var deleteButton: some View {
+        ZStack {
+            Color.appWhite
+            CancelButton(
+                action: { showDeletingAlert = true },
+                title: "childDetails.delete",
+                color: .primaryRed,
+                isContentValid: .constant(true)
+            )
+        }
+        .cornerRadius(cornerRadius)
+    }
+    
+    var addChildDeviceButton: some View {
+        ZStack {
+            Color.border
+            CancelButton(
+                action: { isShowingScanner = true },
+                title: "childDetails.add",
+                color: .primaryPurple,
+                isContentValid: .constant(true)
+            )
+        }
+        .cornerRadius(cornerRadius)
+    }
+    
+    var alertDeleteButton: some View {
+        Button(
+            "common.delete",
+            role: .destructive,
+            action: {
+                guard !viewModel.isLoading else { return }
+                viewModel.deleteChild {
+                    DispatchQueue.main.async {
+                        presentationMode.wrappedValue.dismiss()
+                    }
+                }
+            }
+        )
     }
     
     func uploadPhotoView(image: Binding<UIImage>) -> some View {
@@ -107,36 +200,68 @@ private extension ChildEditView {
             Spacer()
         }
     }
-    func dropdown(title: String, placeholder: String = "common.select", selectedItems: Binding<[BottomsheetCellModel]?>, action: @escaping ()->()) -> some View {
+    func dropdown(
+        title: String,
+        placeholder: String = "common.select",
+        selectedItems: Binding<[BottomsheetCellModel]?>,
+        action: @escaping ()->()
+    ) -> some View {
         VStack(alignment: .leading, spacing: 0) {
             Text(LocalizedStringKey(title))
                 .font(.appHeadline)
                 .frame(height: labelHeight)
                 .foregroundColor(.primaryDescription)
-            Button(action: action, label: {
-                HStack {
-                    if let title = selectedItems.wrappedValue?.map { $0.title }.joined(separator: ", ") {
-                        Text(title)
-                            .font(.appHeadline)
-                            .background(Color.primaryCellBackground)
-                            .accentColor(.appBlack)
-                            .cornerRadius(cornerRadius)
-                            .lineLimit(1)
-                    } else {
-                        Text(LocalizedStringKey(placeholder))
-                            .font(.appHeadline)
-                            .background(Color.primaryCellBackground)
-                            .accentColor(.appBlack)
-                            .cornerRadius(cornerRadius)
+            Button(
+                action: action,
+                label: {
+                    HStack {
+                        if let title = selectedItems.wrappedValue?.map({ $0.title }).joined(separator: ", ") {
+                            Text(title)
+                                .font(.appHeadline)
+                                .background(Color.primaryCellBackground)
+                                .accentColor(.appBlack)
+                                .cornerRadius(cornerRadius)
+                                .lineLimit(1)
+                        } else {
+                            Text(LocalizedStringKey(placeholder))
+                                .font(.appHeadline)
+                                .background(Color.primaryCellBackground)
+                                .accentColor(.appBlack)
+                                .cornerRadius(cornerRadius)
+                        }
+                        Spacer()
+                        Image.Common.dropdownArrow
                     }
-                    Spacer()
-                    Image.Common.dropdownArrow
-                }.padding(padding)
-                    .overlay(
-                        RoundedRectangle(cornerRadius: cornerRadius)
-                            .stroke(Color.border, lineWidth: borderWidth)
-                    )
-            })
+                    .padding(padding)
+                        .overlay(
+                            RoundedRectangle(cornerRadius: cornerRadius)
+                                .stroke(Color.border, lineWidth: borderWidth)
+                        )
+                }
+            )
+        }
+    }
+    
+    func handleScan(result: Result<ScanResult, ScanError>) {
+       isShowingScanner = false
+        
+        switch result {
+        case .success(let info):
+            let string = info.string
+            guard
+                let child = viewModel.children.first,
+                let childId = child.childId,
+                let data = string.data(using: .utf8),
+                let json = try? JSONSerialization.jsonObject(with: data, options: .mutableContainers) as? [String: Any],
+                let uuid = json["uuid"] as? String
+                    
+            else { return }
+            viewModel.pairChild(id: childId, deviceToken: uuid) { success in
+                guard success else { return }
+                presentationMode.wrappedValue.dismiss()
+            }
+        case .failure(let error):
+            print("Scanning failed: \(error.localizedDescription)")
         }
     }
 }

@@ -19,6 +19,10 @@
 		1B02821D29105EB00094FD2A /* CoachingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B02821C29105EB00094FD2A /* CoachingViewModel.swift */; };
 		1B02821F29105EBB0094FD2A /* CoachingViewModeling.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B02821E29105EBB0094FD2A /* CoachingViewModeling.swift */; };
 		1B0BC1FC28EF425400DBBD65 /* TabBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B0BC1FB28EF425400DBBD65 /* TabBarView.swift */; };
+		1B0C47B62A49B69700DB5ADF /* CreateOrJoinFamilyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B0C47B52A49B69700DB5ADF /* CreateOrJoinFamilyView.swift */; };
+		1B0C47B82A49BECB00DB5ADF /* ChildToFamilyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B0C47B72A49BECB00DB5ADF /* ChildToFamilyView.swift */; };
+		1B0C47BA2A49D80700DB5ADF /* JoinFamilyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B0C47B92A49D80700DB5ADF /* JoinFamilyView.swift */; };
+		1B0C47BC2A49DDED00DB5ADF /* NewParentFamilySharingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B0C47BB2A49DDED00DB5ADF /* NewParentFamilySharingView.swift */; };
 		1B0DB597295055D10071E75D /* ManagedSettings.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1B0DB596295055D10071E75D /* ManagedSettings.framework */; };
 		1B0DB599295055D10071E75D /* ManagedSettingsUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1B0DB598295055D10071E75D /* ManagedSettingsUI.framework */; };
 		1B0DB59C295055D10071E75D /* ShieldConfigurationExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B0DB59B295055D10071E75D /* ShieldConfigurationExtension.swift */; };
@@ -32,6 +36,7 @@
 		1B1843D52A2899D200552FA2 /* NSNotification+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B1843D42A2899D200552FA2 /* NSNotification+Extension.swift */; };
 		1B1843D82A289F7000552FA2 /* NavigationBackport in Frameworks */ = {isa = PBXBuildFile; productRef = 1B1843D72A289F7000552FA2 /* NavigationBackport */; };
 		1B1843DA2A289FB500552FA2 /* NavigationStackWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B1843D92A289FB500552FA2 /* NavigationStackWrapper.swift */; };
+		1B1F3B912A4AFFBB00A4A08F /* InviteParentQRView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B1F3B902A4AFFBB00A4A08F /* InviteParentQRView.swift */; };
 		1B29CB7829016D7D0036988F /* ChildQRView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B29CB7729016D7D0036988F /* ChildQRView.swift */; };
 		1B2A4BB7291B90D9008C60D5 /* ViewModifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B2A4BB6291B90D9008C60D5 /* ViewModifiers.swift */; };
 		1B2EA77E292FCB9A009EA317 /* GetAllSubjectsUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B2EA77D292FCB9A009EA317 /* GetAllSubjectsUseCase.swift */; };
@@ -64,6 +69,10 @@
 		1B68713B290D678300651A33 /* CheckConnectionUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B68713A290D678300651A33 /* CheckConnectionUseCase.swift */; };
 		1B68713E290D68E700651A33 /* ChildQRViewModeling.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B68713D290D68E700651A33 /* ChildQRViewModeling.swift */; };
 		1B687140290D68F000651A33 /* ChildQRViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B68713F290D68F000651A33 /* ChildQRViewModel.swift */; };
+		1B72634B2A4D7DEF0093B1DF /* ChildDeviceCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B72634A2A4D7DEF0093B1DF /* ChildDeviceCell.swift */; };
+		1B7263522A4DAEDD0093B1DF /* DeviceModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B7263512A4DAEDD0093B1DF /* DeviceModel.swift */; };
+		1B7263542A4DB0C30093B1DF /* DeviceDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B7263532A4DB0C30093B1DF /* DeviceDto.swift */; };
+		1B7263572A4DE65A0093B1DF /* DeviceDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B7263562A4DE65A0093B1DF /* DeviceDetailsView.swift */; };
 		1B76B64228EC250400602003 /* ChildrenRoute.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B76B64128EC250400602003 /* ChildrenRoute.swift */; };
 		1B76B64428EC266100602003 /* ChildrenRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B76B64328EC266100602003 /* ChildrenRepository.swift */; };
 		1B76B64628EC26B800602003 /* ChildrenUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B76B64528EC26B800602003 /* ChildrenUseCase.swift */; };
@@ -253,6 +262,10 @@
 		1B02821C29105EB00094FD2A /* CoachingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoachingViewModel.swift; sourceTree = "<group>"; };
 		1B02821E29105EBB0094FD2A /* CoachingViewModeling.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoachingViewModeling.swift; sourceTree = "<group>"; };
 		1B0BC1FB28EF425400DBBD65 /* TabBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarView.swift; sourceTree = "<group>"; };
+		1B0C47B52A49B69700DB5ADF /* CreateOrJoinFamilyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateOrJoinFamilyView.swift; sourceTree = "<group>"; };
+		1B0C47B72A49BECB00DB5ADF /* ChildToFamilyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChildToFamilyView.swift; sourceTree = "<group>"; };
+		1B0C47B92A49D80700DB5ADF /* JoinFamilyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JoinFamilyView.swift; sourceTree = "<group>"; };
+		1B0C47BB2A49DDED00DB5ADF /* NewParentFamilySharingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewParentFamilySharingView.swift; sourceTree = "<group>"; };
 		1B0DB595295055D10071E75D /* ShieldConfigurationExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = ShieldConfigurationExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		1B0DB596295055D10071E75D /* ManagedSettings.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ManagedSettings.framework; path = System/Library/Frameworks/ManagedSettings.framework; sourceTree = SDKROOT; };
 		1B0DB598295055D10071E75D /* ManagedSettingsUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ManagedSettingsUI.framework; path = System/Library/Frameworks/ManagedSettingsUI.framework; sourceTree = SDKROOT; };
@@ -266,6 +279,7 @@
 		1B13463C290826A800943AA5 /* DeleteChildUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteChildUseCase.swift; sourceTree = "<group>"; };
 		1B1843D42A2899D200552FA2 /* NSNotification+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSNotification+Extension.swift"; sourceTree = "<group>"; };
 		1B1843D92A289FB500552FA2 /* NavigationStackWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationStackWrapper.swift; sourceTree = "<group>"; };
+		1B1F3B902A4AFFBB00A4A08F /* InviteParentQRView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InviteParentQRView.swift; sourceTree = "<group>"; };
 		1B29CB7729016D7D0036988F /* ChildQRView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChildQRView.swift; sourceTree = "<group>"; };
 		1B2A4BB6291B90D9008C60D5 /* ViewModifiers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModifiers.swift; sourceTree = "<group>"; };
 		1B2EA77D292FCB9A009EA317 /* GetAllSubjectsUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetAllSubjectsUseCase.swift; sourceTree = "<group>"; };
@@ -295,6 +309,10 @@
 		1B68713A290D678300651A33 /* CheckConnectionUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckConnectionUseCase.swift; sourceTree = "<group>"; };
 		1B68713D290D68E700651A33 /* ChildQRViewModeling.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChildQRViewModeling.swift; sourceTree = "<group>"; };
 		1B68713F290D68F000651A33 /* ChildQRViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChildQRViewModel.swift; sourceTree = "<group>"; };
+		1B72634A2A4D7DEF0093B1DF /* ChildDeviceCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChildDeviceCell.swift; sourceTree = "<group>"; };
+		1B7263512A4DAEDD0093B1DF /* DeviceModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceModel.swift; sourceTree = "<group>"; };
+		1B7263532A4DB0C30093B1DF /* DeviceDto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceDto.swift; sourceTree = "<group>"; };
+		1B7263562A4DE65A0093B1DF /* DeviceDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceDetailsView.swift; sourceTree = "<group>"; };
 		1B76B64128EC250400602003 /* ChildrenRoute.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChildrenRoute.swift; sourceTree = "<group>"; };
 		1B76B64328EC266100602003 /* ChildrenRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChildrenRepository.swift; sourceTree = "<group>"; };
 		1B76B64528EC26B800602003 /* ChildrenUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChildrenUseCase.swift; sourceTree = "<group>"; };
@@ -582,6 +600,16 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		1B0C47B42A49B67500DB5ADF /* CreateOrJoinFamily */ = {
+			isa = PBXGroup;
+			children = (
+				1B0C47B52A49B69700DB5ADF /* CreateOrJoinFamilyView.swift */,
+				1B0C47B72A49BECB00DB5ADF /* ChildToFamilyView.swift */,
+				1B0C47B92A49D80700DB5ADF /* JoinFamilyView.swift */,
+			);
+			path = CreateOrJoinFamily;
+			sourceTree = "<group>";
+		};
 		1B0DB59A295055D10071E75D /* ShieldConfigurationExtension */ = {
 			isa = PBXGroup;
 			children = (
@@ -607,6 +635,22 @@
 				1B1843D42A2899D200552FA2 /* NSNotification+Extension.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		1B1F3B8E2A4AFF7400A4A08F /* InviteParentsQR */ = {
+			isa = PBXGroup;
+			children = (
+				1B1F3B8F2A4AFF8A00A4A08F /* View */,
+			);
+			path = InviteParentsQR;
+			sourceTree = "<group>";
+		};
+		1B1F3B8F2A4AFF8A00A4A08F /* View */ = {
+			isa = PBXGroup;
+			children = (
+				1B1F3B902A4AFFBB00A4A08F /* InviteParentQRView.swift */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 		1B29CB7629016D5B0036988F /* ChildQRCode */ = {
@@ -640,6 +684,7 @@
 		1B3581A828E6383B00612976 /* Parent */ = {
 			isa = PBXGroup;
 			children = (
+				1B0C47B42A49B67500DB5ADF /* CreateOrJoinFamily */,
 				1B3581A928E6384800612976 /* FamilySharing */,
 				1BA9DFB528E73332006980D1 /* ChildDetails */,
 				1BEE80F828EB0CF2004F75CA /* QRCode */,
@@ -663,6 +708,7 @@
 			isa = PBXGroup;
 			children = (
 				1B3581AB28E6387000612976 /* FamilySharingView.swift */,
+				1B0C47BB2A49DDED00DB5ADF /* NewParentFamilySharingView.swift */,
 				1BA9DFA928E7131D006980D1 /* FamilySharingCell.swift */,
 				1BA9DFAB28E7206F006980D1 /* FamilySharingInfoCell.swift */,
 			);
@@ -782,6 +828,7 @@
 			isa = PBXGroup;
 			children = (
 				1B445AEA28EC531B00B0B310 /* ChildModel.swift */,
+				1B7263512A4DAEDD0093B1DF /* DeviceModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -811,6 +858,7 @@
 				1B445AE828EC3DA700B0B310 /* PagingDto.swift */,
 				1B779D4F28F84FA60051D712 /* GetChildDetailsPayload.swift */,
 				1B687133290D51FE00651A33 /* PairChildPayload.swift */,
+				1B7263532A4DB0C30093B1DF /* DeviceDto.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1343,6 +1391,7 @@
 			children = (
 				1BF1E1502906C837008A08D4 /* ChildDevicesView.swift */,
 				1B1346352907DA6800943AA5 /* ChildDeiviceCell.swift */,
+				1B7263562A4DE65A0093B1DF /* DeviceDetailsView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1490,6 +1539,7 @@
 			isa = PBXGroup;
 			children = (
 				EF52D84B2907F1DD00C6ACF9 /* ChildEditView.swift */,
+				1B72634A2A4D7DEF0093B1DF /* ChildDeviceCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1498,6 +1548,7 @@
 			isa = PBXGroup;
 			children = (
 				1B7E6499291114140084E6A0 /* Settings */,
+				1B1F3B8E2A4AFF7400A4A08F /* InviteParentsQR */,
 				1BF1E14E2906C813008A08D4 /* ChildDevices */,
 				EF52D8492907F1B600C6ACF9 /* ChildEdit */,
 			);
@@ -1883,9 +1934,12 @@
 				1B99051029106FEF001E7303 /* GetCoachingUseCase.swift in Sources */,
 				1BA30D5328E79A8E00926820 /* FamilySharingViewModeling.swift in Sources */,
 				1BF1E1462906BD5C008A08D4 /* ParentRepository.swift in Sources */,
+				1B1F3B912A4AFFBB00A4A08F /* InviteParentQRView.swift in Sources */,
 				1B5A0352293272B40032BB71 /* AddInterruptionUseCase.swift in Sources */,
+				1B0C47BA2A49D80700DB5ADF /* JoinFamilyView.swift in Sources */,
 				1B8C4286290EAA3400FD5598 /* DropdownButton.swift in Sources */,
 				EF43B6A228E19EF000DBE6B6 /* MainBackground.swift in Sources */,
+				1B7263542A4DB0C30093B1DF /* DeviceDto.swift in Sources */,
 				1B1843DA2A289FB500552FA2 /* NavigationStackWrapper.swift in Sources */,
 				1BA30D6128E79EE100926820 /* RequestServices.swift in Sources */,
 				1BEE80F528EACB24004F75CA /* ChildDetailsUseCase.swift in Sources */,
@@ -1895,6 +1949,7 @@
 				1BA30D6A28E7A24400926820 /* TokensDto.swift in Sources */,
 				1B7E649729110B610084E6A0 /* ChildTabView.swift in Sources */,
 				1BF1E1402906BC05008A08D4 /* ParentSettingsViewModel.swift in Sources */,
+				1B0C47B82A49BECB00DB5ADF /* ChildToFamilyView.swift in Sources */,
 				1B76B64C28EC289300602003 /* ChildrenViewModel.swift in Sources */,
 				1BE5191C28E8E24A0067E8B1 /* PickerTextField.swift in Sources */,
 				1B13463B290822E900943AA5 /* UpdateChildUseCase.swift in Sources */,
@@ -1908,6 +1963,7 @@
 				1BEE80FD28EB1D29004F75CA /* QRCodeView.swift in Sources */,
 				EFE6E46328E2206A00B3F83D /* Font.swift in Sources */,
 				1BC5BDEB29294E11006171A5 /* Introspect.swift in Sources */,
+				1B72634B2A4D7DEF0093B1DF /* ChildDeviceCell.swift in Sources */,
 				1BB031432942592C009F47BF /* ShieldView.swift in Sources */,
 				1B687140290D68F000651A33 /* ChildQRViewModel.swift in Sources */,
 				1BE72A3A28E8A20100447167 /* ChildDetailsViewModeling.swift in Sources */,
@@ -1919,6 +1975,7 @@
 				1BA9DFB428E73001006980D1 /* NavigationButton.swift in Sources */,
 				1B445AF028EC725700B0B310 /* AsyncImageView.swift in Sources */,
 				1B1843D52A2899D200552FA2 /* NSNotification+Extension.swift in Sources */,
+				1B0C47B62A49B69700DB5ADF /* CreateOrJoinFamilyView.swift in Sources */,
 				1B016B532922D63C00291A9D /* QuestionsUseCase.swift in Sources */,
 				1BC5BDEA29294E11006171A5 /* UIKitIntrospectionViewController.swift in Sources */,
 				1B2A4BB7291B90D9008C60D5 /* ViewModifiers.swift in Sources */,
@@ -1960,6 +2017,7 @@
 				1BA30D7128E7A4D600926820 /* FamilySharingUseCase.swift in Sources */,
 				1B68713B290D678300651A33 /* CheckConnectionUseCase.swift in Sources */,
 				1B56107D28F420B700DA3043 /* DashboardView.swift in Sources */,
+				1B0C47BC2A49DDED00DB5ADF /* NewParentFamilySharingView.swift in Sources */,
 				1B776ACF292CBEC30047FEBA /* BottomsheetView.swift in Sources */,
 				1BA9DFB028E7290A006980D1 /* ConfirmButton.swift in Sources */,
 				1BE72A3828E8A1F400447167 /* ChildDetailsViewModel.swift in Sources */,
@@ -1981,8 +2039,10 @@
 				1BC5BDF029296E69006171A5 /* AnswerResultView.swift in Sources */,
 				1BA9DFAA28E7131D006980D1 /* FamilySharingCell.swift in Sources */,
 				1B779D4E28F84EAD0051D712 /* GetChildDetailsUseCase.swift in Sources */,
+				1B7263572A4DE65A0093B1DF /* DeviceDetailsView.swift in Sources */,
 				1B2EA77E292FCB9A009EA317 /* GetAllSubjectsUseCase.swift in Sources */,
 				1BCD8C7F292A7E9E00CD3D04 /* PhoneLockingStateView.swift in Sources */,
+				1B7263522A4DAEDD0093B1DF /* DeviceModel.swift in Sources */,
 				1B4F5719293931D200AE29E3 /* ScheduleModel.swift in Sources */,
 				1BC5BDE929294E11006171A5 /* AppKitIntrospectionView.swift in Sources */,
 				1B7E64A8291146AF0084E6A0 /* HomeView.swift in Sources */,
@@ -2065,7 +2125,7 @@
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = ShieldConfigurationExtension/ShieldConfigurationExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 15;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 8374P8P59W;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = ShieldConfigurationExtension/Info.plist;
@@ -2077,7 +2137,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 1.2.0;
+				MARKETING_VERSION = 1.4;
 				PRODUCT_BUNDLE_IDENTIFIER = com.au.edbreak.ShieldConfigurationExtension;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -2092,7 +2152,7 @@
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = ShieldConfigurationExtension/ShieldConfigurationExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 15;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 8374P8P59W;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = ShieldConfigurationExtension/Info.plist;
@@ -2104,7 +2164,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 1.2.0;
+				MARKETING_VERSION = 1.4;
 				PRODUCT_BUNDLE_IDENTIFIER = com.au.edbreak.ShieldConfigurationExtension;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -2120,7 +2180,7 @@
 				APPLICATION_EXTENSION_API_ONLY = YES;
 				CODE_SIGN_ENTITLEMENTS = ShieldActionExtension/ShieldActionExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 15;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 8374P8P59W;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = ShieldActionExtension/Info.plist;
@@ -2132,7 +2192,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 1.2.0;
+				MARKETING_VERSION = 1.4;
 				PRODUCT_BUNDLE_IDENTIFIER = com.au.edbreak.ShieldActionExtension;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -2148,7 +2208,7 @@
 				APPLICATION_EXTENSION_API_ONLY = YES;
 				CODE_SIGN_ENTITLEMENTS = ShieldActionExtension/ShieldActionExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 15;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 8374P8P59W;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = ShieldActionExtension/Info.plist;
@@ -2160,7 +2220,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 1.2.0;
+				MARKETING_VERSION = 1.4;
 				PRODUCT_BUNDLE_IDENTIFIER = com.au.edbreak.ShieldActionExtension;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -2175,7 +2235,7 @@
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = ActivityMonitor/ActivityMonitor.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 15;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 8374P8P59W;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = ActivityMonitor/Info.plist;
@@ -2187,7 +2247,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 1.2.0;
+				MARKETING_VERSION = 1.4;
 				PRODUCT_BUNDLE_IDENTIFIER = com.au.edbreak.ActivityMonitor;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -2202,7 +2262,7 @@
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = ActivityMonitor/ActivityMonitor.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 15;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 8374P8P59W;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = ActivityMonitor/Info.plist;
@@ -2214,7 +2274,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 1.2.0;
+				MARKETING_VERSION = 1.4;
 				PRODUCT_BUNDLE_IDENTIFIER = com.au.edbreak.ActivityMonitor;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -2349,7 +2409,7 @@
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_ENTITLEMENTS = "Ed-Break/Ed-Break.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 15;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "Ed-Break/Resources/Preview\\ Content";
 				DEVELOPMENT_TEAM = 8374P8P59W;
 				ENABLE_PREVIEWS = YES;
@@ -2368,7 +2428,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.2.0;
+				MARKETING_VERSION = 1.4;
 				PRODUCT_BUNDLE_IDENTIFIER = com.au.edbreak;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -2386,7 +2446,7 @@
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_ENTITLEMENTS = "Ed-Break/Ed-Break.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 15;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "Ed-Break/Resources/Preview\\ Content";
 				DEVELOPMENT_TEAM = 8374P8P59W;
 				ENABLE_PREVIEWS = YES;
@@ -2405,7 +2465,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.2.0;
+				MARKETING_VERSION = 1.4;
 				PRODUCT_BUNDLE_IDENTIFIER = com.au.edbreak;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;

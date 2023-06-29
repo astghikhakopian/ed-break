@@ -32,13 +32,22 @@ struct ChildDevicesView<M: ChildrenViewModeling>: View {
                         content
                     }
                     NavigationLink {
-                        ChildDetailsView(
-                            simpleAdd: true,
-                            viewModel: ChildDetailsViewModel(
-                                addChildUseCase: AddChildUseCase(
-                                    childDetailsRepository: DefaultChildDetailsRepository()),
-                                getAllSubjectsUseCase: GetAllSubjectsUseCase(
-                                    childDetailsRepository: DefaultChildDetailsRepository())))
+                        NavigationLazyView(
+                            ChildDetailsView(
+                                simpleAdd: true,
+                                viewModel: ChildDetailsViewModel(
+                                    addChildUseCase: AddChildUseCase(
+                                        childDetailsRepository: DefaultChildDetailsRepository()
+                                    ),
+                                    getAllSubjectsUseCase: GetAllSubjectsUseCase(
+                                        childDetailsRepository: DefaultChildDetailsRepository()
+                                    ),
+                                    pairChildUseCase: PairChildUseCase(
+                                        childrenRepository: DefaultChildrenRepository()
+                                    )
+                                )
+                            )
+                        )
                     } label: {
                         ZStack {
                             Color.primaryPurple.opacity(0.05)
@@ -62,14 +71,24 @@ private extension ChildDevicesView {
         VStack(alignment: .leading, spacing: spacing) {
             ForEach(viewModel.children.results, id: \.id) { child in
                 NavigationLink {
-                    ChildEditView(viewModel: ChildDetailsViewModel(
-                        child: child,
-                        updateChildUseCase: UpdateChildUseCase(
-                            childDetailsRepository: DefaultChildDetailsRepository()),
-                        deleteChildUseCase: DeleteChildUseCase(
-                            childDetailsRepository: DefaultChildDetailsRepository()),
-                        getAllSubjectsUseCase: GetAllSubjectsUseCase(
-                            childDetailsRepository: DefaultChildDetailsRepository()))
+                    NavigationLazyView(
+                        ChildEditView(
+                            viewModel: ChildDetailsViewModel(
+                                child: child,
+                                updateChildUseCase: UpdateChildUseCase(
+                                    childDetailsRepository: DefaultChildDetailsRepository()
+                                ),
+                                deleteChildUseCase: DeleteChildUseCase(
+                                    childDetailsRepository: DefaultChildDetailsRepository()
+                                ),
+                                getAllSubjectsUseCase: GetAllSubjectsUseCase(
+                                    childDetailsRepository: DefaultChildDetailsRepository()
+                                ),
+                                pairChildUseCase: PairChildUseCase(
+                                    childrenRepository: DefaultChildrenRepository()
+                                )
+                            )
+                        )
                     )
                 } label: {
                     ChildDeiviceCell(name: child.name, grade: child.grade, imageUrl: child.photoUrl)

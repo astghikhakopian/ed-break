@@ -22,6 +22,7 @@ struct ChildModel: Equatable,Identifiable {
     let percentageToday: Float
     let percentageProgress: Float
     let lastLogin: Date?
+    let isConnected: Bool
     var lastLoginString: String {
         NSLocalizedString("main.parent.childProfile.lastActive", comment: "") +
         (lastLogin?.toStringWithRelativeTime() ?? "")
@@ -33,6 +34,7 @@ struct ChildModel: Equatable,Identifiable {
     var subjects: [SubjectModel]
     let deviceToken: String?
     let restrictions: FamilyActivitySelection?
+    let devices: [DeviceModel]
     
     init(dto: ChildDto) {
         id = dto.id
@@ -46,6 +48,7 @@ struct ChildModel: Equatable,Identifiable {
         todayCorrectAnswers = dto.todayCorrectAnswers ?? 0
         percentageToday = dto.percentageToday ?? 0
         percentageProgress = dto.percentageProgress ?? 0
+        isConnected = dto.isConnected ?? false
         lastLogin = Date(fromString:  dto.lastLogin ?? "", format: .isoDateTimeFull)//?.toLocalTime()
         
         breakStartDatetime = Date(fromString: dto.breakStartDatetime ?? "", format: .isoDateTimeFull)?.toLocalTime()
@@ -54,7 +57,7 @@ struct ChildModel: Equatable,Identifiable {
         interruption = dto.interruption
         deviceToken = dto.deviceToken
         subjects = dto.subjects?.map { SubjectModel(dto: $0) } ?? []
-        
+        devices = dto.devices?.map { DeviceModel(dto: $0) } ?? []
         if let restrictions = dto.restrictions?.replacingOccurrences(of: "\\\"", with: "\""),
            let stringData = restrictions.data(using: .utf8),
            // let json = try? JSONSerialization.jsonObject(with: stringData),

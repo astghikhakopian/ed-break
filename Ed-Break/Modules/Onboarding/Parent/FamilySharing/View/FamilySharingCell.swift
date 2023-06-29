@@ -36,9 +36,12 @@ struct FamilySharingCell_Previews: PreviewProvider {
     }
 }
 
-enum FamilySharingCellType: CaseIterable {
+enum FamilySharingCellType: CaseIterable, Identifiable {
+    var id: String { title }
     
-    case settings, appleId, familySharing, addChild, returnBack
+    
+    case settings, appleId, familySharing, addChild, returnBack,
+     appleFamily, waitForInvite, confirmInvite
     
     var image: Image {
         switch self {
@@ -47,6 +50,9 @@ enum FamilySharingCellType: CaseIterable {
         case .familySharing:    return Image.FamilySharing.familySharing
         case .addChild:         return Image.FamilySharing.addChild
         case .returnBack:       return Image.FamilySharing.returnBack
+        case .appleFamily:      return Image.FamilySharing.familySharing
+        case .waitForInvite:    return Image.FamilySharing.addChild
+        case .confirmInvite:    return Image.FamilySharing.familySharingConfirmed
         }
     }
     
@@ -57,6 +63,9 @@ enum FamilySharingCellType: CaseIterable {
         case .familySharing:    return "familySharing.familySharing.title"
         case .addChild:         return "familySharing.addChild.title"
         case .returnBack:       return "familySharing.returnBack.title"
+        case .appleFamily:      return "familySharing.appleFamily.title"
+        case .waitForInvite:    return "familySharing.waitForInvite.title"
+        case .confirmInvite:    return "familySharing.confirmInvite.title"
         }
     }
     
@@ -67,6 +76,9 @@ enum FamilySharingCellType: CaseIterable {
         case .familySharing:    return "familySharing.familySharing.description"
         case .addChild:         return nil
         case .returnBack:       return nil
+        case .appleFamily:      return nil
+        case .waitForInvite:    return "familySharing.waitForInvite.description"
+        case .confirmInvite:    return nil
         }
     }
 }

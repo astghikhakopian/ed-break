@@ -11,6 +11,7 @@ import Moya
 enum FamilySharingRoute: TargetType {
     
     case addParent(username: String)
+    case joinToFamily(currentDeviceToken: String, familyOwnerDeviceToken: String)
     case refreshToken
     
     var baseURL: URL {
@@ -21,6 +22,8 @@ enum FamilySharingRoute: TargetType {
         switch self {
         case .addParent:
             return "/users/parent/"
+        case .joinToFamily:
+            return "/users/parent/"
         case .refreshToken:
             return "/api/token/refresh/"
         }
@@ -29,6 +32,8 @@ enum FamilySharingRoute: TargetType {
     var method: Moya.Method {
         switch self {
         case .addParent:
+            return .post
+        case .joinToFamily:
             return .post
         case .refreshToken:
             return .post
@@ -40,26 +45,32 @@ enum FamilySharingRoute: TargetType {
         case .addParent(let username):
             return .requestParameters(
                 parameters: [
-                    "username" : username
+                    "username": username
+                ],
+                encoding: URLEncoding.queryString
+            )
+        case .joinToFamily(let currentDeviceToken, let familyOwnerDeviceToken):
+            return .requestParameters(
+                parameters: [
+                    "username": currentDeviceToken,
+                    "organizer_username": familyOwnerDeviceToken
                 ],
                 encoding: URLEncoding.queryString
             )
         case .refreshToken:
             let token: TokenModel? = UserDefaultsService().getObject(forKey: .User.token)
             let refreshToken = token?.refresh ?? ""
-            return .requestCompositeParameters(bodyParameters: ["refresh" : refreshToken], bodyEncoding:  JSONEncoding.prettyPrinted, urlParameters: [:])
-//            return .requestParameters(
-//                parameters: [
-//                    "refresh" : refreshToken
-//                ],
-//                encoding: URLEncoding.httpBody
-//            )
+            return .requestCompositeParameters(
+              bodyParameters: ["refresh" : refreshToken],
+              bodyEncoding:  JSONEncoding.prettyPrinted,
+              urlParameters: [:]
+            )
         }
     }
     
     var headers: [String: String]? {
         switch self {
-        case.addParent:
+        case.addParent, .joinToFamily:
             return [
                 "Content-Type": "application/json",
                 "accept": "application/json"

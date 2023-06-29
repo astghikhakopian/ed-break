@@ -52,11 +52,10 @@ final class ChildrenViewModel: ChildrenViewModeling, Identifiable {
             case .success(let models):
                 DispatchQueue.main.async { [weak self] in
                     self?.children = PagingModel(
-                        results: filtered ?
-                        models.filter { $0.deviceToken != nil } :
+                        results: // filtered ?
+                        // models.filter { $0.isConnected } :
                             models
-                        
-                    )
+                     )
                 }
             case .failure(let failure):
                 print(failure.localizedDescription)
@@ -88,7 +87,16 @@ final class ChildrenViewModel: ChildrenViewModeling, Identifiable {
     
     func pairChild(id: Int, deviceToken: String, compleated: @escaping (Bool)->()) {
         isLoading = true
-        pairChildUseCase.execute(payload: PairChildPayload(id: id, deviceToken: deviceToken)) { error in
+        let name = UIDevice.current.name
+        let model = UIDevice.modelName
+        pairChildUseCase.execute(
+            payload: PairChildPayload(
+                id: id,
+                deviceToken: deviceToken,
+                childDeviceName: name,
+                childDeviceModel: model
+            )
+        ) { error in
             DispatchQueue.main.async { self.isLoading = false }
             if let error = error {
                 compleated(false)
@@ -140,7 +148,7 @@ final class MockChildrenViewModeling: ChildrenViewModeling, Identifiable {
     var connectedChildren = [ChildModel]()
     var selectedPeriod: TimePeriod = .day
     var timePeriodDatasource: [TimePeriod] = TimePeriod.allCases
-    var children = PagingModel<ChildModel>(results: [ChildModel(dto: ChildDto(id: 0, name: "Emma", grade: 1, restrictionTime: nil, photo: nil, todayAnswers: nil, todayCorrectAnswers: nil, percentageToday: nil, percentageProgress: nil, lastLogin: nil, breakEndDatetime: nil, breakStartDatetime: nil, wrongAnswersTime: nil, deviceToken: nil, restrictions: nil, subjects: []))])
+    var children = PagingModel<ChildModel>(results: [ChildModel(dto: ChildDto(id: 0, name: "Emma", grade: 1, restrictionTime: nil, photo: nil, todayAnswers: nil, todayCorrectAnswers: nil, isConnected: false, percentageToday: nil, percentageProgress: nil, lastLogin: nil, breakEndDatetime: nil, breakStartDatetime: nil, wrongAnswersTime: nil, deviceToken: nil, restrictions: nil, subjects: [], devices: []))])
     var coachingChildren = [CoachingChildModel]()
     
     func getChildren(filtered: Bool) { }

@@ -8,6 +8,7 @@
 import UIKit
 
 class ChildDetailsModel {
+    
     var id: UUID = UUID()
     var childId: Int? = nil
     @Published var image = UIImage()
@@ -17,8 +18,9 @@ class ChildDetailsModel {
     var subjects: [BottomsheetCellModel]?
     var photoStringUrl: String?
     var isHidden = false
+    var devices: [DeviceModel]
     
-    init(childId: Int? = nil, image: UIImage = UIImage(), grade: Grade,interuption: Interuption, childName: String, photoStringUrl: String? = nil, subjects: [SubjectModel]?) {
+    init(childId: Int? = nil, image: UIImage = UIImage(), grade: Grade,interuption: Interuption, childName: String, photoStringUrl: String? = nil, subjects: [SubjectModel]?, devices: [DeviceModel] = []) {
         self.id = UUID()
         self.childId = childId
         self.image = image
@@ -27,6 +29,7 @@ class ChildDetailsModel {
         self.childName = childName
         self.subjects = subjects
         self.photoStringUrl = photoStringUrl
+        self.devices = devices
     }
     
     init() {
@@ -37,6 +40,7 @@ class ChildDetailsModel {
         self.interuption = .iSelect
         self.childName = ""
         self.subjects = nil
+        self.devices = []
     }
 }
 
@@ -60,16 +64,28 @@ final class ChildDetailsViewModel: ChildDetailsViewModeling, Identifiable {
     private var updateChildUseCase: UpdateChildUseCase?
     private var deleteChildUseCase: DeleteChildUseCase?
     private var getAllSubjectsUseCase: GetAllSubjectsUseCase
+    private let pairChildUseCase: PairChildUseCase
     
-    init(child: ChildModel? = nil, addChildUseCase: AddChildUseCase? = nil, updateChildUseCase: UpdateChildUseCase? = nil, deleteChildUseCase: DeleteChildUseCase? = nil, getAllSubjectsUseCase: GetAllSubjectsUseCase) {
+    init(child: ChildModel? = nil, addChildUseCase: AddChildUseCase? = nil, updateChildUseCase: UpdateChildUseCase? = nil, deleteChildUseCase: DeleteChildUseCase? = nil, getAllSubjectsUseCase: GetAllSubjectsUseCase, pairChildUseCase: PairChildUseCase) {
         self.child = child
         self.addChildUseCase = addChildUseCase
         self.updateChildUseCase = updateChildUseCase
         self.deleteChildUseCase = deleteChildUseCase
         self.getAllSubjectsUseCase = getAllSubjectsUseCase
+        self.pairChildUseCase = pairChildUseCase
         
         if let child = child {
-            children = [ChildDetailsModel(childId: child.id, grade: child.grade, interuption: Interuption(rawValue: child.interruption ?? 0) ?? .iSelect, childName: child.name, photoStringUrl: child.photoUrl?.absoluteString, subjects: child.subjects)]
+            children = [
+                ChildDetailsModel(
+                    childId: child.id,
+                    grade: child.grade,
+                    interuption: Interuption(rawValue: child.interruption ?? 0) ?? .iSelect,
+                    childName: child.name,
+                    photoStringUrl: child.photoUrl?.absoluteString,
+                    subjects: child.subjects,
+                    devices: child.devices
+                )
+            ]
         }
         
         getSubjects()
@@ -155,6 +171,46 @@ final class ChildDetailsViewModel: ChildDetailsViewModeling, Identifiable {
             }
         }
     }
+    
+    func pairChild(id: Int, deviceToken: String, compleated: @escaping (Bool)->()) {
+        isLoading = true
+        let name = UIDevice.current.name
+        let model = UIDevice.modelName
+        pairChildUseCase.execute(
+            payload: PairChildPayload(
+                id: id,
+                deviceToken: deviceToken,
+                childDeviceName: name,
+                childDeviceModel: model
+            )
+        ) { error in
+            DispatchQueue.main.async { self.isLoading = false }
+            if let error = error {
+                compleated(false)
+                print(error.localizedDescription)
+                return
+            }
+            compleated(true)
+        }
+    }
+    
+    func removeDevice(device: DeviceModel, compleated: @escaping (Bool)->()) {
+        isLoading = true
+        pairChildUseCase.delete(payload: PairChildPayload(
+            id: device.id,
+            deviceToken: device.deviceToken,
+            childDeviceName: device.deviceName,
+            childDeviceModel: device.deviceType.modelName
+        ), completion: { error in
+            DispatchQueue.main.async { self.isLoading = false }
+            if let error = error {
+                compleated(false)
+                print(error.localizedDescription)
+                return
+            }
+            compleated(true)
+        })
+    }
 }
 
 
@@ -177,4 +233,6 @@ final class MockChildDetailsViewModel: ChildDetailsViewModeling, Identifiable {
     
     func appendChildren() { }
     func getSubjects() { }
+    func pairChild(id: Int, deviceToken: String, compleated: @escaping (Bool)->()) { }
+    func removeDevice(device: DeviceModel, compleated: @escaping (Bool)->()) { }
 }

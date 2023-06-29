@@ -35,6 +35,9 @@ extension Image {
         public static var familySharing: Image {
             return Image("familySharing.familySharing")
         }
+        public static var familySharingConfirmed: Image {
+            return Image("familySharing.familySharingConfirmed")
+        }
         public static var appleId: Image {
             return Image("familySharing.appleId")
         }
@@ -43,6 +46,12 @@ extension Image {
         }
         public static var info: Image {
             return Image("familySharing.info")
+        }
+        public static var createorjoinfamily: Image {
+            return Image("familysharing.createorjoinfamily")
+        }
+        public static var addchildtofamily: Image {
+            return Image("familysharing.addchildtofamily")
         }
     }
     
@@ -123,6 +132,9 @@ extension Image {
         public static var mobile: Image {
             return Image("settings.mobile")
         }
+        public static var addparent: Image {
+            return Image("settings.addparent")
+        }
     }
     
     public struct Common {
@@ -169,6 +181,16 @@ extension Image {
         }
         public static var volume: Image {
             return Image("childHome.volume")
+        }
+    }
+    
+    public struct Device {
+        
+        public static var iPhone: Image {
+            return Image("device_iPhone")
+        }
+        public static var iPad: Image {
+            return Image("device_iPad")
         }
     }
 }

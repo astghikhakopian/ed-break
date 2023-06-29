@@ -14,6 +14,7 @@ protocol ChildrenRepository {
     func getChildDetails(payload: GetChildDetailsPayload, completion: @escaping (Result<ChildRetriveDto, Error>) -> Void)
     func getCoachingChildren(timePeriod: TimePeriod,completion: @escaping (Result<DataContainerDto<[CoachingChildDto]>, Error>) -> Void)
     func pairChild(payload: PairChildPayload, completion: @escaping(Error?) -> Void)
+    func removeDevice(payload: PairChildPayload, completion: @escaping(Error?) -> Void)
     func checkConnection(payload: PairChildPayload, completion: @escaping (Result<TokenDto, Error>) -> Void)
     func getSubjects(completion: @escaping (Result<HomeDto, Error>) -> Void)
 }
@@ -31,6 +32,9 @@ final class DefaultChildrenRepository: MoyaProvider<ChildrenRoute>, ChildrenRepo
     }
     func pairChild(payload: PairChildPayload, completion: @escaping(Error?) -> Void) {
         requestSimple(.pairChild(payload: payload), completion: completion)
+    }
+    func removeDevice(payload: PairChildPayload, completion: @escaping(Error?) -> Void) {
+        requestSimple(.removeDevice(payload: payload), completion: completion)
     }
     func checkConnection(payload: PairChildPayload, completion: @escaping (Result<TokenDto, Error>) -> Void) {
         requestDecodable(.checkConnection(payload: payload), completion: completion)

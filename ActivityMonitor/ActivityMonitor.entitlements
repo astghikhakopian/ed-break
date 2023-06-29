@@ -8,7 +8,7 @@
 	<true/>
 	<key>com.apple.security.application-groups</key>
 	<array>
-		<string>group.com.au.edbreak</string>
+		<string>group.com.au.edbreak.prod</string>
 	</array>
 </dict>
 </plist>

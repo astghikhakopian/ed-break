@@ -23,4 +23,6 @@ protocol ChildDetailsViewModeling: ObservableObject {
     func removeChild(child: ChildDetailsModel)
     func appendChildren()
     func getSubjects()
+    func pairChild(id: Int, deviceToken: String, compleated: @escaping (Bool)->())
+    func removeDevice(device: DeviceModel, compleated: @escaping (Bool)->())
 }

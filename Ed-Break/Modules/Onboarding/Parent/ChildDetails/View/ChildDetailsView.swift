@@ -75,7 +75,7 @@ private extension ChildDetailsView {
                         UIApplication.shared.endEditing()
                         showSubjects = true
                     }
-                        if $viewModel.children.filter { !$0.isHidden.wrappedValue }.count > 1 {
+                        if $viewModel.children.filter({ !$0.isHidden.wrappedValue }).count > 1 {
                             ZStack {
                                 Color.primaryRed.opacity(0.05)
                                 CancelButton(action: {
@@ -84,7 +84,7 @@ private extension ChildDetailsView {
                                 }, title: "childDetails.delete", color: .primaryRed, isContentValid: .constant(true))
                             }.cornerRadius(cornerRadius)
                         }
-                }
+                    }
                 }
                 if !simpleAdd {
                     ZStack {

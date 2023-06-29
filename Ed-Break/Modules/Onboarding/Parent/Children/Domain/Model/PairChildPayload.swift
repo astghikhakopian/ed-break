@@ -9,4 +9,6 @@ struct PairChildPayload {
     
     let id: Int
     let deviceToken: String
+    let childDeviceName: String
+    let childDeviceModel: String
 }

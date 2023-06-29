@@ -61,10 +61,27 @@ extension SettingsView {
         VStack(alignment: .leading, spacing: 0) {
             if viewModel.isUserLoggedIn {
                 NavigationLink {
-                    ChildDevicesView(viewModel: ChildrenViewModel(
-                        filtered: false, getChildrenUseCase: GetChildrenUseCase(childrenRepository: DefaultChildrenRepository()), pairChildUseCase: PairChildUseCase(childrenRepository: DefaultChildrenRepository()), refreshTokenUseCase: RefreshTokenUseCase(familySharingRepository: DefaultFamilySharingRepository()), addRestrictionUseCase: AddRestrictionUseCase(restrictionsRepository: DefaultRestrictionsRepository())))
+                    NavigationLazyView(
+                        ChildDevicesView(
+                            viewModel: ChildrenViewModel(
+                            filtered: false,
+                            getChildrenUseCase: GetChildrenUseCase(
+                                childrenRepository: DefaultChildrenRepository()),
+                            pairChildUseCase: PairChildUseCase(
+                                childrenRepository: DefaultChildrenRepository()),
+                            refreshTokenUseCase: RefreshTokenUseCase(
+                                familySharingRepository: DefaultFamilySharingRepository()),
+                            addRestrictionUseCase: AddRestrictionUseCase(
+                                restrictionsRepository: DefaultRestrictionsRepository()))))
                 } label: {
                     settingsCell(type: .childDevices).disabled(true)
+                }
+                NavigationLink {
+                    NavigationLazyView(
+                        InviteParentQRView()
+                    )
+                } label: {
+                    settingsCell(type: .inviteParents).disabled(true)
                 }
             }
             settingsCell(type: .termsAndConditions) {

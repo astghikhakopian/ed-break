@@ -22,14 +22,16 @@ struct OnboardingRole: View {
                 MainBackground(title: "onboarding.role", withNavbar: false) {
                     VStack(spacing: spacing) {
                         OnboardingRoleCell(role: .parent) {
-                            FamilySharingView(viewModel: FamilySharingViewModel(addParentUseCase: AddParentUseCase(familySharingRepository: DefaultFamilySharingRepository()), localStorageService: UserDefaultsService()))
-                        }.frame(height: cellHeight)
-                            .disabled(!isTermsSelected)
+                            CreateOrJoinFamilyView()
+                        }
+                        .frame(height: cellHeight)
+                        .disabled(!isTermsSelected)
                         
                         OnboardingRoleCell(role: .child) {
                             ChildSignInView()
-                        }.frame(height: cellHeight)
-                            .disabled(!isTermsSelected)
+                        }
+                        .frame(height: cellHeight)
+                        .disabled(!isTermsSelected)
                     }
                 }
                 Spacer()

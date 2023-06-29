@@ -74,21 +74,17 @@ struct ChildrenView<M: ChildrenViewModeling>: View {
             DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
                 isDiscouragedPresented = true
             }
-            
-//            viewModel.pairChild(id: scanningChild.id, deviceToken: uuid) { success in
-//                guard success else { return }
-//                viewModel.connectedChildren.append(scanningChild)
-//            }
         case .failure(let error):
             print("Scanning failed: \(error.localizedDescription)")
         }
-       // scanningChild = nil
     }
     func pairChild(scanningChild: ChildModel, deviceToken: String, complition: @escaping (Int)->()) {
         viewModel.pairChild(id: scanningChild.id, deviceToken: deviceToken) { success in
             guard success else { return }
-            viewModel.connectedChildren.append(scanningChild)
-            complition(scanningChild.id)
+            DispatchQueue.main.async {
+                viewModel.connectedChildren.append(scanningChild)
+                complition(scanningChild.id)
+            }
         }
         self.scanningChild = nil
     }

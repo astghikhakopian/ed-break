@@ -75,8 +75,16 @@ final class HomeViewModel: HomeViewModeling, Identifiable {
         didUpdateToken = true
         isLoading = true
         guard let uuid = UIDevice.current.identifierForVendor?.uuidString else { return }
-        
-        checkConnectionUseCase.execute(payload: PairChildPayload(id: -1, deviceToken: uuid)) { [weak self] result in
+        let name = UIDevice.current.name
+        let model = UIDevice.modelName
+        checkConnectionUseCase.execute(
+            payload: PairChildPayload(
+                id: -1,
+                deviceToken: uuid,
+                childDeviceName: name,
+                childDeviceModel: model
+            )
+        ) { [weak self] result in
             switch result {
             case .success(let token):
                 let localStorageService = UserDefaultsService()

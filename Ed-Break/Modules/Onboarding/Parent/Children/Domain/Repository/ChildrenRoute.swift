@@ -14,6 +14,7 @@ enum ChildrenRoute: TargetType {
     case getCoachingChildren(payload: TimePeriod)
     case getChildDetails(payload: GetChildDetailsPayload)
     case pairChild(payload: PairChildPayload)
+    case removeDevice(payload: PairChildPayload)
     case checkConnection(payload: PairChildPayload)
     
     case getSubjects
@@ -31,9 +32,11 @@ enum ChildrenRoute: TargetType {
         case .getCoachingChildren:
             return "/questions/coaching/"
         case .pairChild:
-            return "/users/child-device/"
+            return "/users/child-device-add/"
+        case .removeDevice(let device):
+            return "/users/child-device-delete/\(device.deviceToken)/"
         case .checkConnection:
-            return "/users/child-status/"
+            return "/users/child-device-login/"
         case .getSubjects:
             return "/users/child-home/"
         }
@@ -49,6 +52,8 @@ enum ChildrenRoute: TargetType {
             return .get
         case .pairChild:
             return .patch
+        case .removeDevice:
+            return .delete
         case .checkConnection:
             return .post
         case .getSubjects:
@@ -75,13 +80,20 @@ enum ChildrenRoute: TargetType {
             ], encoding: URLEncoding.queryString)
         case .pairChild(let payload):
             return .requestParameters(parameters: [
-                "child_id": payload.id,
-                "child_device_token": payload.deviceToken
-            ], encoding: URLEncoding.queryString)
+                "childId": payload.id,
+                "deviceToken": payload.deviceToken,
+                "deviceName": payload.childDeviceName,
+                "deviceType": payload.childDeviceModel
+            ], encoding: JSONEncoding.default)
+        case .removeDevice:
+            return .requestParameters(
+                parameters: [:],
+                encoding: URLEncoding.queryString
+            )
         case .checkConnection(let payload):
             return .requestParameters(parameters: [
-                "device_token": payload.deviceToken
-            ], encoding: URLEncoding.queryString)
+                "deviceToken": payload.deviceToken
+            ], encoding: JSONEncoding.default)
         case .getSubjects:
             return .requestParameters(parameters: [ :
             ], encoding: URLEncoding.queryString)

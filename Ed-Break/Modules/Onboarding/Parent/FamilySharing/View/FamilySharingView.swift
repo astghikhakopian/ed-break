@@ -13,6 +13,7 @@ struct FamilySharingView<M: FamilySharingViewModeling>: View {
     
     @Environment(\.openURL) private var openURL
     
+    private let cells: [FamilySharingCellType] = [.settings, .appleId, .familySharing, .addChild, .returnBack]
     @State private var isContentValid = true
     private let cornerRadius = 12.0
     private let spacing = 25.0
@@ -25,6 +26,8 @@ struct FamilySharingView<M: FamilySharingViewModeling>: View {
             VStack(spacing: gap) {
                 steps
                 info
+                Spacer()
+                    .frame(maxHeight: .infinity)
                 NavigationButton(
                     title: "familySharing.done",
                     didTap: { viewModel.addParent() },
@@ -38,11 +41,16 @@ struct FamilySharingView<M: FamilySharingViewModeling>: View {
                                     childDetailsRepository: DefaultChildDetailsRepository(
                                         plugins: [BasicAuthenticationPlugin()])),
                                 getAllSubjectsUseCase: GetAllSubjectsUseCase(
-                                    childDetailsRepository: DefaultChildDetailsRepository())))
-                    })
-                CancelButton(action: {
-                    openURL(settingsUrl)
-                }, title: "familySharing.cancel", isContentValid: .constant(true))
+                                    childDetailsRepository: DefaultChildDetailsRepository()),
+                                pairChildUseCase: PairChildUseCase(
+                                    childrenRepository: DefaultChildrenRepository())))
+                    }
+                )
+                CancelButton(
+                    action: { openURL(settingsUrl) },
+                    title: "familySharing.cancel",
+                    isContentValid: .constant(true)
+                )
             }
         }
     }
@@ -56,7 +64,7 @@ private extension FamilySharingView {
                 .cornerRadius(cornerRadius)
                 .shadow(color: .shadow, radius: 40, x: 0, y: 20)
             VStack(alignment: .leading, spacing: spacing) {
-                ForEach(FamilySharingCellType.allCases, id: \.self) {
+                ForEach(cells, id: \.self) {
                     FamilySharingCell(type: $0)
                 }
             }.padding(spacing)

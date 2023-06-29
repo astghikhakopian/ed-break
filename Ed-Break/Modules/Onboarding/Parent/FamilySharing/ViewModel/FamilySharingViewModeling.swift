@@ -12,4 +12,6 @@ protocol FamilySharingViewModeling: ObservableObject {
     var isLoading: Bool { get set }
     
     func addParent()
+    
+    func joinToFamily(familyOwnerDeviceToken: String, completion: @escaping (Bool) -> Void)
 }

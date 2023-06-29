@@ -21,6 +21,7 @@ struct ChildDto: Codable {
     let photo: String?
     let todayAnswers: Int?
     let todayCorrectAnswers: Int?
+    let isConnected: Bool?
     let percentageToday: Float?
     let percentageProgress: Float?
     let lastLogin: String?
@@ -30,6 +31,7 @@ struct ChildDto: Codable {
     let deviceToken: String?
     let restrictions: String?
     let subjects: [SubjectDto]?
+    let devices: [DeviceDto]?
 }
 
 

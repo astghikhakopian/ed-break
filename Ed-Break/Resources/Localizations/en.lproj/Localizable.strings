@@ -15,6 +15,19 @@
 "onboarding.parent.title" = "Parent’s Device";
 "onboarding.child.title" = "Child’s Device";
 
+"onboarding.createorjoinfamily.title" = "Do you want to Create \n or Join a Family?";
+"onboarding.createorjoinfamily.description" = "You can join an existing Family by scanning QR code received from the Family Organizer";
+"onboarding.createorjoinfamily.createfamily" = "Create Family";
+"onboarding.createorjoinfamily.joinfamily" = "Join a Family";
+
+"onboarding.addedChildToFamily.title" = "Have you added child to \n the Family?";
+"onboarding.addedChildToFamily.scanQR" = "Yes";
+"onboarding.addedChildToFamily.howTo" = "How to?";
+
+"onboarding.joinfamily.title" = "Do you participate in an \n existing Family?";
+"onboarding.joinfamily.scanQR" = "Yes, Scan QR";
+"onboarding.joinfamily.howTo" = "How to?";
+
 "onboarding.familySharing.title" = "Set up Family Sharing \n and invite your child";
 "onboarding.childDetails.title" = "Set child details";
 "onboarding.qrCode.title" = "Install Ed-Break \n on the child’s device";
@@ -29,6 +42,9 @@
 "onboarding.childQRCode.description" = "Open “Ed-Break” on parent device and scan the QR code to pair device";
 "onboarding.childQRCode.waiting" = "Waiting for the parent to complete pairing";
 
+"onboarding.parentQRCode.title" = "Invite parents";
+"onboarding.parentQRCode.description" = "Install Ed-Break app from the App Store then scan the QR-code to add another parent’s device";
+
 "familySharing.settings.title" = "Go to Settings";
 "familySharing.settings.description" = "";
 "familySharing.appleId.title" = "How to create a child's Apple ID";
@@ -39,12 +55,21 @@
 "familySharing.addChild.description" = "";
 "familySharing.returnBack.title" = "Return to Ed-Break";
 "familySharing.returnBack.description" = "";
+"familySharing.appleFamily.title" = "Ask the Family Organizer  to add you to the Family";
+"familySharing.appleFamily.description" = "";
+"familySharing.waitForInvite.title" = "Wait for invitation";
+"familySharing.waitForInvite.description" = "You’ll receive an invitation";
+"familySharing.confirmInvite.title" = "Confirm invitation";
+"familySharing.confirmInvite.description" = "";
 
 "familySharing.setup.title" = "How to set up Family Sharing";
 "familySharing.childAppleId.title" = "How to create a child’s Apple ID";
 
 "familySharing.done" = "Done, I’ve set it up";
 "familySharing.cancel" = "Open Settings";
+
+"familySharing.done.newparent" = "Done, scan QR";
+"familySharing.cancel.newparent" = "Check in Settings";
 
 "childDetails.upload" = "Upload photo";
 "childDetails.upload.new" = "Upload new";
@@ -56,10 +81,14 @@
 "childDetails.name.placeholder" = "Name";
 "childDetails.grade" = "Grade level";
 "childDetails.add" = "Add another child";
-"childDetails.delete" = "Delete child’s device";
+"childDetails.delete" = "Delete child";
 "childDetails.subjects" = "Subjects";
 "childDetails.interruption" = "Interruption";
 "childDetails.interruption.period" = "Interruption Period";
+"childDetails.save" = "Save changes";
+
+"deviceDetails.title" = "Device info";
+"deviceDetails.name" = "Device name";
 
 "qrCode.description" = "Get Ed-Break app from the App Store or scan the QR-code on the child’s Device";
 
@@ -77,6 +106,7 @@
 "common.manage" = "Manage";
 "common.delete" = "Delete";
 "common.select" = "Select";
+"common.yes" = "Yes";
 
 
 // Tabbar
@@ -130,7 +160,8 @@
 // Settings
 
 "main.parent.settings" = "Settings";
-"main.parent.settings.childDevices" = "Child devices";
+"main.parent.settings.childDevices" = "Manage Children";
+"main.parent.settings.addParents" = "Invite parents";
 "main.parent.settings.termsAndConditions" = "Terms and Conditions";
 "main.parent.settings.rateTheApp" = "Rate the app";
 "main.parent.settings.delete" = "Delete account";

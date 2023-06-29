@@ -68,6 +68,7 @@ struct MainBackgroundCore<Content: View, Q: View, BarButtonItem: View> : View {
                             .foregroundColor(Color.appWhite)
                             .padding(.leading, withNavbar && !hideBackButton ? -50 : 0)
                             .padding(.trailing, withNavbar && leftBarButtonItem() != nil ? -30 : 0)
+                            .multilineTextAlignment(.center)
                         Spacer()
                     }
                     leftBarButtonItem()
