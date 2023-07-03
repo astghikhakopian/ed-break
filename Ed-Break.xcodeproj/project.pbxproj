@@ -64,6 +64,7 @@
 		1B56107D28F420B700DA3043 /* DashboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B56107C28F420B700DA3043 /* DashboardView.swift */; };
 		1B56107F28F4263E00DA3043 /* HomeChildCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B56107E28F4263E00DA3043 /* HomeChildCell.swift */; };
 		1B5A0352293272B40032BB71 /* AddInterruptionUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B5A0351293272B40032BB71 /* AddInterruptionUseCase.swift */; };
+		1B6764612A52C46900F6824F /* SwiftUIPullToRefresh in Frameworks */ = {isa = PBXBuildFile; productRef = 1B6764602A52C46900F6824F /* SwiftUIPullToRefresh */; };
 		1B687134290D51FE00651A33 /* PairChildPayload.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B687133290D51FE00651A33 /* PairChildPayload.swift */; };
 		1B687136290D532700651A33 /* PairChildUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B687135290D532700651A33 /* PairChildUseCase.swift */; };
 		1B68713B290D678300651A33 /* CheckConnectionUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B68713A290D678300651A33 /* CheckConnectionUseCase.swift */; };
@@ -473,6 +474,7 @@
 			files = (
 				1B1843D82A289F7000552FA2 /* NavigationBackport in Frameworks */,
 				1BA30D5B28E79E0700926820 /* Moya in Frameworks */,
+				1B6764612A52C46900F6824F /* SwiftUIPullToRefresh in Frameworks */,
 				1BA30D5928E79E0700926820 /* CombineMoya in Frameworks */,
 				1BE60C3B28EEC0B8001943D1 /* CodeScanner in Frameworks */,
 			);
@@ -1766,6 +1768,7 @@
 				1BA30D5A28E79E0700926820 /* Moya */,
 				1BE60C3A28EEC0B8001943D1 /* CodeScanner */,
 				1B1843D72A289F7000552FA2 /* NavigationBackport */,
+				1B6764602A52C46900F6824F /* SwiftUIPullToRefresh */,
 			);
 			productName = "Ed-Break";
 			productReference = EFE9288328E18C3A00675F28 /* Ed-Break.app */;
@@ -1808,6 +1811,7 @@
 				1BA30D5728E79E0700926820 /* XCRemoteSwiftPackageReference "Moya" */,
 				1BE60C3928EEC0B8001943D1 /* XCRemoteSwiftPackageReference "CodeScanner" */,
 				1B1843D62A289F7000552FA2 /* XCRemoteSwiftPackageReference "NavigationBackport" */,
+				1B67645F2A52C46900F6824F /* XCRemoteSwiftPackageReference "swiftui-pull-to-refresh" */,
 			);
 			productRefGroup = EFE9288428E18C3A00675F28 /* Products */;
 			projectDirPath = "";
@@ -2125,7 +2129,7 @@
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = ShieldConfigurationExtension/ShieldConfigurationExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 4;
 				DEVELOPMENT_TEAM = 8374P8P59W;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = ShieldConfigurationExtension/Info.plist;
@@ -2152,7 +2156,7 @@
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = ShieldConfigurationExtension/ShieldConfigurationExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 4;
 				DEVELOPMENT_TEAM = 8374P8P59W;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = ShieldConfigurationExtension/Info.plist;
@@ -2180,7 +2184,7 @@
 				APPLICATION_EXTENSION_API_ONLY = YES;
 				CODE_SIGN_ENTITLEMENTS = ShieldActionExtension/ShieldActionExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 4;
 				DEVELOPMENT_TEAM = 8374P8P59W;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = ShieldActionExtension/Info.plist;
@@ -2208,7 +2212,7 @@
 				APPLICATION_EXTENSION_API_ONLY = YES;
 				CODE_SIGN_ENTITLEMENTS = ShieldActionExtension/ShieldActionExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 4;
 				DEVELOPMENT_TEAM = 8374P8P59W;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = ShieldActionExtension/Info.plist;
@@ -2235,7 +2239,7 @@
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = ActivityMonitor/ActivityMonitor.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 4;
 				DEVELOPMENT_TEAM = 8374P8P59W;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = ActivityMonitor/Info.plist;
@@ -2262,7 +2266,7 @@
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = ActivityMonitor/ActivityMonitor.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 4;
 				DEVELOPMENT_TEAM = 8374P8P59W;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = ActivityMonitor/Info.plist;
@@ -2409,7 +2413,7 @@
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_ENTITLEMENTS = "Ed-Break/Ed-Break.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 4;
 				DEVELOPMENT_ASSET_PATHS = "Ed-Break/Resources/Preview\\ Content";
 				DEVELOPMENT_TEAM = 8374P8P59W;
 				ENABLE_PREVIEWS = YES;
@@ -2446,7 +2450,7 @@
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_ENTITLEMENTS = "Ed-Break/Ed-Break.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 4;
 				DEVELOPMENT_ASSET_PATHS = "Ed-Break/Resources/Preview\\ Content";
 				DEVELOPMENT_TEAM = 8374P8P59W;
 				ENABLE_PREVIEWS = YES;
@@ -2533,6 +2537,14 @@
 				minimumVersion = 0.8.1;
 			};
 		};
+		1B67645F2A52C46900F6824F /* XCRemoteSwiftPackageReference "swiftui-pull-to-refresh" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/globulus/swiftui-pull-to-refresh";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
+			};
+		};
 		1BA30D5728E79E0700926820 /* XCRemoteSwiftPackageReference "Moya" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/Moya/Moya.git";
@@ -2556,6 +2568,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 1B1843D62A289F7000552FA2 /* XCRemoteSwiftPackageReference "NavigationBackport" */;
 			productName = NavigationBackport;
+		};
+		1B6764602A52C46900F6824F /* SwiftUIPullToRefresh */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 1B67645F2A52C46900F6824F /* XCRemoteSwiftPackageReference "swiftui-pull-to-refresh" */;
+			productName = SwiftUIPullToRefresh;
 		};
 		1BA30D5828E79E0700926820 /* CombineMoya */ = {
 			isa = XCSwiftPackageProductDependency;

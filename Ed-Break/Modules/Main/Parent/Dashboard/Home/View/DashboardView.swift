@@ -20,20 +20,30 @@ struct DashboardView<M: ChildrenViewModeling>: View {
     private let gap = 20.0
     
     var body: some View {
-        VStack {
-            ScrollView {
-                if viewModel.isLoading {
-                    ProgressView()
-                        .progressViewStyle(
-                            CircularProgressViewStyle(tint: .appWhite))
-                } else {
-                    VStack(spacing: gap) {
-                        content
-                    }
-                }
-            }.onReceive(.Refresh.update) { _ in
+        MainBackground(
+            title: "main.parent.home",
+            withNavbar: false,
+            isRefreshable: true,
+            onRefresh: { done in
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
+                    done()
+                  }
                 viewModel.getChildren(filtered: true)
                 viewModel.getCoachingChildren()
+            }
+        ) {
+            VStack {
+                ScrollView {
+                    if viewModel.isLoading {
+                        ProgressView()
+                            .progressViewStyle(
+                                CircularProgressViewStyle(tint: .appWhite))
+                    } else {
+                        VStack(spacing: gap) {
+                            content
+                        }
+                    }
+                }
             }
         }
     }

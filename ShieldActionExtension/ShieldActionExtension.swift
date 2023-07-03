@@ -49,7 +49,7 @@ class ShieldActionExtension: ShieldActionDelegate {
 //            }
 //            ScheduleModel.
 //            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "qqq"), object: nil)
-            sendNotification(title: "Do Exercises", body: "Tap on me to do exerccises")
+            sendNotification(title: "Do Exercises", body: "Tap on me to do exercises")
             let myAppUrl = URL(string: UIApplication.openSettingsURLString)!// URL(string: "edbreak://some-context")!
             
              NSExtensionContext().open(myAppUrl, completionHandler: { (success) in

@@ -59,17 +59,14 @@ struct ChildProfileView<M: ChildProfileViewModeling>: View {
                 restrictionsView
             }
         }
-        .background(GeometryReader {
-                        Color.clear.preference(key: ViewOffsetKey.self,
-                            value: -$0.frame(in: .named("scroll")).origin.y)
-                    })
+        .background(
+          GeometryReader {
+            Color.clear.preference(
+              key: ViewOffsetKey.self,
+              value: -$0.frame(in: .named("scroll")).origin.y)
+          })
         .onPreferenceChange(ViewOffsetKey.self) {
-            if $0>60 {
-                navTitle = viewModel.child.name
-            } else {
-                navTitle = ""
-            }
-            
+              navTitle = $0>60 ? viewModel.child.name : ""
         }
         .toolbar {
             ToolbarItem(placement: .principal){

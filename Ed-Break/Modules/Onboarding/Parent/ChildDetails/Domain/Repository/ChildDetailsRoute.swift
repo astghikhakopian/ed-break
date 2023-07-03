@@ -75,7 +75,7 @@ enum ChildDetailsRoute: TargetType, AccessTokenAuthorizable {
             if let subjects = payload.subjects {
                 for i in subjects {
                     let valueObj = String(i)
-                    let keyObj = "data_subjects" + "[" + String(i) + "]"
+                    let keyObj = "subjects" + "[" + String(i) + "]"
                     formData.append(MultipartFormData(provider: .data(valueObj.data(using: .utf8)!), name: keyObj))
                 }
                 
@@ -105,7 +105,7 @@ enum ChildDetailsRoute: TargetType, AccessTokenAuthorizable {
             if let subjects = payload.subjects {
                 for i in subjects {
                     let valueObj = String(i)
-                    let keyObj = "data_subjects" + "[" + String(i) + "]"
+                    let keyObj = "subjects" + "[" + String(i) + "]"
                     formData.append(MultipartFormData(provider: .data(valueObj.data(using: .utf8)!), name: keyObj))
                 }
                 

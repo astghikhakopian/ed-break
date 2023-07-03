@@ -81,6 +81,7 @@
 "childDetails.name.placeholder" = "Name";
 "childDetails.grade" = "Grade level";
 "childDetails.add" = "Add another child";
+"childDetails.add.device" = "Add a device";
 "childDetails.delete" = "Delete child";
 "childDetails.subjects" = "Subjects";
 "childDetails.interruption" = "Interruption";

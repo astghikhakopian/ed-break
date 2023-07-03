@@ -35,7 +35,7 @@ struct QRCodeView: View {
                                     plugins: [BasicAuthenticationPlugin()])), refreshTokenUseCase: RefreshTokenUseCase(familySharingRepository: DefaultFamilySharingRepository()), addRestrictionUseCase: AddRestrictionUseCase(restrictionsRepository: DefaultRestrictionsRepository())
                             ))})
             }
-        }
+        }.navigationBarBackButtonHidden()
     }
 }
 

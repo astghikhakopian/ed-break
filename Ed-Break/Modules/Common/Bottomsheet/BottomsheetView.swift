@@ -154,13 +154,18 @@ extension BottomsheetViewModifier: ViewModifier {
                                 }
                             }
                             if isMultiselect {
-                                ConfirmButton(action: {
+                                ConfirmButton(
+                                    action: {
                                     DispatchQueue.main.async {
                                         selectedItems = localSelectedItems
                                         localSelectedItems = []
                                         isPresented = false
                                     }
-                                }, title: "common.confirm", isContentValid: $isContentValid, isLoading: .constant(false))
+                                },
+                                    title: "common.confirm",
+                                    isContentValid: $isContentValid,
+                                    isLoading: .constant(false)
+                                ).disabled(!isContentValid)
                             }
                             Spacer().frame(height: 20)
                         }.padding(itemSpacing)

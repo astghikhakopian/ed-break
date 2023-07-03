@@ -44,7 +44,7 @@ final class ChildrenViewModel: ChildrenViewModeling, Identifiable {
     }
     
     func getChildren(filtered: Bool) {
-        DispatchQueue.main.async { self.isLoading = true }
+//        DispatchQueue.main.async { self.isLoading = true }
         getChildrenUseCase.execute { [weak self] result in
             guard let self = self else { return }
             DispatchQueue.main.async { self.isLoading = false }

@@ -116,7 +116,7 @@ final class QuestionsViewModel: QuestionsViewModeling, Identifiable {
     }
     
     func startPlayingQuestion() {
-        guard !(currentQuestion.questionText ?? "").isEmpty else { return }
+        guard !(currentQuestion.questionText ?? "").isEmpty, !isPhoneUnlocked else { return }
         stopPlayingQuestion()
         textToSpeachManager.read(question: currentQuestion, after: 0) { [weak self] in
             self?.currentReadingItem = $0

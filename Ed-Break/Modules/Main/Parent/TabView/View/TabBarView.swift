@@ -18,19 +18,17 @@ struct TabBarView: View {
         TabView(selection: $selection) {
             
             NavigationView {
-                MainBackground(title: "main.parent.home", withNavbar: false) {
-                    DashboardView(
-                        viewModel: ChildrenViewModel(
-                            filtered: true,
-                            getChildrenUseCase: GetChildrenUseCase(
-                                childrenRepository: DefaultChildrenRepository()),
-                            pairChildUseCase: PairChildUseCase(
-                                childrenRepository: DefaultChildrenRepository()),
-                            refreshTokenUseCase: RefreshTokenUseCase(
-                                familySharingRepository: DefaultFamilySharingRepository()), addRestrictionUseCase: AddRestrictionUseCase(restrictionsRepository: DefaultRestrictionsRepository())))
-                    .environmentObject(model)
-                    .showTabBar()
-                }
+                DashboardView(
+                    viewModel: ChildrenViewModel(
+                        filtered: true,
+                        getChildrenUseCase: GetChildrenUseCase(
+                            childrenRepository: DefaultChildrenRepository()),
+                        pairChildUseCase: PairChildUseCase(
+                            childrenRepository: DefaultChildrenRepository()),
+                        refreshTokenUseCase: RefreshTokenUseCase(
+                            familySharingRepository: DefaultFamilySharingRepository()), addRestrictionUseCase: AddRestrictionUseCase(restrictionsRepository: DefaultRestrictionsRepository())))
+                .environmentObject(model)
+                .showTabBar()
             }.navigationViewStyle(StackNavigationViewStyle())
             .foregroundColor(.appBlack)
             .accentColor(.appClear)

@@ -53,7 +53,7 @@ struct QuestionsView<M: QuestionsViewModeling>: View {
             .cornerRadius(contentCornerRadius)
             .frame(
                 minWidth: UIScreen.main.bounds.width - 2*padding,
-                minHeight: UIScreen.main.bounds.height - 280
+                minHeight: UIScreen.main.bounds.height - 300
             )
             },
             stickyView: {
@@ -251,6 +251,6 @@ struct QuestionsView_Previews: PreviewProvider {
                     viewModel: MockQuestionsViewModel()
                 ).background(Color.primaryPurple)
             )
-        }
+        }.navigationViewStyle(StackNavigationViewStyle())
     }
 }

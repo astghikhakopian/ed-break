@@ -28,9 +28,9 @@ struct SettingsView<M: ParentSettingsViewModeling>: View {
     var body: some View {
         VStack(alignment: .leading, spacing: gap) {
             mainContent
-//            if viewModel.isUserLoggedIn {
+            if viewModel.isUserLoggedIn {
                 deleteSection
-//            }
+            }
         }.confirmationDialog(
             "main.parent.settings.delete",
             isPresented: $showDeleteOptions,

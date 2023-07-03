@@ -6,30 +6,39 @@
 //
 
 import SwiftUI
+import SwiftUIPullToRefresh
 
 struct MainBackgroundCore<Content: View, Q: View, BarButtonItem: View> : View {
     
     let title: String?
     let withNavbar: Bool
+    let isRefreshable: Bool
     var isSimple: Bool
     var hideBackButton: Bool
     let stickyView: () -> Q?
     let leftBarButtonItem: () -> BarButtonItem?
+    let onRefresh: OnRefresh
     let content: (() -> Content)
     
     init(
         title: String?,
         withNavbar: Bool,
+        isRefreshable: Bool = false,
         isSimple: Bool = false,
         hideBackButton: Bool = false,
+        onRefresh: @escaping OnRefresh = { done in
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) { done() }
+        },
         @ViewBuilder content: @escaping () -> Content,
         @ViewBuilder stickyView: @escaping () -> Q? = { nil },
         @ViewBuilder leftBarButtonItem: @escaping () -> BarButtonItem? = { nil }
     ) {
         self.title = title
         self.withNavbar = withNavbar
+        self.isRefreshable = isRefreshable
         self.isSimple = isSimple
         self.hideBackButton = hideBackButton
+        self.onRefresh = onRefresh
         self.content = content
         self.stickyView = stickyView
         self.leftBarButtonItem = leftBarButtonItem
@@ -73,19 +82,28 @@ struct MainBackgroundCore<Content: View, Q: View, BarButtonItem: View> : View {
                     }
                     leftBarButtonItem()
                 }
-                ScrollView(showsIndicators: false) {
-                    PullToRefresh(coordinateSpaceName: "pullToRefresh") {
-                        NotificationCenter.default.post(name: .Refresh.update, object: nil)
+                if isRefreshable {
+                    RefreshableScrollView(showsIndicators: false, loadingViewBackgroundColor: .clear, onRefresh: onRefresh, progress: { state in
+                        ProgressView()
+                            .progressViewStyle(CircularProgressViewStyle(tint: .primaryCellBackground))
+                    }) {
+                        content()
+                            .cornerRadius(contentCornerRadius)
+                        if !isSimple {
+                            Spacer()
+                        }
                     }
-                    content()
-                        .cornerRadius(contentCornerRadius)
-                    if !isSimple {
-                        Spacer()
+                } else {
+                    ScrollView(showsIndicators: false) {
+                        content()
+                            .cornerRadius(contentCornerRadius)
+                        if !isSimple {
+                            Spacer()
+                        }
                     }
                 }
-                .coordinateSpace(name: "pullToRefresh")
-                    stickyView()
-                        .padding(.bottom, 15)
+                stickyView()
+                    .padding(.bottom, 15)
             }
             .padding(EdgeInsets(
                 top: hideBackButton ? -74 : withNavbar ? 0 : 10,
@@ -94,7 +112,7 @@ struct MainBackgroundCore<Content: View, Q: View, BarButtonItem: View> : View {
                 trailing: 15))
         }
         .navigationBarTitleDisplayMode(.inline)
-            .navigationViewStyle(StackNavigationViewStyle())
+        .navigationViewStyle(StackNavigationViewStyle())
     }
 }
 
@@ -127,10 +145,15 @@ typealias MainBackground<Content: View> = MainBackgroundCore<Content, AnyView, A
 
 struct MainBackground_Previews: PreviewProvider {
     static var previews: some View {
-        MainBackground(title: "onboarding.role", withNavbar: true, content: {
-            EmptyView()
-        }, leftBarButtonItem: {
-            return AnyView(Image.ChildHome.volume)
-        })
+        MainBackground(
+            title: "onboarding.role",
+            withNavbar: true,
+            onRefresh: { _ in
+            },
+            content: {
+                EmptyView()
+            }, leftBarButtonItem: {
+                return AnyView(Image.ChildHome.volume)
+            })
     }
 }

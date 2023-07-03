@@ -85,7 +85,14 @@ private extension ChildEditView {
                     WheelPickerField(style: .titled(title: "childDetails.grade"), selection: child.grade, datasource: $viewModel.grades){
                         UIApplication.shared.endEditing()
                     }
-                    WheelPickerField(style: .titled(title: "childDetails.interruption",titleToShow: "childDetails.interruption.period"), selection: $viewModel.children[0].interuption, datasource: $viewModel.interuptions){
+                    WheelPickerField(
+                        style: .titled(
+                            title: "childDetails.interruption",
+                            titleToShow: "childDetails.interruption.period"
+                        ),
+                        selection: $viewModel.children[0].interuption,
+                        datasource: $viewModel.interuptions
+                    ){
                         UIApplication.shared.endEditing()
                     }
                 }
@@ -170,7 +177,7 @@ private extension ChildEditView {
             Color.border
             CancelButton(
                 action: { isShowingScanner = true },
-                title: "childDetails.add",
+                title: "childDetails.add.device",
                 color: .primaryPurple,
                 isContentValid: .constant(true)
             )

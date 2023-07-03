@@ -16,6 +16,7 @@ extension MoyaProvider {
                 do {
                     if let json = try? JSONSerialization.jsonObject(with: response.data) {
                         print(json)
+//                        completion(RequestServiceError(message: json[], httpStatus: <#T##String#>))
                     }
                     print(String(data: response.data, encoding: .utf8) ?? "")
                     _ = try response.filterSuccessfulStatusCodes()
