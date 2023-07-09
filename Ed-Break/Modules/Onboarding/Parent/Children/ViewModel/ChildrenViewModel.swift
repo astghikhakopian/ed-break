@@ -85,10 +85,8 @@ final class ChildrenViewModel: ChildrenViewModeling, Identifiable {
         }
     }
     
-    func pairChild(id: Int, deviceToken: String, compleated: @escaping (Bool)->()) {
+    func pairChild(id: Int, deviceToken: String, name: String, model: String, compleated: @escaping (Bool)->()) {
         isLoading = true
-        let name = UIDevice.current.name
-        let model = UIDevice.modelName
         pairChildUseCase.execute(
             payload: PairChildPayload(
                 id: id,
@@ -153,6 +151,6 @@ final class MockChildrenViewModeling: ChildrenViewModeling, Identifiable {
     
     func getChildren(filtered: Bool) { }
     func getCoachingChildren() { }
-    func pairChild(id: Int, deviceToken: String, compleated: @escaping (Bool)->()) { }
+    func pairChild(id: Int, deviceToken: String, name: String, model: String, compleated: @escaping (Bool)->()) { }
     func refreshToken(completion: @escaping (Bool) -> Void) { }
 }

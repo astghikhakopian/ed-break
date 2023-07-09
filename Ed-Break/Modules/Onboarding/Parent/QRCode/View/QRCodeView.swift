@@ -17,7 +17,7 @@ struct QRCodeView: View {
     private let gap = 20.0
     
     var body: some View {
-        MainBackground(title: "", withNavbar: true,hideBackButton: true) {
+        MainBackground(title: "", withNavbar: true) {
             VStack(spacing: gap) {
                 content
                 NavigationButton(
@@ -35,7 +35,7 @@ struct QRCodeView: View {
                                     plugins: [BasicAuthenticationPlugin()])), refreshTokenUseCase: RefreshTokenUseCase(familySharingRepository: DefaultFamilySharingRepository()), addRestrictionUseCase: AddRestrictionUseCase(restrictionsRepository: DefaultRestrictionsRepository())
                             ))})
             }
-        }.navigationBarBackButtonHidden()
+        }
     }
 }
 

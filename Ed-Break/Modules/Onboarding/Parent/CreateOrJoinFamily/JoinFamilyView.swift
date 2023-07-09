@@ -15,9 +15,10 @@ struct JoinFamilyView<M: FamilySharingViewModeling>: View {
     @EnvironmentObject var appState: AppState
     
     @State private var isShowingScanner: Bool = false
+    @State private var contentSize: CGSize = .zero
     
     var body: some View {
-        MainBackground(title: "onboarding.joinfamily.title", withNavbar: true) {
+        MainBackground(title: "onboarding.joinfamily.title", withNavbar: true, contentSize: $contentSize) {
             ZStack {
                 ZStack(alignment: .bottom) {
                     Image.FamilySharing.addchildtofamily
@@ -52,7 +53,7 @@ struct JoinFamilyView<M: FamilySharingViewModeling>: View {
                         }
                 }
             }
-            .frame(height: UIScreen.main.bounds.height - 4*64)
+            .frame(height: contentSize.height)
         }
         .sheet(isPresented: $isShowingScanner) {
             CodeScannerView(codeTypes: [.qr], completion: handleScan)

@@ -14,6 +14,7 @@ struct QuestionsView<M: QuestionsViewModeling>: View {
     @State private var selectedAnswer: QuestionAnswerModel?
     @State private var isAdditionalQuestions = false
     @State private var shouldShowContinueButton = false
+    @State private var contentSize: CGSize = .zero
     
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     
@@ -34,6 +35,7 @@ struct QuestionsView<M: QuestionsViewModeling>: View {
             title: viewModel.subject.title,
             withNavbar: true,
             isSimple: true,
+            contentSize: $contentSize,
             content: {
                 VStack(spacing: containerSpacing) {
                     if viewModel.questionsContainer != nil {
@@ -51,10 +53,7 @@ struct QuestionsView<M: QuestionsViewModeling>: View {
             .padding(padding)
             .background(Color.primaryCellBackground)
             .cornerRadius(contentCornerRadius)
-            .frame(
-                minWidth: UIScreen.main.bounds.width - 2*padding,
-                minHeight: UIScreen.main.bounds.height - 300
-            )
+            .frame(minHeight: contentSize.height)
             },
             stickyView: {
                 if viewModel.isPhoneUnlocked {
@@ -103,7 +102,7 @@ extension QuestionsView {
             )
             .frame(
                 width: UIScreen.main.bounds.width - 2 * padding,
-                height: UIScreen.main.bounds.height - 200
+                height: contentSize.height
             )
     }
     
@@ -153,7 +152,7 @@ extension QuestionsView {
                 viewModel.isContentValid = true
             },
             label: {
-                HStack(spacing: spacing) {
+                HStack(alignment: .top, spacing: spacing) {
                     if !(viewModel.isFeedbackGiven) {
                         RoundedRectangle(cornerRadius: selectionHeight/2)
                             .stroke(isSelected ? Color.primaryPurple : Color.border, lineWidth: isSelected ? 7 : 1)
@@ -164,6 +163,8 @@ extension QuestionsView {
                     Text(model.answer ?? "")
                         .font(.appButton)
                         .foregroundColor(viewModel.isFeedbackGiven ? textColor(isSelected: isSelected, model: model)  : (isSelected ? Color.primaryPurple : Color.primaryText))
+                        .fixedSize(horizontal: false, vertical: true)
+                        .multilineTextAlignment(.leading)
                     Spacer()
                 }
                 .padding()
@@ -173,6 +174,7 @@ extension QuestionsView {
                     RoundedRectangle(cornerRadius: 8)
                         .stroke(isCurrentReading ? .blue : .clear, lineWidth: 1)
                 )
+                
             })
     }
     

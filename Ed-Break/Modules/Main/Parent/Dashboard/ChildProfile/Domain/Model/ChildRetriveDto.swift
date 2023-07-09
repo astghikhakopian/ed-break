@@ -19,4 +19,5 @@ struct ChildRetriveDto: Codable {
     let percentProgress: Int?
     let restrictionTime: Int?
     let restrictions: String?
+    let interruption: Int?
 }

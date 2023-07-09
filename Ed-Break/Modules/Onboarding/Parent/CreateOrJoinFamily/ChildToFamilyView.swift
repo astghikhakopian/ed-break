@@ -11,8 +11,10 @@ struct ChildToFamilyView<M: FamilySharingViewModeling>: View {
     
     @ObservedObject var viewModel: M
     
+    @State private var contentSize: CGSize = .zero
+    
     var body: some View {
-        MainBackground(title: "onboarding.addedChildToFamily.title", withNavbar: true) {
+        MainBackground(title: "onboarding.addedChildToFamily.title", withNavbar: true, contentSize: $contentSize) {
             ZStack {
                 ZStack(alignment: .bottom) {
                     Image.FamilySharing.addchildtofamily
@@ -59,7 +61,7 @@ struct ChildToFamilyView<M: FamilySharingViewModeling>: View {
                             )
                         }
                 }
-            }.frame(height: UIScreen.main.bounds.height - 4*64)
+            } .frame(height: contentSize.height)
         }
     }
 }

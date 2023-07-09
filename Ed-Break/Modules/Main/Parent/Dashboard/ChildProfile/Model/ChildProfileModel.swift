@@ -21,6 +21,7 @@ struct ChildProfileModel: Equatable {
     let restrictionTime: Int
     let percentProgress: Int?
     let restrictions: FamilyActivitySelection?
+    let interruption: Int?
     
     let lastLogin: Date?
     var lastLoginString: String {
@@ -40,6 +41,7 @@ struct ChildProfileModel: Equatable {
         averageActivity = Float(Int(dto.averageActivity*10))/10
         restrictionTime = dto.restrictionTime ?? 0
         percentProgress = dto.percentProgress
+        interruption = dto.interruption
         
         if let restrictions = dto.restrictions?.replacingOccurrences(of: "\\\"", with: "\""),
            let stringData = restrictions.data(using: .utf8),
@@ -63,5 +65,6 @@ struct ChildProfileModel: Equatable {
         restrictionTime = 0
         percentProgress = 0
         restrictions = nil
+        interruption = nil
     }
 }

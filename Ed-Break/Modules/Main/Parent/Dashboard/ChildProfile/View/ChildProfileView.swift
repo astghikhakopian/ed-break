@@ -35,12 +35,12 @@ struct ChildProfileView<M: ChildProfileViewModeling>: View {
     @StateObject var viewModel: M
     
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
-//    @EnvironmentObject var model: DataModel
+    //    @EnvironmentObject var model: DataModel
     @StateObject var model = DataModel.shared
     @State private var isDiscouragedPresented = false
     @State private var offset = CGFloat.zero
     @State private var navTitle: String = ""
-
+    
     private let imageHeight = 90.0
     private let restrictionImageHeight = 25.0
     private let cornerRadius = 12.0
@@ -60,13 +60,13 @@ struct ChildProfileView<M: ChildProfileViewModeling>: View {
             }
         }
         .background(
-          GeometryReader {
-            Color.clear.preference(
-              key: ViewOffsetKey.self,
-              value: -$0.frame(in: .named("scroll")).origin.y)
-          })
+            GeometryReader {
+                Color.clear.preference(
+                    key: ViewOffsetKey.self,
+                    value: -$0.frame(in: .named("scroll")).origin.y)
+            })
         .onPreferenceChange(ViewOffsetKey.self) {
-              navTitle = $0>60 ? viewModel.child.name : ""
+            navTitle = $0>60 ? viewModel.child.name : ""
         }
         .toolbar {
             ToolbarItem(placement: .principal){
@@ -74,20 +74,20 @@ struct ChildProfileView<M: ChildProfileViewModeling>: View {
             }
         }
         .background(Color.primaryBackground)
-            .navigationBarBackButtonHidden(true)
-            .navigationBarItems(leading: backItem/*, trailing: moreItem*/)
-            .familyActivityPicker(isPresented: $isDiscouragedPresented, selection: $model.selectionToDiscourage)
-            .onChange(of: model.selectionToDiscourage) { newSelection in
-                viewModel.addRestrictions()
-            }
-            .onChange(of: viewModel.interuption) { newValue in
-                viewModel.addInterruption()
-            }
-            .onChange(of: viewModel.detailsInfo) { newValue in
-                guard let restrictions = newValue.restrictions else { return }
-                model.selectionToDiscourage = restrictions
-            }
-            .hiddenTabBar()
+        .navigationBarBackButtonHidden(true)
+        .navigationBarItems(leading: backItem/*, trailing: moreItem*/)
+        .familyActivityPicker(isPresented: $isDiscouragedPresented, selection: $model.selectionToDiscourage)
+        .onChange(of: model.selectionToDiscourage) { newSelection in
+            viewModel.addRestrictions()
+        }
+        .onChange(of: viewModel.interuption) { newValue in
+            viewModel.addInterruption()
+        }
+        .onChange(of: viewModel.detailsInfo) { newValue in
+            guard let restrictions = newValue.restrictions else { return }
+            model.selectionToDiscourage = restrictions
+        }
+        .hiddenTabBar()
     }
 }
 
@@ -257,7 +257,7 @@ private extension ChildProfileView {
         VStack(spacing: contentSpacing) {
             restrictionsHeader
             restrictionsPeriod(minutes: viewModel.child.interruption ?? 0)
-                restretedAppsView(restrictions: model.selectionToDiscourage)
+            restretedAppsView(restrictions: model.selectionToDiscourage)
         }
         .padding(padding)
         .background(Color.primaryCellBackground)
@@ -282,8 +282,8 @@ private extension ChildProfileView {
                         .foregroundColor(.primaryDescription)
                     WheelPickerField(style: .custom(title: "childDetails.interruption.period"), selection: $viewModel.interuption, datasource: $viewModel.interuptions)
                 }
-//                Spacer()
-//                Image.Common.dropdownArrow
+                //                Spacer()
+                //                Image.Common.dropdownArrow
             }
         }.padding(24)
             .overlay(

@@ -15,6 +15,7 @@ struct NewParentFamilySharingView<M: FamilySharingViewModeling>: View {
     @Environment(\.openURL) private var openURL
     @EnvironmentObject var appState: AppState
     @State private var isShowingScanner: Bool = false
+    @State private var contentSize: CGSize = .zero
     
     private let cells: [FamilySharingCellType] = [.appleFamily, .waitForInvite, .confirmInvite, .returnBack]
     private let cornerRadius = 12.0
@@ -23,7 +24,7 @@ struct NewParentFamilySharingView<M: FamilySharingViewModeling>: View {
     private let settingsUrl = URL(string: UIApplication.openSettingsURLString)!
     
     var body: some View {
-        MainBackground(title: "onboarding.familySharing.title", withNavbar: true) {
+        MainBackground(title: "onboarding.familySharing.title", withNavbar: true, contentSize: $contentSize) {
             VStack(spacing: gap) {
                 steps
                 info
@@ -40,7 +41,7 @@ struct NewParentFamilySharingView<M: FamilySharingViewModeling>: View {
                     openURL(settingsUrl)
                 }, title: "familySharing.cancel.newparent", isContentValid: .constant(true))
             }
-            .frame(height: UIScreen.main.bounds.height - 4*64)
+            .frame(height: contentSize.height)
         }
         .sheet(isPresented: $isShowingScanner) {
             CodeScannerView(codeTypes: [.qr], completion: handleScan)

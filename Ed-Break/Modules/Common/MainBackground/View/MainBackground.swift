@@ -19,6 +19,7 @@ struct MainBackgroundCore<Content: View, Q: View, BarButtonItem: View> : View {
     let leftBarButtonItem: () -> BarButtonItem?
     let onRefresh: OnRefresh
     let content: (() -> Content)
+    @Binding var contentSize: CGSize
     
     init(
         title: String?,
@@ -29,6 +30,7 @@ struct MainBackgroundCore<Content: View, Q: View, BarButtonItem: View> : View {
         onRefresh: @escaping OnRefresh = { done in
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) { done() }
         },
+        contentSize: Binding<CGSize> = .constant(.zero),
         @ViewBuilder content: @escaping () -> Content,
         @ViewBuilder stickyView: @escaping () -> Q? = { nil },
         @ViewBuilder leftBarButtonItem: @escaping () -> BarButtonItem? = { nil }
@@ -42,6 +44,7 @@ struct MainBackgroundCore<Content: View, Q: View, BarButtonItem: View> : View {
         self.content = content
         self.stickyView = stickyView
         self.leftBarButtonItem = leftBarButtonItem
+        self._contentSize = contentSize
     }
     
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
@@ -82,26 +85,37 @@ struct MainBackgroundCore<Content: View, Q: View, BarButtonItem: View> : View {
                     }
                     leftBarButtonItem()
                 }
-                if isRefreshable {
-                    RefreshableScrollView(showsIndicators: false, loadingViewBackgroundColor: .clear, onRefresh: onRefresh, progress: { state in
-                        ProgressView()
-                            .progressViewStyle(CircularProgressViewStyle(tint: .primaryCellBackground))
-                    }) {
-                        content()
-                            .cornerRadius(contentCornerRadius)
-                        if !isSimple {
-                            Spacer()
+                Group {
+                    if isRefreshable {
+                        RefreshableScrollView(showsIndicators: false, loadingViewBackgroundColor: .clear, onRefresh: onRefresh, progress: { state in
+                            ProgressView()
+                                .progressViewStyle(CircularProgressViewStyle(tint: .primaryCellBackground))
+                        }) {
+                            content()
+                                .cornerRadius(contentCornerRadius)
+                            if !isSimple {
+                                Spacer()
+                            }
                         }
-                    }
-                } else {
-                    ScrollView(showsIndicators: false) {
-                        content()
-                            .cornerRadius(contentCornerRadius)
-                        if !isSimple {
-                            Spacer()
+                    } else {
+                        ScrollView(showsIndicators: false) {
+                            content()
+                                .cornerRadius(contentCornerRadius)
+                            if !isSimple {
+                                Spacer()
+                            }
                         }
                     }
                 }
+                .overlay(
+                    GeometryReader { geo in
+                        Color.clear.onAppear {
+                            let height = geo.size.height + (!hideBackButton ? -104 : withNavbar ? 0 : 10)
+                            let size = CGSize(width: geo.size.width, height: height)
+                            contentSize = size
+                        }
+                    }
+                )
                 stickyView()
                     .padding(.bottom, 15)
             }
@@ -110,6 +124,7 @@ struct MainBackgroundCore<Content: View, Q: View, BarButtonItem: View> : View {
                 leading: 15,
                 bottom: 0,
                 trailing: 15))
+            
         }
         .navigationBarTitleDisplayMode(.inline)
         .navigationViewStyle(StackNavigationViewStyle())
@@ -154,6 +169,7 @@ struct MainBackground_Previews: PreviewProvider {
                 EmptyView()
             }, leftBarButtonItem: {
                 return AnyView(Image.ChildHome.volume)
-            })
+            }
+        )
     }
 }

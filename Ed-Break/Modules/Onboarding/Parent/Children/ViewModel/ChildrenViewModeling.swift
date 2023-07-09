@@ -21,6 +21,6 @@ protocol ChildrenViewModeling: ObservableObject {
     func getChildren(filtered: Bool)
     func addRestrictions(childId: Int, selection: FamilyActivitySelection)
     func getCoachingChildren()
-    func pairChild(id: Int, deviceToken: String, compleated: @escaping (Bool)->())
+    func pairChild(id: Int, deviceToken: String, name: String, model: String, compleated: @escaping (Bool)->())
     func refreshToken(completion: @escaping (Bool) -> Void)
 }

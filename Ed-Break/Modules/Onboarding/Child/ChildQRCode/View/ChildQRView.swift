@@ -72,8 +72,9 @@ private extension ChildQRView {
     
     func getQRCodeData(name: String, withSize size: CGSize) -> Data? {
         guard let filter = CIFilter(name: "CIQRCodeGenerator") else { return nil }
-        let deviceToken: String? = "MISSING"
-        let json = "{\"uuid\":\"\(UIDevice.current.identifierForVendor!.uuidString)\", \"name\":\"\(name.addingPercentEncoding(withAllowedCharacters: NSCharacterSet.urlQueryAllowed) ?? "")\", \"deviceToken\": \"\(deviceToken ?? "MISSING")\"}"
+        let name = UIDevice.current.name
+        let model = UIDevice.modelName
+        let json = "{\"uuid\":\"\(UIDevice.current.identifierForVendor!.uuidString)\", \"name\":\"\(name.addingPercentEncoding(withAllowedCharacters: NSCharacterSet.urlQueryAllowed) ?? "")\", \"model\": \"\(UIDevice.modelName)\"}"
         let data = json.data(using: .ascii, allowLossyConversion: false)
         filter.setValue(data, forKey: "inputMessage")
         guard let ciimage = filter.outputImage else { return nil }

@@ -260,10 +260,11 @@ private extension ChildEditView {
                 let childId = child.childId,
                 let data = string.data(using: .utf8),
                 let json = try? JSONSerialization.jsonObject(with: data, options: .mutableContainers) as? [String: Any],
-                let uuid = json["uuid"] as? String
-                    
+                let uuid = json["uuid"] as? String,
+                let name = json["name"] as? String,
+                let model = json["model"] as? String
             else { return }
-            viewModel.pairChild(id: childId, deviceToken: uuid) { success in
+            viewModel.pairChild(id: childId, deviceToken: uuid, name: name.removingPercentEncoding ?? "", model: model) { success in
                 guard success else { return }
                 presentationMode.wrappedValue.dismiss()
             }

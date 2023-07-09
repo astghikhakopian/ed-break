@@ -17,8 +17,10 @@ struct ChildrenView<M: ChildrenViewModeling>: View {
     @State private var isShowingScanner: Bool = false
     @State private var isDiscouragedPresented: Bool = false
     
-    @State var selectionToDiscourage: FamilyActivitySelection = FamilyActivitySelection()
-    @State var uuid: String = ""
+    @State private var selectionToDiscourage: FamilyActivitySelection = FamilyActivitySelection()
+    @State private var uuid: String = ""
+    @State private var name: String = ""
+    @State private var model: String = ""
 
     @State private var scanningChild: ChildModel?
     
@@ -47,9 +49,8 @@ struct ChildrenView<M: ChildrenViewModeling>: View {
         .hiddenTabBar()
         .onChange(of: isDiscouragedPresented) { newValue in
             if newValue == false {
-                
                 guard let scanningChild = scanningChild else { return }
-                pairChild(scanningChild: scanningChild, deviceToken: uuid) {
+                pairChild(scanningChild: scanningChild, deviceToken: uuid, name: name, model: model) {
                     viewModel.addRestrictions(childId: $0, selection: selectionToDiscourage)
                 }
                     
@@ -65,10 +66,13 @@ struct ChildrenView<M: ChildrenViewModeling>: View {
             guard
                 let data = string.data(using: .utf8),
                 let json = try? JSONSerialization.jsonObject(with: data, options: .mutableContainers) as? [String: Any],
-                let uuid = json["uuid"] as? String
-                    
+                let uuid = json["uuid"] as? String,
+                let name = json["name"] as? String,
+                let model = json["model"] as? String
             else { return }
             self.uuid = uuid
+            self.name = name.removingPercentEncoding ?? name
+            self.model = model
             guard let _ = scanningChild else { return }
             
             DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
@@ -78,8 +82,8 @@ struct ChildrenView<M: ChildrenViewModeling>: View {
             print("Scanning failed: \(error.localizedDescription)")
         }
     }
-    func pairChild(scanningChild: ChildModel, deviceToken: String, complition: @escaping (Int)->()) {
-        viewModel.pairChild(id: scanningChild.id, deviceToken: deviceToken) { success in
+    func pairChild(scanningChild: ChildModel, deviceToken: String, name: String, model: String, complition: @escaping (Int)->()) {
+        viewModel.pairChild(id: scanningChild.id, deviceToken: deviceToken, name: name, model: model) { success in
             guard success else { return }
             DispatchQueue.main.async {
                 viewModel.connectedChildren.append(scanningChild)

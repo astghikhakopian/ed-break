@@ -18,16 +18,17 @@ class DefaultTextToSpeachManager: NSObject, ObservableObject {
     
     @Published var isSpeaking = false
     var completion: ((QuestionsViewModel.CurrentReadingItem?) -> Void)?
+    public static let sharedInstance = DefaultTextToSpeachManager()
     
     // MARK: - Private Properties
     
     private var synthesizer = AVSpeechSynthesizer()
     private let audioSession = AVAudioSession.sharedInstance()
-    
+    private let voice = AVSpeechSynthesisVoice(identifier: "com.apple.ttsbundle.Karen-compact")
     
     // MARK: - Lifecycle
     
-    override init() {
+    private override init() {
         super.init()
         synthesizer.delegate = self
         
@@ -52,11 +53,18 @@ extension DefaultTextToSpeachManager: TextToSpeachManager {
     func read(question: QusetionModel, after timeInterval: TimeInterval, completion: @escaping (QuestionsViewModel.CurrentReadingItem?) -> Void) {
         self.completion = completion
         DispatchQueue.global().asyncAfter(deadline: .now() + timeInterval) { [weak self] in
-            let utterance = AVSpeechUtteranceExtended(string: ("The question is: " + (question.questionText ?? "")  + ". "), teadingItemType: .question)
+            let utterance = AVSpeechUtteranceExtended(
+                string: ("The question is: " + (question.questionText?.replacingOccurrences(of: "-", with: "minus") ?? "")  + ". "),
+                teadingItemType: .question)
+            utterance.voice = self?.voice
+            
             self?.speak(utterance)
             self?.stop(at: .immediate)
             for i in 0..<question.questionAnswer.count {
-                let utterance = AVSpeechUtteranceExtended(string: "The" + (i+1).convertToOrdinal() + " answer is " + (question.questionAnswer[i].answer ?? ""), teadingItemType: .option(i))
+                let utterance = AVSpeechUtteranceExtended(
+                    string: "The" + (i+1).convertToOrdinal() + " answer is " + (question.questionAnswer[i].answer ?? "").replacingOccurrences(of: "-", with: "minus") + ".",
+                    teadingItemType: .option(i))
+                utterance.voice = self?.voice
                 self?.speak(utterance)
             }
         }
@@ -80,29 +88,34 @@ extension DefaultTextToSpeachManager: AVSpeechSynthesizerDelegate {
     func speechSynthesizer(_ synthesizer: AVSpeechSynthesizer, didStart utterance: AVSpeechUtterance) {
         isSpeaking = true
         guard let utterance = utterance as? AVSpeechUtteranceExtended else { return }
+        utterance.voice = voice
         completion?(utterance.teadingItemType)
     }
     
     func speechSynthesizer(_ synthesizer: AVSpeechSynthesizer, didFinish utterance: AVSpeechUtterance) {
         isSpeaking = false
         guard let utterance = utterance as? AVSpeechUtteranceExtended else { return }
+        utterance.voice = voice
         completion?(nil)
     }
     
     func speechSynthesizer(_ synthesizer: AVSpeechSynthesizer, didPause utterance: AVSpeechUtterance) {
         isSpeaking = false
         guard let utterance = utterance as? AVSpeechUtteranceExtended else { return }
+        utterance.voice = voice
         completion?(nil)
     }
     
     func speechSynthesizer(_ synthesizer: AVSpeechSynthesizer, didCancel utterance: AVSpeechUtterance) {
         isSpeaking = false
         guard let utterance = utterance as? AVSpeechUtteranceExtended else { return }
+        utterance.voice = voice
         completion?(nil)
     }
     
     func speechSynthesizer(_ synthesizer: AVSpeechSynthesizer, didContinue utterance: AVSpeechUtterance) {
         guard let utterance = utterance as? AVSpeechUtteranceExtended else { return }
+        utterance.voice = voice
         completion?(utterance.teadingItemType)
     }
 }

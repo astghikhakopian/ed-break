@@ -52,6 +52,7 @@ final class ChildProfileViewModel: ChildProfileViewModeling, Identifiable {
             case .success(let model):
                 DispatchQueue.main.async { [weak self] in
                     self?.detailsInfo = model
+                    self?.interuption = Interuption(rawValue: model.interruption ?? 0) ?? .i15
                 }
             case .failure(let failure):
                 print(failure.localizedDescription)

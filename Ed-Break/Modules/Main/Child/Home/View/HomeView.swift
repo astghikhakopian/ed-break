@@ -92,7 +92,7 @@ struct HomeView<M: HomeViewModeling>: View {
                     answerQuestionUseCase: AnswerQuestionUseCase(
                         questionsRepository: DefaultQuestionsRepository()
                     ),
-                    textToSpeachManager: DefaultTextToSpeachManager()
+                    textToSpeachManager: DefaultTextToSpeachManager.sharedInstance
                 )
             )
         )
