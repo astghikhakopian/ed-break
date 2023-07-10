@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Kingfisher
 
 struct ImageUploadView: View {
     
@@ -30,8 +31,12 @@ struct ImageUploadView: View {
                         .aspectRatio(contentMode: .fill)
                         .frame(width: uploadPlaceholderHeight, height: uploadPlaceholderHeight)
                         .clipShape(Circle())
-                } else if let placeholderImageStringUrl = placeholderImageStringUrl {
-                    AsyncImageView(withURL: placeholderImageStringUrl, width: uploadPlaceholderHeight, height: uploadPlaceholderHeight)
+                } else if
+                    let placeholderImageStringUrl = placeholderImageStringUrl,
+                    let imageUrl = URL(string: placeholderImageStringUrl) {
+                    KFImage.url(imageUrl)
+                        .resizable()
+                        .frame(width: uploadPlaceholderHeight, height: uploadPlaceholderHeight)
                         .cornerRadius(uploadPlaceholderHeight/2)
                         .clipShape(Circle())
                 } else {
@@ -62,7 +67,7 @@ struct ImageUploadView: View {
         }
         .sheet(isPresented: $showCamera) {
             ImagePicker(sourceType: .camera, selectedImage: $selectedImage)
-        }   
+        }
     }
 }
 

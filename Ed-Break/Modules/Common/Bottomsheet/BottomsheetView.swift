@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Kingfisher
 
 protocol BottomsheetCellModel {
     var id: Int { get }
@@ -68,9 +69,11 @@ struct BottomsheetView: View {
     func cell(item: BottomsheetCellModel)-> some View {
         HStack(spacing: spacing) {
             if let imageUrl = item.imageUrl {
-                AsyncImageView(withURL: imageUrl.absoluteString, width: imageHeight, height: imageHeight)
+                KFImage.url(imageUrl)
+                    .resizable()
                     .frame(width: imageHeight, height: imageHeight)
                     .cornerRadius(imageHeight/2)
+                
             } else {
                 Spacer()
             }
@@ -179,7 +182,8 @@ extension BottomsheetViewModifier: ViewModifier {
     func cell(item: BottomsheetCellModel)-> some View {
         HStack(spacing: spacing) {
             if let imageUrl = item.imageUrl {
-                AsyncImageView(withURL: imageUrl.absoluteString, width: imageHeight, height: imageHeight)
+                KFImage.url(imageUrl)
+                    .resizable()
                     .frame(width: imageHeight, height: imageHeight)
                     .cornerRadius(imageHeight/2)
             } else if isMultiselect {

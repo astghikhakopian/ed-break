@@ -53,6 +53,7 @@ struct QuestionsView<M: QuestionsViewModeling>: View {
             .padding(padding)
             .background(Color.primaryCellBackground)
             .cornerRadius(contentCornerRadius)
+            .frame(width: UIScreen.main.bounds.width - padding)
             .frame(minHeight: contentSize.height)
             },
             stickyView: {
@@ -204,7 +205,7 @@ extension QuestionsView {
         viewModel.answerQuestion(answer: selectedAnswer, isAdditionalQuestions: isAdditionalQuestions) { _ in
             guard viewModel.currentQuestion.id == viewModel.questionsContainer?.questions.last?.id else { return }
             
-            DispatchQueue.main.async {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
                 presentationMode.wrappedValue.dismiss()
                 self.selectedAnswer = nil
             }

@@ -7,6 +7,7 @@
 
 import SwiftUI
 import Foundation
+import Kingfisher
 
 enum ChildCellState {
     case connected, scan
@@ -30,9 +31,11 @@ struct ChildCell: View {
     var body: some View {
         HStack(spacing: spacing) {
             if let imageUrl = imageUrl {
-                AsyncImageView(withURL: imageUrl.absoluteString, width: imageHeight, height: imageHeight)
+                KFImage.url(imageUrl)
+                    .resizable()
                     .frame(width: imageHeight, height: imageHeight)
                     .cornerRadius(imageHeight/2)
+                
             } else {
                 Image.ChildDetails.uploadPlaceholder
                     .resizable()

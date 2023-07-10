@@ -36,6 +36,9 @@
 		1B1843D52A2899D200552FA2 /* NSNotification+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B1843D42A2899D200552FA2 /* NSNotification+Extension.swift */; };
 		1B1843D82A289F7000552FA2 /* NavigationBackport in Frameworks */ = {isa = PBXBuildFile; productRef = 1B1843D72A289F7000552FA2 /* NavigationBackport */; };
 		1B1843DA2A289FB500552FA2 /* NavigationStackWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B1843D92A289FB500552FA2 /* NavigationStackWrapper.swift */; };
+		1B1D0B272A5C152300D01015 /* URLImage in Frameworks */ = {isa = PBXBuildFile; productRef = 1B1D0B262A5C152300D01015 /* URLImage */; };
+		1B1D0B292A5C152300D01015 /* URLImageStore in Frameworks */ = {isa = PBXBuildFile; productRef = 1B1D0B282A5C152300D01015 /* URLImageStore */; };
+		1B1D0B2C2A5C31EC00D01015 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 1B1D0B2B2A5C31EC00D01015 /* Kingfisher */; };
 		1B1F3B912A4AFFBB00A4A08F /* InviteParentQRView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B1F3B902A4AFFBB00A4A08F /* InviteParentQRView.swift */; };
 		1B29CB7829016D7D0036988F /* ChildQRView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B29CB7729016D7D0036988F /* ChildQRView.swift */; };
 		1B2A4BB7291B90D9008C60D5 /* ViewModifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B2A4BB6291B90D9008C60D5 /* ViewModifiers.swift */; };
@@ -473,9 +476,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				1B1843D82A289F7000552FA2 /* NavigationBackport in Frameworks */,
+				1B1D0B292A5C152300D01015 /* URLImageStore in Frameworks */,
 				1BA30D5B28E79E0700926820 /* Moya in Frameworks */,
 				1B6764612A52C46900F6824F /* SwiftUIPullToRefresh in Frameworks */,
+				1B1D0B2C2A5C31EC00D01015 /* Kingfisher in Frameworks */,
 				1BA30D5928E79E0700926820 /* CombineMoya in Frameworks */,
+				1B1D0B272A5C152300D01015 /* URLImage in Frameworks */,
 				1BE60C3B28EEC0B8001943D1 /* CodeScanner in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1769,6 +1775,9 @@
 				1BE60C3A28EEC0B8001943D1 /* CodeScanner */,
 				1B1843D72A289F7000552FA2 /* NavigationBackport */,
 				1B6764602A52C46900F6824F /* SwiftUIPullToRefresh */,
+				1B1D0B262A5C152300D01015 /* URLImage */,
+				1B1D0B282A5C152300D01015 /* URLImageStore */,
+				1B1D0B2B2A5C31EC00D01015 /* Kingfisher */,
 			);
 			productName = "Ed-Break";
 			productReference = EFE9288328E18C3A00675F28 /* Ed-Break.app */;
@@ -1812,6 +1821,8 @@
 				1BE60C3928EEC0B8001943D1 /* XCRemoteSwiftPackageReference "CodeScanner" */,
 				1B1843D62A289F7000552FA2 /* XCRemoteSwiftPackageReference "NavigationBackport" */,
 				1B67645F2A52C46900F6824F /* XCRemoteSwiftPackageReference "swiftui-pull-to-refresh" */,
+				1B1D0B252A5C152300D01015 /* XCRemoteSwiftPackageReference "url-image" */,
+				1B1D0B2A2A5C31EC00D01015 /* XCRemoteSwiftPackageReference "Kingfisher" */,
 			);
 			productRefGroup = EFE9288428E18C3A00675F28 /* Products */;
 			projectDirPath = "";
@@ -2129,7 +2140,7 @@
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = ShieldConfigurationExtension/ShieldConfigurationExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 5;
+				CURRENT_PROJECT_VERSION = 6;
 				DEVELOPMENT_TEAM = 8374P8P59W;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = ShieldConfigurationExtension/Info.plist;
@@ -2156,7 +2167,7 @@
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = ShieldConfigurationExtension/ShieldConfigurationExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 5;
+				CURRENT_PROJECT_VERSION = 6;
 				DEVELOPMENT_TEAM = 8374P8P59W;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = ShieldConfigurationExtension/Info.plist;
@@ -2184,7 +2195,7 @@
 				APPLICATION_EXTENSION_API_ONLY = YES;
 				CODE_SIGN_ENTITLEMENTS = ShieldActionExtension/ShieldActionExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 5;
+				CURRENT_PROJECT_VERSION = 6;
 				DEVELOPMENT_TEAM = 8374P8P59W;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = ShieldActionExtension/Info.plist;
@@ -2212,7 +2223,7 @@
 				APPLICATION_EXTENSION_API_ONLY = YES;
 				CODE_SIGN_ENTITLEMENTS = ShieldActionExtension/ShieldActionExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 5;
+				CURRENT_PROJECT_VERSION = 6;
 				DEVELOPMENT_TEAM = 8374P8P59W;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = ShieldActionExtension/Info.plist;
@@ -2239,7 +2250,7 @@
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = ActivityMonitor/ActivityMonitor.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 5;
+				CURRENT_PROJECT_VERSION = 6;
 				DEVELOPMENT_TEAM = 8374P8P59W;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = ActivityMonitor/Info.plist;
@@ -2266,7 +2277,7 @@
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = ActivityMonitor/ActivityMonitor.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 5;
+				CURRENT_PROJECT_VERSION = 6;
 				DEVELOPMENT_TEAM = 8374P8P59W;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = ActivityMonitor/Info.plist;
@@ -2413,7 +2424,7 @@
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_ENTITLEMENTS = "Ed-Break/Ed-Break.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 5;
+				CURRENT_PROJECT_VERSION = 6;
 				DEVELOPMENT_ASSET_PATHS = "Ed-Break/Resources/Preview\\ Content";
 				DEVELOPMENT_TEAM = 8374P8P59W;
 				ENABLE_PREVIEWS = YES;
@@ -2450,7 +2461,7 @@
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_ENTITLEMENTS = "Ed-Break/Ed-Break.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 5;
+				CURRENT_PROJECT_VERSION = 6;
 				DEVELOPMENT_ASSET_PATHS = "Ed-Break/Resources/Preview\\ Content";
 				DEVELOPMENT_TEAM = 8374P8P59W;
 				ENABLE_PREVIEWS = YES;
@@ -2537,6 +2548,22 @@
 				minimumVersion = 0.8.1;
 			};
 		};
+		1B1D0B252A5C152300D01015 /* XCRemoteSwiftPackageReference "url-image" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/dmytro-anokhin/url-image";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 3.0.0;
+			};
+		};
+		1B1D0B2A2A5C31EC00D01015 /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/onevcat/Kingfisher";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 7.0.0;
+			};
+		};
 		1B67645F2A52C46900F6824F /* XCRemoteSwiftPackageReference "swiftui-pull-to-refresh" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/globulus/swiftui-pull-to-refresh";
@@ -2568,6 +2595,21 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 1B1843D62A289F7000552FA2 /* XCRemoteSwiftPackageReference "NavigationBackport" */;
 			productName = NavigationBackport;
+		};
+		1B1D0B262A5C152300D01015 /* URLImage */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 1B1D0B252A5C152300D01015 /* XCRemoteSwiftPackageReference "url-image" */;
+			productName = URLImage;
+		};
+		1B1D0B282A5C152300D01015 /* URLImageStore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 1B1D0B252A5C152300D01015 /* XCRemoteSwiftPackageReference "url-image" */;
+			productName = URLImageStore;
+		};
+		1B1D0B2B2A5C31EC00D01015 /* Kingfisher */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 1B1D0B2A2A5C31EC00D01015 /* XCRemoteSwiftPackageReference "Kingfisher" */;
+			productName = Kingfisher;
 		};
 		1B6764602A52C46900F6824F /* SwiftUIPullToRefresh */ = {
 			isa = XCSwiftPackageProductDependency;

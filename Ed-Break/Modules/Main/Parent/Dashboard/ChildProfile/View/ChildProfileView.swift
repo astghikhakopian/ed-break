@@ -7,6 +7,7 @@
 
 import SwiftUI
 import FamilyControls
+import Kingfisher
 
 enum TimePeriod: String, CaseIterable, PickerItem {
     case day = "DAY"
@@ -97,9 +98,11 @@ private extension ChildProfileView {
         VStack(spacing: spacing) {
             Color.primaryCellBackground.frame(height: 1)
             if let imageUrl = viewModel.child.photoUrl {
-                AsyncImageView(withURL: imageUrl.absoluteString, width: imageHeight, height: imageHeight)
+                KFImage.url(imageUrl)
+                    .resizable()
                     .frame(width: imageHeight, height: imageHeight)
                     .cornerRadius(imageHeight/2)
+                
             } else {
                 Image.ChildDetails.uploadPlaceholder
                     .resizable()

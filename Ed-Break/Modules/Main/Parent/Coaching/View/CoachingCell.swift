@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Kingfisher
 
 struct CoachingCell: View {
     
@@ -49,9 +50,11 @@ private extension CoachingCell {
     private func childInfoView(child: Binding<CoachingChildModel>) -> some View {
         HStack(spacing: spacing) {
             if let imageUrl = child.photoUrl.wrappedValue {
-                AsyncImageView(withURL: imageUrl.absoluteString, width: imageHeight, height: imageHeight)
+                KFImage.url(imageUrl)
+                    .resizable()
                     .frame(width: imageHeight, height: imageHeight)
                     .cornerRadius(imageHeight/2)
+                
             } else {
                 Image.ChildDetails.uploadPlaceholder
                     .resizable()

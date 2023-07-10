@@ -51,7 +51,7 @@ struct HomeView<M: HomeViewModeling>: View {
         }
         .overlay(
             NavigationLink(
-                destination: subjectDestination(subject: viewModel.contentModel?.subjects.first ?? SubjectModel()),
+                destination: subjectDestination(subject: viewModel.contentModel?.subjects.randomElement() ?? SubjectModel()),
                 isActive: $isQuestionsActive) {
                     EmptyView()
                 }
