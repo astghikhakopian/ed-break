@@ -64,7 +64,7 @@ struct QuestionsView<M: QuestionsViewModeling>: View {
                 }
             },
             leftBarButtonItem: {
-                return AnyView(voiceButton)
+                return viewModel.isPhoneUnlocked ? nil : AnyView(voiceButton)
             }
         )
         .onLoad {
@@ -125,6 +125,7 @@ extension QuestionsView {
                 .font(.appHeadingH3)
                 .foregroundColor(Color.primaryText)
                 .padding(.horizontal, 8)
+                .fixedSize(horizontal: false, vertical: true)
             Spacer()
         }
         .frame(maxWidth: .infinity)
@@ -154,12 +155,13 @@ extension QuestionsView {
             },
             label: {
                 HStack(alignment: .top, spacing: spacing) {
-                    if !(viewModel.isFeedbackGiven) {
+                    if !viewModel.isFeedbackGiven {
                         RoundedRectangle(cornerRadius: selectionHeight/2)
                             .stroke(isSelected ? Color.primaryPurple : Color.border, lineWidth: isSelected ? 7 : 1)
                             .frame(width: selectionHeight - (isSelected ? 7 : 1), height: selectionHeight - (isSelected ? 7 : 1))
                             .padding(.leading, (isSelected ? 3.5 : 0))
                             .padding(.trailing, (isSelected ? 2.5 : 0))
+                            .padding(.top, (isSelected ? 2.5 : 0))
                     }
                     Text(model.answer ?? "")
                         .font(.appButton)

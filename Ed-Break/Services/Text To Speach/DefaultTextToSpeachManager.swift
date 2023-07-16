@@ -25,6 +25,8 @@ class DefaultTextToSpeachManager: NSObject, ObservableObject {
     private var synthesizer = AVSpeechSynthesizer()
     private let audioSession = AVAudioSession.sharedInstance()
     private let voice = AVSpeechSynthesisVoice(identifier: "com.apple.ttsbundle.Karen-compact")
+    private let rate: Float = 0.45
+    
     
     // MARK: - Lifecycle
     
@@ -53,18 +55,20 @@ extension DefaultTextToSpeachManager: TextToSpeachManager {
     func read(question: QusetionModel, after timeInterval: TimeInterval, completion: @escaping (QuestionsViewModel.CurrentReadingItem?) -> Void) {
         self.completion = completion
         DispatchQueue.global().asyncAfter(deadline: .now() + timeInterval) { [weak self] in
+            self?.stop(at: .immediate)
             let utterance = AVSpeechUtteranceExtended(
                 string: ("The question is: " + (question.questionText?.replacingOccurrences(of: "-", with: "minus") ?? "")  + ". "),
                 teadingItemType: .question)
             utterance.voice = self?.voice
+            utterance.rate = self?.rate ?? 1
             
             self?.speak(utterance)
-            self?.stop(at: .immediate)
             for i in 0..<question.questionAnswer.count {
                 let utterance = AVSpeechUtteranceExtended(
                     string: "The" + (i+1).convertToOrdinal() + " answer is " + (question.questionAnswer[i].answer ?? "").replacingOccurrences(of: "-", with: "minus") + ".",
                     teadingItemType: .option(i))
                 utterance.voice = self?.voice
+                utterance.rate = self?.rate ?? 1
                 self?.speak(utterance)
             }
         }

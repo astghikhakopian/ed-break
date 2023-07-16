@@ -17,7 +17,10 @@ struct QRCodeView: View {
     private let gap = 20.0
     
     var body: some View {
-        MainBackground(title: "", withNavbar: true) {
+        MainBackground(
+            title: "onboarding.qrCode.title",
+            withNavbar: true
+        ) {
             VStack(spacing: gap) {
                 content
                 NavigationButton(

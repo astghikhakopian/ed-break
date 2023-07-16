@@ -39,7 +39,7 @@ struct ChildDetailsView<M: ChildDetailsViewModeling>: View {
             }
         }
         .bottomsheet(title: "childDetails.subjects", datasource: viewModel.subjects, selectedItems: selectedChildIndex == nil ? .constant([]) : $viewModel.children[selectedChildIndex!].subjects, isPresented: $showSubjects, isMultiselect: true)
-        //.bottomsheet(title: "childDetails.grade", datasource: viewModel.grades, selectedItems: selectedChildIndex == nil ? .constant([]) : $viewModel.children[selectedChildIndex!].grade, isPresented: $showGradeOptions)
+//        .bottomsheet(title: "childDetails.grade", datasource: viewModel.grades, selectedItems: selectedChildIndex == nil ? .constant([]) : $viewModel.children[selectedChildIndex!].grade, isPresented: $showGradeOptions)
         .confirmationDialog("childDetails.grade", isPresented: $showGradeOptions, titleVisibility: .visible) {
             ForEach(viewModel.grades, id: \.rawValue) { grade in
                 Button(grade.name) {

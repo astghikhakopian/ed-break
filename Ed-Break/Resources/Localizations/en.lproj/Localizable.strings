@@ -32,7 +32,7 @@
 "onboarding.childDetails.title" = "Set child details";
 "onboarding.qrCode.title" = "Install Ed-Break \n on the child’s device";
 "onboarding.children.title" = "Connect child’s device";
-"onboarding.childsDetails.title" = "Set child's details";
+"onboarding.childsDetails.title" = "Child details";
 
 "onboarding.childSignIn.title" = "Sign in to allow \n parental control";
 "onboarding.childSignIn.description" = "Sign in with your parent Apple account to pair devices and enable parental control";
@@ -82,6 +82,7 @@
 "childDetails.grade" = "Grade level";
 "childDetails.add" = "Add another child";
 "childDetails.add.device" = "Add a device";
+"childDetails.add.device.another" = "Add another device";
 "childDetails.delete" = "Delete child";
 "childDetails.subjects" = "Subjects";
 "childDetails.interruption" = "Interruption";

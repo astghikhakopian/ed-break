@@ -52,9 +52,7 @@ enum QuestionsRoute: TargetType {
         case .answerQuestion(let answerId, let index, let questionType):
             return .requestParameters(
                 parameters: [
-                    "answerId": answerId,
-                    "index": index+1,
-                    "questionType": questionType.rawValue
+                    "answerId": answerId
                 ],
                 encoding: JSONEncoding.default
             )

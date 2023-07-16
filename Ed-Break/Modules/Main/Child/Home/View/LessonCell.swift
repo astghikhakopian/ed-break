@@ -20,7 +20,7 @@ struct LessonCell: View {
     var body: some View {
         HStack(spacing: 12) {
             AsyncImageView(withURL: model.photo ?? "", width: imageHeight, height: imageHeight)
-                .background(Color.primaryBackground)
+                .background(Color.appWhite)
                 .cornerRadius(cornerRadius)
             VStack(alignment: .leading, spacing: 1) {
                 Text(model.subject ?? "")

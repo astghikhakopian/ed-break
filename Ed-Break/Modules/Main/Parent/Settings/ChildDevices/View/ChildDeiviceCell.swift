@@ -27,6 +27,7 @@ struct ChildDeiviceCell: View {
             if let imageUrl = imageUrl {
                 KFImage.url(imageUrl)
                     .resizable()
+                    .aspectRatio(contentMode: .fill)
                     .frame(width: imageHeight, height: imageHeight)
                     .aspectRatio(contentMode: .fill)
                     .cornerRadius(imageHeight/2)

@@ -28,7 +28,6 @@ struct ImageUploadView: View {
                     Image(uiImage: selectedImage)
                         .resizable()
                         .cornerRadius(uploadPlaceholderHeight/2)
-                        .aspectRatio(contentMode: .fill)
                         .frame(width: uploadPlaceholderHeight, height: uploadPlaceholderHeight)
                         .clipShape(Circle())
                 } else if
@@ -36,6 +35,7 @@ struct ImageUploadView: View {
                     let imageUrl = URL(string: placeholderImageStringUrl) {
                     KFImage.url(imageUrl)
                         .resizable()
+                        .aspectRatio(contentMode: .fill)
                         .frame(width: uploadPlaceholderHeight, height: uploadPlaceholderHeight)
                         .cornerRadius(uploadPlaceholderHeight/2)
                         .clipShape(Circle())

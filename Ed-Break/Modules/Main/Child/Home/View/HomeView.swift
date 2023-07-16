@@ -46,7 +46,7 @@ struct HomeView<M: HomeViewModeling>: View {
             }
         )
         .onChange(of: viewModel.shouldShowExercises) { shouldShowExercises in
-            guard shouldShowExercises, !viewModel.isActiveWrongAnswersBlock else { return }
+            guard shouldShowExercises, !viewModel.isActiveWrongAnswersBlock, !isQuestionsActive else { return }
             isQuestionsActive = true
         }
         .overlay(

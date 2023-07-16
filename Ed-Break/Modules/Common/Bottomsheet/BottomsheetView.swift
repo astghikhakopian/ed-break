@@ -71,6 +71,7 @@ struct BottomsheetView: View {
             if let imageUrl = item.imageUrl {
                 KFImage.url(imageUrl)
                     .resizable()
+                    .aspectRatio(contentMode: .fill)
                     .frame(width: imageHeight, height: imageHeight)
                     .cornerRadius(imageHeight/2)
                 
@@ -184,6 +185,7 @@ extension BottomsheetViewModifier: ViewModifier {
             if let imageUrl = item.imageUrl {
                 KFImage.url(imageUrl)
                     .resizable()
+                    .aspectRatio(contentMode: .fill)
                     .frame(width: imageHeight, height: imageHeight)
                     .cornerRadius(imageHeight/2)
             } else if isMultiselect {

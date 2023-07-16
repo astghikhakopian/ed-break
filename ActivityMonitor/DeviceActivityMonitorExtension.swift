@@ -106,6 +106,7 @@ class DeviceActivityMonitorExtension: DeviceActivityMonitor {
         store.media.denyExplicitContent = isRestrected
         store.gameCenter.denyMultiplayerGaming = isRestrected
         store.media.denyMusicService = isRestrected
+      store.webContent.blockedByFilter = isRestrected ? .all() : nil
     }
 }
 

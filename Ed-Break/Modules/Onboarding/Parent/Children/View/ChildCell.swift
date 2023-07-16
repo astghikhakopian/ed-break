@@ -33,6 +33,7 @@ struct ChildCell: View {
             if let imageUrl = imageUrl {
                 KFImage.url(imageUrl)
                     .resizable()
+                    .aspectRatio(contentMode: .fill)
                     .frame(width: imageHeight, height: imageHeight)
                     .cornerRadius(imageHeight/2)
                 

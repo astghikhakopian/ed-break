@@ -69,6 +69,7 @@ class ScheduleModel {
         store.media.denyExplicitContent = true
         store.gameCenter.denyMultiplayerGaming = true
         store.media.denyMusicService = true
+      store.webContent.blockedByFilter = .auto()
     }
 }
 

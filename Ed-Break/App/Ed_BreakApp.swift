@@ -44,6 +44,10 @@ class AppDelegate: NSObject, UIApplicationDelegate, UNUserNotificationCenterDele
         UserDefaultsService().setPrimitive(true, forKey: .ChildUser.shouldShowExercises)
         completionHandler([.alert, .badge, .sound])
     }
+    
+    func applicationDidEnterBackground(_ application: UIApplication) {
+        DefaultTextToSpeachManager.sharedInstance.stop(at: .immediate)
+    }
 }
 
 

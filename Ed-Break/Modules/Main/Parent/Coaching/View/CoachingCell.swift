@@ -52,6 +52,7 @@ private extension CoachingCell {
             if let imageUrl = child.photoUrl.wrappedValue {
                 KFImage.url(imageUrl)
                     .resizable()
+                    .aspectRatio(contentMode: .fill)
                     .frame(width: imageHeight, height: imageHeight)
                     .cornerRadius(imageHeight/2)
                 

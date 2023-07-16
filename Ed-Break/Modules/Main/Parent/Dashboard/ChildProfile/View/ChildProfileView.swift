@@ -100,6 +100,7 @@ private extension ChildProfileView {
             if let imageUrl = viewModel.child.photoUrl {
                 KFImage.url(imageUrl)
                     .resizable()
+                    .aspectRatio(contentMode: .fill)
                     .frame(width: imageHeight, height: imageHeight)
                     .cornerRadius(imageHeight/2)
                 
