@@ -73,7 +73,7 @@ final class HomeViewModel: HomeViewModeling, Identifiable {
     func checkConnection(compleated: @escaping (Bool)->()) {
         guard !didUpdateToken else { return }
         didUpdateToken = true
-        isLoading = true
+        DispatchQueue.main.async { self.isLoading = true }
         guard let uuid = UIDevice.current.identifierForVendor?.uuidString else { return }
         let name = UIDevice.current.name
         let model = UIDevice.modelName

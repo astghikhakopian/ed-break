@@ -2140,7 +2140,7 @@
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = ShieldConfigurationExtension/ShieldConfigurationExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 12;
+				CURRENT_PROJECT_VERSION = 15;
 				DEVELOPMENT_TEAM = 8374P8P59W;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = ShieldConfigurationExtension/Info.plist;
@@ -2167,7 +2167,7 @@
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = ShieldConfigurationExtension/ShieldConfigurationExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 12;
+				CURRENT_PROJECT_VERSION = 15;
 				DEVELOPMENT_TEAM = 8374P8P59W;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = ShieldConfigurationExtension/Info.plist;
@@ -2195,7 +2195,7 @@
 				APPLICATION_EXTENSION_API_ONLY = YES;
 				CODE_SIGN_ENTITLEMENTS = ShieldActionExtension/ShieldActionExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 12;
+				CURRENT_PROJECT_VERSION = 15;
 				DEVELOPMENT_TEAM = 8374P8P59W;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = ShieldActionExtension/Info.plist;
@@ -2223,7 +2223,7 @@
 				APPLICATION_EXTENSION_API_ONLY = YES;
 				CODE_SIGN_ENTITLEMENTS = ShieldActionExtension/ShieldActionExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 12;
+				CURRENT_PROJECT_VERSION = 15;
 				DEVELOPMENT_TEAM = 8374P8P59W;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = ShieldActionExtension/Info.plist;
@@ -2250,7 +2250,7 @@
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = ActivityMonitor/ActivityMonitor.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 12;
+				CURRENT_PROJECT_VERSION = 15;
 				DEVELOPMENT_TEAM = 8374P8P59W;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = ActivityMonitor/Info.plist;
@@ -2277,7 +2277,7 @@
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = ActivityMonitor/ActivityMonitor.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 12;
+				CURRENT_PROJECT_VERSION = 15;
 				DEVELOPMENT_TEAM = 8374P8P59W;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = ActivityMonitor/Info.plist;
@@ -2424,7 +2424,7 @@
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_ENTITLEMENTS = "Ed-Break/Ed-Break.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 12;
+				CURRENT_PROJECT_VERSION = 15;
 				DEVELOPMENT_ASSET_PATHS = "Ed-Break/Resources/Preview\\ Content";
 				DEVELOPMENT_TEAM = 8374P8P59W;
 				ENABLE_PREVIEWS = YES;
@@ -2461,7 +2461,7 @@
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_ENTITLEMENTS = "Ed-Break/Ed-Break.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 12;
+				CURRENT_PROJECT_VERSION = 15;
 				DEVELOPMENT_ASSET_PATHS = "Ed-Break/Resources/Preview\\ Content";
 				DEVELOPMENT_TEAM = 8374P8P59W;
 				ENABLE_PREVIEWS = YES;

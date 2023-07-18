@@ -83,7 +83,7 @@
 "childDetails.add" = "Add another child";
 "childDetails.add.device" = "Add a device";
 "childDetails.add.device.another" = "Add another device";
-"childDetails.delete" = "Delete child";
+"childDetails.delete" = "Delete Device";
 "childDetails.subjects" = "Subjects";
 "childDetails.interruption" = "Interruption";
 "childDetails.interruption.period" = "Interruption Period";
@@ -122,7 +122,7 @@
 // Dashboard
 
 "main.parent.home" = "Home";
-"main.parent.home.questions" = "questions today";
+"main.parent.home.questions" = "questions answered";
 "main.parent.home.answers" = "correct answers";
 
 "main.parent.childProfile.lastActive" = "Active ";
@@ -145,7 +145,7 @@
 "main.parent.coaching" = "Report card";
 
 "main.child.home.min" = "min";
-"main.child.home.usage" = "Device usage \n remaining today";
+"main.child.home.usage" = "Remaining till \n next Ed-Break";
 "main.child.home.completed" = "Completed";
 "main.child.home.notcompleted" = "Not completed";
 
@@ -156,7 +156,7 @@
 "main.child.lockstate.locked.description" = "You need to answer three or more questions correctly to unlock your phone";
 
 "main.child.lockstate.unlocked" = "Phone unlocked";
-"main.child.lockstate.unlocked.description %@" = "You get %@ minutes of phone using. Enjoy!";
+"main.child.lockstate.unlocked.description %@" = "You have %@ minutes of usage remaining. Enjoy!";
 
 
 // Settings
@@ -175,4 +175,4 @@
 // Child
 
 "child.shield.title" = "Ed-Break";
-"child.shield.description" = "You cannot use this app because you didn’t complete your exercise goal. Wait for 5 minutes to do execrise again";
+"child.shield.description" = "Your device is currently restricted as you didn’t successfully complete your Ed-Break exercise. You will be able to try again in 5 minutes.";
