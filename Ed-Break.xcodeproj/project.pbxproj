@@ -67,12 +67,30 @@
 		1B56107D28F420B700DA3043 /* DashboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B56107C28F420B700DA3043 /* DashboardView.swift */; };
 		1B56107F28F4263E00DA3043 /* HomeChildCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B56107E28F4263E00DA3043 /* HomeChildCell.swift */; };
 		1B5A0352293272B40032BB71 /* AddInterruptionUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B5A0351293272B40032BB71 /* AddInterruptionUseCase.swift */; };
+		1B6251632A7D0CE40019BB38 /* CoreDataSchema.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B6251622A7D0CE40019BB38 /* CoreDataSchema.swift */; };
+		1B6251652A7D0D080019BB38 /* CoreData+Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B6251642A7D0D080019BB38 /* CoreData+Convenience.swift */; };
+		1B62516F2A7E8EF70019BB38 /* LocalOfflineModeUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B62516E2A7E8EF70019BB38 /* LocalOfflineModeUseCase.swift */; };
+		1B6251712A7E8F6A0019BB38 /* AddOfflineChildUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B6251702A7E8F6A0019BB38 /* AddOfflineChildUseCase.swift */; };
+		1B6251732A7E8FD00019BB38 /* UpdateOfflineChildUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B6251722A7E8FD00019BB38 /* UpdateOfflineChildUseCase.swift */; };
+		1B6251752A7E90530019BB38 /* DeleteOfflineChildUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B6251742A7E90530019BB38 /* DeleteOfflineChildUseCase.swift */; };
+		1B6251772A7E939D0019BB38 /* GetOfflineChildUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B6251762A7E939D0019BB38 /* GetOfflineChildUseCase.swift */; };
 		1B6764612A52C46900F6824F /* SwiftUIPullToRefresh in Frameworks */ = {isa = PBXBuildFile; productRef = 1B6764602A52C46900F6824F /* SwiftUIPullToRefresh */; };
 		1B687134290D51FE00651A33 /* PairChildPayload.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B687133290D51FE00651A33 /* PairChildPayload.swift */; };
 		1B687136290D532700651A33 /* PairChildUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B687135290D532700651A33 /* PairChildUseCase.swift */; };
 		1B68713B290D678300651A33 /* CheckConnectionUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B68713A290D678300651A33 /* CheckConnectionUseCase.swift */; };
 		1B68713E290D68E700651A33 /* ChildQRViewModeling.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B68713D290D68E700651A33 /* ChildQRViewModeling.swift */; };
 		1B687140290D68F000651A33 /* ChildQRViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B68713F290D68F000651A33 /* ChildQRViewModel.swift */; };
+		1B69C2C82A7C0162008714A4 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B69C2C72A7C0162008714A4 /* Persistence.swift */; };
+		1B69C2CC2A7C0FB8008714A4 /* OfflineModeChildRoute.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B69C2CB2A7C0FB8008714A4 /* OfflineModeChildRoute.swift */; };
+		1B69C2CE2A7C108E008714A4 /* OfflineModeChildRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B69C2CD2A7C108E008714A4 /* OfflineModeChildRepository.swift */; };
+		1B69C2D02A7C1125008714A4 /* OfflineChildDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B69C2CF2A7C1125008714A4 /* OfflineChildDto.swift */; };
+		1B69C2D22A7C1423008714A4 /* GetOfflineModeChildUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B69C2D12A7C1423008714A4 /* GetOfflineModeChildUseCase.swift */; };
+		1B69C2D42A7C1455008714A4 /* OfflineModeUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B69C2D32A7C1455008714A4 /* OfflineModeUseCase.swift */; };
+		1B69C2D62A7C149D008714A4 /* OfflineModeChildModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B69C2D52A7C149D008714A4 /* OfflineModeChildModel.swift */; };
+		1B69C2D82A7C17D8008714A4 /* OfflineChildViewModeling.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B69C2D72A7C17D8008714A4 /* OfflineChildViewModeling.swift */; };
+		1B69C2DA2A7C17E0008714A4 /* OfflineChildViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B69C2D92A7C17E0008714A4 /* OfflineChildViewModel.swift */; };
+		1B69C2DD2A7C18CE008714A4 /* OfflineChild.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 1B69C2DB2A7C18CE008714A4 /* OfflineChild.xcdatamodeld */; };
+		1B69C2E12A7C2195008714A4 /* OfflineChildProvideer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B69C2E02A7C2195008714A4 /* OfflineChildProvideer.swift */; };
 		1B72634B2A4D7DEF0093B1DF /* ChildDeviceCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B72634A2A4D7DEF0093B1DF /* ChildDeviceCell.swift */; };
 		1B7263522A4DAEDD0093B1DF /* DeviceModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B7263512A4DAEDD0093B1DF /* DeviceModel.swift */; };
 		1B7263542A4DB0C30093B1DF /* DeviceDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B7263532A4DB0C30093B1DF /* DeviceDto.swift */; };
@@ -308,11 +326,29 @@
 		1B56107C28F420B700DA3043 /* DashboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardView.swift; sourceTree = "<group>"; };
 		1B56107E28F4263E00DA3043 /* HomeChildCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeChildCell.swift; sourceTree = "<group>"; };
 		1B5A0351293272B40032BB71 /* AddInterruptionUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddInterruptionUseCase.swift; sourceTree = "<group>"; };
+		1B6251622A7D0CE40019BB38 /* CoreDataSchema.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataSchema.swift; sourceTree = "<group>"; };
+		1B6251642A7D0D080019BB38 /* CoreData+Convenience.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CoreData+Convenience.swift"; sourceTree = "<group>"; };
+		1B62516E2A7E8EF70019BB38 /* LocalOfflineModeUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalOfflineModeUseCase.swift; sourceTree = "<group>"; };
+		1B6251702A7E8F6A0019BB38 /* AddOfflineChildUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddOfflineChildUseCase.swift; sourceTree = "<group>"; };
+		1B6251722A7E8FD00019BB38 /* UpdateOfflineChildUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateOfflineChildUseCase.swift; sourceTree = "<group>"; };
+		1B6251742A7E90530019BB38 /* DeleteOfflineChildUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteOfflineChildUseCase.swift; sourceTree = "<group>"; };
+		1B6251762A7E939D0019BB38 /* GetOfflineChildUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetOfflineChildUseCase.swift; sourceTree = "<group>"; };
 		1B687133290D51FE00651A33 /* PairChildPayload.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PairChildPayload.swift; sourceTree = "<group>"; };
 		1B687135290D532700651A33 /* PairChildUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PairChildUseCase.swift; sourceTree = "<group>"; };
 		1B68713A290D678300651A33 /* CheckConnectionUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckConnectionUseCase.swift; sourceTree = "<group>"; };
 		1B68713D290D68E700651A33 /* ChildQRViewModeling.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChildQRViewModeling.swift; sourceTree = "<group>"; };
 		1B68713F290D68F000651A33 /* ChildQRViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChildQRViewModel.swift; sourceTree = "<group>"; };
+		1B69C2C72A7C0162008714A4 /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
+		1B69C2CB2A7C0FB8008714A4 /* OfflineModeChildRoute.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OfflineModeChildRoute.swift; sourceTree = "<group>"; };
+		1B69C2CD2A7C108E008714A4 /* OfflineModeChildRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OfflineModeChildRepository.swift; sourceTree = "<group>"; };
+		1B69C2CF2A7C1125008714A4 /* OfflineChildDto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OfflineChildDto.swift; sourceTree = "<group>"; };
+		1B69C2D12A7C1423008714A4 /* GetOfflineModeChildUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetOfflineModeChildUseCase.swift; sourceTree = "<group>"; };
+		1B69C2D32A7C1455008714A4 /* OfflineModeUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OfflineModeUseCase.swift; sourceTree = "<group>"; };
+		1B69C2D52A7C149D008714A4 /* OfflineModeChildModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OfflineModeChildModel.swift; sourceTree = "<group>"; };
+		1B69C2D72A7C17D8008714A4 /* OfflineChildViewModeling.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OfflineChildViewModeling.swift; sourceTree = "<group>"; };
+		1B69C2D92A7C17E0008714A4 /* OfflineChildViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OfflineChildViewModel.swift; sourceTree = "<group>"; };
+		1B69C2DC2A7C18CE008714A4 /* OfflineChild.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = OfflineChild.xcdatamodel; sourceTree = "<group>"; };
+		1B69C2E02A7C2195008714A4 /* OfflineChildProvideer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OfflineChildProvideer.swift; sourceTree = "<group>"; };
 		1B72634A2A4D7DEF0093B1DF /* ChildDeviceCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChildDeviceCell.swift; sourceTree = "<group>"; };
 		1B7263512A4DAEDD0093B1DF /* DeviceModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceModel.swift; sourceTree = "<group>"; };
 		1B7263532A4DB0C30093B1DF /* DeviceDto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceDto.swift; sourceTree = "<group>"; };
@@ -807,6 +843,90 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		1B6251612A7D0ABB0019BB38 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				1B6251622A7D0CE40019BB38 /* CoreDataSchema.swift */,
+				1B6251642A7D0D080019BB38 /* CoreData+Convenience.swift */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
+		1B6251662A7E8D1A0019BB38 /* Offline Mode */ = {
+			isa = PBXGroup;
+			children = (
+				1B6251672A7E8D260019BB38 /* Domain */,
+				1B62516A2A7E8D930019BB38 /* Model */,
+				1B62516B2A7E8DB70019BB38 /* ViewModel */,
+			);
+			path = "Offline Mode";
+			sourceTree = "<group>";
+		};
+		1B6251672A7E8D260019BB38 /* Domain */ = {
+			isa = PBXGroup;
+			children = (
+				1B69C2CA2A7C0F87008714A4 /* Repository */,
+				1B6251682A7E8D3B0019BB38 /* UseCase */,
+				1B6251692A7E8D640019BB38 /* Model */,
+			);
+			path = Domain;
+			sourceTree = "<group>";
+		};
+		1B6251682A7E8D3B0019BB38 /* UseCase */ = {
+			isa = PBXGroup;
+			children = (
+				1B62516C2A7E8ECA0019BB38 /* Remote */,
+				1B62516D2A7E8ED90019BB38 /* Local */,
+			);
+			path = UseCase;
+			sourceTree = "<group>";
+		};
+		1B6251692A7E8D640019BB38 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				1B69C2CF2A7C1125008714A4 /* OfflineChildDto.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		1B62516A2A7E8D930019BB38 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				1B69C2D52A7C149D008714A4 /* OfflineModeChildModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		1B62516B2A7E8DB70019BB38 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				1B69C2D72A7C17D8008714A4 /* OfflineChildViewModeling.swift */,
+				1B69C2D92A7C17E0008714A4 /* OfflineChildViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		1B62516C2A7E8ECA0019BB38 /* Remote */ = {
+			isa = PBXGroup;
+			children = (
+				1B69C2D32A7C1455008714A4 /* OfflineModeUseCase.swift */,
+				1B69C2D12A7C1423008714A4 /* GetOfflineModeChildUseCase.swift */,
+			);
+			path = Remote;
+			sourceTree = "<group>";
+		};
+		1B62516D2A7E8ED90019BB38 /* Local */ = {
+			isa = PBXGroup;
+			children = (
+				1B62516E2A7E8EF70019BB38 /* LocalOfflineModeUseCase.swift */,
+				1B6251762A7E939D0019BB38 /* GetOfflineChildUseCase.swift */,
+				1B6251702A7E8F6A0019BB38 /* AddOfflineChildUseCase.swift */,
+				1B6251722A7E8FD00019BB38 /* UpdateOfflineChildUseCase.swift */,
+				1B6251742A7E90530019BB38 /* DeleteOfflineChildUseCase.swift */,
+			);
+			path = Local;
+			sourceTree = "<group>";
+		};
 		1B687138290D676800651A33 /* UseCase */ = {
 			isa = PBXGroup;
 			children = (
@@ -830,6 +950,50 @@
 				1B68713F290D68F000651A33 /* ChildQRViewModel.swift */,
 			);
 			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		1B69C2C62A7C014D008714A4 /* Core Data */ = {
+			isa = PBXGroup;
+			children = (
+				1B69C2C72A7C0162008714A4 /* Persistence.swift */,
+				1B69C2C92A7C01B0008714A4 /* Model */,
+				1B69C2DE2A7C2162008714A4 /* Providers */,
+				1B6251612A7D0ABB0019BB38 /* Utils */,
+			);
+			path = "Core Data";
+			sourceTree = "<group>";
+		};
+		1B69C2C92A7C01B0008714A4 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				1B69C2DB2A7C18CE008714A4 /* OfflineChild.xcdatamodeld */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		1B69C2CA2A7C0F87008714A4 /* Repository */ = {
+			isa = PBXGroup;
+			children = (
+				1B69C2CB2A7C0FB8008714A4 /* OfflineModeChildRoute.swift */,
+				1B69C2CD2A7C108E008714A4 /* OfflineModeChildRepository.swift */,
+			);
+			path = Repository;
+			sourceTree = "<group>";
+		};
+		1B69C2DE2A7C2162008714A4 /* Providers */ = {
+			isa = PBXGroup;
+			children = (
+				1B69C2DF2A7C2177008714A4 /* OfflineChield */,
+			);
+			path = Providers;
+			sourceTree = "<group>";
+		};
+		1B69C2DF2A7C2177008714A4 /* OfflineChield */ = {
+			isa = PBXGroup;
+			children = (
+				1B69C2E02A7C2195008714A4 /* OfflineChildProvideer.swift */,
+			);
+			path = OfflineChield;
 			sourceTree = "<group>";
 		};
 		1B76B63B28EC249B00602003 /* Model */ = {
@@ -952,6 +1116,7 @@
 		1B7E649329110A160084E6A0 /* Child */ = {
 			isa = PBXGroup;
 			children = (
+				1B6251662A7E8D1A0019BB38 /* Offline Mode */,
 				1B7E649429110ACD0084E6A0 /* TabView */,
 				1B7E649A291121800084E6A0 /* Home */,
 				1B016B242922877800291A9D /* Question */,
@@ -1100,6 +1265,7 @@
 		1BA30D5E28E79E9000926820 /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				1B69C2C62A7C014D008714A4 /* Core Data */,
 				F3379EC32A14CD1B003EA977 /* Text To Speach */,
 				1BE72A2928E88FF600447167 /* UserDefaults Service */,
 				1BA30D5F28E79EA200926820 /* RequestManager */,
@@ -1941,6 +2107,7 @@
 				1B779D5028F84FA60051D712 /* GetChildDetailsPayload.swift in Sources */,
 				1BEC0C3D291A471900116FC0 /* HomeDto.swift in Sources */,
 				1B3581A728E621E600612976 /* OnboardingRoleCell.swift in Sources */,
+				1B69C2CC2A7C0FB8008714A4 /* OfflineModeChildRoute.swift in Sources */,
 				1BA9DFAC28E7206F006980D1 /* FamilySharingInfoCell.swift in Sources */,
 				1BE72A3028E8925400447167 /* ChildDetailsView.swift in Sources */,
 				1BA2403928F5DB6300649467 /* ChildProfileViewModeling.swift in Sources */,
@@ -1958,6 +2125,7 @@
 				1B1843DA2A289FB500552FA2 /* NavigationStackWrapper.swift in Sources */,
 				1BA30D6128E79EE100926820 /* RequestServices.swift in Sources */,
 				1BEE80F528EACB24004F75CA /* ChildDetailsUseCase.swift in Sources */,
+				1B62516F2A7E8EF70019BB38 /* LocalOfflineModeUseCase.swift in Sources */,
 				1BA2403728F5DB5700649467 /* ChildProfileViewModel.swift in Sources */,
 				1BA9DFB228E72C73006980D1 /* CancelButton.swift in Sources */,
 				1BE72A2D28E8902300447167 /* UserDefaultsKeys.swift in Sources */,
@@ -1971,6 +2139,7 @@
 				F3379EC72A14CD53003EA977 /* DefaultTextToSpeachManager.swift in Sources */,
 				1BE2206B291951DC00796FE1 /* HomeViewModel.swift in Sources */,
 				1BA30D6528E79FF400926820 /* BasicAuthenticationPlugin.swift in Sources */,
+				1B69C2D62A7C149D008714A4 /* OfflineModeChildModel.swift in Sources */,
 				1B4413A92930FF4900820B55 /* WheelPickerTextField.swift in Sources */,
 				1BA81819291CE41B00916796 /* RestrictionsRepository.swift in Sources */,
 				1BEE80F728EAD13D004F75CA /* AddChildUseCase.swift in Sources */,
@@ -1981,6 +2150,7 @@
 				1B72634B2A4D7DEF0093B1DF /* ChildDeviceCell.swift in Sources */,
 				1BB031432942592C009F47BF /* ShieldView.swift in Sources */,
 				1B687140290D68F000651A33 /* ChildQRViewModel.swift in Sources */,
+				1B69C2DD2A7C18CE008714A4 /* OfflineChild.xcdatamodeld in Sources */,
 				1BE72A3A28E8A20100447167 /* ChildDetailsViewModeling.swift in Sources */,
 				1B02821F29105EBB0094FD2A /* CoachingViewModeling.swift in Sources */,
 				EF43B69E28E19D5E00DBE6B6 /* OnboardingRole.swift in Sources */,
@@ -1989,6 +2159,7 @@
 				1B68713E290D68E700651A33 /* ChildQRViewModeling.swift in Sources */,
 				1BA9DFB428E73001006980D1 /* NavigationButton.swift in Sources */,
 				1B445AF028EC725700B0B310 /* AsyncImageView.swift in Sources */,
+				1B69C2D82A7C17D8008714A4 /* OfflineChildViewModeling.swift in Sources */,
 				1B1843D52A2899D200552FA2 /* NSNotification+Extension.swift in Sources */,
 				1B0C47B62A49B69700DB5ADF /* CreateOrJoinFamilyView.swift in Sources */,
 				1B016B532922D63C00291A9D /* QuestionsUseCase.swift in Sources */,
@@ -1999,6 +2170,7 @@
 				1B7C09F828EAC21E001DB6A1 /* CreateChildPayload.swift in Sources */,
 				1B687136290D532700651A33 /* PairChildUseCase.swift in Sources */,
 				1BEE810328EB5CB8004F75CA /* ChildCell.swift in Sources */,
+				1B6251732A7E8FD00019BB38 /* UpdateOfflineChildUseCase.swift in Sources */,
 				1B445AEE28EC71F700B0B310 /* AsynchronousImage.swift in Sources */,
 				1BA30D6328E79FD400926820 /* RequestServiceError.swift in Sources */,
 				1B76B64A28EC286800602003 /* ChildrenViewModeling.swift in Sources */,
@@ -2012,19 +2184,25 @@
 				1B1346342907D54D00943AA5 /* WebView.swift in Sources */,
 				1B13463D290826A800943AA5 /* DeleteChildUseCase.swift in Sources */,
 				1BA2403D28F5DC5000649467 /* ChildRetriveDto.swift in Sources */,
+				1B6251712A7E8F6A0019BB38 /* AddOfflineChildUseCase.swift in Sources */,
 				1BE22069291951A500796FE1 /* HomeViewModeling.swift in Sources */,
 				1BE72A3D28E8ADB100447167 /* ImagePicker.swift in Sources */,
 				1BF1E14D2906BEBD008A08D4 /* ParentSettingsViewModeling.swift in Sources */,
 				1BE72A2B28E8901000447167 /* UserDefaultsService.swift in Sources */,
+				1B69C2D22A7C1423008714A4 /* GetOfflineModeChildUseCase.swift in Sources */,
 				EFEAAAA32906961600FE0A39 /* SettingsView.swift in Sources */,
 				1BC5BDE029292590006171A5 /* QuestionsContainerDto.swift in Sources */,
 				1BE72A3528E8984600447167 /* CommonTextField.swift in Sources */,
 				1BA30D5128E79A4200926820 /* FamilySharingViewModel.swift in Sources */,
+				1B6251752A7E90530019BB38 /* DeleteOfflineChildUseCase.swift in Sources */,
 				1BC5BDEE29295C8E006171A5 /* AnswerQuestionUseCase.swift in Sources */,
 				1BF1E1442906BCA3008A08D4 /* ParentRoute.swift in Sources */,
+				1B69C2C82A7C0162008714A4 /* Persistence.swift in Sources */,
 				1B76B64428EC266100602003 /* ChildrenRepository.swift in Sources */,
 				EF43B6A628E19F8400DBE6B6 /* Color.swift in Sources */,
 				1B445AEB28EC531B00B0B310 /* ChildModel.swift in Sources */,
+				1B69C2DA2A7C17E0008714A4 /* OfflineChildViewModel.swift in Sources */,
+				1B69C2CE2A7C108E008714A4 /* OfflineModeChildRepository.swift in Sources */,
 				1BB0314529426A81009F47BF /* MultiSegmentProgress.swift in Sources */,
 				1BA8181B291CE43B00916796 /* RestrictionsRoute.swift in Sources */,
 				1BE72A4128E8D69900447167 /* ImageUploadView.swift in Sources */,
@@ -2037,6 +2215,9 @@
 				1BA9DFB028E7290A006980D1 /* ConfirmButton.swift in Sources */,
 				1BE72A3828E8A1F400447167 /* ChildDetailsViewModel.swift in Sources */,
 				F3379EC52A14CD3B003EA977 /* TextToSpeachManager.swift in Sources */,
+				1B69C2D02A7C1125008714A4 /* OfflineChildDto.swift in Sources */,
+				1B6251772A7E939D0019BB38 /* GetOfflineChildUseCase.swift in Sources */,
+				1B69C2E12A7C2195008714A4 /* OfflineChildProvideer.swift in Sources */,
 				EFE9288728E18C3A00675F28 /* Ed_BreakApp.swift in Sources */,
 				1BF1E1512906C837008A08D4 /* ChildDevicesView.swift in Sources */,
 				1BEE810128EB5B2E004F75CA /* ChildrenView.swift in Sources */,
@@ -2062,15 +2243,18 @@
 				1BC5BDE929294E11006171A5 /* AppKitIntrospectionView.swift in Sources */,
 				1B7E64A8291146AF0084E6A0 /* HomeView.swift in Sources */,
 				1BFF5A7B29015F4C00710D9B /* ChildSignInView.swift in Sources */,
+				1B69C2D42A7C1455008714A4 /* OfflineModeUseCase.swift in Sources */,
 				1B016B5A2922D72900291A9D /* QuestionsViewModeling.swift in Sources */,
 				1BF1E13D2906BB44008A08D4 /* ParentSettingsCellType.swift in Sources */,
 				1B7C09F628EAC170001DB6A1 /* ChildDetailsRoute.swift in Sources */,
 				1B016B4E2922D3E100291A9D /* QuestionsRoute.swift in Sources */,
 				1BA30D6F28E7A49B00926820 /* AddParentUseCase.swift in Sources */,
 				1B7E64A5291145AE0084E6A0 /* CircularProgressView.swift in Sources */,
+				1B6251632A7D0CE40019BB38 /* CoreDataSchema.swift in Sources */,
 				1BA30D6728E7A1D700926820 /* FamilySharingRepository.swift in Sources */,
 				1B3581AC28E6387000612976 /* FamilySharingView.swift in Sources */,
 				1B016B272922879700291A9D /* QuestionsView.swift in Sources */,
+				1B6251652A7D0D080019BB38 /* CoreData+Convenience.swift in Sources */,
 				1B76B64228EC250400602003 /* ChildrenRoute.swift in Sources */,
 				1B016B582922D70700291A9D /* QuestionsViewModel.swift in Sources */,
 				1B0BC1FC28EF425400DBBD65 /* TabBarView.swift in Sources */,
@@ -2140,7 +2324,7 @@
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = ShieldConfigurationExtension/ShieldConfigurationExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 16;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 8374P8P59W;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = ShieldConfigurationExtension/Info.plist;
@@ -2152,7 +2336,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 1.4;
+				MARKETING_VERSION = 1.5;
 				PRODUCT_BUNDLE_IDENTIFIER = com.au.edbreak.ShieldConfigurationExtension;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -2167,7 +2351,7 @@
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = ShieldConfigurationExtension/ShieldConfigurationExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 16;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 8374P8P59W;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = ShieldConfigurationExtension/Info.plist;
@@ -2179,7 +2363,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 1.4;
+				MARKETING_VERSION = 1.5;
 				PRODUCT_BUNDLE_IDENTIFIER = com.au.edbreak.ShieldConfigurationExtension;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -2195,7 +2379,7 @@
 				APPLICATION_EXTENSION_API_ONLY = YES;
 				CODE_SIGN_ENTITLEMENTS = ShieldActionExtension/ShieldActionExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 16;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 8374P8P59W;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = ShieldActionExtension/Info.plist;
@@ -2207,7 +2391,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 1.4;
+				MARKETING_VERSION = 1.5;
 				PRODUCT_BUNDLE_IDENTIFIER = com.au.edbreak.ShieldActionExtension;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -2223,7 +2407,7 @@
 				APPLICATION_EXTENSION_API_ONLY = YES;
 				CODE_SIGN_ENTITLEMENTS = ShieldActionExtension/ShieldActionExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 16;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 8374P8P59W;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = ShieldActionExtension/Info.plist;
@@ -2235,7 +2419,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 1.4;
+				MARKETING_VERSION = 1.5;
 				PRODUCT_BUNDLE_IDENTIFIER = com.au.edbreak.ShieldActionExtension;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -2250,7 +2434,7 @@
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = ActivityMonitor/ActivityMonitor.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 16;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 8374P8P59W;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = ActivityMonitor/Info.plist;
@@ -2262,7 +2446,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 1.4;
+				MARKETING_VERSION = 1.5;
 				PRODUCT_BUNDLE_IDENTIFIER = com.au.edbreak.ActivityMonitor;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -2277,7 +2461,7 @@
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = ActivityMonitor/ActivityMonitor.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 16;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 8374P8P59W;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = ActivityMonitor/Info.plist;
@@ -2289,7 +2473,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 1.4;
+				MARKETING_VERSION = 1.5;
 				PRODUCT_BUNDLE_IDENTIFIER = com.au.edbreak.ActivityMonitor;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -2424,7 +2608,7 @@
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_ENTITLEMENTS = "Ed-Break/Ed-Break.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 16;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "Ed-Break/Resources/Preview\\ Content";
 				DEVELOPMENT_TEAM = 8374P8P59W;
 				ENABLE_PREVIEWS = YES;
@@ -2443,7 +2627,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.4;
+				MARKETING_VERSION = 1.5;
 				PRODUCT_BUNDLE_IDENTIFIER = com.au.edbreak;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -2461,7 +2645,7 @@
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_ENTITLEMENTS = "Ed-Break/Ed-Break.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 16;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "Ed-Break/Resources/Preview\\ Content";
 				DEVELOPMENT_TEAM = 8374P8P59W;
 				ENABLE_PREVIEWS = YES;
@@ -2480,7 +2664,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.4;
+				MARKETING_VERSION = 1.5;
 				PRODUCT_BUNDLE_IDENTIFIER = com.au.edbreak;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -2632,6 +2816,19 @@
 			productName = CodeScanner;
 		};
 /* End XCSwiftPackageProductDependency section */
+
+/* Begin XCVersionGroup section */
+		1B69C2DB2A7C18CE008714A4 /* OfflineChild.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				1B69C2DC2A7C18CE008714A4 /* OfflineChild.xcdatamodel */,
+			);
+			currentVersion = 1B69C2DC2A7C18CE008714A4 /* OfflineChild.xcdatamodel */;
+			path = OfflineChild.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = EFE9287B28E18C3A00675F28 /* Project object */;
 }

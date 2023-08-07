@@ -300,7 +300,10 @@ private extension ChildEditView {
             else { return }
             viewModel.pairChild(id: childId, deviceToken: uuid, name: name.removingPercentEncoding ?? "", model: model) { success in
                 guard success else { return }
-                presentationMode.wrappedValue.dismiss()
+                DispatchQueue.main.async {
+                    presentationMode.wrappedValue.dismiss()
+                }
+                
             }
         case .failure(let error):
             print("Scanning failed: \(error.localizedDescription)")

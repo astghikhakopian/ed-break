@@ -6,20 +6,42 @@
 //
 
 import SwiftUI
+import CoreData
 
 struct ChildTabView: View {
     
+    
+    
     @StateObject var model = DataModel.shared
+    @StateObject private var offlineModeviewModel: OfflineChildViewModel
     @State var isQuestions = false
     
-
     @State private var selection = 0
+    private let persistenceController = PersistenceController.shared
+    private let childProvider = OfflineChildProvideer(
+        with: PersistenceController.shared.container,
+        fetchedResultsControllerDelegate: nil
+    )
+    
+    init() {
+        let offlineModeviewModel =  OfflineChildViewModel(
+            getOfflineModeChildUseCase:
+                GetOfflineModeChildUseCase(
+                    offlineModeChildRepository: DefaultOfflineModeChildRepository()
+                ),
+            offlineChildProviderProtocol: childProvider,
+            context: persistenceController.container.viewContext
+        )
+        
+        self._offlineModeviewModel = StateObject(
+            wrappedValue: offlineModeviewModel
+        )
+    }
     
     var body: some View {
         
         TabView(selection: $selection) {
-            
-            NavigationStackWrapper { 
+            NavigationStackWrapper {
                 MainBackground(title: "main.parent.home", withNavbar: false) {
                     HomeView<HomeViewModel>()
                         .showTabBar()
@@ -79,6 +101,9 @@ struct ChildTabView: View {
             UITabBar.appearance().layer.cornerRadius = 30
             UITabBar.appearance().clipsToBounds = true
             
+        }
+        .onLoad {
+            // offlineModeviewModel.updateOfflineChild()
         }
         
     }

@@ -33,7 +33,13 @@ struct ContentView: View {
     var body: some View {
         Group {
             if waitingChild {
-                ChildQRView(viewModel: ChildQRViewModel(checkConnectionUseCase: CheckConnectionUseCase(childrenRepository: DefaultChildrenRepository()), localStorageService: UserDefaultsService()))
+                ChildQRView(
+                    viewModel: ChildQRViewModel(
+                        checkConnectionUseCase: CheckConnectionUseCase(
+                            childrenRepository: DefaultChildrenRepository()
+                        ),
+                        localStorageService: UserDefaultsService())
+                )
             } else {
                 if isChildLoggedIn {
                     ChildTabView()
@@ -46,8 +52,6 @@ struct ContentView: View {
                 }
             }
         }
-      
-     
         .onReceive(appState.$moveToDashboard) { moveToDashboard in
             guard moveToDashboard else { return }
             appState.moveToDashboard = false

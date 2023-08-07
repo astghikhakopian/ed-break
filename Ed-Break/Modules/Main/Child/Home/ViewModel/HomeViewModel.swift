@@ -5,7 +5,6 @@
 //  Created by Astghik Hakopian on 07.11.22.
 //
 
-import UIKit
 import FamilyControls
 import SwiftUI
 import Combine
