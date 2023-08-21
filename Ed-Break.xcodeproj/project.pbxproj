@@ -58,6 +58,9 @@
 		1B445AEE28EC71F700B0B310 /* AsynchronousImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B445AED28EC71F700B0B310 /* AsynchronousImage.swift */; };
 		1B445AF028EC725700B0B310 /* AsyncImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B445AEF28EC725700B0B310 /* AsyncImageView.swift */; };
 		1B47815C28F8595800AA8BF8 /* ChildProfileModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B47815B28F8595800AA8BF8 /* ChildProfileModel.swift */; };
+		1B4782102A8271A20063E0BD /* NetworkMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B47820F2A8271A20063E0BD /* NetworkMonitor.swift */; };
+		1B4782142A827A040063E0BD /* OfflineChildGettingViewModeling.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B4782132A827A040063E0BD /* OfflineChildGettingViewModeling.swift */; };
+		1B4782162A827A0D0063E0BD /* OfflineChildGettingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B4782152A827A0D0063E0BD /* OfflineChildGettingViewModel.swift */; };
 		1B4C1E2928F4678300C69FB1 /* ChildProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B4C1E2828F4678300C69FB1 /* ChildProfileView.swift */; };
 		1B4F5719293931D200AE29E3 /* ScheduleModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B4F5718293931D200AE29E3 /* ScheduleModel.swift */; };
 		1B55E81329506BCA0085E147 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF43B6A528E19F8400DBE6B6 /* Color.swift */; };
@@ -87,8 +90,8 @@
 		1B69C2D22A7C1423008714A4 /* GetOfflineModeChildUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B69C2D12A7C1423008714A4 /* GetOfflineModeChildUseCase.swift */; };
 		1B69C2D42A7C1455008714A4 /* OfflineModeUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B69C2D32A7C1455008714A4 /* OfflineModeUseCase.swift */; };
 		1B69C2D62A7C149D008714A4 /* OfflineModeChildModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B69C2D52A7C149D008714A4 /* OfflineModeChildModel.swift */; };
-		1B69C2D82A7C17D8008714A4 /* OfflineChildViewModeling.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B69C2D72A7C17D8008714A4 /* OfflineChildViewModeling.swift */; };
-		1B69C2DA2A7C17E0008714A4 /* OfflineChildViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B69C2D92A7C17E0008714A4 /* OfflineChildViewModel.swift */; };
+		1B69C2D82A7C17D8008714A4 /* OfflineChildSavingViewModeling.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B69C2D72A7C17D8008714A4 /* OfflineChildSavingViewModeling.swift */; };
+		1B69C2DA2A7C17E0008714A4 /* OfflineChildSavingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B69C2D92A7C17E0008714A4 /* OfflineChildSavingViewModel.swift */; };
 		1B69C2DD2A7C18CE008714A4 /* OfflineChild.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 1B69C2DB2A7C18CE008714A4 /* OfflineChild.xcdatamodeld */; };
 		1B69C2E12A7C2195008714A4 /* OfflineChildProvideer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B69C2E02A7C2195008714A4 /* OfflineChildProvideer.swift */; };
 		1B72634B2A4D7DEF0093B1DF /* ChildDeviceCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B72634A2A4D7DEF0093B1DF /* ChildDeviceCell.swift */; };
@@ -110,6 +113,12 @@
 		1B7E649729110B610084E6A0 /* ChildTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B7E649629110B610084E6A0 /* ChildTabView.swift */; };
 		1B7E64A5291145AE0084E6A0 /* CircularProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B7E64A4291145AE0084E6A0 /* CircularProgressView.swift */; };
 		1B7E64A8291146AF0084E6A0 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B7E64A7291146AF0084E6A0 /* HomeView.swift */; };
+		1B82443A2A8CB1CB0080F9AF /* OfflineChildQuestionViewModeling.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B8244392A8CB1CB0080F9AF /* OfflineChildQuestionViewModeling.swift */; };
+		1B82443C2A8CB1D20080F9AF /* OfflineChildQuestionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B82443B2A8CB1D20080F9AF /* OfflineChildQuestionViewModel.swift */; };
+		1B8244402A8CB2B60080F9AF /* ReadQuestionViewModeling.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B82443F2A8CB2B60080F9AF /* ReadQuestionViewModeling.swift */; };
+		1B8244422A8CB2BE0080F9AF /* ReadQuestionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B8244412A8CB2BE0080F9AF /* ReadQuestionViewModel.swift */; };
+		1B8244442A8CD8330080F9AF /* OfflineQuestionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B8244432A8CD8330080F9AF /* OfflineQuestionsView.swift */; };
+		1B8244472A8CFE380080F9AF /* UpdateBreakDateOfflineChildUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B8244462A8CFE380080F9AF /* UpdateBreakDateOfflineChildUseCase.swift */; };
 		1B83F4492973EDAC00799654 /* ScheduleModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B4F5718293931D200AE29E3 /* ScheduleModel.swift */; };
 		1B83F44A2973F3B400799654 /* UserDefaultsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BE72A2A28E8901000447167 /* UserDefaultsService.swift */; };
 		1B83F44B2973F40400799654 /* UserDefaultsKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BE72A2C28E8902300447167 /* UserDefaultsKeys.swift */; };
@@ -321,6 +330,9 @@
 		1B445AED28EC71F700B0B310 /* AsynchronousImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsynchronousImage.swift; sourceTree = "<group>"; };
 		1B445AEF28EC725700B0B310 /* AsyncImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsyncImageView.swift; sourceTree = "<group>"; };
 		1B47815B28F8595800AA8BF8 /* ChildProfileModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChildProfileModel.swift; sourceTree = "<group>"; };
+		1B47820F2A8271A20063E0BD /* NetworkMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkMonitor.swift; sourceTree = "<group>"; };
+		1B4782132A827A040063E0BD /* OfflineChildGettingViewModeling.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OfflineChildGettingViewModeling.swift; sourceTree = "<group>"; };
+		1B4782152A827A0D0063E0BD /* OfflineChildGettingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OfflineChildGettingViewModel.swift; sourceTree = "<group>"; };
 		1B4C1E2828F4678300C69FB1 /* ChildProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChildProfileView.swift; sourceTree = "<group>"; };
 		1B4F5718293931D200AE29E3 /* ScheduleModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleModel.swift; sourceTree = "<group>"; };
 		1B56107C28F420B700DA3043 /* DashboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardView.swift; sourceTree = "<group>"; };
@@ -345,8 +357,8 @@
 		1B69C2D12A7C1423008714A4 /* GetOfflineModeChildUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetOfflineModeChildUseCase.swift; sourceTree = "<group>"; };
 		1B69C2D32A7C1455008714A4 /* OfflineModeUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OfflineModeUseCase.swift; sourceTree = "<group>"; };
 		1B69C2D52A7C149D008714A4 /* OfflineModeChildModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OfflineModeChildModel.swift; sourceTree = "<group>"; };
-		1B69C2D72A7C17D8008714A4 /* OfflineChildViewModeling.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OfflineChildViewModeling.swift; sourceTree = "<group>"; };
-		1B69C2D92A7C17E0008714A4 /* OfflineChildViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OfflineChildViewModel.swift; sourceTree = "<group>"; };
+		1B69C2D72A7C17D8008714A4 /* OfflineChildSavingViewModeling.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OfflineChildSavingViewModeling.swift; sourceTree = "<group>"; };
+		1B69C2D92A7C17E0008714A4 /* OfflineChildSavingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OfflineChildSavingViewModel.swift; sourceTree = "<group>"; };
 		1B69C2DC2A7C18CE008714A4 /* OfflineChild.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = OfflineChild.xcdatamodel; sourceTree = "<group>"; };
 		1B69C2E02A7C2195008714A4 /* OfflineChildProvideer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OfflineChildProvideer.swift; sourceTree = "<group>"; };
 		1B72634A2A4D7DEF0093B1DF /* ChildDeviceCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChildDeviceCell.swift; sourceTree = "<group>"; };
@@ -368,6 +380,12 @@
 		1B7E649629110B610084E6A0 /* ChildTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChildTabView.swift; sourceTree = "<group>"; };
 		1B7E64A4291145AE0084E6A0 /* CircularProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircularProgressView.swift; sourceTree = "<group>"; };
 		1B7E64A7291146AF0084E6A0 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		1B8244392A8CB1CB0080F9AF /* OfflineChildQuestionViewModeling.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OfflineChildQuestionViewModeling.swift; sourceTree = "<group>"; };
+		1B82443B2A8CB1D20080F9AF /* OfflineChildQuestionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OfflineChildQuestionViewModel.swift; sourceTree = "<group>"; };
+		1B82443F2A8CB2B60080F9AF /* ReadQuestionViewModeling.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReadQuestionViewModeling.swift; sourceTree = "<group>"; };
+		1B8244412A8CB2BE0080F9AF /* ReadQuestionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReadQuestionViewModel.swift; sourceTree = "<group>"; };
+		1B8244432A8CD8330080F9AF /* OfflineQuestionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OfflineQuestionsView.swift; sourceTree = "<group>"; };
+		1B8244462A8CFE380080F9AF /* UpdateBreakDateOfflineChildUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateBreakDateOfflineChildUseCase.swift; sourceTree = "<group>"; };
 		1B8C4285290EAA3400FD5598 /* DropdownButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DropdownButton.swift; sourceTree = "<group>"; };
 		1B99050D29106570001E7303 /* CoachingCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoachingCell.swift; sourceTree = "<group>"; };
 		1B99050F29106FEF001E7303 /* GetCoachingUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetCoachingUseCase.swift; sourceTree = "<group>"; };
@@ -540,6 +558,7 @@
 			isa = PBXGroup;
 			children = (
 				1B016B262922879700291A9D /* QuestionsView.swift */,
+				1B8244432A8CD8330080F9AF /* OfflineQuestionsView.swift */,
 				1BCD8C7E292A7E9E00CD3D04 /* PhoneLockingStateView.swift */,
 				1BC5BDEF29296E69006171A5 /* AnswerResultView.swift */,
 			);
@@ -586,8 +605,8 @@
 		1B016B562922D6ED00291A9D /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
-				1B016B592922D72900291A9D /* QuestionsViewModeling.swift */,
-				1B016B572922D70700291A9D /* QuestionsViewModel.swift */,
+				1B82443D2A8CB2850080F9AF /* Question */,
+				1B82443E2A8CB28F0080F9AF /* Reading */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -787,6 +806,32 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
+		1B47820E2A8271770063E0BD /* Network Connection */ = {
+			isa = PBXGroup;
+			children = (
+				1B47820F2A8271A20063E0BD /* NetworkMonitor.swift */,
+			);
+			path = "Network Connection";
+			sourceTree = "<group>";
+		};
+		1B4782112A8276280063E0BD /* Save */ = {
+			isa = PBXGroup;
+			children = (
+				1B69C2D72A7C17D8008714A4 /* OfflineChildSavingViewModeling.swift */,
+				1B69C2D92A7C17E0008714A4 /* OfflineChildSavingViewModel.swift */,
+			);
+			path = Save;
+			sourceTree = "<group>";
+		};
+		1B4782122A8276340063E0BD /* Get */ = {
+			isa = PBXGroup;
+			children = (
+				1B4782132A827A040063E0BD /* OfflineChildGettingViewModeling.swift */,
+				1B4782152A827A0D0063E0BD /* OfflineChildGettingViewModel.swift */,
+			);
+			path = Get;
+			sourceTree = "<group>";
+		};
 		1B4C1E2628F4674E00C69FB1 /* ChildProfile */ = {
 			isa = PBXGroup;
 			children = (
@@ -900,8 +945,9 @@
 		1B62516B2A7E8DB70019BB38 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
-				1B69C2D72A7C17D8008714A4 /* OfflineChildViewModeling.swift */,
-				1B69C2D92A7C17E0008714A4 /* OfflineChildViewModel.swift */,
+				1B4782122A8276340063E0BD /* Get */,
+				1B4782112A8276280063E0BD /* Save */,
+				1B8244382A8CB1A60080F9AF /* Question */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -922,6 +968,7 @@
 				1B6251762A7E939D0019BB38 /* GetOfflineChildUseCase.swift */,
 				1B6251702A7E8F6A0019BB38 /* AddOfflineChildUseCase.swift */,
 				1B6251722A7E8FD00019BB38 /* UpdateOfflineChildUseCase.swift */,
+				1B8244462A8CFE380080F9AF /* UpdateBreakDateOfflineChildUseCase.swift */,
 				1B6251742A7E90530019BB38 /* DeleteOfflineChildUseCase.swift */,
 			);
 			path = Local;
@@ -1116,11 +1163,11 @@
 		1B7E649329110A160084E6A0 /* Child */ = {
 			isa = PBXGroup;
 			children = (
-				1B6251662A7E8D1A0019BB38 /* Offline Mode */,
 				1B7E649429110ACD0084E6A0 /* TabView */,
 				1B7E649A291121800084E6A0 /* Home */,
 				1B016B242922877800291A9D /* Question */,
 				1BB0314129425906009F47BF /* Shield */,
+				1B6251662A7E8D1A0019BB38 /* Offline Mode */,
 			);
 			path = Child;
 			sourceTree = "<group>";
@@ -1178,6 +1225,33 @@
 				1B323B0229116699006BFBF5 /* LessonCell.swift */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		1B8244382A8CB1A60080F9AF /* Question */ = {
+			isa = PBXGroup;
+			children = (
+				1B8244392A8CB1CB0080F9AF /* OfflineChildQuestionViewModeling.swift */,
+				1B82443B2A8CB1D20080F9AF /* OfflineChildQuestionViewModel.swift */,
+			);
+			path = Question;
+			sourceTree = "<group>";
+		};
+		1B82443D2A8CB2850080F9AF /* Question */ = {
+			isa = PBXGroup;
+			children = (
+				1B016B592922D72900291A9D /* QuestionsViewModeling.swift */,
+				1B016B572922D70700291A9D /* QuestionsViewModel.swift */,
+			);
+			path = Question;
+			sourceTree = "<group>";
+		};
+		1B82443E2A8CB28F0080F9AF /* Reading */ = {
+			isa = PBXGroup;
+			children = (
+				1B82443F2A8CB2B60080F9AF /* ReadQuestionViewModeling.swift */,
+				1B8244412A8CB2BE0080F9AF /* ReadQuestionViewModel.swift */,
+			);
+			path = Reading;
 			sourceTree = "<group>";
 		};
 		1B9B364D293BBE900094B801 /* Restrictions */ = {
@@ -1265,6 +1339,7 @@
 		1BA30D5E28E79E9000926820 /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				1B47820E2A8271770063E0BD /* Network Connection */,
 				1B69C2C62A7C014D008714A4 /* Core Data */,
 				F3379EC32A14CD1B003EA977 /* Text To Speach */,
 				1BE72A2928E88FF600447167 /* UserDefaults Service */,
@@ -2152,6 +2227,7 @@
 				1B687140290D68F000651A33 /* ChildQRViewModel.swift in Sources */,
 				1B69C2DD2A7C18CE008714A4 /* OfflineChild.xcdatamodeld in Sources */,
 				1BE72A3A28E8A20100447167 /* ChildDetailsViewModeling.swift in Sources */,
+				1B4782142A827A040063E0BD /* OfflineChildGettingViewModeling.swift in Sources */,
 				1B02821F29105EBB0094FD2A /* CoachingViewModeling.swift in Sources */,
 				EF43B69E28E19D5E00DBE6B6 /* OnboardingRole.swift in Sources */,
 				1B02821B29105D4B0094FD2A /* CoachingView.swift in Sources */,
@@ -2159,7 +2235,7 @@
 				1B68713E290D68E700651A33 /* ChildQRViewModeling.swift in Sources */,
 				1BA9DFB428E73001006980D1 /* NavigationButton.swift in Sources */,
 				1B445AF028EC725700B0B310 /* AsyncImageView.swift in Sources */,
-				1B69C2D82A7C17D8008714A4 /* OfflineChildViewModeling.swift in Sources */,
+				1B69C2D82A7C17D8008714A4 /* OfflineChildSavingViewModeling.swift in Sources */,
 				1B1843D52A2899D200552FA2 /* NSNotification+Extension.swift in Sources */,
 				1B0C47B62A49B69700DB5ADF /* CreateOrJoinFamilyView.swift in Sources */,
 				1B016B532922D63C00291A9D /* QuestionsUseCase.swift in Sources */,
@@ -2170,6 +2246,7 @@
 				1B7C09F828EAC21E001DB6A1 /* CreateChildPayload.swift in Sources */,
 				1B687136290D532700651A33 /* PairChildUseCase.swift in Sources */,
 				1BEE810328EB5CB8004F75CA /* ChildCell.swift in Sources */,
+				1B4782162A827A0D0063E0BD /* OfflineChildGettingViewModel.swift in Sources */,
 				1B6251732A7E8FD00019BB38 /* UpdateOfflineChildUseCase.swift in Sources */,
 				1B445AEE28EC71F700B0B310 /* AsynchronousImage.swift in Sources */,
 				1BA30D6328E79FD400926820 /* RequestServiceError.swift in Sources */,
@@ -2180,6 +2257,7 @@
 				1BF1E14B2906BE11008A08D4 /* DeleteParentUseCase.swift in Sources */,
 				1BC5BDEC29294E11006171A5 /* ViewExtensions.swift in Sources */,
 				EFE9288928E18C3A00675F28 /* ContentView.swift in Sources */,
+				1B8244402A8CB2B60080F9AF /* ReadQuestionViewModeling.swift in Sources */,
 				1B016B502922D4D500291A9D /* QuestionsRepository.swift in Sources */,
 				1B1346342907D54D00943AA5 /* WebView.swift in Sources */,
 				1B13463D290826A800943AA5 /* DeleteChildUseCase.swift in Sources */,
@@ -2197,14 +2275,17 @@
 				1B6251752A7E90530019BB38 /* DeleteOfflineChildUseCase.swift in Sources */,
 				1BC5BDEE29295C8E006171A5 /* AnswerQuestionUseCase.swift in Sources */,
 				1BF1E1442906BCA3008A08D4 /* ParentRoute.swift in Sources */,
+				1B82443C2A8CB1D20080F9AF /* OfflineChildQuestionViewModel.swift in Sources */,
 				1B69C2C82A7C0162008714A4 /* Persistence.swift in Sources */,
 				1B76B64428EC266100602003 /* ChildrenRepository.swift in Sources */,
 				EF43B6A628E19F8400DBE6B6 /* Color.swift in Sources */,
+				1B8244472A8CFE380080F9AF /* UpdateBreakDateOfflineChildUseCase.swift in Sources */,
 				1B445AEB28EC531B00B0B310 /* ChildModel.swift in Sources */,
-				1B69C2DA2A7C17E0008714A4 /* OfflineChildViewModel.swift in Sources */,
+				1B69C2DA2A7C17E0008714A4 /* OfflineChildSavingViewModel.swift in Sources */,
 				1B69C2CE2A7C108E008714A4 /* OfflineModeChildRepository.swift in Sources */,
 				1BB0314529426A81009F47BF /* MultiSegmentProgress.swift in Sources */,
 				1BA8181B291CE43B00916796 /* RestrictionsRoute.swift in Sources */,
+				1B82443A2A8CB1CB0080F9AF /* OfflineChildQuestionViewModeling.swift in Sources */,
 				1BE72A4128E8D69900447167 /* ImageUploadView.swift in Sources */,
 				1BEC0C40291A963100116FC0 /* DateFormatter.swift in Sources */,
 				1BA30D7128E7A4D600926820 /* FamilySharingUseCase.swift in Sources */,
@@ -2224,6 +2305,7 @@
 				1B687134290D51FE00651A33 /* PairChildPayload.swift in Sources */,
 				1B29CB7829016D7D0036988F /* ChildQRView.swift in Sources */,
 				1B445AE928EC3DA700B0B310 /* PagingDto.swift in Sources */,
+				1B4782102A8271A20063E0BD /* NetworkMonitor.swift in Sources */,
 				1B47815C28F8595800AA8BF8 /* ChildProfileModel.swift in Sources */,
 				1BA30D5D28E79E5700926820 /* FamilySharingRoute.swift in Sources */,
 				EF52D84C2907F1DD00C6ACF9 /* ChildEditView.swift in Sources */,
@@ -2232,6 +2314,7 @@
 				1BCD8C81292A83BF00CD3D04 /* Image.swift in Sources */,
 				1BEE80F328EACA33004F75CA /* ChildDetailsRepository.swift in Sources */,
 				1B76B64828EC26EC00602003 /* GetChildrenUseCase.swift in Sources */,
+				1B8244442A8CD8330080F9AF /* OfflineQuestionsView.swift in Sources */,
 				1BC5BDF029296E69006171A5 /* AnswerResultView.swift in Sources */,
 				1BA9DFAA28E7131D006980D1 /* FamilySharingCell.swift in Sources */,
 				1B779D4E28F84EAD0051D712 /* GetChildDetailsUseCase.swift in Sources */,
@@ -2247,6 +2330,7 @@
 				1B016B5A2922D72900291A9D /* QuestionsViewModeling.swift in Sources */,
 				1BF1E13D2906BB44008A08D4 /* ParentSettingsCellType.swift in Sources */,
 				1B7C09F628EAC170001DB6A1 /* ChildDetailsRoute.swift in Sources */,
+				1B8244422A8CB2BE0080F9AF /* ReadQuestionViewModel.swift in Sources */,
 				1B016B4E2922D3E100291A9D /* QuestionsRoute.swift in Sources */,
 				1BA30D6F28E7A49B00926820 /* AddParentUseCase.swift in Sources */,
 				1B7E64A5291145AE0084E6A0 /* CircularProgressView.swift in Sources */,
@@ -2324,7 +2408,7 @@
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = ShieldConfigurationExtension/ShieldConfigurationExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 6;
 				DEVELOPMENT_TEAM = 8374P8P59W;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = ShieldConfigurationExtension/Info.plist;
@@ -2336,7 +2420,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 1.5;
+				MARKETING_VERSION = 1.6;
 				PRODUCT_BUNDLE_IDENTIFIER = com.au.edbreak.ShieldConfigurationExtension;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -2351,7 +2435,7 @@
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = ShieldConfigurationExtension/ShieldConfigurationExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 6;
 				DEVELOPMENT_TEAM = 8374P8P59W;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = ShieldConfigurationExtension/Info.plist;
@@ -2363,7 +2447,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 1.5;
+				MARKETING_VERSION = 1.6;
 				PRODUCT_BUNDLE_IDENTIFIER = com.au.edbreak.ShieldConfigurationExtension;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -2379,7 +2463,7 @@
 				APPLICATION_EXTENSION_API_ONLY = YES;
 				CODE_SIGN_ENTITLEMENTS = ShieldActionExtension/ShieldActionExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 6;
 				DEVELOPMENT_TEAM = 8374P8P59W;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = ShieldActionExtension/Info.plist;
@@ -2391,7 +2475,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 1.5;
+				MARKETING_VERSION = 1.6;
 				PRODUCT_BUNDLE_IDENTIFIER = com.au.edbreak.ShieldActionExtension;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -2407,7 +2491,7 @@
 				APPLICATION_EXTENSION_API_ONLY = YES;
 				CODE_SIGN_ENTITLEMENTS = ShieldActionExtension/ShieldActionExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 6;
 				DEVELOPMENT_TEAM = 8374P8P59W;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = ShieldActionExtension/Info.plist;
@@ -2419,7 +2503,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 1.5;
+				MARKETING_VERSION = 1.6;
 				PRODUCT_BUNDLE_IDENTIFIER = com.au.edbreak.ShieldActionExtension;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -2434,7 +2518,7 @@
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = ActivityMonitor/ActivityMonitor.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 6;
 				DEVELOPMENT_TEAM = 8374P8P59W;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = ActivityMonitor/Info.plist;
@@ -2446,7 +2530,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 1.5;
+				MARKETING_VERSION = 1.6;
 				PRODUCT_BUNDLE_IDENTIFIER = com.au.edbreak.ActivityMonitor;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -2461,7 +2545,7 @@
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = ActivityMonitor/ActivityMonitor.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 6;
 				DEVELOPMENT_TEAM = 8374P8P59W;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = ActivityMonitor/Info.plist;
@@ -2473,7 +2557,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 1.5;
+				MARKETING_VERSION = 1.6;
 				PRODUCT_BUNDLE_IDENTIFIER = com.au.edbreak.ActivityMonitor;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -2608,7 +2692,7 @@
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_ENTITLEMENTS = "Ed-Break/Ed-Break.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 6;
 				DEVELOPMENT_ASSET_PATHS = "Ed-Break/Resources/Preview\\ Content";
 				DEVELOPMENT_TEAM = 8374P8P59W;
 				ENABLE_PREVIEWS = YES;
@@ -2627,7 +2711,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.5;
+				MARKETING_VERSION = 1.6;
 				PRODUCT_BUNDLE_IDENTIFIER = com.au.edbreak;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -2645,7 +2729,7 @@
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_ENTITLEMENTS = "Ed-Break/Ed-Break.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 6;
 				DEVELOPMENT_ASSET_PATHS = "Ed-Break/Resources/Preview\\ Content";
 				DEVELOPMENT_TEAM = 8374P8P59W;
 				ENABLE_PREVIEWS = YES;
@@ -2664,7 +2748,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.5;
+				MARKETING_VERSION = 1.6;
 				PRODUCT_BUNDLE_IDENTIFIER = com.au.edbreak;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;

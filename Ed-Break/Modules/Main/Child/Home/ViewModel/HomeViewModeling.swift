@@ -19,5 +19,4 @@ protocol HomeViewModeling: ObservableObject, Identifiable {
     
     func getSubjects()
     func checkConnection(compleated: @escaping (Bool)->())
-    func setRestrictions()
 }

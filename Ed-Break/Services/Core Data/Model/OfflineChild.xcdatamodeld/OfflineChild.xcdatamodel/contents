@@ -8,7 +8,7 @@
         <attribute name="restrictions" optional="YES" attributeType="String"/>
         <attribute name="restrictionTime" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="wrongAnswersTime" optional="YES" attributeType="String"/>
-        <relationship name="childSubjects" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="OfflineSubjectMO"/>
+        <relationship name="childSubjects" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="OfflineSubjectMO"/>
     </entity>
     <entity name="OfflineQuestionAnswerMO" representedClassName="OfflineQuestionAnswerMO" syncable="YES" codeGenerationType="class">
         <attribute name="answer" optional="YES" attributeType="String"/>
@@ -18,12 +18,12 @@
     <entity name="OfflineQusetionMO" representedClassName="OfflineQusetionMO" syncable="YES" codeGenerationType="class">
         <attribute name="id" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="questionText" optional="YES" attributeType="String"/>
-        <relationship name="answers" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="OfflineQuestionAnswerMO"/>
+        <relationship name="answers" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="OfflineQuestionAnswerMO"/>
     </entity>
     <entity name="OfflineSubjectMO" representedClassName="OfflineSubjectMO" syncable="YES" codeGenerationType="class">
         <attribute name="id" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="photo" optional="YES" attributeType="String"/>
         <attribute name="subject" optional="YES" attributeType="String"/>
-        <relationship name="questions" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="OfflineQusetionMO"/>
+        <relationship name="questions" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="OfflineQusetionMO"/>
     </entity>
 </model>

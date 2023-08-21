@@ -10,13 +10,17 @@ import Foundation
 enum RequestServices {
     
     enum Users {
+        // prod
+        static let baseUrl: URL = URL(string: "https://back.ed-break.app")!
+        static let apiQueue: DispatchQueue = .init(label: "https://back.ed-break.app", qos: .default, attributes: .concurrent)
+        
         // dev
-        // static let baseUrl: URL = URL(string: "https://back-ed-break-dev.appelloproject.xyz")!
-        // static let apiQueue: DispatchQueue = .init(label: "back-ed-break-dev.appelloproject.xyz", qos: .default, attributes: .concurrent)
+//         static let baseUrl: URL = URL(string: "https://back-ed-break-dev.appelloproject.xyz")!
+//         static let apiQueue: DispatchQueue = .init(label: "back-ed-break-dev.appelloproject.xyz", qos: .default, attributes: .concurrent)
         
         // stage
-        static let baseUrl: URL = URL(string: "https://back-ed-break-stage.appelloproject.xyz")!
-        static let apiQueue: DispatchQueue = .init(label: "https://back-ed-break-stage.appelloproject.xyz", qos: .default, attributes: .concurrent)
+//        static let baseUrl: URL = URL(string: "https://back-ed-break-stage.appelloproject.xyz")!
+//        static let apiQueue: DispatchQueue = .init(label: "https://back-ed-break-stage.appelloproject.xyz", qos: .default, attributes: .concurrent)
     
     }
     

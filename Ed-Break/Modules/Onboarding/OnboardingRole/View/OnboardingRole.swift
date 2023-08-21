@@ -10,7 +10,7 @@ import SwiftUI
 struct OnboardingRole: View {
     
     @State private var showWebView = false
-    @State private var isTermsSelected = false
+    @State private var isTermsSelected = true
     
     private let privacyUrl = URL(string: "https://docs.google.com/document/d/1STmonAdjpiDkjzC4ttS1SrYIJ-v2EAf7Hx8zK-3ACto")!
     private let cellHeight = 214.0
@@ -35,7 +35,8 @@ struct OnboardingRole: View {
                     }
                 }
                 Spacer()
-                HStack(spacing: 12) {
+                // HStack(spacing: 12) {
+                    /*
                     Button {
                         isTermsSelected.toggle()
                     } label: {
@@ -50,7 +51,8 @@ struct OnboardingRole: View {
                                     .stroke(isTermsSelected ? Color.primaryPurple : Color.primaryDescription, lineWidth: 1)
                             )
                     }
-                    VStack(alignment: .leading) {
+                    */
+                    VStack {
                         Text("onboarding.terms.text")
                             .foregroundColor(.appWhite)
                             .font(.appHeadline)
@@ -64,7 +66,7 @@ struct OnboardingRole: View {
                                 .underline()
                         }
                     }.padding(15)
-                }
+                // }
             }.background(Color.primaryBackground)
         }
         .navigationViewStyle(StackNavigationViewStyle())

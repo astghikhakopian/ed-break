@@ -26,6 +26,16 @@ struct QuestionsContainerModel {
         wrongAnswersTime = Date(fromString: dto.wrongAnswersTime ?? "", format: .isoDateTimeFull)?.toLocalTime()
         isCorrect = dto.isCorrect
     }
+    
+    init(offlineModel: QuestionsContainerDto) {
+        questionGroupType = QuestionType(rawValue: offlineModel.questionGroupType ?? "") ?? .main
+        questions = offlineModel.questions?.map { QusetionModel(dto: $0) } ?? []
+        questionsCount = offlineModel.questionsCount ?? 0
+        answeredQuestionsCount = offlineModel.answeredQuestionsCount ?? 0
+        correctAnswersCount = offlineModel.correctAnswersCount ?? 0
+        wrongAnswersTime = Date(fromString: offlineModel.wrongAnswersTime ?? "", format: .isoDateTimeFull)?.toLocalTime()
+        isCorrect = offlineModel.isCorrect
+    }
 }
 
 struct QusetionModel: Equatable {

@@ -1,22 +1,21 @@
 //
-//  QuestionsView.swift
+//  OfflineQuestionsView.swift
 //  Ed-Break
 //
-//  Created by Astghik Hakopian on 14.11.22.
+//  Created by Astghik Hakopian on 16.08.23.
 //
 
 import SwiftUI
 
-struct QuestionsView<
-    M: QuestionsViewModeling,
+struct OfflineQuestionsView<
+    M: OfflineChildQuestionViewModeling,
     N: ReadQuestionViewModeling
 >: View {
     
     @StateObject var viewModel: M
     @StateObject var readQuestionViewModel: N
     
-    @State private var selectedAnswer: QuestionAnswerModel?
-    @State private var isAdditionalQuestions = false
+    @State private var selectedAnswer: OfflineQuestionAnswerModel?
     @State private var shouldShowContinueButton = false
     @State private var contentSize: CGSize = .zero
     
@@ -24,7 +23,7 @@ struct QuestionsView<
     
     var body: some View {
         MainBackground(
-            title: viewModel.subject.title,
+            title: viewModel.subject?.subject ?? "",
             withNavbar: true,
             isSimple: true,
             contentSize: $contentSize,
@@ -61,7 +60,6 @@ struct QuestionsView<
         )
         .onLoad {
             viewModel.getQuestions()
-            isAdditionalQuestions = false
         }
         .hiddenTabBar()
         .answerResult(
@@ -73,7 +71,7 @@ struct QuestionsView<
     }
 }
 
-extension QuestionsView {
+extension OfflineQuestionsView {
     
     var unlockedView: some View {
         PhoneLockingStateView(
@@ -101,7 +99,7 @@ extension QuestionsView {
     
     var pageIndicator: some View {
         HStack(spacing: 8) {
-            ForEach(Array((viewModel.questionsContainer?.questions ?? []).enumerated()), id: \.1.uuid) { index, answer in
+            ForEach(Array((viewModel.questionsContainer?.questions ?? []).enumerated()), id: \.1.id) { index, answer in
                 Rectangle()
                     .foregroundColor(index < (viewModel.questionsContainer?.answeredQuestionsCount ?? 0) ? answer.isCorrect == true ? Color.primaryGreen : Color.primaryRed : Color.divader)
                     .frame(height: 5)
@@ -113,7 +111,7 @@ extension QuestionsView {
     var questionView: some View {
         VStack {
             Spacer()
-            Text(viewModel.currentQuestion.questionText ?? "")
+            Text(viewModel.currentQuestion?.questionText ?? "")
                 .font(.appHeadingH3)
                 .foregroundColor(Color.primaryText)
                 .padding(.horizontal, 8)
@@ -129,7 +127,7 @@ extension QuestionsView {
     
     var options: some View {
         VStack(spacing: 12) {
-            ForEach(viewModel.currentQuestion.questionAnswer, id: \.id) { answer in
+            ForEach(viewModel.currentQuestion?.answers ?? [], id: \.id) { answer in
                 answerCell(
                     model: answer,
                     isSelected: selectedAnswer?.id == answer.id,
@@ -142,7 +140,7 @@ extension QuestionsView {
         }
     }
     
-    func answerCell(model: QuestionAnswerModel, isSelected: Bool, isCurrentReading: Bool) -> some View {
+    func answerCell(model: OfflineQuestionAnswerModel, isSelected: Bool, isCurrentReading: Bool) -> some View {
         Button(
             action: {
                 selectedAnswer = model
@@ -158,7 +156,7 @@ extension QuestionsView {
                             .padding(.trailing, (isSelected ? 2.5 : 0))
                             .padding(.top, (isSelected ? 2.5 : 0))
                     }
-                    Text(model.answer ?? "")
+                    Text(model.answer)
                         .font(.appButton)
                         .foregroundColor(viewModel.isFeedbackGiven ? textColor(isSelected: isSelected, model: model)  : (isSelected ? Color.primaryPurple : Color.primaryText))
                         .fixedSize(horizontal: false, vertical: true)
@@ -193,15 +191,17 @@ extension QuestionsView {
     
     var voiceButton: some View {
         Button {
-            guard !viewModel.isPhoneUnlocked else { return }
-            readQuestionViewModel.startPlayingQuestion(currentQuestion: viewModel.currentQuestion)
+            guard !viewModel.isPhoneUnlocked,
+                  let currentQuestion = viewModel.currentQuestion
+            else { return }
+            readQuestionViewModel.startPlayingQuestion(currentQuestion: currentQuestion)
         } label: { Image.ChildHome.volume }
     }
     
     private func confirmSelectedAnswer() {
         guard let selectedAnswer = selectedAnswer else { return }
-        viewModel.answerQuestion(answer: selectedAnswer, isAdditionalQuestions: isAdditionalQuestions) { _ in
-            guard viewModel.currentQuestion.id == viewModel.questionsContainer?.questions.last?.id else { return }
+        viewModel.answerQuestion(answer: selectedAnswer) { _ in
+            guard viewModel.currentQuestion?.id == viewModel.questionsContainer?.questions.last?.id else { return }
             
             DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
                 presentationMode.wrappedValue.dismiss()
@@ -210,7 +210,7 @@ extension QuestionsView {
         }
     }
   
-    private func cellColor(isSelected: Bool, model: QuestionAnswerModel) -> Color {
+    private func cellColor(isSelected: Bool, model: OfflineQuestionAnswerModel) -> Color {
         isSelected ?
         model.correct ?
             .rightAnswer :
@@ -221,7 +221,7 @@ extension QuestionsView {
             .primaryLightBackground
     }
     
-    private func textColor(isSelected: Bool, model: QuestionAnswerModel) -> Color {
+    private func textColor(isSelected: Bool, model: OfflineQuestionAnswerModel) -> Color {
         isSelected ?
         model.correct ?
             .primaryGreen :
@@ -236,13 +236,14 @@ extension QuestionsView {
 
 // MARK: - Preview
 
-struct QuestionsView_Previews: PreviewProvider {
+struct OfflineQuestionsView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationView {
             NavigationLazyView(
-                QuestionsView(
-                    viewModel: MockQuestionsViewModel(),
-                    readQuestionViewModel: MockReadQuestionViewModel()                )
+                OfflineQuestionsView(
+                    viewModel: MockOfflineChildQuestionViewModel(),
+                    readQuestionViewModel: MockReadQuestionViewModel()
+                )
                 .background(Color.primaryPurple)
             )
         }

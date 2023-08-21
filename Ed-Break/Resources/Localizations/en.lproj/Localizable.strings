@@ -94,7 +94,7 @@
 
 "qrCode.description" = "Get Ed-Break app from the App Store or scan the QR-code on the child’s Device";
 
-"children.description" = "Follow further instructions on the chil’s device then scan the QR code to connect devices";
+"children.description" = "Follow further instructions on the child’s device then scan the QR code to connect devices";
 "childern.connected" = "Connected";
 "childern.scanQR" = "Scan QR";
 

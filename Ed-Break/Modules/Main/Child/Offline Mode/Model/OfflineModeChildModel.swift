@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import FamilyControls
 
 struct OfflineChildModel {
     
@@ -14,7 +15,22 @@ struct OfflineChildModel {
     let restrictionTime: Int?
     let breakStartDatetime: String?
     let wrongAnswersTime: String?
+    var breakStartDate: Date? {
+        Date(fromString: breakStartDatetime ?? "", format: .isoDateTimeFull)?.toLocalTime()
+    }
+    var wrongAnswersDate: Date? {
+        Date(fromString: wrongAnswersTime ?? "", format: .isoDateTimeFull)?.toLocalTime()
+    }
     let restrictions: String?
+    var restrictionsObject: FamilyActivitySelection? {
+        if let restrictions = restrictions?.replacingOccurrences(of: "\\\"", with: "\""),
+           let stringData = restrictions.data(using: .utf8),
+           let selectionObject = try? JSONDecoder().decode(FamilyActivitySelection.self, from: stringData) {
+            return selectionObject
+        } else {
+            return nil
+        }
+    }
     let interruption: Int?
     let childSubjects: [OfflineSubjectModel]
     
@@ -70,6 +86,7 @@ struct OfflineQusetionModel {
     let questionText: String
     let answers: [OfflineQuestionAnswerModel]
     let grade: [Int]
+    var isCorrect = false
     
     init(dto: OfflineQusetionDto) {
         id = dto.id
@@ -103,4 +120,15 @@ struct OfflineQuestionAnswerModel {
         answer = mo.answer ?? ""
         correct = mo.correct
     }
+}
+
+struct OfflineQuestionsContainerModel {
+    
+    var questionGroupType: QuestionType
+    var questions: [OfflineQusetionModel]
+    var questionsCount: Int
+    var answeredQuestionsCount: Int
+    var correctAnswersCount: Int
+    var wrongAnswersTime: Date?
+    var isCorrect: Bool?
 }

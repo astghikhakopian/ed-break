@@ -12,7 +12,6 @@ protocol QuestionsViewModeling: ObservableObject, Identifiable {
     var isLoading: Bool { get set }
     var answerResultType: AnswerResultType? { get set }
     var questionsContainer: QuestionsContainerModel? { get set }
-    var currentReadingItem: QuestionsViewModel.CurrentReadingItem? { get set }
     var currentQuestion: QusetionModel { get set }
     var isContentValid: Bool { get set }
     var subject: SubjectModel { get }
@@ -23,7 +22,4 @@ protocol QuestionsViewModeling: ObservableObject, Identifiable {
     
     func getQuestions()
     func answerQuestion(answer: QuestionAnswerModel, isAdditionalQuestions: Bool, completion: @escaping (AnswerResultType)->())
-    
-    func startPlayingQuestion()
-    func stopPlayingQuestion()
 }

@@ -9,13 +9,7 @@ import UIKit
 
 final class QuestionsViewModel: QuestionsViewModeling, Identifiable {
     
-    enum CurrentReadingItem: Equatable {
-        case question
-        case option(Int)
-    }
-    
     @Published var questionsContainer: QuestionsContainerModel?
-    @Published var currentReadingItem: CurrentReadingItem?
     @Published var currentQuestion: QusetionModel = QusetionModel()
     @Published var isLoading: Bool = false
     @Published var answerResultType: AnswerResultType? = nil
@@ -36,14 +30,16 @@ final class QuestionsViewModel: QuestionsViewModeling, Identifiable {
     private let getQuestionsUseCase: GetQuestionsUseCase
     private let answerQuestionUseCase: AnswerQuestionUseCase
     
-    private let textToSpeachManager: TextToSpeachManager
-    
-    init(subject: SubjectModel, home: HomeModel?, getQuestionsUseCase: GetQuestionsUseCase, answerQuestionUseCase: AnswerQuestionUseCase, textToSpeachManager: TextToSpeachManager) {
+    init(
+        subject: SubjectModel,
+        home: HomeModel?,
+        getQuestionsUseCase: GetQuestionsUseCase,
+        answerQuestionUseCase: AnswerQuestionUseCase
+    ) {
         self.subject = subject
         self.home = home
         self.getQuestionsUseCase = getQuestionsUseCase
         self.answerQuestionUseCase = answerQuestionUseCase
-        self.textToSpeachManager = textToSpeachManager
     }
     
     func getQuestions() {
@@ -115,32 +111,16 @@ final class QuestionsViewModel: QuestionsViewModeling, Identifiable {
         }
     }
     
-    func startPlayingQuestion() {
-        guard !(currentQuestion.questionText ?? "").isEmpty, !isPhoneUnlocked else { return }
-        stopPlayingQuestion()
-        textToSpeachManager.read(question: currentQuestion, after: 0) { [weak self] in
-            self?.currentReadingItem = $0
-        }
-    }
-    
-    func stopPlayingQuestion() {
-        textToSpeachManager.stop(at: .immediate)
-    }
-    
     private var isTheLastQuestion: Bool {
         let currentQuestionIndex = questionsContainer?.questions.firstIndex(of: currentQuestion) ?? 0
         return (questionsContainer?.questions.count ?? 1) - 1 == currentQuestionIndex
-    }
-    
-    deinit {
-        stopPlayingQuestion()
     }
 }
 
 
 // MARK: - Preview
 
-final class MockQuestionsViewModel: QuestionsViewModeling, Identifiable {
+final class MockQuestionsViewModel: QuestionsViewModeling {
     
     var areSubjectQustionsAnswered: Bool = false
     var isPhoneUnlocked: Bool = false
@@ -201,7 +181,6 @@ final class MockQuestionsViewModel: QuestionsViewModeling, Identifiable {
             completed: true
         )
     )
-    var currentReadingItem: QuestionsViewModel.CurrentReadingItem? = nil
     var isLoading = false
     var answerResultType: AnswerResultType? = nil
     var remindingSeconds = 0
@@ -211,7 +190,4 @@ final class MockQuestionsViewModel: QuestionsViewModeling, Identifiable {
     
     func getQuestions() { }
     func answerQuestion(answer: QuestionAnswerModel, isAdditionalQuestions: Bool, completion: @escaping (AnswerResultType)->()) { }
-    
-    func startPlayingQuestion() { }
-    func stopPlayingQuestion() { }
 }

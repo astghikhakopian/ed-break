@@ -1,16 +1,15 @@
 //
-//  OfflineChildViewModel.swift
+//  OfflineChildSavingViewModel.swift
 //  Ed-Break
 //
 //  Created by Astghik Hakopian on 03.08.23.
 //
 
-
 import SwiftUI
 import Combine
 import CoreData
 
-final class OfflineChildViewModel: OfflineChildViewModeling {
+final class OfflineChildSavingViewModel: OfflineChildSavingViewModeling {
     
     @Published var isLoading: Bool = false
     @Published var onError: Error? = nil

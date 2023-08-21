@@ -17,6 +17,7 @@ protocol OfflineChildProvideerProtocol {
     func fetch(in context: NSManagedObjectContext) -> AnyPublisher<OfflineChildMO, Error>
     func addChild(_ contactModel: OfflineChildModel, in context: NSManagedObjectContext, shouldSave: Bool) -> AnyPublisher<Bool, Error>
     func update(childMO: OfflineChildMO, by contact: OfflineChildModel, shouldSave: Bool) -> AnyPublisher<Bool, Error>
+    func update(date: Date?, shouldSave: Bool, in context: NSManagedObjectContext) -> AnyPublisher<Bool, Error>
     func delete(child: OfflineChildMO, shouldSave: Bool) -> AnyPublisher<Bool, Error>
 }
 
@@ -103,6 +104,22 @@ class OfflineChildProvideer: OfflineChildProvideerProtocol {
         }.eraseToAnyPublisher()
     }
     
+    func update(date: Date?, shouldSave: Bool = true, in context: NSManagedObjectContext) -> AnyPublisher<Bool, Error> {
+        return Future { [weak self] promise in
+            guard let childMO = try? self?.fetch(inContext: context).first else {
+                return promise(.failure(RequestServiceError(message: "Not Found", httpStatus: "")))
+            }
+            context.perform { [weak self] in
+                self?.update(childMO: childMO, breakStartDatetime: date, in: context)
+                
+                if shouldSave {
+                    context.save(with: .updateContact)
+                }
+                return promise(.success(true))
+            }
+        }.eraseToAnyPublisher()
+    }
+    
     public func delete(child: OfflineChildMO, shouldSave: Bool = true) -> AnyPublisher<Bool, Error> {
         return Future { promise in
             guard let context = child.managedObjectContext else {
@@ -139,13 +156,21 @@ class OfflineChildProvideer: OfflineChildProvideerProtocol {
         
         childMO.name = child.name
         childMO.restrictionTime = child.restrictionTime == nil ? -1 : Int16(child.restrictionTime!)
-        childMO.breakStartDatetime = child.breakStartDatetime
+        childMO.breakStartDatetime =  child.breakStartDatetime
         childMO.wrongAnswersTime = child.wrongAnswersTime
         childMO.restrictions = child.restrictions
         childMO.interruption = child.interruption == nil ? -1 : Int16(child.interruption!)
-        childMO.childSubjects = NSSet(array: child.childSubjects.map { subjectMO(from: $0, in: context) })
+        childMO.childSubjects = NSOrderedSet(array: child.childSubjects.map { subjectMO(from: $0, in: context) })
         
         // return childMO
+    }
+    
+    private func update(
+        childMO: OfflineChildMO,
+        breakStartDatetime: Date?,
+        in context: NSManagedObjectContext
+    ) {
+        childMO.breakStartDatetime =  breakStartDatetime?.toGMTTime().toString(format: .custom("yyyy-MM-dd'T'HH:mm:ss.SSSZ"))
     }
     
     // subject
@@ -166,7 +191,7 @@ class OfflineChildProvideer: OfflineChildProvideerProtocol {
         
         subjectMO.subject = subject.subject
         subjectMO.photo = subject.photo
-        subjectMO.questions = NSSet(array: subject.questions.map { questionMO(from: $0, in: context) })
+        subjectMO.questions = NSOrderedSet(array: subject.questions.map { questionMO(from: $0, in: context) })
         
         return subjectMO
     }
@@ -188,7 +213,7 @@ class OfflineChildProvideer: OfflineChildProvideerProtocol {
         questionMO.id = Int16(question.id)
         
         questionMO.questionText = question.questionText
-        questionMO.answers = NSSet(array: question.answers.map { answerMO(from: $0, in: context) })
+        questionMO.answers = NSOrderedSet(array: question.answers.map { answerMO(from: $0, in: context) })
         
         return questionMO
     }

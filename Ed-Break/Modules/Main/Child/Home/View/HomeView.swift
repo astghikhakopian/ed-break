@@ -6,20 +6,20 @@
 //
 
 import SwiftUI
+import CoreData
 
-struct HomeView<M: HomeViewModeling>: View {
+struct HomeView<M: HomeViewModeling, N: OfflineChildGettingViewModeling>: View {
     
-    @StateObject private var viewModel = HomeViewModel(
-        getSubjectsUseCase: GetSubjectsUseCase(
-            childrenRepository: DefaultChildrenRepository()
-        ),
-        checkConnectionUseCase: CheckConnectionUseCase(
-            childrenRepository: DefaultChildrenRepository()
-        )
-    )
+    @StateObject private var viewModel: M
+    @StateObject private var offlineChildGettingViewModel: N
     
     @State private var isShieldPresented = false
     @State private var isQuestionsActive = false
+    
+    @EnvironmentObject private var networkMonitor: NetworkMonitor
+    
+    private let offlineChildProviderProtocol: OfflineChildProvideerProtocol
+    private let context: NSManagedObjectContext
     
     private let progressWidth: CGFloat = 180
     private let textSpacing: CGFloat = 4
@@ -28,30 +28,76 @@ struct HomeView<M: HomeViewModeling>: View {
     private let headerHeight: CGFloat = 30
     private let cornerRadius = 12.0
     
+    init(
+        offlineChildProviderProtocol: OfflineChildProvideerProtocol,
+        context: NSManagedObjectContext
+    ) {
+        self.offlineChildProviderProtocol = offlineChildProviderProtocol
+        self.context = context
+        _viewModel = StateObject(
+            wrappedValue:
+                HomeViewModel(
+                    getSubjectsUseCase: GetSubjectsUseCase(
+                        childrenRepository: DefaultChildrenRepository()
+                    ),
+                    checkConnectionUseCase: CheckConnectionUseCase(
+                        childrenRepository: DefaultChildrenRepository()
+                    )
+                ) as! M)
+        
+        _offlineChildGettingViewModel = StateObject(
+            wrappedValue: OfflineChildGettingViewModel(
+                offlineChildProviderProtocol: offlineChildProviderProtocol,
+                context: context
+            ) as! N
+        )
+    }
     
     var body: some View {
         VStack(spacing: spacing) {
             progressView
-            subjects
+            if networkMonitor.isConnected {
+                remoteSubjects
+            } else {
+                localSubjects
+            }
         }
         .onAppear {
-            viewModel.getSubjects()
+            if networkMonitor.isConnected {
+                viewModel.getSubjects()
+            } else {
+                offlineChildGettingViewModel.getSubjects()
+            }
         }
         .onReceive(
             NotificationCenter.default.publisher(
                 for: UIApplication.didBecomeActiveNotification,
                 object: nil
             ), perform: { _ in
-                viewModel.getSubjects()
+                if networkMonitor.isConnected {
+                    viewModel.getSubjects()
+                } else {
+                    offlineChildGettingViewModel.getSubjects()
+                }
             }
         )
         .onChange(of: viewModel.shouldShowExercises) { shouldShowExercises in
             guard shouldShowExercises, !viewModel.isActiveWrongAnswersBlock, !isQuestionsActive else { return }
             isQuestionsActive = true
         }
+        .onChange(of: networkMonitor.isConnected) { isConnected in
+            if isConnected {
+                viewModel.getSubjects()
+            } else {
+                offlineChildGettingViewModel.getSubjects()
+            }
+        }
         .overlay(
             NavigationLink(
-                destination: subjectDestination(subject: viewModel.contentModel?.subjects.randomElement() ?? SubjectModel()),
+                destination: subjectDestination(
+                    subject: viewModel.contentModel?.subjects.randomElement() ?? SubjectModel(),
+                    offlineSubject: offlineChildGettingViewModel.contentModel?.childSubjects.randomElement()
+                ),
                 isActive: $isQuestionsActive) {
                     EmptyView()
                 }
@@ -64,7 +110,7 @@ struct HomeView<M: HomeViewModeling>: View {
     
     // MARK: - Components
     
-    private var subjects: some View {
+    private var remoteSubjects: some View {
         ForEach(viewModel.contentModel?.subjects ?? [], id: \.id) { subject in
             if viewModel.isActiveWrongAnswersBlock {
                 Button(
@@ -73,30 +119,75 @@ struct HomeView<M: HomeViewModeling>: View {
                 )
             } else {
                 NavigationLink(
-                    destination: { subjectDestination(subject: subject) },
+                    destination: { subjectDestination(
+                        subject: subject,
+                        offlineSubject: nil
+                    ) },
                     label: {  LessonCell(model: subject) }
                 )
             }
         }
     }
     
-    private func subjectDestination(subject: SubjectModel) -> some View {
-        NavigationLazyView(
-            QuestionsView(
-                viewModel: QuestionsViewModel(
+    private var localSubjects: some View {
+        ForEach(offlineChildGettingViewModel.contentModel?.childSubjects ?? [], id: \.id) { offlineSubjectModel in
+            let subject = SubjectModel(offlineSubjectModel: offlineSubjectModel)
+            return NavigationLink(
+                destination: { subjectDestination(
                     subject: subject,
-                    home: viewModel.contentModel,
-                    getQuestionsUseCase: GetQuestionsUseCase(
-                        questionsRepository: DefaultQuestionsRepository()
-                    ),
-                    answerQuestionUseCase: AnswerQuestionUseCase(
-                        questionsRepository: DefaultQuestionsRepository()
-                    ),
-                    textToSpeachManager: DefaultTextToSpeachManager.sharedInstance
+                    offlineSubject: offlineSubjectModel
+                )
+                },
+                label: {  LessonCell(model: subject) }
+            )
+        }
+    }
+    
+    private func subjectDestination(
+        subject: SubjectModel,
+        offlineSubject: OfflineSubjectModel?
+    ) -> some View {
+        if networkMonitor.isConnected {
+            return AnyView(
+                NavigationLazyView(
+                    QuestionsView(
+                        viewModel: QuestionsViewModel(
+                            subject: subject,
+                            home: viewModel.contentModel,
+                            getQuestionsUseCase: GetQuestionsUseCase(
+                                questionsRepository: DefaultQuestionsRepository()
+                            ),
+                            answerQuestionUseCase: AnswerQuestionUseCase(
+                                questionsRepository: DefaultQuestionsRepository()
+                            )
+                        ),
+                        readQuestionViewModel: ReadQuestionViewModel(
+                            textToSpeachManager: DefaultTextToSpeachManager.sharedInstance
+                        )
+                    )
                 )
             )
-        )
+        } else {
+            return AnyView (
+                NavigationLazyView(
+                    OfflineQuestionsView(
+                        viewModel: OfflineChildQuestionViewModel(
+                            subject: offlineSubject,
+                            contentModel: offlineChildGettingViewModel.contentModel,
+                            updateBreakDateOfflineChildUseCase: UpdateBreakDateOfflineChildUseCase(
+                                offlineChildProvider: offlineChildProviderProtocol
+                            ),
+                            context: context
+                        ),
+                        readQuestionViewModel: ReadQuestionViewModel(
+                            textToSpeachManager: DefaultTextToSpeachManager.sharedInstance
+                        )
+                    )
+                )
+            )
+        }
     }
+    
     
     private var progressView: some View {
         HStack {
@@ -136,11 +227,5 @@ struct HomeView<M: HomeViewModeling>: View {
     
     private var shield: some View {
         ShieldView(remindingSeconds: $viewModel.shieldSeconds)
-    }
-}
-
-struct HomeView_Previews: PreviewProvider {
-    static var previews: some View {
-        HomeView<HomeViewModel>()
     }
 }

@@ -17,7 +17,7 @@ class DefaultTextToSpeachManager: NSObject, ObservableObject {
     // MARK: - Public Properties
     
     @Published var isSpeaking = false
-    var completion: ((QuestionsViewModel.CurrentReadingItem?) -> Void)?
+    var completion: ((ReadQuestionViewModel.CurrentReadingItem?) -> Void)?
     public static let sharedInstance = DefaultTextToSpeachManager()
     
     // MARK: - Private Properties
@@ -52,7 +52,7 @@ class DefaultTextToSpeachManager: NSObject, ObservableObject {
 
 extension DefaultTextToSpeachManager: TextToSpeachManager {
     
-    func read(question: QusetionModel, after timeInterval: TimeInterval, completion: @escaping (QuestionsViewModel.CurrentReadingItem?) -> Void) {
+    func read(question: QusetionModel, after timeInterval: TimeInterval, completion: @escaping (ReadQuestionViewModel.CurrentReadingItem?) -> Void) {
         self.completion = completion
         DispatchQueue.global().asyncAfter(deadline: .now() + timeInterval) { [weak self] in
             self?.stop(at: .immediate)
@@ -140,9 +140,9 @@ extension Int {
 
 
 class AVSpeechUtteranceExtended: AVSpeechUtterance {
-    let teadingItemType: QuestionsViewModel.CurrentReadingItem?
+    let teadingItemType: ReadQuestionViewModel.CurrentReadingItem?
     
-    init(string: String, teadingItemType: QuestionsViewModel.CurrentReadingItem) {
+    init(string: String, teadingItemType: ReadQuestionViewModel.CurrentReadingItem) {
         self.teadingItemType = teadingItemType
         super.init(string: string)
     }

@@ -16,6 +16,8 @@ struct Ed_BreakApp: App {
     
     @StateObject var model = DataModel.shared
     @StateObject var store = ManagedSettingsStore()
+    @StateObject var networkMonitor = NetworkMonitor()
+    
     let appState = AppState()
     
     var body: some Scene {
@@ -24,6 +26,7 @@ struct Ed_BreakApp: App {
                 .environmentObject(appState)
                 .environmentObject(model)
                 .environmentObject(store)
+                .environmentObject(networkMonitor)
         }
     }
 }

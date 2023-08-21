@@ -10,13 +10,12 @@ import CoreData
 
 struct ChildTabView: View {
     
-    
-    
     @StateObject var model = DataModel.shared
-    @StateObject private var offlineModeviewModel: OfflineChildViewModel
+    @StateObject private var offlineModeviewModel: OfflineChildSavingViewModel
     @State var isQuestions = false
     
     @State private var selection = 0
+    
     private let persistenceController = PersistenceController.shared
     private let childProvider = OfflineChildProvideer(
         with: PersistenceController.shared.container,
@@ -24,7 +23,7 @@ struct ChildTabView: View {
     )
     
     init() {
-        let offlineModeviewModel =  OfflineChildViewModel(
+        let offlineModeviewModel =  OfflineChildSavingViewModel(
             getOfflineModeChildUseCase:
                 GetOfflineModeChildUseCase(
                     offlineModeChildRepository: DefaultOfflineModeChildRepository()
@@ -43,9 +42,12 @@ struct ChildTabView: View {
         TabView(selection: $selection) {
             NavigationStackWrapper {
                 MainBackground(title: "main.parent.home", withNavbar: false) {
-                    HomeView<HomeViewModel>()
-                        .showTabBar()
-                        .environmentObject(model)
+                    HomeView<HomeViewModel, OfflineChildGettingViewModel>(
+                        offlineChildProviderProtocol: childProvider,
+                        context: persistenceController.container.viewContext
+                    )
+                    .showTabBar()
+                    .environmentObject(model)
                 }
             }
             .navigationViewStyle(StackNavigationViewStyle())
@@ -103,7 +105,7 @@ struct ChildTabView: View {
             
         }
         .onLoad {
-            // offlineModeviewModel.updateOfflineChild()
+            offlineModeviewModel.updateOfflineChild()
         }
         
     }

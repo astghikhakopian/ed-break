@@ -79,6 +79,16 @@ struct SubjectModel: BottomsheetCellModel, Equatable {
         completed = answeredQuestionsCount >= questionsCount
     }
     
+    init(offlineSubjectModel: OfflineSubjectModel) {
+        id = offlineSubjectModel.id
+        subject = offlineSubjectModel.subject
+        photo = offlineSubjectModel.photo
+        questionsCount = 5
+        answeredQuestionsCount = 0 // TODO: - saving the current state
+        correctAnswersCount  = 0 // TODO: - saving the current state
+        completed = false // TODO: - saving the current state
+    }
+    
     init() {
         self.id = 0
         self.subject = nil

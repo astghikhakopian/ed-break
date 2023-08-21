@@ -61,10 +61,7 @@ final class ChildrenViewModel: ChildrenViewModeling, Identifiable {
                 print(failure.localizedDescription)
                 guard !self.updatedRefreshToken else { return }
                 self.updatedRefreshToken = true
-                self.refreshToken { [weak self] success in
-                    guard success else { return }
-                    self?.getChildren(filtered: filtered)
-                }
+                self.getChildren(filtered: filtered)
             }
         }
     }

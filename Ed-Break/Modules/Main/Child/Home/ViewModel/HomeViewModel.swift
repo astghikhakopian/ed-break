@@ -64,11 +64,6 @@ final class HomeViewModel: HomeViewModeling, Identifiable {
         }
     }
     
-    func setRestrictions() {
-        DataModel.shared.selectionToDiscourage = contentModel?.restrictions ?? FamilyActivitySelection()
-        DataModel.shared.setShieldRestrictions()
-    }
-    
     func checkConnection(compleated: @escaping (Bool)->()) {
         guard !didUpdateToken else { return }
         didUpdateToken = true
@@ -196,5 +191,4 @@ final class MockHomeViewModel: HomeViewModeling, Identifiable {
     
     func getSubjects() { }
     func checkConnection(compleated: @escaping (Bool)->()) { }
-    func setRestrictions() { }
 }
