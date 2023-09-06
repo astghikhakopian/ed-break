@@ -8,11 +8,9 @@
 import SwiftUI
 
 struct CreateOrJoinFamilyView: View {
-        
-    @State private var contentSize: CGSize = .zero
     
     var body: some View {
-         MainBackground(title: "onboarding.createorjoinfamily.title", withNavbar: true, contentSize: $contentSize) {
+        MainBackground(title: "onboarding.createorjoinfamily.title", withNavbar: true) {
             VStack(spacing: 0) {
                 Spacer()
                 VStack(spacing: 20) {
@@ -50,7 +48,6 @@ struct CreateOrJoinFamilyView: View {
                     )
                 }
             }
-            .frame(height: contentSize.height)
         }
     }
 }

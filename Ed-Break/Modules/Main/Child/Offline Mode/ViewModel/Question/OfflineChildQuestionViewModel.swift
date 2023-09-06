@@ -75,20 +75,19 @@ final class OfflineChildQuestionViewModel: OfflineChildQuestionViewModeling {
     ) {
         guard let questionsContainer = questionsContainer else { return }
         let answersCount = questionsContainer.answeredQuestionsCount
+        let correctAnswersCount = self.questionsContainer?.correctAnswersCount ?? 0
+        self.questionsContainer?.correctAnswersCount = answer.correct ? correctAnswersCount + 1 : correctAnswersCount
         if answersCount + 1 < questionsContainer.questions.count {
           guard
               let questionsContainer = self.questionsContainer,
               answersCount + 1 < self.questionsContainer?.questions.count ?? 0
           else { return }
           self.questionsContainer?.answeredQuestionsCount = answersCount + 1
-          
-          let correctAnswersCount = self.questionsContainer?.correctAnswersCount ?? 0
-          self.questionsContainer?.correctAnswersCount = answer.correct ? correctAnswersCount + 1 : correctAnswersCount
-          
+            self.questionsContainer?.questions[answersCount].isCorrect = answer.correct
             DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) { [weak self] in
               
               guard let self = self else { return  }
-                self.questionsContainer?.questions[answersCount].isCorrect = answer.correct
+                
                 self.currentQuestion = questionsContainer.questions[answersCount + 1]
                 self.isLastQuestion = isTheLastQuestion
                 self.isFeedbackGiven = false

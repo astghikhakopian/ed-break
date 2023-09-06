@@ -9,23 +9,25 @@
 // Onboarding
 
 "onboarding.role" = "Whose device is this?";
-"onboarding.terms.text" = "By checking this box, you are agreeing to Ed-Break";
+"onboarding.terms.text" = "By continuing you are agreeing to \n Ed-Break Terms and Conditions of use";
 "onboarding.terms.action" = "Terms & Conditions";
 
 "onboarding.parent.title" = "Parent’s Device";
 "onboarding.child.title" = "Child’s Device";
 
-"onboarding.createorjoinfamily.title" = "Do you want to Create \n or Join a Family?";
-"onboarding.createorjoinfamily.description" = "You can join an existing Family by scanning QR code received from the Family Organizer";
+"onboarding.createorjoinfamily.title" = "Is this your first-time \n using Ed-Break \n or are you adding an additional parent?";
+"onboarding.createorjoinfamily.description" = "To create a new family simply tap ‘Create Family’ \n If you are adding another parent device to an existing family tap ‘Join a Family’";
 "onboarding.createorjoinfamily.createfamily" = "Create Family";
 "onboarding.createorjoinfamily.joinfamily" = "Join a Family";
 
-"onboarding.addedChildToFamily.title" = "Have you added child to \n the Family?";
+"onboarding.addedChildToFamily.title" = "Have you added \n child to the Family?";
+"onboarding.addedChildToFamily.description" = "";
 "onboarding.addedChildToFamily.scanQR" = "Yes";
 "onboarding.addedChildToFamily.howTo" = "How to?";
 
-"onboarding.joinfamily.title" = "Do you participate in an \n existing Family?";
-"onboarding.joinfamily.scanQR" = "Yes, Scan QR";
+"onboarding.joinfamily.title" = "Joining a family is \n as easy as scanning \n a QR code";
+"onboarding.joinfamily.description" = "On the parent device that is already setup open Ed-Break, Select ‘Settings’ -> ‘Invite Parents’. This will display a QR code that you will need to scan the QR code it is as simple as tapping the ‘Scan QR code’ button and point the camera at the QR code displayed on the other Parent device";
+"onboarding.joinfamily.scanQR" = "Scan QR code";
 "onboarding.joinfamily.howTo" = "How to?";
 
 "onboarding.familySharing.title" = "Set up Family Sharing \n and invite your child";
@@ -34,9 +36,13 @@
 "onboarding.children.title" = "Connect child’s device";
 "onboarding.childsDetails.title" = "Child details";
 
-"onboarding.childSignIn.title" = "Sign in to allow \n parental control";
-"onboarding.childSignIn.description" = "Sign in with your parent Apple account to pair devices and enable parental control";
-"onboarding.childSignIn.action" = "Sign in with parent’s Apple ID";
+"onboarding.childSignIn.title" = " Ed-Break Parental \n Control access";
+"onboarding.childSignIn.description" = "Ed-Break requires access to Apple Screen Time. The access is required to apply restrictions to the child’s device and to stop Ed-Break from being removed without parents’ consent. \n When prompted select ‘Continue’ and follow the Apple approval steps, this process will require a parent Apple ID.";
+"onboarding.childSignIn.action" = "Permit access to Screen Time";
+
+"onboarding.parentSignIn.title" = "Ed-Break Parental \n Control access";
+"onboarding.parentSignIn.description" = "Ed-Break requires access to Apple Screen Time. The access is required to apply restrictions to the child’s device and to stop Ed-Break from being removed without parents’ consent. \n When prompted select ‘Continue’ and follow the Apple approval steps.";
+"onboarding.parentSignIn.action" = "Permit access to Screen Time";
 
 "onboarding.childQRCode.title" = "Scan QR code on your \n parent device";
 "onboarding.childQRCode.description" = "Open “Ed-Break” on parent device and scan the QR code to pair device";
@@ -83,7 +89,7 @@
 "childDetails.add" = "Add another child";
 "childDetails.add.device" = "Add a device";
 "childDetails.add.device.another" = "Add another device";
-"childDetails.delete" = "Delete Device";
+"childDetails.delete" = "Delete Child";
 "childDetails.subjects" = "Subjects";
 "childDetails.interruption" = "Interruption";
 "childDetails.interruption.period" = "Interruption Period";
@@ -109,6 +115,7 @@
 "common.delete" = "Delete";
 "common.select" = "Select";
 "common.yes" = "Yes";
+"common.error" = "Error";
 
 
 // Tabbar

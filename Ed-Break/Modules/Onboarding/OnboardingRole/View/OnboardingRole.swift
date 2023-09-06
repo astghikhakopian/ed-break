@@ -12,7 +12,7 @@ struct OnboardingRole: View {
     @State private var showWebView = false
     @State private var isTermsSelected = true
     
-    private let privacyUrl = URL(string: "https://docs.google.com/document/d/1STmonAdjpiDkjzC4ttS1SrYIJ-v2EAf7Hx8zK-3ACto")!
+    private let privacyUrl = URL(string: "https://ed-break.com/ed-break-terms-of-service/")!
     private let cellHeight = 214.0
     private let spacing = 19.0
     
@@ -22,7 +22,11 @@ struct OnboardingRole: View {
                 MainBackground(title: "onboarding.role", withNavbar: false) {
                     VStack(spacing: spacing) {
                         OnboardingRoleCell(role: .parent) {
-                            CreateOrJoinFamilyView()
+                            if #available(iOS 16.0, *) {
+                                ParentSignInView()
+                            } else {
+                                CreateOrJoinFamilyView()
+                            }
                         }
                         .frame(height: cellHeight)
                         .disabled(!isTermsSelected)
@@ -56,7 +60,7 @@ struct OnboardingRole: View {
                         Text("onboarding.terms.text")
                             .foregroundColor(.appWhite)
                             .font(.appHeadline)
-                            .multilineTextAlignment(.leading)
+                            .multilineTextAlignment(.center)
                         Button {
                             showWebView = true
                         } label: {

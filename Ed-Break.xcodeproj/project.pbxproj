@@ -29,6 +29,7 @@
 		1B0DB5A1295055D10071E75D /* ShieldConfigurationExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 1B0DB595295055D10071E75D /* ShieldConfigurationExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		1B0DB5A52950569A0071E75D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EFE9288A28E18C3E00675F28 /* Assets.xcassets */; };
 		1B0DB5A9295057780071E75D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1B0DB5A8295057780071E75D /* Assets.xcassets */; };
+		1B0E93962A95EEDB00D87790 /* ParentSignInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B0E93952A95EEDB00D87790 /* ParentSignInView.swift */; };
 		1B1346342907D54D00943AA5 /* WebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B1346332907D54D00943AA5 /* WebView.swift */; };
 		1B1346362907DA6800943AA5 /* ChildDeiviceCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B1346352907DA6800943AA5 /* ChildDeiviceCell.swift */; };
 		1B13463B290822E900943AA5 /* UpdateChildUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B13463A290822E900943AA5 /* UpdateChildUseCase.swift */; };
@@ -304,6 +305,7 @@
 		1B0DB59D295055D10071E75D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1B0DB59E295055D10071E75D /* ShieldConfigurationExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ShieldConfigurationExtension.entitlements; sourceTree = "<group>"; };
 		1B0DB5A8295057780071E75D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		1B0E93952A95EEDB00D87790 /* ParentSignInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParentSignInView.swift; sourceTree = "<group>"; };
 		1B1346332907D54D00943AA5 /* WebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebView.swift; sourceTree = "<group>"; };
 		1B1346352907DA6800943AA5 /* ChildDeiviceCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChildDeiviceCell.swift; sourceTree = "<group>"; };
 		1B13463A290822E900943AA5 /* UpdateChildUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateChildUseCase.swift; sourceTree = "<group>"; };
@@ -684,6 +686,22 @@
 			path = ShieldConfigurationExtension;
 			sourceTree = "<group>";
 		};
+		1B0E93932A95EEC000D87790 /* ParentSignIn */ = {
+			isa = PBXGroup;
+			children = (
+				1B0E93942A95EECA00D87790 /* View */,
+			);
+			path = ParentSignIn;
+			sourceTree = "<group>";
+		};
+		1B0E93942A95EECA00D87790 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				1B0E93952A95EEDB00D87790 /* ParentSignInView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		1B1346322907D52F00943AA5 /* WebView */ = {
 			isa = PBXGroup;
 			children = (
@@ -747,6 +765,7 @@
 		1B3581A828E6383B00612976 /* Parent */ = {
 			isa = PBXGroup;
 			children = (
+				1B0E93932A95EEC000D87790 /* ParentSignIn */,
 				1B0C47B42A49B67500DB5ADF /* CreateOrJoinFamily */,
 				1B3581A928E6384800612976 /* FamilySharing */,
 				1BA9DFB528E73332006980D1 /* ChildDetails */,
@@ -2255,6 +2274,7 @@
 				1BC5BDE829294E11006171A5 /* UIKitIntrospectionView.swift in Sources */,
 				1B1346362907DA6800943AA5 /* ChildDeiviceCell.swift in Sources */,
 				1BF1E14B2906BE11008A08D4 /* DeleteParentUseCase.swift in Sources */,
+				1B0E93962A95EEDB00D87790 /* ParentSignInView.swift in Sources */,
 				1BC5BDEC29294E11006171A5 /* ViewExtensions.swift in Sources */,
 				EFE9288928E18C3A00675F28 /* ContentView.swift in Sources */,
 				1B8244402A8CB2B60080F9AF /* ReadQuestionViewModeling.swift in Sources */,
@@ -2420,7 +2440,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 1.6;
+				MARKETING_VERSION = 1.7;
 				PRODUCT_BUNDLE_IDENTIFIER = com.au.edbreak.ShieldConfigurationExtension;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -2447,7 +2467,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 1.6;
+				MARKETING_VERSION = 1.7;
 				PRODUCT_BUNDLE_IDENTIFIER = com.au.edbreak.ShieldConfigurationExtension;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -2475,7 +2495,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 1.6;
+				MARKETING_VERSION = 1.7;
 				PRODUCT_BUNDLE_IDENTIFIER = com.au.edbreak.ShieldActionExtension;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -2503,7 +2523,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 1.6;
+				MARKETING_VERSION = 1.7;
 				PRODUCT_BUNDLE_IDENTIFIER = com.au.edbreak.ShieldActionExtension;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -2530,7 +2550,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 1.6;
+				MARKETING_VERSION = 1.7;
 				PRODUCT_BUNDLE_IDENTIFIER = com.au.edbreak.ActivityMonitor;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -2557,7 +2577,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 1.6;
+				MARKETING_VERSION = 1.7;
 				PRODUCT_BUNDLE_IDENTIFIER = com.au.edbreak.ActivityMonitor;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -2711,7 +2731,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.6;
+				MARKETING_VERSION = 1.7;
 				PRODUCT_BUNDLE_IDENTIFIER = com.au.edbreak;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -2748,7 +2768,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.6;
+				MARKETING_VERSION = 1.7;
 				PRODUCT_BUNDLE_IDENTIFIER = com.au.edbreak;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;

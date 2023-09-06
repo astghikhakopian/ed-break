@@ -61,7 +61,8 @@ struct ChildToFamilyView<M: FamilySharingViewModeling>: View {
                             )
                         }
                 }
-            } .frame(height: contentSize.height)
+            }
+//            } .frame(height: contentSize.height)
         }
     }
 }

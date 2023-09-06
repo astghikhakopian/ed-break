@@ -88,7 +88,19 @@ struct ChildrenView<M: ChildrenViewModeling>: View {
             guard let _ = scanningChild else { return }
             
             DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-                isDiscouragedPresented = true
+                if #available(iOS 16.0, *) {
+                    Task {
+                        do {
+                            try await AuthorizationCenter.shared.requestAuthorization(for: .individual)
+                            isDiscouragedPresented = true
+                        }
+                        catch {
+                            print(error.localizedDescription)
+                        }
+                    }
+                } else {
+                    isDiscouragedPresented = true
+                }
             }
         case .failure(let error):
             print("Scanning failed: \(error.localizedDescription)")

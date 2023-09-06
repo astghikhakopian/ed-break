@@ -202,17 +202,25 @@ struct HomeView<M: HomeViewModeling, N: OfflineChildGettingViewModeling>: View {
     private var progressViewContent: some View {
         ZStack {
             progressViewContentText
-            CircularProgressView(progress: viewModel.progress)
-                .frame(height: progressWidth)
+            CircularProgressView(
+                progress: networkMonitor.isConnected ?
+                viewModel.progress :
+                    offlineChildGettingViewModel.progress
+            )
+            .frame(height: progressWidth)
         }.padding(headerPadding)
     }
     
     private var progressViewContentText: some View {
         VStack(spacing: textSpacing) {
             HStack(alignment: .bottom, spacing: textSpacing) {
-                Text(String(viewModel.remindingMinutes))
-                    .font(.appHeadingH2)
-                    .foregroundColor(.primaryPurple)
+                Text(String(
+                     networkMonitor.isConnected ?
+                     viewModel.remindingMinutes :
+                        offlineChildGettingViewModel.remindingMinutes
+                ))
+                .font(.appHeadingH2)
+                .foregroundColor(.primaryPurple)
                 Text("main.child.home.min")
                     .font(.appHeadline)
                     .foregroundColor(.primaryPurple)

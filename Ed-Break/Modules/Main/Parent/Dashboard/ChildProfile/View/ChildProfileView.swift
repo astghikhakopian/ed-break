@@ -337,7 +337,19 @@ private extension ChildProfileView {
             ZStack {
                 Color.primaryPurple.opacity(0.05)
                 CancelButton(action: {
-                    isDiscouragedPresented = true
+                    if #available(iOS 16.0, *) {
+                        Task {
+                            do {
+                                try await AuthorizationCenter.shared.requestAuthorization(for: .individual)
+                                isDiscouragedPresented = true
+                            }
+                            catch {
+                                print(error.localizedDescription)
+                            }
+                        }
+                    } else {
+                        isDiscouragedPresented = true
+                    }
                 }, title: "common.manage", color: .primaryPurple,isContentValid: .constant(true))
             }.cornerRadius(cornerRadius)
             

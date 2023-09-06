@@ -21,14 +21,21 @@ struct JoinFamilyView<M: FamilySharingViewModeling>: View {
         MainBackground(title: "onboarding.joinfamily.title", withNavbar: true, contentSize: $contentSize) {
             ZStack {
                 ZStack(alignment: .bottom) {
-                    Image.FamilySharing.addchildtofamily
+                    VStack {
+                        Text("onboarding.joinfamily.description")
+                            .font(.appHeadline)
+                            .foregroundColor(.appWhite)
+                            .multilineTextAlignment(.center)
+                            .fixedSize(horizontal: false, vertical: true)
+                        Image.FamilySharing.addchildtofamily
+                    }
                     LinearGradient(
                         gradient: Gradient(
                             colors: [.clear, .primaryPurple]),
                         startPoint: .top,
                         endPoint: .bottom
                     )
-                    .frame(height: 300)
+//                    .frame(height: 300)
                 }
                 VStack(spacing: 0) {
                     Spacer()
@@ -53,7 +60,7 @@ struct JoinFamilyView<M: FamilySharingViewModeling>: View {
                         }
                 }
             }
-            .frame(height: contentSize.height)
+//            .frame(height: contentSize.height)
         }
         .sheet(isPresented: $isShowingScanner) {
             CodeScannerView(codeTypes: [.qr], completion: handleScan)
