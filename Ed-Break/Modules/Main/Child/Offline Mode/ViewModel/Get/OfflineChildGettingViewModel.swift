@@ -22,6 +22,17 @@ final class OfflineChildGettingViewModel: OfflineChildGettingViewModeling {
     }
     @Published var progress: Double = 0
     @Published var shouldShowExercises: Bool = false
+    @Published var shieldSeconds: Int = 0
+    
+    var doingSubject: OfflineSubjectModel? {
+        let subjects = contentModel?.childSubjects
+        return subjects?.randomElement()
+        // return subjects?.first(where: { $0.answeredQuestionsCount > 0 && !$0.completed }) ?? subjects?.randomElement()
+    }
+    var isActiveWrongAnswersBlock: Bool {
+        shieldSeconds > 0
+    }
+    private var timer: Timer?
     
     private let getOfflineChildUseCase: GetOfflineChildUseCase
     private let updateBreakDateOfflineChildUseCase: UpdateBreakDateOfflineChildUseCase
@@ -62,6 +73,14 @@ final class OfflineChildGettingViewModel: OfflineChildGettingViewModeling {
         let allremindingMinutes: Int? = self.userDefaultsService.getPrimitiveFromSuite(forKey: .ChildUser.remindingMinutes)
         let restrictions = model.restrictionsObject ?? FamilyActivitySelection()
         
+        if let wrongAnswersTime = contentModel?.wrongAnswersDate?.toLocal() {
+            if let difference = getSeconds(start: wrongAnswersTime),
+               difference < 0 {
+                shieldSeconds = -difference
+                startShieldTimer()
+            }
+        }
+        
         if let _ = model.breakStartDate?.toLocalTime() {
             self.remindingMinutes = model.interruption ?? 0
             nullifyBreakTime()
@@ -101,5 +120,29 @@ final class OfflineChildGettingViewModel: OfflineChildGettingViewModeling {
             } receiveValue: { success in
                 print(success)
             }.store(in: &cancelables)
+    }
+    
+    private func getSeconds(start: Date?) -> Int? {
+        guard let start = start else { return nil }
+        let diff = Int(Date().toLocalTime().timeIntervalSince1970 - start.timeIntervalSince1970)
+        
+        let hours = diff / 3600
+        let minutes = (diff - hours * 3600)
+        return minutes
+    }
+    
+    private func startShieldTimer() {
+        timer?.invalidate()
+        timer = nil
+        timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { [weak self] _ in
+            guard let self = self else { return }
+                  guard self.shieldSeconds > 0 else {
+                self.timer?.invalidate();
+                self.timer = nil
+                return
+                
+            }
+            self.shieldSeconds -= 1
+        }
     }
 }

@@ -37,6 +37,7 @@
 		1B1843D52A2899D200552FA2 /* NSNotification+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B1843D42A2899D200552FA2 /* NSNotification+Extension.swift */; };
 		1B1843D82A289F7000552FA2 /* NavigationBackport in Frameworks */ = {isa = PBXBuildFile; productRef = 1B1843D72A289F7000552FA2 /* NavigationBackport */; };
 		1B1843DA2A289FB500552FA2 /* NavigationStackWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B1843D92A289FB500552FA2 /* NavigationStackWrapper.swift */; };
+		1B198F622AB2E8ED0009FAA8 /* UpdateAnsweredQuestionOfflineChildUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B198F612AB2E8ED0009FAA8 /* UpdateAnsweredQuestionOfflineChildUseCase.swift */; };
 		1B1D0B272A5C152300D01015 /* URLImage in Frameworks */ = {isa = PBXBuildFile; productRef = 1B1D0B262A5C152300D01015 /* URLImage */; };
 		1B1D0B292A5C152300D01015 /* URLImageStore in Frameworks */ = {isa = PBXBuildFile; productRef = 1B1D0B282A5C152300D01015 /* URLImageStore */; };
 		1B1D0B2C2A5C31EC00D01015 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 1B1D0B2B2A5C31EC00D01015 /* Kingfisher */; };
@@ -312,6 +313,7 @@
 		1B13463C290826A800943AA5 /* DeleteChildUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteChildUseCase.swift; sourceTree = "<group>"; };
 		1B1843D42A2899D200552FA2 /* NSNotification+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSNotification+Extension.swift"; sourceTree = "<group>"; };
 		1B1843D92A289FB500552FA2 /* NavigationStackWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationStackWrapper.swift; sourceTree = "<group>"; };
+		1B198F612AB2E8ED0009FAA8 /* UpdateAnsweredQuestionOfflineChildUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateAnsweredQuestionOfflineChildUseCase.swift; sourceTree = "<group>"; };
 		1B1F3B902A4AFFBB00A4A08F /* InviteParentQRView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InviteParentQRView.swift; sourceTree = "<group>"; };
 		1B29CB7729016D7D0036988F /* ChildQRView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChildQRView.swift; sourceTree = "<group>"; };
 		1B2A4BB6291B90D9008C60D5 /* ViewModifiers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModifiers.swift; sourceTree = "<group>"; };
@@ -987,6 +989,7 @@
 				1B6251762A7E939D0019BB38 /* GetOfflineChildUseCase.swift */,
 				1B6251702A7E8F6A0019BB38 /* AddOfflineChildUseCase.swift */,
 				1B6251722A7E8FD00019BB38 /* UpdateOfflineChildUseCase.swift */,
+				1B198F612AB2E8ED0009FAA8 /* UpdateAnsweredQuestionOfflineChildUseCase.swift */,
 				1B8244462A8CFE380080F9AF /* UpdateBreakDateOfflineChildUseCase.swift */,
 				1B6251742A7E90530019BB38 /* DeleteOfflineChildUseCase.swift */,
 			);
@@ -2341,6 +2344,7 @@
 				1B7263572A4DE65A0093B1DF /* DeviceDetailsView.swift in Sources */,
 				1B2EA77E292FCB9A009EA317 /* GetAllSubjectsUseCase.swift in Sources */,
 				1BCD8C7F292A7E9E00CD3D04 /* PhoneLockingStateView.swift in Sources */,
+				1B198F622AB2E8ED0009FAA8 /* UpdateAnsweredQuestionOfflineChildUseCase.swift in Sources */,
 				1B7263522A4DAEDD0093B1DF /* DeviceModel.swift in Sources */,
 				1B4F5719293931D200AE29E3 /* ScheduleModel.swift in Sources */,
 				1BC5BDE929294E11006171A5 /* AppKitIntrospectionView.swift in Sources */,
@@ -2428,7 +2432,7 @@
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = ShieldConfigurationExtension/ShieldConfigurationExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 6;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = 8374P8P59W;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = ShieldConfigurationExtension/Info.plist;
@@ -2440,7 +2444,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 1.7;
+				MARKETING_VERSION = 1.8;
 				PRODUCT_BUNDLE_IDENTIFIER = com.au.edbreak.ShieldConfigurationExtension;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -2455,7 +2459,7 @@
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = ShieldConfigurationExtension/ShieldConfigurationExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 6;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = 8374P8P59W;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = ShieldConfigurationExtension/Info.plist;
@@ -2467,7 +2471,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 1.7;
+				MARKETING_VERSION = 1.8;
 				PRODUCT_BUNDLE_IDENTIFIER = com.au.edbreak.ShieldConfigurationExtension;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -2483,7 +2487,7 @@
 				APPLICATION_EXTENSION_API_ONLY = YES;
 				CODE_SIGN_ENTITLEMENTS = ShieldActionExtension/ShieldActionExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 6;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = 8374P8P59W;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = ShieldActionExtension/Info.plist;
@@ -2495,7 +2499,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 1.7;
+				MARKETING_VERSION = 1.8;
 				PRODUCT_BUNDLE_IDENTIFIER = com.au.edbreak.ShieldActionExtension;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -2511,7 +2515,7 @@
 				APPLICATION_EXTENSION_API_ONLY = YES;
 				CODE_SIGN_ENTITLEMENTS = ShieldActionExtension/ShieldActionExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 6;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = 8374P8P59W;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = ShieldActionExtension/Info.plist;
@@ -2523,7 +2527,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 1.7;
+				MARKETING_VERSION = 1.8;
 				PRODUCT_BUNDLE_IDENTIFIER = com.au.edbreak.ShieldActionExtension;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -2538,7 +2542,7 @@
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = ActivityMonitor/ActivityMonitor.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 6;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = 8374P8P59W;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = ActivityMonitor/Info.plist;
@@ -2550,7 +2554,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 1.7;
+				MARKETING_VERSION = 1.8;
 				PRODUCT_BUNDLE_IDENTIFIER = com.au.edbreak.ActivityMonitor;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -2565,7 +2569,7 @@
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = ActivityMonitor/ActivityMonitor.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 6;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = 8374P8P59W;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = ActivityMonitor/Info.plist;
@@ -2577,7 +2581,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 1.7;
+				MARKETING_VERSION = 1.8;
 				PRODUCT_BUNDLE_IDENTIFIER = com.au.edbreak.ActivityMonitor;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -2712,7 +2716,7 @@
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_ENTITLEMENTS = "Ed-Break/Ed-Break.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 6;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_ASSET_PATHS = "Ed-Break/Resources/Preview\\ Content";
 				DEVELOPMENT_TEAM = 8374P8P59W;
 				ENABLE_PREVIEWS = YES;
@@ -2731,7 +2735,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.7;
+				MARKETING_VERSION = 1.8;
 				PRODUCT_BUNDLE_IDENTIFIER = com.au.edbreak;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -2749,7 +2753,7 @@
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_ENTITLEMENTS = "Ed-Break/Ed-Break.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 6;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_ASSET_PATHS = "Ed-Break/Resources/Preview\\ Content";
 				DEVELOPMENT_TEAM = 8374P8P59W;
 				ENABLE_PREVIEWS = YES;
@@ -2768,7 +2772,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.7;
+				MARKETING_VERSION = 1.8;
 				PRODUCT_BUNDLE_IDENTIFIER = com.au.edbreak;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;

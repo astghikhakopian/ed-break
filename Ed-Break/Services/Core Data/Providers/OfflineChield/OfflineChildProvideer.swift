@@ -18,6 +18,7 @@ protocol OfflineChildProvideerProtocol {
     func addChild(_ contactModel: OfflineChildModel, in context: NSManagedObjectContext, shouldSave: Bool) -> AnyPublisher<Bool, Error>
     func update(childMO: OfflineChildMO, by contact: OfflineChildModel, shouldSave: Bool) -> AnyPublisher<Bool, Error>
     func update(date: Date?, shouldSave: Bool, in context: NSManagedObjectContext) -> AnyPublisher<Bool, Error>
+    func update(model: OfflineChildModel, shouldSave: Bool, in context: NSManagedObjectContext) -> AnyPublisher<Bool, Error>
     func delete(child: OfflineChildMO, shouldSave: Bool) -> AnyPublisher<Bool, Error>
 }
 
@@ -120,6 +121,22 @@ class OfflineChildProvideer: OfflineChildProvideerProtocol {
         }.eraseToAnyPublisher()
     }
     
+    func update(model: OfflineChildModel, shouldSave: Bool = true, in context: NSManagedObjectContext) -> AnyPublisher<Bool, Error> {
+        return Future { [weak self] promise in
+            guard let childMO = try? self?.fetch(inContext: context).first else {
+                return promise(.failure(RequestServiceError(message: "Not Found", httpStatus: "")))
+            }
+            context.perform { [weak self] in
+                self?.update(childMO: childMO, model: model, in: context)
+                
+                if shouldSave {
+                    context.save(with: .updateContact)
+                }
+                return promise(.success(true))
+            }
+        }.eraseToAnyPublisher()
+    }
+    
     public func delete(child: OfflineChildMO, shouldSave: Bool = true) -> AnyPublisher<Bool, Error> {
         return Future { promise in
             guard let context = child.managedObjectContext else {
@@ -171,6 +188,15 @@ class OfflineChildProvideer: OfflineChildProvideerProtocol {
         in context: NSManagedObjectContext
     ) {
         childMO.breakStartDatetime =  breakStartDatetime?.toGMTTime().toString(format: .custom("yyyy-MM-dd'T'HH:mm:ss.SSSZ"))
+    }
+    
+    private func update(
+        childMO: OfflineChildMO,
+        model: OfflineChildModel,
+        in context: NSManagedObjectContext
+    ) {
+        childMO.breakStartDatetime = model.breakStartDatetime
+        childMO.wrongAnswersTime = model.wrongAnswersTime
     }
     
     // subject

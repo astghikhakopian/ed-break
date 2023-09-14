@@ -16,6 +16,7 @@ protocol HomeViewModeling: ObservableObject, Identifiable {
     var shieldSeconds: Int { get set }
     var isActiveWrongAnswersBlock: Bool { get }
     var shouldShowExercises: Bool  { get set }
+    var doingSubject: SubjectModel? { get }
     
     func getSubjects()
     func checkConnection(compleated: @escaping (Bool)->())

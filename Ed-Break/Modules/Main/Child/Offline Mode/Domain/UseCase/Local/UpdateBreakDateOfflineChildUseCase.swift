@@ -18,4 +18,3 @@ class UpdateBreakDateOfflineChildUseCase: LocalOfflineModeUseCase {
             .eraseToAnyPublisher()
     }
 }
-

@@ -24,6 +24,11 @@ final class HomeViewModel: HomeViewModeling, Identifiable {
     @Published var shieldSeconds: Int = 0
     @Published var shouldShowExercises: Bool = false
     
+    var doingSubject: SubjectModel? {
+        let subjects = contentModel?.subjects
+        return subjects?.first(where: { $0.answeredQuestionsCount > 0 && !$0.completed }) ?? subjects?.randomElement()
+    }
+    
     var isActiveWrongAnswersBlock: Bool {
         shieldSeconds > 0
     }
@@ -180,6 +185,7 @@ final class HomeViewModel: HomeViewModeling, Identifiable {
 
 final class MockHomeViewModel: HomeViewModeling, Identifiable {
     
+    var doingSubject: SubjectModel? = nil
     var isActiveWrongAnswersBlock: Bool = false
     var shieldSeconds: Int = 0
     var shouldShowExercises = false

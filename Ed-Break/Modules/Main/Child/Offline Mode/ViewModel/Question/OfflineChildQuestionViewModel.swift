@@ -30,7 +30,7 @@ final class OfflineChildQuestionViewModel: OfflineChildQuestionViewModeling {
     let subject: OfflineSubjectModel?
     let contentModel: OfflineChildModel?
     
-    private let updateBreakDateOfflineChildUseCase: UpdateBreakDateOfflineChildUseCase
+    private let updateAnsweredQuestionOfflineChildUseCase: UpdateAnsweredQuestionOfflineChildUseCase
     private let context: NSManagedObjectContext
     
     private var cancelables = Set<AnyCancellable>()
@@ -40,12 +40,12 @@ final class OfflineChildQuestionViewModel: OfflineChildQuestionViewModeling {
     init(
         subject: OfflineSubjectModel?,
         contentModel: OfflineChildModel?,
-        updateBreakDateOfflineChildUseCase: UpdateBreakDateOfflineChildUseCase,
+        updateAnsweredQuestionOfflineChildUseCase: UpdateAnsweredQuestionOfflineChildUseCase,
         context: NSManagedObjectContext
     ) {
         self.subject = subject
         self.contentModel = contentModel
-        self.updateBreakDateOfflineChildUseCase = updateBreakDateOfflineChildUseCase
+        self.updateAnsweredQuestionOfflineChildUseCase = updateAnsweredQuestionOfflineChildUseCase
         self.context = context
     }
     
@@ -97,7 +97,7 @@ final class OfflineChildQuestionViewModel: OfflineChildQuestionViewModeling {
             DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
                 self.isFeedbackGiven = false
                 if self.isTheLastQuestion {
-                    self.updateBreakTime()
+                    self.updateFullAnswerResult()
                 }
                 completion(answer.correct ? .success : .failure)
             }
@@ -116,12 +116,37 @@ final class OfflineChildQuestionViewModel: OfflineChildQuestionViewModeling {
         return questionsContainer?.questions.count ?? 1 == currentQuestionIndex + 1
     }
     
-    
-    private func updateBreakTime() {
+    private func updateFullAnswerResult() {
         guard let correctAnswersCount = questionsContainer?.correctAnswersCount else { return }
         let shouldRestrict = mainQuestionsCount > correctAnswersCount * 2
+        
+        updateBreakTime(shouldRestrict: shouldRestrict)
+        updateWrongAnswersTime(shouldRestrict: shouldRestrict)
+    }
+    
+    private func updateBreakTime(shouldRestrict: Bool) {
+        guard var model = contentModel else { return }
         let date = shouldRestrict ? nil : Date()
-        updateBreakDateOfflineChildUseCase.execute(date: date, in: context)
+        model.breakStartDatetime = date?.toGMTTime().toString(format: .custom("yyyy-MM-dd'T'HH:mm:ss.SSSZ"))
+        updateAnsweredQuestionOfflineChildUseCase.execute(model: model, in: context)
+            .sink { result in
+                switch result {
+                case .finished: break
+                case .failure: break
+                }
+            } receiveValue: { success in
+                print(success)
+            }.store(in: &cancelables)
+    }
+    
+    private func updateWrongAnswersTime(shouldRestrict: Bool) {
+        guard shouldRestrict,
+              var model = contentModel else { return }
+        
+        let date = Calendar.current.date(byAdding: .minute, value: 5, to: Date())
+        model.wrongAnswersTime = date?.toGMTTime().toString(format: .custom("yyyy-MM-dd'T'HH:mm:ss.SSSZ"))
+        
+        updateAnsweredQuestionOfflineChildUseCase.execute(model: model, in: context)
             .sink { result in
                 switch result {
                 case .finished: break

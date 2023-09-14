@@ -13,8 +13,8 @@ struct OfflineChildModel {
     let id: Int
     let name: String
     let restrictionTime: Int?
-    let breakStartDatetime: String?
-    let wrongAnswersTime: String?
+    var breakStartDatetime: String?
+    var wrongAnswersTime: String?
     var breakStartDate: Date? {
         Date(fromString: breakStartDatetime ?? "", format: .isoDateTimeFull)?.toLocalTime()
     }
@@ -76,6 +76,13 @@ struct OfflineSubjectModel {
         subject = mo.subject
         photo = mo.photo
         questions = Array(_immutableCocoaArray: mo.questions ?? []).map { OfflineQusetionModel(mo: $0) }
+    }
+    
+    init() {
+        id = -1
+        subject = ""
+        photo = ""
+        questions = []
     }
 }
 
