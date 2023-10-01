@@ -12,6 +12,7 @@ import Combine
 final class HomeViewModel: HomeViewModeling, Identifiable {
     
     @Published var isLoading: Bool = false
+    @Published var questionBlockError: QuestionBlockError?
     @Published var contentModel: HomeModel? = nil
     
     @Published var remindingMinutes: Int = 0 {
@@ -21,7 +22,7 @@ final class HomeViewModel: HomeViewModeling, Identifiable {
     }
     @Published var progress: Double = 0
     
-    @Published var shieldSeconds: Int = 0
+    @Published var shieldSeconds: Int = 1
     @Published var shouldShowExercises: Bool = false
     
     var doingSubject: SubjectModel? {
@@ -37,13 +38,19 @@ final class HomeViewModel: HomeViewModeling, Identifiable {
     private var didUpdateToken = false
     private let userDefaultsService = UserDefaultsService()
     private var getSubjectsUseCase: GetSubjectsUseCase
+    private let getQuestionsUseCase: GetQuestionsUseCase
     private let checkConnectionUseCase: CheckConnectionUseCase
     
     private var cancelables = Set<AnyCancellable>()
     
     
-    init(getSubjectsUseCase: GetSubjectsUseCase, checkConnectionUseCase: CheckConnectionUseCase) {
+    init(
+        getSubjectsUseCase: GetSubjectsUseCase,
+        getQuestionsUseCase: GetQuestionsUseCase,
+        checkConnectionUseCase: CheckConnectionUseCase
+    ) {
         self.getSubjectsUseCase = getSubjectsUseCase
+        self.getQuestionsUseCase = getQuestionsUseCase
         self.checkConnectionUseCase = checkConnectionUseCase
     }
     
@@ -65,6 +72,27 @@ final class HomeViewModel: HomeViewModeling, Identifiable {
                     }
                 }
                 print(failure.localizedDescription)
+            }
+        }
+    }
+    
+    func getQuestions(completion: @escaping ((QuestionsContainerModel?, QuestionBlockError?)) -> Void) {
+        guard let doingSubject = doingSubject else { return }
+        isLoading = true
+        getQuestionsUseCase.execute(subjectId: doingSubject.id) { result in
+            DispatchQueue.main.async { self.isLoading = false }
+            switch result {
+            case .success(let model):
+                completion((model, nil))
+            case .failure(let failure):
+                DispatchQueue.main.async { [weak self] in
+                    if let error = failure as? QuestionBlockError {
+                        self?.questionBlockError = error
+                        //                    self?.shieldSeconds = error?.blockedTime ?? 0
+                        self?.startShieldTimer()
+                        completion((nil, error))
+                    }
+                }
             }
         }
     }
@@ -100,21 +128,21 @@ final class HomeViewModel: HomeViewModeling, Identifiable {
     
     private func processModel(model: HomeModel) {
         var model = model
-        model.wrongAnswersTime = (model.wrongAnswersTime ?? Date().toLocalTime()) > Date().toLocalTime()
-        ? model.wrongAnswersTime
-        : nil
+//        model.wrongAnswersTime = (model.wrongAnswersTime ?? Date().toLocalTime()) > Date().toLocalTime()
+//        ? model.wrongAnswersTime
+//        : nil
         self.contentModel = model
         let today = Date().toLocalTime()
         let allremindingMinutes: Int? = self.userDefaultsService.getPrimitiveFromSuite(forKey: .ChildUser.remindingMinutes)
         let restrictions = model.restrictions ?? FamilyActivitySelection()
         
-        if let wrongAnswersTime = contentModel?.wrongAnswersTime {
-            if let difference = getSeconds(start: wrongAnswersTime),
-               difference < 0 {
-                shieldSeconds = -difference
-                startShieldTimer()
-            }
-        }
+//        if let wrongAnswersTime = contentModel?.wrongAnswersTime {
+//            if let difference = getSeconds(start: wrongAnswersTime),
+//               difference < 0 {
+//                shieldSeconds = -difference
+//                startShieldTimer()
+//            }
+//        }
         
         if let startTime = model.breakStartDatetime /*,
            startTime.component(.day) == today.component(.day),
@@ -155,27 +183,28 @@ final class HomeViewModel: HomeViewModeling, Identifiable {
         userDefaultsService.setPrimitive(false, forKey: .ChildUser.shouldShowExercises)
     }
     
-    private func getSeconds(start: Date?) -> Int? {
-        guard let start = start else { return nil }
-        let diff = Int(Date().toLocalTime().timeIntervalSince1970 - start.timeIntervalSince1970)
-        
-        let hours = diff / 3600
-        let minutes = (diff - hours * 3600)
-        return minutes
-    }
+//    private func getSeconds(start: Date?) -> Int? {
+//        guard let start = start else { return nil }
+//        let diff = Int(Date().toLocalTime().timeIntervalSince1970 - start.timeIntervalSince1970)
+//
+//        let hours = diff / 3600
+//        let minutes = (diff - hours * 3600)
+//        return minutes
+//    }
     
     private func startShieldTimer() {
         timer?.invalidate()
         timer = nil
         timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { [weak self] _ in
             guard let self = self else { return }
-                  guard self.shieldSeconds > 0 else {
+            guard let shieldSeconds = self.questionBlockError?.blockedTime, shieldSeconds > 0 else {
                 self.timer?.invalidate();
                 self.timer = nil
                 return
                 
             }
-            self.shieldSeconds -= 1
+            
+            self.questionBlockError?.blockedTime = shieldSeconds - 1
         }
     }
 }
@@ -184,7 +213,7 @@ final class HomeViewModel: HomeViewModeling, Identifiable {
 // MARK: - Preview
 
 final class MockHomeViewModel: HomeViewModeling, Identifiable {
-    
+    var questionBlockError: QuestionBlockError?
     var doingSubject: SubjectModel? = nil
     var isActiveWrongAnswersBlock: Bool = false
     var shieldSeconds: Int = 0
@@ -196,5 +225,6 @@ final class MockHomeViewModel: HomeViewModeling, Identifiable {
     var contentModel: HomeModel?
     
     func getSubjects() { }
+    func getQuestions(completion: @escaping ((QuestionsContainerModel?, QuestionBlockError?)) -> Void) { }
     func checkConnection(compleated: @escaping (Bool)->()) { }
 }

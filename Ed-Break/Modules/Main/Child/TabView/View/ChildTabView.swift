@@ -11,6 +11,7 @@ import CoreData
 struct ChildTabView: View {
     
     @StateObject var model = DataModel.shared
+    @EnvironmentObject private var networkMonitor: NetworkMonitor
     @StateObject private var offlineModeviewModel: OfflineChildSavingViewModel
     @State var isQuestions = false
     
@@ -105,7 +106,12 @@ struct ChildTabView: View {
             
         }
         .onLoad {
-            offlineModeviewModel.updateOfflineChild()
+            if networkMonitor.isConnected {
+                DispatchQueue.global(qos: .userInteractive).async {
+                    offlineModeviewModel.updateOfflineChild()
+                }
+                
+            }
         }
         
     }

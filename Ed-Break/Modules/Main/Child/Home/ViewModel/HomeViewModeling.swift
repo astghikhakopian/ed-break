@@ -10,6 +10,7 @@ import SwiftUI
 protocol HomeViewModeling: ObservableObject, Identifiable {
     
     var isLoading: Bool { get set }
+    var questionBlockError: QuestionBlockError? { get set }
     var contentModel: HomeModel? { get set }
     var remindingMinutes: Int { get set }
     var progress: Double { get set }
@@ -19,5 +20,6 @@ protocol HomeViewModeling: ObservableObject, Identifiable {
     var doingSubject: SubjectModel? { get }
     
     func getSubjects()
+    func getQuestions(completion: @escaping ((QuestionsContainerModel?, QuestionBlockError?)) -> Void)
     func checkConnection(compleated: @escaping (Bool)->())
 }

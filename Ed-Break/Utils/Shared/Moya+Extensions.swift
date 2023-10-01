@@ -48,6 +48,14 @@ extension MoyaProvider {
                         print(json)
                     }
                     print(String(data: response.data, encoding: .utf8) ?? "")
+                    
+                    do {
+                        let error = try response.map(QuestionBlockError.self)
+                        completion(.failure(error))
+                    } catch {
+                        print(error)
+                    }
+                    
                     _ = try response.filterSuccessfulStatusCodes()
 
                     let object = try response.map(T.self)

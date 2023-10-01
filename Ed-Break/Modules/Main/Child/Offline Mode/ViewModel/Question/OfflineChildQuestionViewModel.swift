@@ -143,8 +143,8 @@ final class OfflineChildQuestionViewModel: OfflineChildQuestionViewModeling {
         guard shouldRestrict,
               var model = contentModel else { return }
         
-        let date = Calendar.current.date(byAdding: .minute, value: 5, to: Date())
-        model.wrongAnswersTime = date?.toGMTTime().toString(format: .custom("yyyy-MM-dd'T'HH:mm:ss.SSSZ"))
+      let date = Calendar.current.date(byAdding: .minute, value: 5, to: Date().toGMTTime())
+        model.wrongAnswersTime = date?.toLocal().toString(format: .custom("yyyy-MM-dd'T'HH:mm:ss.SSSZ"))
         
         updateAnsweredQuestionOfflineChildUseCase.execute(model: model, in: context)
             .sink { result in

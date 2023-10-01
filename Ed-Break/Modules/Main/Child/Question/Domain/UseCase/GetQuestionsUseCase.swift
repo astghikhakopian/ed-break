@@ -15,7 +15,8 @@ class GetQuestionsUseCase: QuestionsUseCase {
             case .success(let dto):
                 completion(.success(QuestionsContainerModel(dto: dto)))
             case .failure(let failure):
-                completion(.failure(failure))
+                let questionBlockError = failure as? QuestionBlockError
+                completion(.failure(questionBlockError ?? failure))
             }
         }
     }

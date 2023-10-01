@@ -20,6 +20,7 @@ struct QuestionsView<
     @State private var shouldShowContinueButton = false
     @State private var contentSize: CGSize = .zero
     
+    @EnvironmentObject private var networkMonitor: NetworkMonitor
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     
     var body: some View {
@@ -68,6 +69,11 @@ struct QuestionsView<
             type: $viewModel.answerResultType,
             isFeedbackGiven: $viewModel.isFeedbackGiven
         )
+        .onChange(of: networkMonitor.isConnected, perform: { newValue in
+            DispatchQueue.main.async {
+                presentationMode.wrappedValue.dismiss()
+            }
+        })
         .disabled(viewModel.isFeedbackGiven)
         
     }

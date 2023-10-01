@@ -15,6 +15,7 @@ struct HomeView<M: HomeViewModeling, N: OfflineChildGettingViewModeling>: View {
     
     @State private var isShieldPresented = false
     @State private var isQuestionsActive = false
+    @State private var isQuestionsOfflineActive = false
     
     @EnvironmentObject private var networkMonitor: NetworkMonitor
     
@@ -39,6 +40,9 @@ struct HomeView<M: HomeViewModeling, N: OfflineChildGettingViewModeling>: View {
                 HomeViewModel(
                     getSubjectsUseCase: GetSubjectsUseCase(
                         childrenRepository: DefaultChildrenRepository()
+                    ),
+                    getQuestionsUseCase: GetQuestionsUseCase(
+                        questionsRepository: DefaultQuestionsRepository()
                     ),
                     checkConnectionUseCase: CheckConnectionUseCase(
                         childrenRepository: DefaultChildrenRepository()
@@ -86,8 +90,8 @@ struct HomeView<M: HomeViewModeling, N: OfflineChildGettingViewModeling>: View {
             isQuestionsActive = true
         }
         .onChange(of: offlineChildGettingViewModel.shouldShowExercises) { shouldShowExercises in
-            guard shouldShowExercises, !offlineChildGettingViewModel.isActiveWrongAnswersBlock, !isQuestionsActive else { return }
-            isQuestionsActive = true
+            guard shouldShowExercises, !offlineChildGettingViewModel.isActiveWrongAnswersBlock, !isQuestionsOfflineActive else { return }
+            isQuestionsOfflineActive = true
         }
         .onChange(of: networkMonitor.isConnected) { isConnected in
             if isConnected {
@@ -100,7 +104,7 @@ struct HomeView<M: HomeViewModeling, N: OfflineChildGettingViewModeling>: View {
             NavigationLink(
                 destination: subjectDestination(
                     subject: viewModel.doingSubject ?? SubjectModel(),
-                    offlineSubject: offlineChildGettingViewModel.contentModel?.childSubjects.randomElement()
+                    offlineSubject: nil
                 ),
                 isActive: $isQuestionsActive) {
                     EmptyView()
@@ -112,7 +116,7 @@ struct HomeView<M: HomeViewModeling, N: OfflineChildGettingViewModeling>: View {
                     subject: SubjectModel(offlineSubjectModel: offlineChildGettingViewModel.doingSubject ?? OfflineSubjectModel()),
                     offlineSubject: offlineChildGettingViewModel.doingSubject
                 ),
-                isActive: $isQuestionsActive) {
+                isActive: $isQuestionsOfflineActive) {
                     EmptyView()
                 }
         )
@@ -242,36 +246,56 @@ struct HomeView<M: HomeViewModeling, N: OfflineChildGettingViewModeling>: View {
     }
     
     private var shield: some View {
-        ShieldView(
-            remindingSeconds: networkMonitor.isConnected ?
-            $viewModel.shieldSeconds :
-                $offlineChildGettingViewModel.shieldSeconds
-        )
+        if networkMonitor.isConnected {
+            return AnyView(BlockShieldView(
+                error: $viewModel.questionBlockError
+            ))
+        } else {
+            return AnyView(ShieldView(
+                remindingSeconds: $offlineChildGettingViewModel.shieldSeconds
+            ))
+        }
     }
     
     private var doExerciseButton: some View {
-        if viewModel.isActiveWrongAnswersBlock {
+        ConfirmButton(
+            action: {
+                viewModel.getQuestions { (questionsContainerModel, requestServiceError) in
+                    if let error = requestServiceError {
+                        viewModel.shieldSeconds = error.blockedTime
+                        isShieldPresented = true
+                    } else if let _ = questionsContainerModel {
+                        isQuestionsActive = true
+                    }
+                }
+            },
+            title: "Do Exercise",
+            isContentValid: .constant(true),
+            isLoading: $viewModel.isLoading
+        )
+        /*if viewModel.isActiveWrongAnswersBlock {
             return AnyView(
                 Button(
                     action: { isShieldPresented = true },
                     label: { doExerciseButtonLabel }
                 )
             )
-        } else if let subject = viewModel.doingSubject {
-            return AnyView(
-                NavigationLink(
-                    destination: { subjectDestination(
-                        subject: subject,
-                        offlineSubject: nil
-                    ) },
-                    label: {
-                        doExerciseButtonLabel
-                    }
-                )
-            )
-        } else {
-            return AnyView(Spacer())
-        }
+        } else*/
+//        if let subject = viewModel.doingSubject {
+//            return AnyView(
+//                NavigationLink(
+//                    destination: { subjectDestination(
+//                        subject: subject,
+//                        offlineSubject: nil
+//                    ) },
+//                    label: {
+//                        doExerciseButtonLabel
+//                    }
+//                )
+//            )
+//        } else {
+//            return AnyView(Spacer())
+//        }
     }
     
     private var doExerciseOfflineButton: some View {

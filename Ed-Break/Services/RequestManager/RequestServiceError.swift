@@ -16,3 +16,14 @@ struct RequestServiceError: LocalizedError, Decodable, Error {
     var errorDescription: String? { message }
     var localizedDescription: String { message }
 }
+
+struct QuestionBlockError: LocalizedError, Decodable, Error {
+    let errorMessage: String
+    var httpStatus: String { errorMessage }
+
+    var statusCode: Int?
+    var blockedTime: Int
+
+    var errorDescription: String? { errorMessage }
+    var localizedDescription: String { errorMessage }
+}
