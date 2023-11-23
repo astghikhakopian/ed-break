@@ -103,7 +103,7 @@ final class ChildDetailsViewModel: ChildDetailsViewModeling, Identifiable {
         guard let addChildUseCase = addChildUseCase else { return }
         guard isContentValid else  { return }
         isLoading = true
-        let validChildren = children.filter{ !$0.childName.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty && !$0.isHidden }
+        let validChildren = children.filter { !$0.childName.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty && !$0.isHidden }
         var waitingChildCount = validChildren.count
         for child in validChildren {
             let payload = CreateChildPayload(name: child.childName, grade: child.grade, restrictionTime: nil, interruption: child.interuption.rawValue, subjects: child.subjects?.map{ $0.id }, photo: child.image == UIImage() ? nil : child.image)
@@ -117,6 +117,7 @@ final class ChildDetailsViewModel: ChildDetailsViewModeling, Identifiable {
                 switch result {
                 case .none:
                     print("Child added")
+                    break
                 case .some(let failure):
                     print(failure)
                 }

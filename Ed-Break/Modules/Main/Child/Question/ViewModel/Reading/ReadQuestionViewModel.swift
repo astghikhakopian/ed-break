@@ -36,7 +36,7 @@ final class ReadQuestionViewModel: ReadQuestionViewModeling {
     func startPlayingQuestion(currentQuestion: OfflineQusetionModel) {
         guard !currentQuestion.questionText.isEmpty else { return }
         stopPlayingQuestion()
-        let questionModel = QusetionModel()//(offlineModel: currentQuestion)
+        let questionModel = QusetionModel(offlineQusetionModel: currentQuestion)
         textToSpeachManager.read(question: questionModel, after: 0) { [weak self] in
             self?.currentReadingItem = $0
         }

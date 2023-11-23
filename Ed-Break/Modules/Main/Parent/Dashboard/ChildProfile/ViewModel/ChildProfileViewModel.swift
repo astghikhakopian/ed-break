@@ -25,7 +25,7 @@ final class ChildProfileViewModel: ChildProfileViewModeling, Identifiable {
     }
     
     @Published var detailsInfo: ChildProfileModel
-    @Published var interuptions: [Interuption] = Interuption.allCases
+    @Published var interuptions: [Interuption] = Interuption.allCases.filter { $0 != .iSelect }
     @Published var interuption: Interuption
     
     private var getChildDetailsUseCase: GetChildDetailsUseCase

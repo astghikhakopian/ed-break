@@ -55,6 +55,14 @@ struct QusetionModel: Equatable {
         subject = dto.subject == nil ? nil : SubjectModel(dto: dto.subject!)
     }
     
+    init(offlineQusetionModel: OfflineQusetionModel) {
+        id = offlineQusetionModel.id
+        isCorrect = offlineQusetionModel.isCorrect
+        questionAnswer = offlineQusetionModel.answers.map { QuestionAnswerModel(offlineQuestionAnswerModel: $0) }
+        questionText = offlineQusetionModel.questionText
+        subject = nil
+    }
+    
     init() {
         id = 0
         questionAnswer = []
@@ -78,6 +86,13 @@ struct QuestionAnswerModel: Equatable {
         answer = dto.answer
         correct = dto.correct ?? false
         question = dto.question
+    }
+    
+    init(offlineQuestionAnswerModel: OfflineQuestionAnswerModel) {
+        id = offlineQuestionAnswerModel.id
+        answer = offlineQuestionAnswerModel.answer
+        correct = offlineQuestionAnswerModel.correct
+        question = nil
     }
 }
 

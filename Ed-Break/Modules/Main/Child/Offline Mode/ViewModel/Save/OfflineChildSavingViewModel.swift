@@ -53,7 +53,7 @@ final class OfflineChildSavingViewModel: OfflineChildSavingViewModeling {
     }
     
     private func getOfflineChild(completion: @escaping (OfflineChildModel) -> Void) {
-        isLoading = true
+        DispatchQueue.main.async { self.isLoading = true }
         getOfflineModeChildUseCase.execute { [weak self] result in
             guard let self = self else { return }
             DispatchQueue.main.async { self.isLoading = false }

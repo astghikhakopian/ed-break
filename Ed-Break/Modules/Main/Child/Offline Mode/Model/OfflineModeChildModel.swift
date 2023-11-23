@@ -39,7 +39,7 @@ struct OfflineChildModel {
         name = dto.name ?? ""
         restrictionTime = dto.restrictionTime
         breakStartDatetime = dto.breakStartDatetime
-        wrongAnswersTime = dto.wrongAnswersTime
+        wrongAnswersTime = nil // dto.wrongAnswersTime
         restrictions = dto.restrictions
         interruption = dto.interruption
         childSubjects = (dto.childSubjects ?? []).map { OfflineSubjectModel(dto: $0) }

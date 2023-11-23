@@ -187,7 +187,7 @@ class OfflineChildProvideer: OfflineChildProvideerProtocol {
         breakStartDatetime: Date?,
         in context: NSManagedObjectContext
     ) {
-        childMO.breakStartDatetime =  breakStartDatetime?.toGMTTime().toString(format: .custom("yyyy-MM-dd'T'HH:mm:ss.SSSZ"))
+        childMO.breakStartDatetime =  breakStartDatetime?.toString(format: .custom("yyyy-MM-dd'T'HH:mm:ss.SSSZ"))
     }
     
     private func update(
