@@ -284,7 +284,7 @@ private extension ChildProfileView {
                     Text("main.parent.childProfile.restrictionPeriod")
                         .font(.appHeadline)
                         .foregroundColor(.primaryDescription)
-                    WheelPickerField(style: .custom(title: "childDetails.interruption.period"), selection: $viewModel.interuption, datasource: $viewModel.interuptions)
+                    WheelPickerField(style: .custom(title: "childDetails.interruption.frequency"), selection: $viewModel.interuption, datasource: $viewModel.interuptions)
                 }
                 //                Spacer()
                 //                Image.Common.dropdownArrow

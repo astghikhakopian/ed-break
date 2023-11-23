@@ -11,10 +11,11 @@ struct ChildToFamilyView<M: FamilySharingViewModeling>: View {
     
     @ObservedObject var viewModel: M
     
-    @State private var contentSize: CGSize = .zero
-    
     var body: some View {
-        MainBackground(title: "onboarding.addedChildToFamily.title", withNavbar: true, contentSize: $contentSize) {
+        MainBackground(
+            title: "onboarding.addedChildToFamily.title",
+            withNavbar: true
+        ) {
             ZStack {
                 ZStack(alignment: .bottom) {
                     Image.FamilySharing.addchildtofamily
@@ -50,19 +51,19 @@ struct ChildToFamilyView<M: FamilySharingViewModeling>: View {
                         }
                     )
                     NavigationSecondaryButton(
-                        title: "onboarding.addedChildToFamily.howTo") {
-                            FamilySharingView(
-                                viewModel: FamilySharingViewModel(
-                                    addParentUseCase: AddParentUseCase(
-                                        familySharingRepository: DefaultFamilySharingRepository()
-                                    ),
-                                    localStorageService: UserDefaultsService()
-                                )
+                        title: "onboarding.addedChildToFamily.howTo"
+                    ) {
+                        FamilySharingView(
+                            viewModel: FamilySharingViewModel(
+                                addParentUseCase: AddParentUseCase(
+                                    familySharingRepository: DefaultFamilySharingRepository()
+                                ),
+                                localStorageService: UserDefaultsService()
                             )
-                        }
+                        )
+                    }
                 }
             }
-//            } .frame(height: contentSize.height)
         }
     }
 }

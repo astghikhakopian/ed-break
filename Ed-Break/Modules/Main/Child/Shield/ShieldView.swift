@@ -11,6 +11,7 @@ struct ShieldView: View {
     
     @Binding  var remindingSeconds: Int
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
+    @Environment(\.scenePhase) var scenePhase
     
     @State private var isContentValid: Bool = true
     
@@ -50,6 +51,10 @@ struct ShieldView: View {
             
         }
         .ignoresSafeArea()
+        .onChange(of: scenePhase) { newPhase in
+            guard newPhase == .inactive else { return }
+            presentationMode.wrappedValue.dismiss()
+        }
     }
 }
 
@@ -57,6 +62,7 @@ struct BlockShieldView: View {
     
     @Binding var error: QuestionBlockError?
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
+    @Environment(\.scenePhase) var scenePhase
     
     @State private var isContentValid: Bool = true
     
@@ -93,9 +99,13 @@ struct BlockShieldView: View {
                 ConfirmButton(action: {
                     presentationMode.wrappedValue.dismiss()
                 }, title: buttonTitle, isContentValid: $isContentValid, isLoading: .constant(false))
-            }.padding(padding)
-            
+            }
+            .padding(padding)
         }
         .ignoresSafeArea()
+        .onChange(of: scenePhase) { newPhase in
+            guard newPhase == .inactive else { return }
+            presentationMode.wrappedValue.dismiss()
+        }
     }
 }

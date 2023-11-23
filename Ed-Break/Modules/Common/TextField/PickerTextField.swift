@@ -68,6 +68,7 @@ enum Interuption: Int, CaseIterable, PickerItem, BottomsheetCellModel {
     case i20 = 20
     case i25 = 25
     case i30 = 30
+    case i45 = 45
     
     var name: String {
         switch self {
@@ -77,6 +78,41 @@ enum Interuption: Int, CaseIterable, PickerItem, BottomsheetCellModel {
             return "\(self.rawValue) minutes"
         }
 //        "\(self.rawValue) minutes"
+    }
+    
+    var key: Int {
+        rawValue
+    }
+    
+    var id: Int {
+        rawValue
+    }
+    
+    var title: String {
+        name
+    }
+    
+    var imageUrl: URL? {
+        nil
+    }
+}
+
+enum IntervalBetweenIncorrect: Int, CaseIterable, PickerItem, BottomsheetCellModel {
+    case iSelect = -1
+    case i0 = 0
+    case i1 = 1
+    case i2 = 2
+    case i3 = 3
+    case i4 = 4
+    case i5 = 5
+    
+    var name: String {
+        switch self {
+        case .iSelect:
+            return "Select"
+        default:
+            return "\(self.rawValue) minute\(self.rawValue > 1 ? "s" : "")"
+        }
     }
     
     var key: Int {

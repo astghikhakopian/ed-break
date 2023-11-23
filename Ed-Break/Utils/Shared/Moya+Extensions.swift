@@ -16,7 +16,6 @@ extension MoyaProvider {
                 do {
                     if let json = try? JSONSerialization.jsonObject(with: response.data) {
                         print(json)
-//                        completion(RequestServiceError(message: json[], httpStatus: <#T##String#>))
                     }
                     print(String(data: response.data, encoding: .utf8) ?? "")
                     _ = try response.filterSuccessfulStatusCodes()
@@ -72,7 +71,6 @@ extension MoyaProvider {
                         print("Could not complete request for \(target): \(error)")
                         completion(.failure(error))
                         self?.refreshToken()
-                        //Session.current?.deactivate() TODO: add auth session deactivation here
                     } else {
                         completion(.failure(error))
                     }
@@ -89,8 +87,15 @@ extension MoyaProvider {
         refreshTokenUseCase.execute { result in
             switch result {
             case .success(let token):
-                localStorageService.setObject(token, forKey: .User.token)
-                localStorageService.setPrimitive(true, forKey: .User.isLoggedIn)
+                let isUserLoggedIn: Bool = localStorageService.getPrimitive(forKey: .User.isLoggedIn) ?? false
+                if isUserLoggedIn {
+                    localStorageService.setObject(token, forKey: .User.token)
+                    localStorageService.setPrimitive(true, forKey: .User.isLoggedIn)
+                } else {
+                    localStorageService.setObject(token, forKey: .ChildUser.token)
+                    localStorageService.setPrimitive(true, forKey: .ChildUser.isLoggedIn)
+                }
+                
             case .failure(let failure):
                 print(failure)
             }

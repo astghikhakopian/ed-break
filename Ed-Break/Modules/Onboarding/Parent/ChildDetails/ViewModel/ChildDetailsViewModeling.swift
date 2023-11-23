@@ -12,6 +12,7 @@ protocol ChildDetailsViewModeling: ObservableObject {
     var children: [ChildDetailsModel] { get set }
     var grades: [Grade] { get set }
     var interuptions: [Interuption] { get set }
+    var intervalBetweenIncorrect: [IntervalBetweenIncorrect] { get set }
     var subjects: [BottomsheetCellModel] { get set }
     
     var isContentValid: Bool { get set }

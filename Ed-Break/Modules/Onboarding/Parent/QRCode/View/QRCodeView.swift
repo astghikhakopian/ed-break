@@ -34,9 +34,17 @@ struct QRCodeView: View {
                                 getChildrenUseCase: GetChildrenUseCase(
                                     childrenRepository: DefaultChildrenRepository(
                                         plugins: [BasicAuthenticationPlugin()])),
-                                pairChildUseCase: PairChildUseCase(childrenRepository: DefaultChildrenRepository(
-                                    plugins: [BasicAuthenticationPlugin()])), refreshTokenUseCase: RefreshTokenUseCase(familySharingRepository: DefaultFamilySharingRepository()), addRestrictionUseCase: AddRestrictionUseCase(restrictionsRepository: DefaultRestrictionsRepository())
-                            ))})
+                                pairChildUseCase: PairChildUseCase(
+                                    childrenRepository: DefaultChildrenRepository(
+                                        plugins: [BasicAuthenticationPlugin()])),
+                                refreshTokenUseCase: RefreshTokenUseCase(
+                                    familySharingRepository: DefaultFamilySharingRepository()),
+                                addRestrictionUseCase: AddRestrictionUseCase(
+                                    restrictionsRepository: DefaultRestrictionsRepository())
+                            )
+                        )
+                    }
+                )
             }
         }
     }

@@ -26,10 +26,16 @@ struct TabBarView: View {
                         pairChildUseCase: PairChildUseCase(
                             childrenRepository: DefaultChildrenRepository()),
                         refreshTokenUseCase: RefreshTokenUseCase(
-                            familySharingRepository: DefaultFamilySharingRepository()), addRestrictionUseCase: AddRestrictionUseCase(restrictionsRepository: DefaultRestrictionsRepository())))
+                            familySharingRepository: DefaultFamilySharingRepository()), 
+                        addRestrictionUseCase: AddRestrictionUseCase(
+                            restrictionsRepository: DefaultRestrictionsRepository()
+                        )
+                    )
+                )
                 .environmentObject(model)
                 .showTabBar()
-            }.navigationViewStyle(StackNavigationViewStyle())
+            }
+            .navigationViewStyle(StackNavigationViewStyle())
             .foregroundColor(.appBlack)
             .accentColor(.appClear)
             .tabItem {

@@ -12,6 +12,7 @@ import Combine
 final class HomeViewModel: HomeViewModeling, Identifiable {
     
     @Published var isLoading: Bool = false
+    @Published var didSubjectsLoad: Bool = true
     @Published var questionBlockError: QuestionBlockError?
     @Published var contentModel: HomeModel? = nil
     
@@ -27,7 +28,7 @@ final class HomeViewModel: HomeViewModeling, Identifiable {
     
     var doingSubject: SubjectModel? {
         let subjects = contentModel?.subjects
-        return subjects?.first(where: { $0.answeredQuestionsCount > 0 && !$0.completed }) ?? subjects?.randomElement()
+        return subjects?.first(where: { $0.doExercise }) ?? subjects?.randomElement()
     }
     
     var isActiveWrongAnswersBlock: Bool {
@@ -55,10 +56,15 @@ final class HomeViewModel: HomeViewModeling, Identifiable {
     }
     
     func getSubjects() {
+        guard didSubjectsLoad else { return }
         isLoading = true
+        didSubjectsLoad = false
         getSubjectsUseCase.execute { [weak self] result in
             guard let self = self else { return }
-            DispatchQueue.main.async { self.isLoading = false }
+            DispatchQueue.main.async {
+                self.isLoading = false
+                self.didSubjectsLoad = true
+            }
             switch result {
             case .success(let model):
                 DispatchQueue.main.async { [weak self] in

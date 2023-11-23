@@ -81,8 +81,18 @@ private extension ChildEditView {
                 ForEach($viewModel.children, id: \.id) { child in
                     uploadPhotoView(image: child.image)
                     CommonTextField(title: "childDetails.name", placeHolder: "childDetails.name.placeholder", text: child.childName)
+                    WheelPickerField(style: .titled(title: "childDetails.grade"), selection: child.grade, datasource: $viewModel.grades) {
+                        UIApplication.shared.endEditing()
+                    }
                     HStack(spacing: 10) {
-                        WheelPickerField(style: .titled(title: "childDetails.grade"), selection: child.grade, datasource: $viewModel.grades){
+                        WheelPickerField(
+                            style: .titled(
+                                title: "childDetails.interruption.frequency",
+                                titleToShow: "childDetails.interruption.frequency"
+                            ),
+                            selection: $viewModel.children[0].interuption,
+                            datasource: $viewModel.interuptions
+                        ) {
                             UIApplication.shared.endEditing()
                         }
                         WheelPickerField(
@@ -90,9 +100,9 @@ private extension ChildEditView {
                                 title: "childDetails.interruption",
                                 titleToShow: "childDetails.interruption.period"
                             ),
-                            selection: $viewModel.children[0].interuption,
-                            datasource: $viewModel.interuptions
-                        ){
+                            selection: $viewModel.children[0].intervalBetweenIncorrect,
+                            datasource: $viewModel.intervalBetweenIncorrect
+                        ) {
                             UIApplication.shared.endEditing()
                         }
                     }

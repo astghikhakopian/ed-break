@@ -14,18 +14,20 @@ class ChildDetailsModel {
     @Published var image = UIImage()
     var grade: Grade = .notSelected
     var interuption: Interuption = .iSelect
+    var intervalBetweenIncorrect: IntervalBetweenIncorrect = .iSelect
     var childName: String = ""
     var subjects: [BottomsheetCellModel]?
     var photoStringUrl: String?
     var isHidden = false
     var devices: [DeviceModel]
     
-    init(childId: Int? = nil, image: UIImage = UIImage(), grade: Grade,interuption: Interuption, childName: String, photoStringUrl: String? = nil, subjects: [SubjectModel]?, devices: [DeviceModel] = []) {
+    init(childId: Int? = nil, image: UIImage = UIImage(), grade: Grade, interuption: Interuption, intervalBetweenIncorrect: IntervalBetweenIncorrect, childName: String, photoStringUrl: String? = nil, subjects: [SubjectModel]?, devices: [DeviceModel] = []) {
         self.id = UUID()
         self.childId = childId
         self.image = image
         self.grade = grade
         self.interuption = interuption
+        self.intervalBetweenIncorrect = intervalBetweenIncorrect
         self.childName = childName
         self.subjects = subjects
         self.photoStringUrl = photoStringUrl
@@ -38,6 +40,7 @@ class ChildDetailsModel {
         self.image = UIImage()
         self.grade = .notSelected
         self.interuption = .iSelect
+        self.intervalBetweenIncorrect = .iSelect
         self.childName = ""
         self.subjects = nil
         self.devices = []
@@ -48,15 +51,16 @@ final class ChildDetailsViewModel: ChildDetailsViewModeling, Identifiable {
     
     let child: ChildModel?
     
-    @Published var grades: [Grade] = [.first,.second,.third,.fourth, .fifth, .sixth,.seventh,.eightth,.nineth]//Grade.allCases
-    @Published var interuptions: [Interuption] = [.i15,.i20,.i25,.i30]//Interuption.allCases
-    @Published var subjects: [BottomsheetCellModel] = [SubjectModel(dto: SubjectDto(id: 0, subject: "", photo: "", questionsCount: 0, answeredQuestionsCount: 0, correctAnswersCount: 0, completed: false))]
+    @Published var grades: [Grade] = Grade.allCases
+    @Published var interuptions: [Interuption] = Interuption.allCases
+    @Published var intervalBetweenIncorrect: [IntervalBetweenIncorrect] = IntervalBetweenIncorrect.allCases
+    @Published var subjects: [BottomsheetCellModel] = [SubjectModel(dto: SubjectDto(id: 0, subject: "", photo: "", questionsCount: 0, answeredQuestionsCount: 0, doExercise: false, correctAnswersCount: 0, completed: false))]
     @Published var isContentValid: Bool = false
     @Published var isLoading: Bool = false
     @Published var children: [ChildDetailsModel] = [ChildDetailsModel()] {
         didSet {
             let lastNoneHiddenChild = children.last(where: { !$0.isHidden })
-            isContentValid = !(lastNoneHiddenChild?.childName.replacingOccurrences(of: " ", with: "").isEmpty ?? true) && lastNoneHiddenChild?.grade != .notSelected && lastNoneHiddenChild?.subjects != nil && lastNoneHiddenChild?.interuption != .iSelect
+            isContentValid = !(lastNoneHiddenChild?.childName.replacingOccurrences(of: " ", with: "").isEmpty ?? true) && lastNoneHiddenChild?.grade != .notSelected && lastNoneHiddenChild?.subjects != nil && lastNoneHiddenChild?.intervalBetweenIncorrect != .iSelect
         }
     }
     
@@ -80,6 +84,7 @@ final class ChildDetailsViewModel: ChildDetailsViewModeling, Identifiable {
                     childId: child.id,
                     grade: child.grade,
                     interuption: Interuption(rawValue: child.interruption ?? 0) ?? .iSelect,
+                    intervalBetweenIncorrect: IntervalBetweenIncorrect(rawValue: child.intervalBetweenIncorrect ?? 0) ?? .iSelect,
                     childName: child.name,
                     photoStringUrl: child.photoUrl?.absoluteString,
                     subjects: child.subjects,
@@ -106,7 +111,15 @@ final class ChildDetailsViewModel: ChildDetailsViewModeling, Identifiable {
         let validChildren = children.filter { !$0.childName.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty && !$0.isHidden }
         var waitingChildCount = validChildren.count
         for child in validChildren {
-            let payload = CreateChildPayload(name: child.childName, grade: child.grade, restrictionTime: nil, interruption: child.interuption.rawValue, subjects: child.subjects?.map{ $0.id }, photo: child.image == UIImage() ? nil : child.image)
+            let payload = CreateChildPayload(
+                name: child.childName,
+                grade: child.grade,
+                restrictionTime: nil,
+                intervalBetweenIncorrect: child.intervalBetweenIncorrect.rawValue,
+                interruption: child.interuption.rawValue,
+                subjects: child.subjects?.map{ $0.id },
+                photo: child.image == UIImage() ? nil : child.image
+            )
             addChildUseCase.execute(payload: payload) { [weak self] result in
                 DispatchQueue.main.async {
                     waitingChildCount -= 1
@@ -129,7 +142,17 @@ final class ChildDetailsViewModel: ChildDetailsViewModeling, Identifiable {
         guard let updateChildUseCase = updateChildUseCase, let child = children.first, let childId = child.childId else { return }
         guard isContentValid else  { return }
         isLoading = true
-        let payload = CreateChildPayload(name: child.childName, grade: child.grade, restrictionTime: nil, interruption: child.interuption.rawValue, subjects: child.subjects?.map{ $0.id }, photo: child.image == UIImage() ? nil : child.image)
+        
+        let payload = CreateChildPayload(
+            name: child.childName,
+            grade: child.grade,
+            restrictionTime: nil,
+            intervalBetweenIncorrect: child.intervalBetweenIncorrect.rawValue,
+            interruption: child.interuption.rawValue,
+            subjects: child.subjects?.map{ $0.id },
+            photo: child.image == UIImage() ? nil : child.image
+        )
+        
         updateChildUseCase.execute(id: childId, payload: payload) { [weak self] result in
             DispatchQueue.main.async {
                 self?.isLoading = false
@@ -219,6 +242,7 @@ final class MockChildDetailsViewModel: ChildDetailsViewModeling, Identifiable {
     
     var children: [ChildDetailsModel] = [ChildDetailsModel()]
     var interuptions: [Interuption] = Interuption.allCases
+    var intervalBetweenIncorrect: [IntervalBetweenIncorrect] = IntervalBetweenIncorrect.allCases
     var grades = Grade.allCases
     var subjects: [BottomsheetCellModel] = []
     

@@ -32,7 +32,14 @@ final class ChildrenViewModel: ChildrenViewModeling, Identifiable {
     private let refreshTokenUseCase: RefreshTokenUseCase
     private var addRestrictionUseCase: AddRestrictionUseCase
     
-    init(filtered: Bool, getChildrenUseCase: GetChildrenUseCase, pairChildUseCase: PairChildUseCase, getCoachingUseCase: GetCoachingUseCase? = nil, refreshTokenUseCase: RefreshTokenUseCase,addRestrictionUseCase: AddRestrictionUseCase) {
+    init(
+        filtered: Bool,
+        getChildrenUseCase: GetChildrenUseCase,
+        pairChildUseCase: PairChildUseCase,
+        getCoachingUseCase: GetCoachingUseCase? = nil,
+        refreshTokenUseCase: RefreshTokenUseCase,
+        addRestrictionUseCase: AddRestrictionUseCase
+    ) {
         self.getChildrenUseCase = getChildrenUseCase
         self.pairChildUseCase = pairChildUseCase
         self.getCoachingUseCase = getCoachingUseCase

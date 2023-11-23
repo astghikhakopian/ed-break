@@ -68,8 +68,11 @@ enum ChildDetailsRoute: TargetType, AccessTokenAuthorizable {
             if let interruptionTime = payload.interruption, let interruptionTimeData = String(interruptionTime).data(using: .utf8) {
                 formData.append(MultipartFormData(provider: .data(interruptionTimeData), name: "interruption"))
             }
+            if let intervalBetweenIncorrect = payload.intervalBetweenIncorrect, let intervalBetweenIncorrectData = String(intervalBetweenIncorrect).data(using: .utf8) {
+                formData.append(MultipartFormData(provider: .data(intervalBetweenIncorrectData), name: "interval_between_incorrect"))
+            }
             if let restrictionTime = payload.restrictionTime, let restrictionTimeData = String(restrictionTime).data(using: .utf8) {
-                formData.append(MultipartFormData(provider: .data(restrictionTimeData), name: "restrictionTime"))
+                formData.append(MultipartFormData(provider: .data(restrictionTimeData), name: "restriction_time"))
             }
             
             if let subjects = payload.subjects {
@@ -98,8 +101,11 @@ enum ChildDetailsRoute: TargetType, AccessTokenAuthorizable {
             if let interruptionTime = payload.interruption, let interruptionTimeData = String(interruptionTime).data(using: .utf8) {
                 formData.append(MultipartFormData(provider: .data(interruptionTimeData), name: "interruption"))
             }
+            if let intervalBetweenIncorrect = payload.intervalBetweenIncorrect, let intervalBetweenIncorrectData = String(intervalBetweenIncorrect).data(using: .utf8) {
+                formData.append(MultipartFormData(provider: .data(intervalBetweenIncorrectData), name: "interval_between_incorrect"))
+            }
             if let restrictionTime = payload.restrictionTime, let restrictionTimeData = String(restrictionTime).data(using: .utf8) {
-                formData.append(MultipartFormData(provider: .data(restrictionTimeData), name: "restrictionTime"))
+                formData.append(MultipartFormData(provider: .data(restrictionTimeData), name: "restriction_time"))
             }
             
             if let subjects = payload.subjects {

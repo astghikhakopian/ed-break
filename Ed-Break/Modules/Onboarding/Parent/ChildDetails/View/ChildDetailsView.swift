@@ -63,11 +63,34 @@ private extension ChildDetailsView {
                     if child.isHidden.wrappedValue {
                         EmptyView()
                     } else {
-                    uploadPhotoView(image: child.image)
-                    CommonTextField(title: "childDetails.name", placeHolder: "childDetails.name.placeholder", text: child.childName)
+                        uploadPhotoView(image: child.image)
+                        CommonTextField(title: "childDetails.name", placeHolder: "childDetails.name.placeholder", text: child.childName)
+                        WheelPickerField(
+                            style: .titled(
+                                title: "childDetails.grade"
+                            ),
+                            selection: child.grade,
+                            datasource: $viewModel.grades
+                        )
+                        .tint(.primaryPurple)
                     HStack(spacing: 10) {
-                        WheelPickerField(style: .titled(title: "childDetails.grade"), selection: child.grade, datasource: $viewModel.grades).tint(.primaryPurple)
-                        WheelPickerField(style: .titled(title: "childDetails.interruption",titleToShow: "childDetails.interruption.period"), selection: child.interuption, datasource: $viewModel.interuptions)
+                        WheelPickerField(
+                            style: .titled(
+                                title: "childDetails.interruption.frequency",
+                                titleToShow: "childDetails.interruption.frequency"
+                            ),
+                            selection: child.interuption,
+                            datasource: $viewModel.interuptions
+                        )
+                        
+                        WheelPickerField(
+                            style: .titled(
+                                title: "childDetails.interruption",
+                                titleToShow: "childDetails.interruption.period"
+                            ),
+                            selection: child.intervalBetweenIncorrect,
+                            datasource: $viewModel.intervalBetweenIncorrect
+                        )
                     }
                     dropdown(title: "childDetails.subjects", selectedItems: child.subjects) {
                         selectedChildIndex = viewModel.children.firstIndex(where: {$0.id == child.wrappedValue.id})

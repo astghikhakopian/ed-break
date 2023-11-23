@@ -33,7 +33,7 @@ class ScheduleModel {
         let encouraged = selectionToEncourage ?? FamilyActivitySelection()
         
         let localThreshold: DateComponents? = UserDefaultsService().getObjectFromSuite(forKey: .ChildUser.threshold)
-        let threshold = localThreshold ?? DateComponents()
+        let threshold = localThreshold ?? DateComponents(minute: 2)
         
         let events: [DeviceActivityEvent.Name: DeviceActivityEvent] = [
             .encouraged: DeviceActivityEvent(

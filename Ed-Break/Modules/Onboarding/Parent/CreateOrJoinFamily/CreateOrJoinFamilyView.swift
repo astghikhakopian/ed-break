@@ -10,7 +10,10 @@ import SwiftUI
 struct CreateOrJoinFamilyView: View {
     
     var body: some View {
-        MainBackground(title: "onboarding.createorjoinfamily.title", withNavbar: true) {
+        MainBackground(
+            title: "onboarding.createorjoinfamily.title",
+            withNavbar: true
+        ) {
             VStack(spacing: 0) {
                 Spacer()
                 VStack(spacing: 20) {

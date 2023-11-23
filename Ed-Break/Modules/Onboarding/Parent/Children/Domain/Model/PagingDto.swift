@@ -18,6 +18,7 @@ struct ChildDto: Codable {
     let grade: Int
     let restrictionTime: Int?
     var interruption: Int?
+    var intervalBetweenIncorrect: Int?
     let photo: String?
     let todayAnswers: Int?
     let todayCorrectAnswers: Int?
@@ -58,6 +59,7 @@ struct CoachingSubjectDto: Codable {
     let id: Int
     let title: String
     let photo: String?
+    let doExercise: Bool?
     let subPreviousDifference: Float?
     let correctAnswersCount: Int?
     let answersCount: Int?

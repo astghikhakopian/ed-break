@@ -144,6 +144,7 @@ final class MockQuestionsViewModel: QuestionsViewModeling {
                         photo: "https://ed-break-back-dev.s3.amazonaws.com/media/800px-Stylised_atom_with_three_Bohr_model_orbits_and_stylised_nucleus.svg.png",
                         questionsCount: 1,
                         answeredQuestionsCount: 0,
+                        doExercise: false,
                         correctAnswersCount: 0,
                         completed: false))],
             questionsCount: 1,
@@ -168,6 +169,7 @@ final class MockQuestionsViewModel: QuestionsViewModeling {
             photo: "https://ed-break-back-dev.s3.amazonaws.com/media/800px-Stylised_atom_with_three_Bohr_model_orbits_and_stylised_nucleus.svg.png",
             questionsCount: 1,
             answeredQuestionsCount: 0,
+            doExercise: false,
             correctAnswersCount: 0,
             completed: false)))
     var subject: SubjectModel = SubjectModel(
@@ -177,6 +179,7 @@ final class MockQuestionsViewModel: QuestionsViewModeling {
             photo: nil,
             questionsCount: 0,
             answeredQuestionsCount: 0,
+            doExercise: false,
             correctAnswersCount: 0,
             completed: true
         )

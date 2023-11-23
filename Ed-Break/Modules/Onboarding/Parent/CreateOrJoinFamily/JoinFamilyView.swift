@@ -6,19 +6,17 @@
 //
 
 import SwiftUI
-import CodeScanner 
+import CodeScanner
 
 struct JoinFamilyView<M: FamilySharingViewModeling>: View {
     
     @ObservedObject var viewModel: M
-    
     @EnvironmentObject var appState: AppState
     
     @State private var isShowingScanner: Bool = false
-    @State private var contentSize: CGSize = .zero
     
     var body: some View {
-        MainBackground(title: "onboarding.joinfamily.title", withNavbar: true, contentSize: $contentSize) {
+        MainBackground(title: "onboarding.joinfamily.title", withNavbar: true) {
             ZStack {
                 ZStack(alignment: .bottom) {
                     VStack {
@@ -35,7 +33,6 @@ struct JoinFamilyView<M: FamilySharingViewModeling>: View {
                         startPoint: .top,
                         endPoint: .bottom
                     )
-//                    .frame(height: 300)
                 }
                 VStack(spacing: 0) {
                     Spacer()
@@ -48,19 +45,19 @@ struct JoinFamilyView<M: FamilySharingViewModeling>: View {
                         colorTextValid: .primaryPurple
                     )
                     NavigationSecondaryButton(
-                        title: "onboarding.joinfamily.howTo") {
-                            NewParentFamilySharingView(
-                                viewModel: FamilySharingViewModel(
-                                    addParentUseCase: AddParentUseCase(
-                                        familySharingRepository: DefaultFamilySharingRepository()
-                                    ),
-                                    localStorageService: UserDefaultsService()
-                                )
+                        title: "onboarding.joinfamily.howTo"
+                    ) {
+                        NewParentFamilySharingView(
+                            viewModel: FamilySharingViewModel(
+                                addParentUseCase: AddParentUseCase(
+                                    familySharingRepository: DefaultFamilySharingRepository()
+                                ),
+                                localStorageService: UserDefaultsService()
                             )
-                        }
+                        )
+                    }
                 }
             }
-//            .frame(height: contentSize.height)
         }
         .sheet(isPresented: $isShowingScanner) {
             CodeScannerView(codeTypes: [.qr], completion: handleScan)
@@ -68,7 +65,7 @@ struct JoinFamilyView<M: FamilySharingViewModeling>: View {
     }
     
     func handleScan(result: Result<ScanResult, ScanError>) {
-       isShowingScanner = false
+        isShowingScanner = false
         switch result {
         case .success(let info):
             let string = info.string

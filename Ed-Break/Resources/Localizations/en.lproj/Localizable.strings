@@ -91,8 +91,9 @@
 "childDetails.add.device.another" = "Add another device";
 "childDetails.delete" = "Delete Child";
 "childDetails.subjects" = "Subjects";
-"childDetails.interruption" = "Interruption";
-"childDetails.interruption.period" = "Interruption Period";
+"childDetails.interruption" = "Incorrect time blocker";
+"childDetails.interruption.period" = "Incorrect time blocker";
+"childDetails.interruption.frequency" = "Interruption frequency";
 "childDetails.save" = "Save changes";
 
 "deviceDetails.title" = "Device info";
@@ -146,7 +147,7 @@
 "main.parent.childProfile.activityfor" = "activity today";
 "main.parent.childProfile.avgSession" = "avg. session";
 "main.parent.childProfile.restrictions" = "Restrictions";
-"main.parent.childProfile.restrictionPeriod" = "Restriction time period";
+"main.parent.childProfile.restrictionPeriod" = "Interruption frequency";
 "main.parent.childProfile.restrictedApps" = "Restricted app & categories";
 
 "main.parent.coaching" = "Report card";

@@ -16,6 +16,7 @@ struct ChildModel: Equatable,Identifiable {
     var grade: Grade
     var restrictionTime: Int?
     var interruption: Int?
+    var intervalBetweenIncorrect: Int?
     var photoUrl: URL?
     let todayAnswers: Int
     let todayCorrectAnswers: Int
@@ -55,6 +56,7 @@ struct ChildModel: Equatable,Identifiable {
         breakEndDatetime = Date(fromString: dto.breakEndDatetime ?? "", format: .isoDateTimeFull)?.toLocalTime()
         wrongAnswersTime = Date(fromString: dto.wrongAnswersTime ?? "", format: .isoDateTimeFull)?.toLocalTime()
         interruption = dto.interruption
+        intervalBetweenIncorrect = dto.intervalBetweenIncorrect
         deviceToken = dto.deviceToken
         subjects = dto.subjects?.map { SubjectModel(dto: $0) } ?? []
         devices = dto.devices?.map { DeviceModel(dto: $0) } ?? []

@@ -18,6 +18,7 @@ struct HomeDto: Codable {
     let subjects: [SubjectDto]
     let wrongAnswersTime: String?
     let deviceToken: String?
+    let doExercise: Bool?
 }
 
 struct SubjectDto: Codable {
@@ -26,6 +27,7 @@ struct SubjectDto: Codable {
     let photo: String?
     let questionsCount: Int?
     let answeredQuestionsCount: Int?
+    let doExercise: Bool?
     let correctAnswersCount: Int?
     let completed: Bool?
 }

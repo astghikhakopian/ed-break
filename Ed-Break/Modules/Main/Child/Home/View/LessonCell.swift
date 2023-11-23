@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Kingfisher
 
 struct LessonCell: View {
     
@@ -19,9 +20,15 @@ struct LessonCell: View {
     
     var body: some View {
         HStack(spacing: 12) {
-            AsyncImageView(withURL: model.photo ?? "", width: imageHeight, height: imageHeight)
-                .background(Color.appWhite)
-                .cornerRadius(cornerRadius)
+            if let photo = model.photo, let url = URL(string: photo) {
+                CachedAsyncImage(urlRequest: URLRequest(url: url), urlCache: .imageCache)
+                    .frame(width: imageHeight, height: imageHeight)
+                    .background(Color.appWhite)
+                    .cornerRadius(cornerRadius)
+            }
+//            AsyncImageView(withURL: model.photo ?? "", width: imageHeight, height: imageHeight)
+//                .background(Color.appWhite)
+//                .cornerRadius(cornerRadius)
             VStack(alignment: .leading, spacing: 1) {
                 Text(model.subject ?? "")
                     .font(.appSubTitle)
@@ -53,6 +60,11 @@ struct LessonCell: View {
 
 struct LessonCell_Previews: PreviewProvider {
     static var previews: some View {
-        LessonCell(model: SubjectModel(dto: SubjectDto(id: 0, subject: "Math", photo: "English", questionsCount: 5, answeredQuestionsCount: 5, correctAnswersCount: 3, completed: false)))
+        LessonCell(model: SubjectModel(dto: SubjectDto(id: 0, subject: "Math", photo: "English", questionsCount: 5, answeredQuestionsCount: 5, doExercise: false, correctAnswersCount: 3, completed: false)))
     }
+}
+
+extension URLCache {
+    
+    static let imageCache = URLCache(memoryCapacity: 512_000_000, diskCapacity: 10_000_000_000)
 }

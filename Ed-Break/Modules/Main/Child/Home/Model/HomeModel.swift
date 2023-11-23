@@ -20,6 +20,7 @@ struct HomeModel {
     let subjects: [SubjectModel]
     var wrongAnswersTime: Date?
     let deviceToken: String?
+    let doExercise: Bool
     
     var lastLoginString: String {
         NSLocalizedString("main.parent.childProfile.lastActive", comment: "") +
@@ -36,7 +37,7 @@ struct HomeModel {
         wrongAnswersTime = Date(fromString: dto.wrongAnswersTime ?? "", format: .isoDateTimeFull)?.toLocalTime()
         interruption = dto.interruption
         subjects = dto.subjects.map { SubjectModel(dto: $0) }
-        
+        doExercise = dto.doExercise ?? false
         if let restrictions = dto.restrictions?.replacingOccurrences(of: "\\\"", with: "\""),
            let stringData = restrictions.data(using: .utf8),
            let selectionObject = try? JSONDecoder().decode(FamilyActivitySelection.self, from: stringData) {
@@ -52,6 +53,7 @@ struct SubjectModel: BottomsheetCellModel, Equatable {
     var imageUrl: URL? { photo == nil ? nil : URL(string: photo!) }
     
     let id: Int
+    let doExercise: Bool
     let subject: String?
     let photo: String?
     let questionsCount: Int
@@ -62,6 +64,7 @@ struct SubjectModel: BottomsheetCellModel, Equatable {
     init(dto: SubjectDto) {
         id = dto.id
         subject = dto.subject
+        doExercise = dto.doExercise ?? false
         photo = dto.photo
         questionsCount = dto.questionsCount ?? 0
         answeredQuestionsCount = dto.answeredQuestionsCount ?? 0
@@ -73,6 +76,7 @@ struct SubjectModel: BottomsheetCellModel, Equatable {
         id = dto.id
         subject = dto.title
         photo = dto.photo
+        doExercise = dto.doExercise ?? false
         questionsCount = dto.questionsCount ?? 0
         answeredQuestionsCount = dto.answersCount ?? 0
         correctAnswersCount = dto.correctAnswersCount ?? 0
@@ -82,6 +86,7 @@ struct SubjectModel: BottomsheetCellModel, Equatable {
     init(offlineSubjectModel: OfflineSubjectModel) {
         id = offlineSubjectModel.id
         subject = offlineSubjectModel.subject
+        doExercise = false
         photo = offlineSubjectModel.photo
         questionsCount = 5
         answeredQuestionsCount = 0 // TODO: - saving the current state
@@ -93,6 +98,7 @@ struct SubjectModel: BottomsheetCellModel, Equatable {
         self.id = 0
         self.subject = nil
         self.photo = nil
+        doExercise = false
         self.questionsCount = 0
         self.answeredQuestionsCount = 0
         self.correctAnswersCount = 0

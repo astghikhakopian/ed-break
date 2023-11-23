@@ -14,64 +14,15 @@ struct OnboardingRole: View {
     
     private let privacyUrl = URL(string: "https://ed-break.com/ed-break-terms-of-service/")!
     private let cellHeight = 214.0
-    private let spacing = 19.0
     
     var body: some View {
         NavigationView {
             VStack {
-                MainBackground(title: "onboarding.role", withNavbar: false) {
-                    VStack(spacing: spacing) {
-                        OnboardingRoleCell(role: .parent) {
-                            if #available(iOS 16.0, *) {
-                                ParentSignInView()
-                            } else {
-                                CreateOrJoinFamilyView()
-                            }
-                        }
-                        .frame(height: cellHeight)
-                        .disabled(!isTermsSelected)
-                        
-                        OnboardingRoleCell(role: .child) {
-                            ChildSignInView()
-                        }
-                        .frame(height: cellHeight)
-                        .disabled(!isTermsSelected)
-                    }
-                }
+                content
                 Spacer()
-                // HStack(spacing: 12) {
-                    /*
-                    Button {
-                        isTermsSelected.toggle()
-                    } label: {
-                        Image.Common.checkmark
-                            .renderingMode(.template)
-                            .frame(width: 24, height: 24)
-                            .foregroundColor(isTermsSelected ? Color.primaryPurple : .appWhite)
-                            .background(Color.appWhite)
-                            .cornerRadius(8)
-                            .overlay(
-                                RoundedRectangle(cornerRadius: 8)
-                                    .stroke(isTermsSelected ? Color.primaryPurple : Color.primaryDescription, lineWidth: 1)
-                            )
-                    }
-                    */
-                    VStack {
-                        Text("onboarding.terms.text")
-                            .foregroundColor(.appWhite)
-                            .font(.appHeadline)
-                            .multilineTextAlignment(.center)
-                        Button {
-                            showWebView = true
-                        } label: {
-                            Text("onboarding.terms.action")
-                                .foregroundColor(.appWhite)
-                                .font(.appHeadline)
-                                .underline()
-                        }
-                    }.padding(15)
-                // }
-            }.background(Color.primaryBackground)
+                termsView
+            }
+            .background(Color.primaryBackground)
         }
         .navigationViewStyle(StackNavigationViewStyle())
         .foregroundColor(.appBlack)
@@ -79,13 +30,52 @@ struct OnboardingRole: View {
         .sheet(isPresented: $showWebView) {
             WebView(url: privacyUrl)
         }
-        .onAppear {
-//            let token = TokenModel(
-//                refresh: "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoicmVmcmVzaCIsImV4cCI6MTY5MjA5MDU2NSwiaWF0IjoxNjg5NDk4NTY1LCJqdGkiOiI3ZDAwOTk3MDg5NDA0YmQyYjM0NjFjZWFhM2ZjNGVlNyIsInVzZXJfaWQiOjEzNTl9.87UjV32rudLGkm4cYv-c5V1Exgj24JJP8smdj-NTXZo",
-//                access: "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjkyMDkwNTY1LCJpYXQiOjE2ODk0OTg1NjUsImp0aSI6IjQ4YjBlODI5ZWI3MTQxNGI5MzJjMTcxMDM1YzBjMTE0IiwidXNlcl9pZCI6MTM1OX0.g-A_36ZJS5mWPAmnCQAjsPK6F9JK-fuiZI7AXcnpe1s")
-//            UserDefaultsService().setObject(token, forKey: .ChildUser.token)
-//            UserDefaultsService().setPrimitive(true, forKey: .ChildUser.isLoggedIn)
+    }
+    
+    
+    // MARK: - Components
+    
+    private var content: some View {
+        MainBackground(
+            title: "onboarding.role",
+            withNavbar: false
+        ) {
+            VStack(spacing: 19) {
+                OnboardingRoleCell(role: .parent) {
+                    if #available(iOS 16.0, *) {
+                        ParentSignInView()
+                    } else {
+                        CreateOrJoinFamilyView()
+                    }
+                }
+                .frame(height: cellHeight)
+                .disabled(!isTermsSelected)
+                
+                OnboardingRoleCell(role: .child) {
+                    ChildSignInView()
+                }
+                .frame(height: cellHeight)
+                .disabled(!isTermsSelected)
+            }
         }
+    }
+    
+    private var termsView: some View {
+        VStack {
+            Text("onboarding.terms.text")
+                .foregroundColor(.appWhite)
+                .font(.appHeadline)
+                .multilineTextAlignment(.center)
+            Button {
+                showWebView = true
+            } label: {
+                Text("onboarding.terms.action")
+                    .foregroundColor(.appWhite)
+                    .font(.appHeadline)
+                    .underline()
+            }
+        }
+        .padding(15)
     }
 }
 
