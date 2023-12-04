@@ -52,8 +52,8 @@ final class ChildDetailsViewModel: ChildDetailsViewModeling, Identifiable {
     let child: ChildModel?
     
     @Published var grades: [Grade] = Grade.allCases
-    @Published var interuptions: [Interuption] = Interuption.allCases
-    @Published var intervalBetweenIncorrect: [IntervalBetweenIncorrect] = IntervalBetweenIncorrect.allCases
+    @Published var interuptions: [Interuption] = Interuption.allCases.filter { $0 != .iSelect }
+    @Published var intervalBetweenIncorrect: [IntervalBetweenIncorrect] = IntervalBetweenIncorrect.allCases.filter { $0 != .iSelect }
     @Published var subjects: [BottomsheetCellModel] = [SubjectModel(dto: SubjectDto(id: 0, subject: "", photo: "", questionsCount: 0, answeredQuestionsCount: 0, doExercise: false, correctAnswersCount: 0, completed: false))]
     @Published var isContentValid: Bool = false
     @Published var isLoading: Bool = false
