@@ -32,7 +32,7 @@ final class HomeViewModel: HomeViewModeling, Identifiable {
     }
     
     var isActiveWrongAnswersBlock: Bool {
-        shieldSeconds > 0
+        questionBlockError?.blockedTime ?? 0 > 0
     }
     
     private var timer: Timer?
@@ -133,27 +133,12 @@ final class HomeViewModel: HomeViewModeling, Identifiable {
     }
     
     private func processModel(model: HomeModel) {
-        var model = model
-//        model.wrongAnswersTime = (model.wrongAnswersTime ?? Date().toLocalTime()) > Date().toLocalTime()
-//        ? model.wrongAnswersTime
-//        : nil
         self.contentModel = model
         let today = Date().toLocalTime()
         let allremindingMinutes: Int? = self.userDefaultsService.getPrimitiveFromSuite(forKey: .ChildUser.remindingMinutes)
         let restrictions = model.restrictions ?? FamilyActivitySelection()
         
-//        if let wrongAnswersTime = contentModel?.wrongAnswersTime {
-//            if let difference = getSeconds(start: wrongAnswersTime),
-//               difference < 0 {
-//                shieldSeconds = -difference
-//                startShieldTimer()
-//            }
-//        }
-        
-        if let startTime = model.breakStartDatetime /*,
-           startTime.component(.day) == today.component(.day),
-           startTime.component(.hour) ?? 0 <= today.component(.hour) ?? 0*/ {
-            
+        if let startTime = model.breakStartDatetime, (allremindingMinutes ?? 0) <= 0 {
             let startTimeMinute = startTime.component(.minute) ?? 0
             let todayMinute = today.component(.minute) ?? 0
             
