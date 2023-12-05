@@ -76,6 +76,9 @@ final class OfflineChildGettingViewModel: OfflineChildGettingViewModeling {
         if let wrongAnswersTime = contentModel?.wrongAnswersDate?.toLocal() {
             if let difference = getSeconds(start: wrongAnswersTime),
                difference < 0 {
+                if -difference > 5 {
+                    
+                }
                 shieldSeconds = -difference
                 startShieldTimer()
             }
