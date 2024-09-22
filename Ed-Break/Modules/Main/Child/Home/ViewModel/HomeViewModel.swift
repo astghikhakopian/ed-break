@@ -138,22 +138,20 @@ final class HomeViewModel: HomeViewModeling, Identifiable {
         let allremindingMinutes: Int? = self.userDefaultsService.getPrimitiveFromSuite(forKey: .ChildUser.remindingMinutes)
         let restrictions = model.restrictions ?? FamilyActivitySelection()
         
-        if let startTime = model.breakStartDatetime, (allremindingMinutes ?? 0) <= 0 {
+        if let allremindingMinutes = allremindingMinutes,
+            allremindingMinutes > 0 {
+            self.remindingMinutes = allremindingMinutes
+        } else if let startTime = model.breakStartDatetime {
             let startTimeMinute = startTime.component(.minute) ?? 0
             let todayMinute = today.component(.minute) ?? 0
             
             if startTimeMinute == todayMinute {
                 self.remindingMinutes = model.interruption ?? 0
-            } else if
-                startTimeMinute < todayMinute,
-                let allremindingMinutes = allremindingMinutes,
-                allremindingMinutes > 0 {
-                self.remindingMinutes = allremindingMinutes
             } else {
-                self.remindingMinutes = allremindingMinutes ?? 0
+                self.remindingMinutes = 0
             }
         } else {
-            self.remindingMinutes = allremindingMinutes ?? 0
+            self.remindingMinutes = 0
         }
         
         let shouldRestrict = self.remindingMinutes <= 0

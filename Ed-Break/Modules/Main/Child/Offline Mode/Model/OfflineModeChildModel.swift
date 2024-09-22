@@ -16,10 +16,10 @@ struct OfflineChildModel {
     var breakStartDatetime: String?
     var wrongAnswersTime: String?
     var breakStartDate: Date? {
-        Date(fromString: breakStartDatetime ?? "", format: .isoDateTimeFull)?.toLocalTime()
+        Date(fromString: breakStartDatetime ?? "", format: .isoDateTimeFull)//?.toLocalTime()
     }
     var wrongAnswersDate: Date? {
-        Date(fromString: wrongAnswersTime ?? "", format: .isoDateTimeFull)?.toLocalTime()
+        Date(fromString: wrongAnswersTime ?? "", format: .isoDateTimeFull)//?.toLocalTime()
     }
     let restrictions: String?
     var restrictionsObject: FamilyActivitySelection? {

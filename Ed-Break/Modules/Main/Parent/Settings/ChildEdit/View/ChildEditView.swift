@@ -87,21 +87,21 @@ private extension ChildEditView {
                     HStack(spacing: 10) {
                         WheelPickerField(
                             style: .titled(
-                                title: "childDetails.interruption.frequency",
-                                titleToShow: "childDetails.interruption.frequency"
-                            ),
-                            selection: $viewModel.children[0].interuption,
-                            datasource: $viewModel.interuptions
-                        ) {
-                            UIApplication.shared.endEditing()
-                        }
-                        WheelPickerField(
-                            style: .titled(
                                 title: "childDetails.interruption",
                                 titleToShow: "childDetails.interruption.period"
                             ),
                             selection: $viewModel.children[0].intervalBetweenIncorrect,
                             datasource: $viewModel.intervalBetweenIncorrect
+                        ) {
+                            UIApplication.shared.endEditing()
+                        }
+                        WheelPickerField(
+                            style: .titled(
+                                title: "childDetails.interruption.frequency",
+                                titleToShow: "childDetails.interruption.frequency"
+                            ),
+                            selection: $viewModel.children[0].interuption,
+                            datasource: $viewModel.interuptions
                         ) {
                             UIApplication.shared.endEditing()
                         }
@@ -120,37 +120,6 @@ private extension ChildEditView {
             }.padding(spacing)
         }
     }
-//  var childView: some View {
-//    ZStack(alignment: .leading) {
-//      Color.primaryCellBackground
-//        .cornerRadius(cornerRadius)
-//        .shadow(color: .shadow, radius: 40, x: 0, y: 20)
-//      VStack(alignment: .leading, spacing: spacing) {
-//        ForEach($viewModel.children, id: \.id) { child in
-//          uploadPhotoView(image: child.image)
-//          CommonTextField(title: "childDetails.name", placeHolder: "childDetails.name.placeholder", text: child.childName)
-//          HStack(spacing: 10) {
-//            WheelPickerField(style: .titled(title: "childDetails.grade"), selection: child.grade, datasource: $viewModel.grades){
-//              UIApplication.shared.endEditing()
-//            }
-//            WheelPickerField(style: .titled(title: "childDetails.interruption",titleToShow: "childDetails.interruption.period"), selection: $viewModel.children[0].interuption, datasource: $viewModel.interuptions){
-//              UIApplication.shared.endEditing()
-//            }
-//          }
-//          dropdown(title: "childDetails.subjects", selectedItems: child.subjects) {
-//            UIApplication.shared.endEditing()
-//            showSubjects = true
-//          }
-//          if $viewModel.children.count > 1 {
-//            CancelButton(action: {
-//              guard !viewModel.isLoading else { return }
-//              viewModel.removeChild(child:  child.wrappedValue)
-//            }, title: "childDetails.delete", color: .primaryRed, isContentValid: .constant(true))
-//          }
-//        }
-//      }.padding(spacing)
-//    }
-//  }
     
     func childDevicesView(child: ChildDetailsModel) -> some View {
         ZStack(alignment: .leading) {

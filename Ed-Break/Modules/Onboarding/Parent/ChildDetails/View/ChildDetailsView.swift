@@ -76,20 +76,19 @@ private extension ChildDetailsView {
                     HStack(spacing: 10) {
                         WheelPickerField(
                             style: .titled(
-                                title: "childDetails.interruption.frequency",
-                                titleToShow: "childDetails.interruption.frequency"
-                            ),
-                            selection: child.interuption,
-                            datasource: $viewModel.interuptions
-                        )
-                        
-                        WheelPickerField(
-                            style: .titled(
                                 title: "childDetails.interruption",
                                 titleToShow: "childDetails.interruption.period"
                             ),
                             selection: child.intervalBetweenIncorrect,
                             datasource: $viewModel.intervalBetweenIncorrect
+                        )
+                        WheelPickerField(
+                            style: .titled(
+                                title: "childDetails.interruption.frequency",
+                                titleToShow: "childDetails.interruption.frequency"
+                            ),
+                            selection: child.interuption,
+                            datasource: $viewModel.interuptions
                         )
                     }
                     dropdown(title: "childDetails.subjects", selectedItems: child.subjects) {

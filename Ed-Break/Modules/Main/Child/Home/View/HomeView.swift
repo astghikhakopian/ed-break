@@ -273,29 +273,6 @@ struct HomeView<M: HomeViewModeling, N: OfflineChildGettingViewModeling>: View {
             isContentValid: .constant(true),
             isLoading: $viewModel.isLoading
         )
-        /*if viewModel.isActiveWrongAnswersBlock {
-            return AnyView(
-                Button(
-                    action: { isShieldPresented = true },
-                    label: { doExerciseButtonLabel }
-                )
-            )
-        } else*/
-//        if let subject = viewModel.doingSubject {
-//            return AnyView(
-//                NavigationLink(
-//                    destination: { subjectDestination(
-//                        subject: subject,
-//                        offlineSubject: nil
-//                    ) },
-//                    label: {
-//                        doExerciseButtonLabel
-//                    }
-//                )
-//            )
-//        } else {
-//            return AnyView(Spacer())
-//        }
     }
     
     private var doExerciseOfflineButton: some View {

@@ -172,8 +172,8 @@ class OfflineChildProvideer: OfflineChildProvideerProtocol {
         childMO.id = Int16(child.id)
         
         childMO.name = child.name
-        childMO.restrictionTime = child.restrictionTime == nil ? -1 : Int16(child.restrictionTime!)
-        childMO.breakStartDatetime =  child.breakStartDatetime
+        // childMO.restrictionTime = child.restrictionTime == nil ? -1 : Int16(child.restrictionTime!)
+        // childMO.breakStartDatetime =  child.breakStartDatetime
         // childMO.wrongAnswersTime = child.wrongAnswersTime
         childMO.restrictions = child.restrictions
         childMO.interruption = child.interruption == nil ? -1 : Int16(child.interruption!)

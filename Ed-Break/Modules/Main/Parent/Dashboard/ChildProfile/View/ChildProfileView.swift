@@ -286,8 +286,6 @@ private extension ChildProfileView {
                         .foregroundColor(.primaryDescription)
                     WheelPickerField(style: .custom(title: "childDetails.interruption.frequency"), selection: $viewModel.interuption, datasource: $viewModel.interuptions)
                 }
-                //                Spacer()
-                //                Image.Common.dropdownArrow
             }
         }.padding(24)
             .overlay(
